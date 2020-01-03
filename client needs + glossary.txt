@@ -1,0 +1,85 @@
+Gestion de plantation
+
+
+# Glossaire :
+
+- ZdP = Zone de plantation (une parcelle ou un pot)
+- BDD = Base de Données
+- admin = administrateur
+
+
+# Liste des besoins :
+
+
+- modification de ZdP :
+    * choix des plantes
+    * modification des parametres existants
+
+
+- visualiser les ZdP
+
+
+- fiche technique des plantes
+    * image de l'api ou ajout personnel (optionnel)
+    * nombre d'ajout dans ZdP / liste personnelle
+    * nom
+    * nom scientifique
+    * description
+    * comestibilité
+    * besoins (ensoleillement, sol, hygrometrie)
+    * alerte : taille, récolte, arrosage, protéger du climat, ...
+
+
+- recherche de plantes
+    * recherche par critere (nom, type, espece, ...)
+    * ajout direct dans une plantation
+    * sauver dans sa liste personnelle
+
+
+- liste personnelle de plantes
+    * rajouter soi-meme une plante
+    * récupérer plantes de la base de données
+
+
+- planning d'alerte
+    * visualiser le planning
+    * valider les alertes
+
+
+- creation de ZdP :
+    * localisation géographique (Pays - région - code postal )(gps optionnel)
+    * interieur ou exterieur
+    * ensoleillement
+    * qualité de la terre : type + acidité + richesse (optionnel)
+    * % hygrometrie (optionnel)
+
+
+- conseil de plantation pour une ZdP
+    * lié recherche de plantes par criteres
+
+
+- creation de compte
+    * nom / premon / pseudonyme
+    * localisation géographique (pays / region / code postal)
+
+
+- connexion à un compte
+    * sauvegarde des jardins
+    * sauvegarde des modifications des ZdP
+    * sauvegarde de la liste personnelle de plantes
+
+
+- interaction objets connectés
+
+
+- ajouter des plantes à la BDD (admin uniquement)
+
+
+- compte admnin:
+    * accès à l'ajout de plantes dans la BDD
+
+
+- tutoriel?
+    * bulle d'aide
+    * section aide
+    * page internet?

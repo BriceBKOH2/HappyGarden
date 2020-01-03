@@ -1,0 +1,4 @@
+?token=ajZaYWYwa1ZwMWUyT0NVYkVUd3E3Zz09
+
+exemple pour utiliser le token :
+https://trefle.io/api/plants/149757?token=ajZaYWYwa1ZwMWUyT0NVYkVUd3E3Zz09
