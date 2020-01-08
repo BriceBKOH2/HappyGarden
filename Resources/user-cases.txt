@@ -1,0 +1,40 @@
+# Glossaire :
+
+- ZdP = Zone de plantation (une parcelle ou un pot)
+- BDD = Base de Données
+- admin = administrateur
+
+
+On veut créer un systeme de gestion de plantation pour aider aux différentes actions nécessaires à l'entretien des plantes et la gestion de leurs spécificités.
+
+Un utilisateur lance l'application. Il peut :
+- Créer un compte utilisateur.
+- Se connecter à un compte existant.
+- Faire une recherche de plantes avec différents critères.
+- Créer son jardin.
+- Accéder à son jardin.
+- Importer un jardin.
+- Exporter un jardin.
+- Dans son jardin, créer une Zone de Plantation (ZdP).
+- Dans son jardin, modifier une ZdP.
+- Gérer sa liste personnelle de plante
+
+* Si l'utilisateur est connecté :
+  - Modifier son compte.
+  - Gérer une liste d'utilisateur favoris.
+  - Gérer la visibilité de ses jardins par les autres utilisateurs.
+  - Poser un avis sur une ZdP ou un jardin.
+
+L'application peut :
+* Si l'utilisateur est connecté ou non.
+  - Sauvegarder localement les jardins à la création et à la modification.
+  - rajoute dans la liste personnelle de l'utilisateur les plantes ajoutés dans une ZdP.
+
+* Si l'utilisateur est connecté
+  - Sauvegarder sur le serveur les jardins à la création et à la modification.
+  - Compare les jardins à la connection d'un compte puis télécharge ou envoie le jardin le plus récent.
+
+Un utilisateur connecté avec un compte administrateur peut :
+- ajouter des plantes à la base de données.
+- chercher des comptes utilisateur.
+- supprimer des comptes utilisateur.

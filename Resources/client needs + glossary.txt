@@ -67,6 +67,8 @@ Gestion de plantation
     * sauvegarde des jardins
     * sauvegarde des modifications des ZdP
     * sauvegarde de la liste personnelle de plantes
+    * gestion d'une liste d'utilisateur favoris
+    * recherche d'utilisateurs
 
 
 - interaction objets connectés
@@ -77,6 +79,7 @@ Gestion de plantation
 
 - compte admnin:
     * accès à l'ajout de plantes dans la BDD
+    * gestion des comptes utilisateurs
 
 
 - tutoriel?
