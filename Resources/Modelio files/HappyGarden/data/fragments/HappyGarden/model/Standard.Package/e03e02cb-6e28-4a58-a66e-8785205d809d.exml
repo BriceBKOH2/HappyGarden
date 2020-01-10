@@ -144,6 +144,8 @@
         </OBJECT>
         <COMPID name="Pot" mc="Standard.Class" uid="76d11a46-bd44-4405-837f-6652ba86eb81"/>
         <COMPID name="Parcel" mc="Standard.Class" uid="378fbc9a-a42b-4d94-a10e-41542abbfed4"/>
+        <COMPID name="PlantingArea" mc="Standard.Class" uid="b307d647-2aab-40b7-ba16-16d538a6dad3"/>
+        <COMPID name="Alerte" mc="Standard.Class" uid="db0aba91-05f5-4097-9ca2-43bb4d7160cf"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="happygarden General Use Case diagram" mc="Standard.UseCaseDiagram" uid="2722e9f7-562f-46be-ac09-86fe5fc9d2a4"/>

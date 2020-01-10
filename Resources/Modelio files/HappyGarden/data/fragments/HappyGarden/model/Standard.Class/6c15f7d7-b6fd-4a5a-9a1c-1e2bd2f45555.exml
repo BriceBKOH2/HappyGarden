@@ -298,7 +298,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="season" mc="Standard.AssociationEnd" uid="2c794398-61d7-48a6-b5af-bdb5c8cf84c2"/>
+          <ID name="seasons" mc="Standard.AssociationEnd" uid="2c794398-61d7-48a6-b5af-bdb5c8cf84c2"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsAggregation</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -311,7 +311,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[season]]></ATT>
+            <ATT name="Name"><![CDATA[seasons]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -340,7 +340,7 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="season" mc="Standard.AssociationEnd" uid="2c794398-61d7-48a6-b5af-bdb5c8cf84c2"/>
+                    <COMPID name="seasons" mc="Standard.AssociationEnd" uid="2c794398-61d7-48a6-b5af-bdb5c8cf84c2"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>

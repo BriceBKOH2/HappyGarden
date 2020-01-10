@@ -128,68 +128,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="parcel" mc="Standard.AssociationEnd" uid="c087cb93-838c-45d6-95b9-91ee37b3fdec"/>
-          <ATTRIBUTES>
-            <ATT name="Aggregation">KindIsAggregation</ATT>
-            <ATT name="IsChangeable">true</ATT>
-            <ATT name="Changeable">ReadWrite</ATT>
-            <ATT name="IsDerived">false</ATT>
-            <ATT name="IsOrdered">false</ATT>
-            <ATT name="IsUnique">false</ATT>
-            <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
-            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
-            <ATT name="Visibility">Public</ATT>
-            <ATT name="IsClass">false</ATT>
-            <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[parcel]]></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES>
-            <LINK relation="Target">
-              <ID name="Parcel" mc="Standard.Class" uid="378fbc9a-a42b-4d94-a10e-41542abbfed4"/>
-            </LINK>
-            <COMP relation="Opposite">
-              <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="4a11ce4b-05bb-48ea-b9a8-7b995e189c0a"/>
-                <ATTRIBUTES>
-                  <ATT name="Aggregation">KindIsAssociation</ATT>
-                  <ATT name="IsChangeable">true</ATT>
-                  <ATT name="Changeable">ReadWrite</ATT>
-                  <ATT name="IsDerived">false</ATT>
-                  <ATT name="IsOrdered">false</ATT>
-                  <ATT name="IsUnique">false</ATT>
-                  <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
-                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
-                  <ATT name="Visibility">Public</ATT>
-                  <ATT name="IsClass">false</ATT>
-                  <ATT name="IsAbstract">false</ATT>
-                  <ATT name="Name"></ATT>
-                  <ATT name="status">1970354901745664</ATT>
-                </ATTRIBUTES>
-                <DEPENDENCIES>
-                  <COMP relation="Opposite">
-                    <COMPID name="parcel" mc="Standard.AssociationEnd" uid="c087cb93-838c-45d6-95b9-91ee37b3fdec"/>
-                  </COMP>
-                  <COMP relation="Association">
-                    <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="bb98d906-1c76-47f5-8f82-f64097cb52ea"/>
-                      <ATTRIBUTES>
-                        <ATT name="Name"></ATT>
-                        <ATT name="status">1970354901745664</ATT>
-                      </ATTRIBUTES>
-                      <DEPENDENCIES></DEPENDENCIES>
-                    </OBJECT>
-                  </COMP>
-                </DEPENDENCIES>
-              </OBJECT>
-            </COMP>
-            <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="bb98d906-1c76-47f5-8f82-f64097cb52ea"/>
-            </COMP>
-          </DEPENDENCIES>
-        </OBJECT>
-        <OBJECT>
-          <ID name="plot" mc="Standard.AssociationEnd" uid="45deab7e-e369-4f25-8859-3ddc1ccc7e6a"/>
+          <ID name="plantingAreas" mc="Standard.AssociationEnd" uid="7282db38-a859-4116-be22-750e11d20c80"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsAggregation</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -202,16 +141,16 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[plot]]></ATT>
+            <ATT name="Name"><![CDATA[plantingAreas]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Pot" mc="Standard.Class" uid="76d11a46-bd44-4405-837f-6652ba86eb81"/>
+              <ID name="PlantingArea" mc="Standard.Class" uid="b307d647-2aab-40b7-ba16-16d538a6dad3"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="0b690c7e-e3ca-4e9f-ad70-6c0ec5e3e6e2"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="2b11952b-19a7-4664-8c32-ba49ceef33a6"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -229,11 +168,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="plot" mc="Standard.AssociationEnd" uid="45deab7e-e369-4f25-8859-3ddc1ccc7e6a"/>
+                    <COMPID name="plantingAreas" mc="Standard.AssociationEnd" uid="7282db38-a859-4116-be22-750e11d20c80"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="8cdc600d-251b-415b-ac59-1cede374e32f"/>
+                      <ID name="" mc="Standard.Association" uid="6e1c7faf-6dfd-4389-a172-3fdf8ab507ed"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -245,7 +184,7 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="8cdc600d-251b-415b-ac59-1cede374e32f"/>
+              <COMPID name="" mc="Standard.Association" uid="6e1c7faf-6dfd-4389-a172-3fdf8ab507ed"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>

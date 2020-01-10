@@ -1,4 +1,4 @@
-package diginamic.happygarden;
+package happygarden;
 
 /**
  * Hello world!
