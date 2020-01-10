@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="HappyGarden" version="4">
+  <OBJECT>
+    <ID name="HappyGarden" mc="Infrastructure.DiagramSet" uid="7b5901a9-0c3c-4dbf-be09-cab3ed8146b8"/>
+    <PID name="HappyGarden" mc="Standard.Project" uid="5cc2e1da-f2d6-444b-be7a-52ac51d12fec"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[HappyGarden]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

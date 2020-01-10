@@ -1,0 +1,156 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="happygarden" version="4">
+  <OBJECT>
+    <ID name="happygarden" mc="Standard.Package" uid="e03e02cb-6e28-4a58-a66e-8785205d809d"/>
+    <PID name="HappyGarden" mc="Standard.Project" uid="5cc2e1da-f2d6-444b-be7a-52ac51d12fec"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[happygarden]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Utilisateur" mc="Standard.Actor" uid="6802275f-8461-40cc-962e-ede1b4e55cfa"/>
+        <COMPID name="Administrateur" mc="Standard.Actor" uid="742769b9-3902-4324-a6fe-5d88649ffcd9"/>
+        <COMPID name="se connecter" mc="Standard.UseCase" uid="ea74a0ce-46ce-47ce-98ef-0fabafb302bf"/>
+        <COMPID name="Gérer son jardin" mc="Standard.UseCase" uid="8809f18f-8987-428e-9afb-f46c634c6247"/>
+        <COMPID name="recherche de plante" mc="Standard.UseCase" uid="842366cd-0347-4d94-82da-6af7fa854eb3"/>
+        <COMPID name="Sauvegarde locale" mc="Standard.UseCase" uid="1544f845-0b9b-49da-bfe5-fcbc3812b5fe"/>
+        <COMPID name="Sauvegarde serveur" mc="Standard.UseCase" uid="5752738e-44e5-4325-af3d-a7d120d5a559"/>
+        <COMPID name="Gérer liste d'utilisateurs favoris" mc="Standard.UseCase" uid="9e4a75bd-7316-4f83-8710-b6855b8c2df8"/>
+        <COMPID name="gérer les comptes utilisateurs" mc="Standard.UseCase" uid="905af6e1-71c2-4d3e-ae8e-f165c880e388"/>
+        <COMPID name="Chercher jardin d'utilisateur" mc="Standard.UseCase" uid="1fec35bb-98ce-4bc0-90cb-f74a2d081a2a"/>
+        <COMPID name="ajouter plantes dans la BDD" mc="Standard.UseCase" uid="185a698b-2826-4a43-a6cc-356b04e90963"/>
+        <COMPID name="importer jardin" mc="Standard.UseCase" uid="73b1f56c-91b6-4a16-bef8-648fff064cc5"/>
+        <COMPID name="gérer son compte" mc="Standard.UseCase" uid="9fa275d0-cea0-4efc-b6b1-7ba135b0dc95"/>
+        <COMPID name="Créer Jardin" mc="Standard.UseCase" uid="70e00894-0bd3-4a71-9e96-d2517e74e80e"/>
+        <COMPID name="modifier jardin" mc="Standard.UseCase" uid="7003e85b-c3f4-42dc-82da-b6fb2213ded4"/>
+        <COMPID name="Ajout de ZdP" mc="Standard.UseCase" uid="3a8aa5a7-7da1-4a64-b331-bf2553d94f14"/>
+        <COMPID name="modification de Zdp" mc="Standard.UseCase" uid="66a44044-c7eb-44d0-b474-2b083b29a39c"/>
+        <COMPID name="parcelle" mc="Standard.UseCase" uid="15af9b5e-728e-4779-9e4d-b2941e1cf853"/>
+        <COMPID name="pot" mc="Standard.UseCase" uid="43dec63b-32c6-4779-a8eb-34dd84b4e0db"/>
+        <COMPID name="suppression de ZdP" mc="Standard.UseCase" uid="28f4c0c2-5afd-481d-99e1-f8639d778cf6"/>
+        <COMPID name="visibilité pour les autres utilisateurs" mc="Standard.UseCase" uid="ecd79bb7-26b7-4a6f-9117-1aa3e06e830b"/>
+        <COMPID name="recherche de plante" mc="Standard.UseCase" uid="d5d958de-9715-469b-8a8e-92b030cf7b2d"/>
+        <COMPID name="sauvegarde locale" mc="Standard.UseCase" uid="c9f01599-7ab3-41d8-92ec-95e13884d809"/>
+        <COMPID name="ajout plantes" mc="Standard.UseCase" uid="0e7a4815-430d-4eb4-8a16-8965a52a2e5e"/>
+        <COMPID name="lier alerte personnalisée" mc="Standard.UseCase" uid="646c2926-cfc1-438f-bbeb-f3cc98430853"/>
+        <COMPID name="ajout d'alerte dans planning" mc="Standard.UseCase" uid="ddb8c805-9991-4f2a-92ce-2add2c32c76a"/>
+        <COMPID name="ajout dans la liste personnelle" mc="Standard.UseCase" uid="24648859-f510-485e-9c27-1caccb9a7d99"/>
+        <COMPID name="Creation de plantes" mc="Standard.UseCase" uid="23caff28-cf27-4e07-be39-f53885ecde0c"/>
+        <COMPID name="Modification de plantes" mc="Standard.UseCase" uid="20092cba-f8e9-46af-9faa-e00a2d035170"/>
+        <COMPID name="gestion plantes" mc="Standard.UseCase" uid="68966b66-a85d-406a-8064-ac311a0c03e5"/>
+        <COMPID name="Base de Données" mc="Standard.Actor" uid="157c318c-dfcf-4d50-bc47-f91d71617379"/>
+        <COMPID name="Sauvegarde" mc="Standard.UseCase" uid="a9e2a6b0-8783-4d58-8916-e8b74b3cdd4e"/>
+        <COMPID name="recherche de plantes" mc="Standard.UseCase" uid="385cdd2c-1ff5-460b-ab90-5c70f758f509"/>
+        <COMPID name="gestion de comptes utilisateurs" mc="Standard.UseCase" uid="52fb0aa4-0fa4-4914-a28c-25cc50b24909"/>
+        <COMPID name="recherche d'utilisateurs" mc="Standard.UseCase" uid="07cb52e3-5b61-4dd6-ba3e-e537fe725307"/>
+        <COMPID name="modification du compte" mc="Standard.UseCase" uid="8368be64-7bae-4049-bb8e-8e63f2a51dea"/>
+        <COMPID name="sauvegarde" mc="Standard.UseCase" uid="3c648a29-7be9-4507-97e3-51749689bbdc"/>
+        <COMPID name="suppression du compte" mc="Standard.UseCase" uid="818fb51d-885a-4e2b-8a42-6f3be475ab9a"/>
+        <COMPID name="ajout d'un compte" mc="Standard.UseCase" uid="9d250c16-d6e4-4bd9-9310-78cff5590cc6"/>
+        <COMPID name="User" mc="Standard.Class" uid="7215d8d4-68ed-42d8-bc39-88fec6774716"/>
+        <COMPID name="Plant" mc="Standard.Class" uid="6c15f7d7-b6fd-4a5a-9a1c-1e2bd2f45555"/>
+        <OBJECT>
+          <ID name="GrowthRate" mc="Standard.Enumeration" uid="df485e08-ab61-4512-8191-492403e49cad"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[GrowthRate]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="Rapid" mc="Standard.EnumerationLiteral" uid="ba69f0c8-d570-47f5-ba56-60f4d91dbd8f"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Rapid]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Moderate" mc="Standard.EnumerationLiteral" uid="7012e4e8-244e-4461-b186-f2814c231283"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Moderate]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="Role" mc="Standard.Class" uid="5bad624e-b3c6-4e5d-a98c-cd46010f2929"/>
+        <COMPID name="Garden" mc="Standard.Class" uid="3e0d95f5-1b59-45e8-bd66-aef3382b8360"/>
+        <COMPID name="Right" mc="Standard.Class" uid="512c29ff-c4de-4c5e-9c93-535d83766107"/>
+        <COMPID name="Comment" mc="Standard.Class" uid="8ba5caf6-46af-4830-8697-58d717436c1b"/>
+        <COMPID name="Slot" mc="Standard.Class" uid="5372a2fc-8fee-48cb-8c4b-70330421e07b"/>
+        <COMPID name="Conversation" mc="Standard.Class" uid="ee4a7eaa-7578-4dfb-985e-8a926f126696"/>
+        <COMPID name="Message" mc="Standard.Class" uid="78a672b5-6a80-4374-9dc6-fe5bd636a297"/>
+        <OBJECT>
+          <ID name="Season" mc="Standard.Enumeration" uid="014666a8-5714-41b4-89f5-90b2548075f7"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[Season]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="Winter" mc="Standard.EnumerationLiteral" uid="9162dc9d-1cef-456e-aab3-cba4f848ec58"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Winter]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Spring" mc="Standard.EnumerationLiteral" uid="31f6c292-9042-4fa1-b759-5654b6547fa9"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Spring]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Summer" mc="Standard.EnumerationLiteral" uid="7970400e-a59c-4b4d-b7c1-c03ff4263145"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Summer]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Fall" mc="Standard.EnumerationLiteral" uid="5119a58e-a3ff-4165-bc4c-d651ba51520c"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Fall]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="Pot" mc="Standard.Class" uid="76d11a46-bd44-4405-837f-6652ba86eb81"/>
+        <COMPID name="Parcel" mc="Standard.Class" uid="378fbc9a-a42b-4d94-a10e-41542abbfed4"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="happygarden General Use Case diagram" mc="Standard.UseCaseDiagram" uid="2722e9f7-562f-46be-ac09-86fe5fc9d2a4"/>
+        <COMPID name="happygarden Garden Management  Use Case diagram" mc="Standard.UseCaseDiagram" uid="d95f9ae8-7fb9-451f-8634-37666cbea9d2"/>
+        <COMPID name="happygarden Administration Use Case diagram" mc="Standard.UseCaseDiagram" uid="732358a0-be36-497a-8bc8-b72d32589808"/>
+        <COMPID name="happygarden Class diagram" mc="Standard.ClassDiagram" uid="d65c84ad-5f84-4d6c-a806-87f2e488eee9"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

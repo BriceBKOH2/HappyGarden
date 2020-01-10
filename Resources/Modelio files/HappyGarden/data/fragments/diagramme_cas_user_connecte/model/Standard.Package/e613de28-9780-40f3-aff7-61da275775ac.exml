@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="diagramme_cas_user_connecte" version="4">
+  <OBJECT>
+    <ID name="diagramme_cas_user_connecte" mc="Standard.Package" uid="e613de28-9780-40f3-aff7-61da275775ac"/>
+    <PID name="diagramme_cas_user_connecte" mc="Standard.Project" uid="7af25f4d-001a-49a5-8cd4-49778f3d23b2"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[diagramme_cas_user_connecte]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Importer un jardin" mc="Standard.UseCase" uid="6ff658c9-2499-44f8-8909-4724545d1707"/>
+        <COMPID name="Laisser un commentaire" mc="Standard.UseCase" uid="2311b9e0-86f6-4dde-a27b-f22ee0d9fb08"/>
+        <COMPID name="S'abonner à un compte utilisateur" mc="Standard.UseCase" uid="03ad0d29-357c-4c8c-ba1a-57a19cdcce0c"/>
+        <COMPID name="Envoyer un message" mc="Standard.UseCase" uid="830c84c8-1a77-4fa5-aa87-81e0f0490aa8"/>
+        <COMPID name="Consulter profil utilisateur" mc="Standard.UseCase" uid="4a15bdb9-95a5-430a-bd9f-6291f235c8a3"/>
+        <COMPID name="Utilisateur" mc="Standard.Actor" uid="cad2fa93-7d75-424a-83ce-1fa65ab901ce"/>
+        <COMPID name="Utilisateur" mc="Standard.Actor" uid="1c6f3d15-ca9b-4f7f-90bd-5c29048a2a80"/>
+        <COMPID name="Rechercher une plante" mc="Standard.UseCase" uid="9bbcf2c8-2613-471b-a84d-09cc6c04fa70"/>
+        <COMPID name="Ajouter des plantes à ses favoris" mc="Standard.UseCase" uid="46d3d26b-a6b0-465c-b2de-56b2c9ac164a"/>
+        <COMPID name="Modifier les informations de son profil" mc="Standard.UseCase" uid="b7c15eec-904b-4672-b71e-14c580d0711b"/>
+        <COMPID name="S'abonner à un utilisateur" mc="Standard.UseCase" uid="e40f286a-8598-4d7a-ad5d-aed979dd1b0a"/>
+        <COMPID name="Rechercher un utilisateur" mc="Standard.UseCase" uid="a81bed6c-e1af-4b25-b7e6-ac5d9e8fe6a4"/>
+        <COMPID name="Créer une plante" mc="Standard.UseCase" uid="29f2e24b-59b0-4e11-ba32-cdf63dc3beca"/>
+        <COMPID name="Ajouter une photo" mc="Standard.UseCase" uid="7509d8f6-3149-435b-9f13-96d302c60efc"/>
+        <COMPID name="User" mc="Standard.Class" uid="a060c655-4017-40e3-ba68-2b708ead9be1"/>
+        <COMPID name="Garden" mc="Standard.Class" uid="e7e4bf61-46a7-41a1-bf0c-71d7ed3201a0"/>
+        <COMPID name="Role" mc="Standard.Class" uid="1983be83-4b7c-42d7-9ae6-836ff689b5c2"/>
+        <COMPID name="Plant" mc="Standard.Class" uid="5452a5e0-cc09-41a9-92fe-c1a0a46ad959"/>
+        <OBJECT>
+          <ID name="Season" mc="Standard.Enumeration" uid="7d9fc016-ee22-44d0-a5e4-a151d8f4fb3e"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[Season]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="Winter" mc="Standard.EnumerationLiteral" uid="ff840afe-2d81-4747-925d-b8c55be4bbf9"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Winter]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Spring" mc="Standard.EnumerationLiteral" uid="6bb2d92f-d508-463b-abfe-e1a3cc1cb4ef"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Spring]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Summer" mc="Standard.EnumerationLiteral" uid="89c66cc2-2263-4304-9f21-76124d261c40"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Summer]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Fall" mc="Standard.EnumerationLiteral" uid="1cf0223e-3e85-4c7d-a268-77e90235b66e"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Fall]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="GrowthRate" mc="Standard.Enumeration" uid="66a5f1b2-8164-4a48-a7fd-3d7569d6916a"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[GrowthRate]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="Rapid" mc="Standard.EnumerationLiteral" uid="5fe617be-549c-4d85-a201-c0ed89f84f90"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Rapid]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="Moderate" mc="Standard.EnumerationLiteral" uid="eaca07e7-8dad-4af3-8c76-3fa6276a4262"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[Moderate]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="Message" mc="Standard.Class" uid="94efefd9-2e2f-4226-8fb8-6b5ef4b9d0af"/>
+        <COMPID name="Conversation" mc="Standard.Class" uid="71e9e6ad-b16d-48ac-88ac-9fc0dc91b80f"/>
+        <COMPID name="Comment" mc="Standard.Class" uid="68b65d6f-a2cb-4c47-841e-896b588a0cff"/>
+        <COMPID name="Parcel" mc="Standard.Class" uid="37fcc908-2640-4f24-b94d-dd7822f19e00"/>
+        <COMPID name="Pot" mc="Standard.Class" uid="af4ad27b-6ddf-4831-a127-0308ba0085bf"/>
+        <COMPID name="Right" mc="Standard.Class" uid="08590167-15f9-4a03-b809-e50bee88cfcd"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="diagramme_cas_user_connecte Use Case diagram" mc="Standard.UseCaseDiagram" uid="416fef8b-32e0-4767-a500-c18ae815a3ad"/>
+        <COMPID name="diagramme_cas_user_connecte Use Case diagram (1)" mc="Standard.UseCaseDiagram" uid="81a6815a-54ec-4006-b771-bf4b617a998c"/>
+        <COMPID name="diagramme_cas_user_connecte Class diagram" mc="Standard.ClassDiagram" uid="cf199775-e2ba-438d-a8d6-ce43da5fc850"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
