@@ -3,14 +3,13 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table
 public class Plant implements HibernateClass{
 	
 	@Id
@@ -35,6 +34,7 @@ public class Plant implements HibernateClass{
 	
 	private GrowthRate growthRate;
 	
+	@ElementCollection
 	private List<Season> seasons;
 
 	

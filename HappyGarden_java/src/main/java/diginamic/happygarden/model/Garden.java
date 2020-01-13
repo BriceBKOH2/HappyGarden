@@ -3,17 +3,16 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
-@Table
 public class Garden implements HibernateClass{
 
 	@Id
@@ -24,9 +23,11 @@ public class Garden implements HibernateClass{
 	private String name;
 
 	@OneToMany
+	@ElementCollection
 	private List<Comment> comments;	
 	
 	@OneToMany
+	@ElementCollection
 	private List<PlantingArea> plantingAreas;
 
 	

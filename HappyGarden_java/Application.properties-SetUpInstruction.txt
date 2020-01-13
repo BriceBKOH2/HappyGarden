@@ -1,0 +1,11 @@
+Copy the following in application.properties located in src\main\resources after replacing YOURPASSWORD at line 8 (change database name HappyGardenDB at line 6 and 7 if needed)
+
+server.port=9090
+spring.jpa.database=POSTGRESQL
+spring.datasource.platform=postgres
+spring.datasource.url=jdbc:postgresql://localhost:5432/HappyGardenDB
+spring.datasource.username=HappyGardenDB
+spring.datasource.password=YOURPASSWORD
+spring.jpa.show-sql=true
+spring.jpa.generate-ddl=true
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true

@@ -3,10 +3,8 @@ package diginamic.happygarden.model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table
 public class Pot extends PlantingArea {
 	
 	private Boolean interior;

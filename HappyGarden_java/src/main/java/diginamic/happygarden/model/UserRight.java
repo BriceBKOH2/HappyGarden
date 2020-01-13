@@ -4,13 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 /** a specification / autorisation given for a Role **/
 @Entity
-@Table
-public class Right implements HibernateClass{
+public class UserRight implements HibernateClass{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +20,11 @@ public class Right implements HibernateClass{
 	
 	/* Constructors */
 	
-	public Right() {
+	public UserRight() {
 		super();
 	}
 
-	public Right(String name) {
+	public UserRight(String name) {
 		super();
 		this.name = name;
 	}

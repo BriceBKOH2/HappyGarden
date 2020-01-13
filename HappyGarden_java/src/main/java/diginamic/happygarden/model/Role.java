@@ -3,19 +3,19 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * Contains a list of Right given to a UserAccount to access the different
  * functionalities of the application
  **/
 @Entity
-@Table
 public class Role implements HibernateClass{
 
 	@Id
@@ -25,26 +25,27 @@ public class Role implements HibernateClass{
 	@NotBlank
 	private String name;
 
-	@NotBlank
-	private List<Right> rights;
+	@NotNull
+	@ElementCollection
+	private List<UserRight> userRights;
 
 	/* Constructors */
 
 	public Role() {
 		super();
-		this.rights = new ArrayList<Right>();
+		this.userRights = new ArrayList<UserRight>();
 	}
 
 	public Role(String name) {
 		super();
 		this.name = name;
-		this.rights = new ArrayList<Right>();
+		this.userRights = new ArrayList<UserRight>();
 	}
 
-	public Role(String name, List<Right> rights) {
+	public Role(String name, List<UserRight> userRights) {
 		super();
 		this.name = name;
-		this.rights = rights;
+		this.userRights = userRights;
 	}
 
 	/* Getters Setters */
@@ -65,30 +66,30 @@ public class Role implements HibernateClass{
 		this.name = name;
 	}
 
-	public List<Right> getRights() {
-		return rights;
+	public List<UserRight> getUserRights() {
+		return userRights;
 	}
 
-	public void setRights(List<Right> rights) {
-		this.rights = rights;
+	public void setUserRights(List<UserRight> userRights) {
+		this.userRights = userRights;
 	}
 
-	public void setRights(Right... rights) {
-		this.rights = new ArrayList<Right>();
-		for (Right right : rights) {
-			this.rights.add(right);
+	public void setUserRights(UserRight... userRights) {
+		this.userRights = new ArrayList<UserRight>();
+		for (UserRight right : userRights) {
+			this.userRights.add(right);
 		}
 	}
 
 	/* Methods */
 
-	public void addRights(List<Right> rights) {
-		this.rights.addAll(rights);
+	public void addUserRights(List<UserRight> userRights) {
+		this.userRights.addAll(userRights);
 	}
 
-	public void addRights(Right... rights) {
-		for (Right right : rights) {
-			this.rights.add(right);
+	public void addUserRights(UserRight... userRights) {
+		for (UserRight right : userRights) {
+			this.userRights.add(right);
 		}
 	}
 }
