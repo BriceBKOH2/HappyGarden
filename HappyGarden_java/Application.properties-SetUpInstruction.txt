@@ -1,6 +1,6 @@
-Copy the following in application.properties located in src\main\resources after replacing YOURPASSWORD at line 8 (change database name HappyGardenDB at line 6 and 7 if needed)
+Copy the following text in application.properties located in src\main\resources after replacing YOURPASSWORD at line 8 (change database name HappyGardenDB at line 6 and 7 if needed)
 
-server.port=9090
+server.port=8080
 spring.jpa.database=POSTGRESQL
 spring.datasource.platform=postgres
 spring.datasource.url=jdbc:postgresql://localhost:5432/HappyGardenDB

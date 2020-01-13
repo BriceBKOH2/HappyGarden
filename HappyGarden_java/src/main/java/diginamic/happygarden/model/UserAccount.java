@@ -38,7 +38,7 @@ public class UserAccount implements HibernateClass {
 	
 	@NotNull
 	@ManyToOne
-	private Role role;
+	private UserRole userRole;
 
 	@ManyToMany
 	@ElementCollection
@@ -67,8 +67,8 @@ public class UserAccount implements HibernateClass {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.pseudonyme = pseudonyme;
-		/*/!\ DEFINE A ROLE BY DEFAULT (basic user)!!!!!!!! */
-		// role = new Role(????);
+		/*/!\ DEFINE A userRole BY DEFAULT (basic user)!!!!!!!! */
+		// userRole = new userRole(????);
 		this.conversations = new ArrayList<Conversation>();
 		this.friends = new ArrayList<UserAccount>();
 		this.favoritePlants = new ArrayList<Plant>();
@@ -76,12 +76,12 @@ public class UserAccount implements HibernateClass {
 		
 	}
 
-	public UserAccount(String firstName, String lastName, String pseudonyme, Role role) {
+	public UserAccount(String firstName, String lastName, String pseudonyme, UserRole userRole) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.pseudonyme = pseudonyme;
-		this.role = role;
+		this.userRole = userRole;
 		this.conversations = new ArrayList<Conversation>();
 		this.friends = new ArrayList<UserAccount>();
 		this.favoritePlants = new ArrayList<Plant>();
@@ -130,12 +130,12 @@ public class UserAccount implements HibernateClass {
 		this.password = password;
 	}
 	
-	public Role getRole() {
-		return role;
+	public UserRole getUserRole() {
+		return userRole;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 	public List<Conversation> getConversations() {

@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * functionalities of the application
  **/
 @Entity
-public class Role implements HibernateClass{
+public class UserRole implements HibernateClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,21 +31,30 @@ public class Role implements HibernateClass{
 
 	/* Constructors */
 
-	public Role() {
+	public UserRole() {
 		super();
 		this.userRights = new ArrayList<UserRight>();
 	}
 
-	public Role(String name) {
+	public UserRole(String name) {
 		super();
 		this.name = name;
 		this.userRights = new ArrayList<UserRight>();
 	}
 
-	public Role(String name, List<UserRight> userRights) {
+	public UserRole(String name, List<UserRight> userRights) {
 		super();
 		this.name = name;
 		this.userRights = userRights;
+	}
+
+	public UserRole(String name, UserRight... userRights) {
+		super();
+		this.name = name;
+		this.userRights = new ArrayList<UserRight>();
+		for (UserRight userRight : userRights) {
+			this.userRights.add(userRight);
+		}
 	}
 
 	/* Getters Setters */
