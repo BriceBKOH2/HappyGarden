@@ -5,39 +5,47 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.model.UserAccount;
-import diginamic.happygarden.model.UserRight;
-import diginamic.happygarden.model.UserRole;
-import diginamic.happygarden.repository.UserAccountRepository;
-import diginamic.happygarden.repository.UserRightRepository;
-import diginamic.happygarden.repository.UserRoleRepository;
+import diginamic.happygarden.service.UserAccountService;
+import diginamic.happygarden.service.UserRoleService;
 
 @RestController
+@RequestMapping("/UserAccount")
 public class UserAccountController {
 	
 	@Autowired
-	private UserAccountRepository userAccRep;
+	private UserAccountService userAccServ;
 	
 	@Autowired
-	private UserRightRepository userRightRep;
+	private UserRoleService userRoleServ;
 	
-	@Autowired
-	private UserRoleRepository userRoleRep;
-	
-	@RequestMapping(value ="/UserAccount/", method=RequestMethod.GET)
-	public List<UserAccount> createUserAccount() {
-		UserRight userRight = new UserRight("basic");
-		userRightRep.save(userRight);
-		UserRole userRole = new UserRole("Utilisateur", userRight);
-		userRoleRep.save(userRole);
-		UserAccount userAcc = new UserAccount("Jean", "Jade", "CoucouCestMoi",userRole);
+	/**
+	 * Returns a list of all clients after creating a client for testing
+	 * @return
+	 */
+	@RequestMapping(value ="/test", method=RequestMethod.GET)
+	public List<UserAccount> testUserAccount() {
+		UserAccount userAcc = new UserAccount("test", "test", "CoucouCestMoiLeTest",userRoleServ.findByName("admin").get());
 		userAcc.setPseudonyme("coco");
 		userAcc.setPassword("password");
-		userAccRep.save(userAcc);
-		System.out.println("c'est bon");
-		return userAccRep.findAll();
+		userAccServ.save(userAcc);
+		System.out.println("test");
+		return userAccServ.findAll();
 	}
+	
+	/**
+	 * Returns a list of all clients.
+	 * @return
+	 */
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserAccount> findAll() {
+		return userAccServ.findAll();
+	}
+	
+	
 	
 }

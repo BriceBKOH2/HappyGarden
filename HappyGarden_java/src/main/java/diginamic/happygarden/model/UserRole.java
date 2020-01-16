@@ -3,6 +3,7 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,23 +24,22 @@ public class UserRole implements HibernateClass {
 	private Long id;
 
 	@NotBlank
+	@Column(unique = true)
 	private String name;
 
 	@NotNull
 	@ElementCollection
-	private List<UserRight> userRights;
+	private List<UserRight> userRights = new ArrayList<UserRight>();;
 
 	/* Constructors */
 
 	public UserRole() {
 		super();
-		this.userRights = new ArrayList<UserRight>();
 	}
 
 	public UserRole(String name) {
 		super();
 		this.name = name;
-		this.userRights = new ArrayList<UserRight>();
 	}
 
 	public UserRole(String name, List<UserRight> userRights) {
@@ -51,7 +51,6 @@ public class UserRole implements HibernateClass {
 	public UserRole(String name, UserRight... userRights) {
 		super();
 		this.name = name;
-		this.userRights = new ArrayList<UserRight>();
 		for (UserRight userRight : userRights) {
 			this.userRights.add(userRight);
 		}
@@ -84,7 +83,7 @@ public class UserRole implements HibernateClass {
 	}
 
 	public void setUserRights(UserRight... userRights) {
-		this.userRights = new ArrayList<UserRight>();
+		this.userRights.clear();
 		for (UserRight right : userRights) {
 			this.userRights.add(right);
 		}

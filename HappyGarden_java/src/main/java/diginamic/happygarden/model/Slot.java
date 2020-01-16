@@ -26,27 +26,24 @@ public class Slot implements HibernateClass, ReminderManager {
 	
 	@ManyToMany
 	@ElementCollection
-	private List<Reminder> reminders;
+	private List<Reminder> reminders = new ArrayList<Reminder>();
 
 	
 	/* Constructors */
 	
 	public Slot() {
 		super();
-		this.reminders = new ArrayList<Reminder>();
 	}
 
 	public Slot(Date date) {
 		super();
 		this.date = date;
-		this.reminders = new ArrayList<Reminder>();
 	}
 
 	public Slot(Date date, Plant plant) {
 		super();
 		this.date = date;
 		this.plant = plant;
-		this.reminders = new ArrayList<Reminder>();
 	}
 	
 	public Slot(Date date, List<Reminder> reminders) {

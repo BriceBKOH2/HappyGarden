@@ -24,11 +24,11 @@ public class Garden implements HibernateClass{
 
 	@OneToMany
 	@ElementCollection
-	private List<Comment> comments;	
+	private List<Comment> comments = new ArrayList<Comment>();	
 	
 	@OneToMany
 	@ElementCollection
-	private List<PlantingArea> plantingAreas;
+	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
 
 	
 	/* Constructors */
@@ -40,14 +40,11 @@ public class Garden implements HibernateClass{
 	public Garden(String name) {
 		super();
 		this.name = name;
-		this.comments = new ArrayList<Comment>();
-		this.plantingAreas = new ArrayList<PlantingArea>();
 	}
 
 	public Garden(String name, List<PlantingArea> plantingAreas) {
 		super();
 		this.name = name;
-		this.comments = new ArrayList<Comment>();
 		this.plantingAreas = plantingAreas;
 	}
 
@@ -79,7 +76,7 @@ public class Garden implements HibernateClass{
 	}
 	
 	public void setComments(Comment...comments) {
-		this.comments = new ArrayList<Comment>();
+		this.comments.clear();
 		for (Comment comment : comments) {
 			this.comments.add(comment);
 		}
@@ -94,7 +91,7 @@ public class Garden implements HibernateClass{
 	}
 	
 	public void setComments(PlantingArea...plantingAreas) {
-		this.plantingAreas = new ArrayList<PlantingArea>();
+		this.plantingAreas.clear();
 		for (PlantingArea plantingArea : plantingAreas) {
 			this.plantingAreas.add(plantingArea);
 		}

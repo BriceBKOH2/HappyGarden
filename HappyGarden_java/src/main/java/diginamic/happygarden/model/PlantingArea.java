@@ -24,11 +24,11 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	
 	@OneToMany
 	@ElementCollection
-	protected List<Reminder> reminders;
+	protected List<Reminder> reminders = new ArrayList<Reminder>();
 	
 	@OneToMany
 	@ElementCollection
-	protected List<Slot> slots;
+	protected List<Slot> slots = new ArrayList<Slot>();
 
 	
 	/* Constructors */
@@ -40,15 +40,12 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public PlantingArea(String name) {
 		super();
 		this.name = name;
-		this.reminders = new ArrayList<Reminder>();
-		this.slots = new ArrayList<Slot>();
 	}
 
 	public PlantingArea(String name, List<Reminder> reminders) {
 		super();
 		this.name = name;
 		this.reminders = reminders;
-		this.slots = new ArrayList<Slot>();
 	}
 
 	public PlantingArea(String name, List<Reminder> reminders, List<Slot> slots) {
@@ -86,7 +83,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	}
 		
 	public void setReminders(Reminder... reminders) {
-		this.reminders = new ArrayList<Reminder>();
+		this.reminders.clear();
 		for (Reminder reminder : reminders) {
 			this.reminders.add(reminder);
 		}
@@ -101,6 +98,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	}
 	
 	public void setSlots(Slot... slots) {
+		this.slots.clear();
 		for (Slot slot : slots) {
 			this.slots.add(slot);
 		}

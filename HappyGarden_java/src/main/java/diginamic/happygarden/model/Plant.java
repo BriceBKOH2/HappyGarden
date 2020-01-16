@@ -35,20 +35,18 @@ public class Plant implements HibernateClass{
 	private GrowthRate growthRate;
 	
 	@ElementCollection
-	private List<Season> seasons;
+	private List<Season> seasons = new ArrayList<Season>();
 
 	
 	/* Constructors */
 	
 	public Plant() {
 		super();
-		this.seasons = new ArrayList<Season>();
 	}
 
 	public Plant(String commonName) {
 		super();
 		this.commonName = commonName;
-		this.seasons = new ArrayList<Season>();
 	}
 
 	public Plant(String scientificName, String commonName, String familyCommonName, String toxicity, Float matureHeight,
@@ -172,7 +170,7 @@ public class Plant implements HibernateClass{
 	}
 	
 	public void setSeasons(Season...seasons) {
-		this.seasons = new ArrayList<Season>();
+		this.seasons.clear();
 		for (Season season : seasons) {
 			this.seasons.add(season);
 		}

@@ -42,19 +42,19 @@ public class UserAccount implements HibernateClass {
 
 	@ManyToMany
 	@ElementCollection
-	private List<Conversation> conversations;
+	private List<Conversation> conversations = new ArrayList<Conversation>();
 
 	@ManyToMany
 	@ElementCollection
-	private List<UserAccount> friends;
+	private List<UserAccount> friends  = new ArrayList<UserAccount>();
 
 	@ManyToMany
 	@ElementCollection
-	private List<Plant> favoritePlants;
+	private List<Plant> favoritePlants = new ArrayList<Plant>();
 
 	@OneToMany
 	@ElementCollection
-	private List<Garden> gardens;
+	private List<Garden> gardens = new ArrayList<Garden>();;
 
 	/* Constructors */
 
@@ -68,12 +68,7 @@ public class UserAccount implements HibernateClass {
 		this.lastName = lastName;
 		this.pseudonyme = pseudonyme;
 		/*/!\ DEFINE A userRole BY DEFAULT (basic user)!!!!!!!! */
-		// userRole = new userRole(????);
-		this.conversations = new ArrayList<Conversation>();
-		this.friends = new ArrayList<UserAccount>();
-		this.favoritePlants = new ArrayList<Plant>();
-		this.gardens = new ArrayList<Garden>();
-		
+		// userRole = new userRole(????);		
 	}
 
 	public UserAccount(String firstName, String lastName, String pseudonyme, UserRole userRole) {
@@ -82,10 +77,6 @@ public class UserAccount implements HibernateClass {
 		this.lastName = lastName;
 		this.pseudonyme = pseudonyme;
 		this.userRole = userRole;
-		this.conversations = new ArrayList<Conversation>();
-		this.friends = new ArrayList<UserAccount>();
-		this.favoritePlants = new ArrayList<Plant>();
-		this.gardens = new ArrayList<Garden>();
 	}
 
 	/* Getters Setters */
@@ -147,7 +138,7 @@ public class UserAccount implements HibernateClass {
 	}
 
 	public void setConversations(Conversation... conversations) {
-		this.conversations = new ArrayList<Conversation>();
+		this.conversations.clear();
 		for (Conversation conversation : conversations) {
 			this.conversations.add(conversation);
 		}
@@ -162,7 +153,7 @@ public class UserAccount implements HibernateClass {
 	}
 
 	public void setFriends(UserAccount... friends) {
-		this.friends = new ArrayList<UserAccount>();
+		this.friends.clear();
 		for (UserAccount friend : friends) {
 			this.friends.add(friend);
 		}
@@ -177,7 +168,7 @@ public class UserAccount implements HibernateClass {
 	}
 
 	public void setFavoritePlants(Plant... favoritePlants) {
-		this.favoritePlants = new ArrayList<Plant>();
+		this.favoritePlants.clear();
 		for (Plant favoritePlant : favoritePlants) {
 			this.favoritePlants.add(favoritePlant);
 		}
@@ -192,7 +183,7 @@ public class UserAccount implements HibernateClass {
 	}
 
 	public void setGardens(Garden... gardens) {
-		this.gardens = new ArrayList<Garden>();
+		this.gardens.clear();
 		for (Garden garden : gardens) {
 			this.gardens.add(garden);
 		}

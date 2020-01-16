@@ -23,14 +23,13 @@ public class Conversation implements HibernateClass{
 	
 	@NotNull
 	@ElementCollection
-	private List<Message> messages;
+	private List<Message> messages = new ArrayList<Message>() ;
 
 	
 	/* Constructors */
 	
 	public Conversation() {
 		super();
-		messages = new ArrayList<Message>();
 	}
 
 	public Conversation(List<Message> messages) {
@@ -65,7 +64,7 @@ public class Conversation implements HibernateClass{
 	}
 	
 	public void setMessages(Message... messages) {
-		this.messages = new ArrayList<Message>();
+		this.messages.clear();
 		for (Message message : messages) {
 			this.messages.add(message);
 		}
