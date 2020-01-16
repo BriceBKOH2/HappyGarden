@@ -22,8 +22,8 @@ public class Message implements HibernateClass{
 	private String content;
 	
 	/** The user that sent the message**/
-	@ManyToOne
 	@NotNull
+	@ManyToOne
 	private UserAccount author;
 
 	

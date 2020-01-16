@@ -3,11 +3,11 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -22,7 +22,7 @@ public class Conversation implements HibernateClass{
 	private Long id;
 	
 	@NotNull
-	@ElementCollection
+	@OneToMany
 	private List<Message> messages = new ArrayList<Message>() ;
 
 	

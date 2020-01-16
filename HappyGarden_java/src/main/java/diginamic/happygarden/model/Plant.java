@@ -14,28 +14,28 @@ public class Plant implements HibernateClass{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	protected Long id;
 	
-	private String scientificName;
+	protected String scientificName;
 	
-	private String commonName;
+	protected String commonName;
 	
-	private String familyCommonName;
+	protected String familyCommonName;
 	
-	private String toxicity;
+	protected String toxicity;
 	
-	private Float matureHeight;
+	protected Float matureHeight;
 	
-	private String lifeSpan;
+	protected String lifeSpan;
 	
-	private String image;
+	protected String image;
 	
-	private String bloomPeriod;
+	protected String bloomPeriod;
 	
-	private GrowthRate growthRate;
+	protected GrowthRate growthRate;
 	
 	@ElementCollection
-	private List<Season> seasons = new ArrayList<Season>();
+	protected List<Season> seasons = new ArrayList<Season>();
 
 	
 	/* Constructors */

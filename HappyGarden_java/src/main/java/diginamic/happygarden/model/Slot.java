@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +24,6 @@ public class Slot implements HibernateClass, ReminderManager {
 	private Plant plant;
 	
 	@ManyToMany
-	@ElementCollection
 	private List<Reminder> reminders = new ArrayList<Reminder>();
 
 	
