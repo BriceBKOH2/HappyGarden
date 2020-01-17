@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Reminder;
 import diginamic.happygarden.repository.ReminderRepository;
@@ -40,11 +41,11 @@ public class ReminderService{
 	}
 	
 	public Reminder findOne(Example<Reminder> example) throws NotFoundException {
-		return reminderRep.findOne(example).orElseThrow(() -> new NotFoundException("Reminder not found"));
+		return reminderRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Reminder findById(Long id) throws NotFoundException {
-		return reminderRep.findById(id).orElseThrow(() -> new NotFoundException("Reminder not found"));
+		return reminderRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Reminder> findAll() {
@@ -75,8 +76,18 @@ public class ReminderService{
 		return reminderRep.findAllById(ids);
 	}
 
-	public Reminder save(Reminder entity) {
-		return reminderRep.save(entity);
+	public Reminder save(Reminder entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return reminderRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return reminderRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Reminder> saveAll(Iterable<Reminder> entities) {
@@ -85,6 +96,11 @@ public class ReminderService{
 	
 	public Reminder saveAndFlush(Reminder entity) {
 		return reminderRep.saveAndFlush(entity);
+	}
+	
+	public Reminder update(Reminder entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return reminderRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,7 +131,6 @@ public class ReminderService{
 
 	public void deleteAllInBatch() {
 		reminderRep.deleteAllInBatch();
-		
 	}
 
 }

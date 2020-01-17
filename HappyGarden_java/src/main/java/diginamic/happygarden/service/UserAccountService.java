@@ -41,19 +41,19 @@ public class UserAccountService{
 	}
 	
 	public UserAccount findOne(Example<UserAccount> example) throws NotFoundException {
-		return userAccRep.findOne(example).orElseThrow(() -> new NotFoundException("User not found"));
+		return userAccRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public UserAccount findById(Long id) throws NotFoundException {
-		return userAccRep.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+		return userAccRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public UserAccount findByIdFetchAll(Long id) throws NotFoundException {
-		return userAccRep.findByIdFetchAll(id).orElseThrow(() -> new NotFoundException("User not found"));
+		return userAccRep.findByIdFetchAll(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public UserAccount findByPseudonyme(String pseudonyme) throws NotFoundException {
-		return userAccRep.findByPseudonyme(pseudonyme).orElseThrow(() -> new NotFoundException("User not found"));
+		return userAccRep.findByPseudonyme(pseudonyme).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<UserAccount> findAll() {

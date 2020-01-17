@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.repository.ConversationRepository;
@@ -40,11 +41,11 @@ public class ConversationService{
 	}
 	
 	public Conversation findOne(Example<Conversation> example) throws NotFoundException {
-		return conversationRep.findOne(example).orElseThrow(() -> new NotFoundException("Conversation not found"));
+		return conversationRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Conversation findById(Long id) throws NotFoundException {
-		return conversationRep.findById(id).orElseThrow(() -> new NotFoundException("Conversation not found"));
+		return conversationRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Conversation> findAll() {
@@ -75,8 +76,18 @@ public class ConversationService{
 		return conversationRep.findAllById(ids);
 	}
 
-	public Conversation save(Conversation entity) {
-		return conversationRep.save(entity);
+	public Conversation save(Conversation entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return conversationRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return conversationRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Conversation> saveAll(Iterable<Conversation> entities) {
@@ -85,6 +96,11 @@ public class ConversationService{
 	
 	public Conversation saveAndFlush(Conversation entity) {
 		return conversationRep.saveAndFlush(entity);
+	}
+	
+	public Conversation update(Conversation entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return conversationRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,6 +131,6 @@ public class ConversationService{
 
 	public void deleteAllInBatch() {
 		conversationRep.deleteAllInBatch();
-		
 	}
+
 }

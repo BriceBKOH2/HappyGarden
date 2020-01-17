@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Parcel;
 import diginamic.happygarden.repository.ParcelRepository;
@@ -40,11 +41,11 @@ public class ParcelService{
 	}
 	
 	public Parcel findOne(Example<Parcel> example) throws NotFoundException {
-		return parcelRep.findOne(example).orElseThrow(() -> new NotFoundException("Parcel not found"));
+		return parcelRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Parcel findById(Long id) throws NotFoundException {
-		return parcelRep.findById(id).orElseThrow(() -> new NotFoundException("Parcel not found"));
+		return parcelRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Parcel> findAll() {
@@ -75,8 +76,18 @@ public class ParcelService{
 		return parcelRep.findAllById(ids);
 	}
 
-	public Parcel save(Parcel entity) {
-		return parcelRep.save(entity);
+	public Parcel save(Parcel entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return parcelRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return parcelRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Parcel> saveAll(Iterable<Parcel> entities) {
@@ -85,6 +96,11 @@ public class ParcelService{
 	
 	public Parcel saveAndFlush(Parcel entity) {
 		return parcelRep.saveAndFlush(entity);
+	}
+	
+	public Parcel update(Parcel entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return parcelRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,7 +131,6 @@ public class ParcelService{
 
 	public void deleteAllInBatch() {
 		parcelRep.deleteAllInBatch();
-		
 	}
 
 }

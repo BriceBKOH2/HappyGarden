@@ -17,81 +17,59 @@ import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.UserAccount;
-import diginamic.happygarden.service.UserAccountService;
+import diginamic.happygarden.model.Plant;
+import diginamic.happygarden.service.PlantService;
 
 @RestController
-@RequestMapping("/UserAccount")
-public class UserAccountController {
+@RequestMapping("/Plant")
+public class PlantController {
 
 	@Autowired
-	private UserAccountService userAccServ;
-
+	private PlantService plantServ;
+	
 	/**
 	 * Returns a list of all users.
 	 * 
-	 * @return List<UserAccount>
+	 * @return List<Plant>
 	 */
 	@GetMapping
-	public List<UserAccount> findAll() {
-		return userAccServ.findAll();
+	public List<Plant> findAll() {
+		return plantServ.findAll();
 	}
 
 	/**
 	 * Returns a user based on id.
 	 * 
-	 * @return	UserAccount
+	 * @return	Plant
 	 * @throws NotFoundException 
 	 */
 	@GetMapping(value = "/{id}")
-	public UserAccount findById(@PathVariable Long id) throws NotFoundException {
-		return userAccServ.findById(id);
-	}
-	
-	/**
-	 * Returns a list of all clients.
-	 * 
-	 * @return	UserAccount
-	 * @throws NotFoundException 
-	 */
-	@GetMapping(value = "/fetchEager/{id}")
-	public UserAccount findByIdFetchAll(@PathVariable Long id) throws NotFoundException {
-		return userAccServ.findByIdFetchAll(id);
-	}
-	
-	/**
-	 * Returns a user based on pseudonyme.
-	 * 
-	 * @return	UserAccount
-	 * @throws NotFoundException 
-	 */
-	@GetMapping(value = "/pseudonyme/{pseudonyme}")
-	public UserAccount findByPseudonyme(@PathVariable String pseudonyme) throws NotFoundException {
-		return userAccServ.findByPseudonyme(pseudonyme);
+	public Plant findById(@PathVariable Long id) throws NotFoundException {
+		return plantServ.findById(id);
 	}
 	
 	/**
 	 * Create a user in Database and return the updated user.
 	 * 
-	 * @return	UserAccount
+	 * @return	Plant
 	 * @throws AlreadyExistException 
 	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserAccount save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
-		return userAccServ.save(userAcc);
+	public Plant save(@RequestBody Plant plant) throws AlreadyExistException {
+		return plantServ.save(plant);
 	}
 	
 	/**
 	 * Update a user in Database and return it.
 	 * 
-	 * @return	UserAccount
+	 * @return	Plant
 	 * @throws NotFoundException 
 	 */
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public UserAccount update(@RequestBody UserAccount userAcc) throws NotFoundException {
-		return userAccServ.update(userAcc);
+	public Plant update(@RequestBody Plant plant) throws NotFoundException {
+		return plantServ.update(plant);
 		
 	}
 	
@@ -101,7 +79,8 @@ public class UserAccountController {
 	@PreAuthorize("account_suppression")
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void delete(@RequestBody UserAccount userAcc) {
-		userAccServ.delete(userAcc);
+	public void delete(@RequestBody Plant plant) {
+		plantServ.delete(plant);
 	}
+	
 }

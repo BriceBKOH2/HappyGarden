@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Message;
 import diginamic.happygarden.repository.MessageRepository;
@@ -40,11 +41,11 @@ public class MessageService{
 	}
 	
 	public Message findOne(Example<Message> example) throws NotFoundException {
-		return messageRep.findOne(example).orElseThrow(() -> new NotFoundException("Message not found"));
+		return messageRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Message findById(Long id) throws NotFoundException {
-		return messageRep.findById(id).orElseThrow(() -> new NotFoundException("Message not found"));
+		return messageRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Message> findAll() {
@@ -75,8 +76,18 @@ public class MessageService{
 		return messageRep.findAllById(ids);
 	}
 
-	public Message save(Message entity) {
-		return messageRep.save(entity);
+	public Message save(Message entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return messageRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return messageRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Message> saveAll(Iterable<Message> entities) {
@@ -85,6 +96,11 @@ public class MessageService{
 	
 	public Message saveAndFlush(Message entity) {
 		return messageRep.saveAndFlush(entity);
+	}
+	
+	public Message update(Message entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return messageRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,6 +131,6 @@ public class MessageService{
 
 	public void deleteAllInBatch() {
 		messageRep.deleteAllInBatch();
-		
 	}
+
 }

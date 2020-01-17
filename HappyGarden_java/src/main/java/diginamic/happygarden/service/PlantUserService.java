@@ -9,16 +9,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.PlantUser;
 import diginamic.happygarden.repository.PlantUserRepository;
 
 @Service
 public class PlantUserService{
-
+	
 	@Autowired
 	PlantUserRepository plantUserRep;
-	
+
 	public long count() {
 		return plantUserRep.count();
 	}
@@ -40,11 +41,11 @@ public class PlantUserService{
 	}
 	
 	public PlantUser findOne(Example<PlantUser> example) throws NotFoundException {
-		return plantUserRep.findOne(example).orElseThrow(() -> new NotFoundException("PlantUser not found"));
+		return plantUserRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public PlantUser findById(Long id) throws NotFoundException {
-		return plantUserRep.findById(id).orElseThrow(() -> new NotFoundException("PlantUser not found"));
+		return plantUserRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<PlantUser> findAll() {
@@ -75,8 +76,18 @@ public class PlantUserService{
 		return plantUserRep.findAllById(ids);
 	}
 
-	public PlantUser save(PlantUser entity) {
-		return plantUserRep.save(entity);
+	public PlantUser save(PlantUser entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return plantUserRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return plantUserRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<PlantUser> saveAll(Iterable<PlantUser> entities) {
@@ -85,6 +96,11 @@ public class PlantUserService{
 	
 	public PlantUser saveAndFlush(PlantUser entity) {
 		return plantUserRep.saveAndFlush(entity);
+	}
+	
+	public PlantUser update(PlantUser entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return plantUserRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,6 +131,6 @@ public class PlantUserService{
 
 	public void deleteAllInBatch() {
 		plantUserRep.deleteAllInBatch();
-		
 	}
+
 }

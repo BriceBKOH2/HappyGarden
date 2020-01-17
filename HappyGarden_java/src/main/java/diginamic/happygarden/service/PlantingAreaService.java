@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.PlantingArea;
 import diginamic.happygarden.repository.PlantingAreaRepository;
@@ -40,11 +41,11 @@ public class PlantingAreaService{
 	}
 	
 	public PlantingArea findOne(Example<PlantingArea> example) throws NotFoundException {
-		return plantingAreaRep.findOne(example).orElseThrow(() -> new NotFoundException("PlantingArea not found"));
+		return plantingAreaRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public PlantingArea findById(Long id) throws NotFoundException {
-		return plantingAreaRep.findById(id).orElseThrow(() -> new NotFoundException("PlantingArea not found"));
+		return plantingAreaRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<PlantingArea> findAll() {
@@ -75,8 +76,18 @@ public class PlantingAreaService{
 		return plantingAreaRep.findAllById(ids);
 	}
 
-	public PlantingArea save(PlantingArea entity) {
-		return plantingAreaRep.save(entity);
+	public PlantingArea save(PlantingArea entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return plantingAreaRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return plantingAreaRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<PlantingArea> saveAll(Iterable<PlantingArea> entities) {
@@ -85,6 +96,11 @@ public class PlantingAreaService{
 	
 	public PlantingArea saveAndFlush(PlantingArea entity) {
 		return plantingAreaRep.saveAndFlush(entity);
+	}
+	
+	public PlantingArea update(PlantingArea entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return plantingAreaRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,7 +131,6 @@ public class PlantingAreaService{
 
 	public void deleteAllInBatch() {
 		plantingAreaRep.deleteAllInBatch();
-		
 	}
 
 }

@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
+import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.repository.UserRoleRepository;
 
@@ -40,15 +42,15 @@ public class UserRoleService{
 	}
 	
 	public UserRole findOne(Example<UserRole> example) throws NotFoundException {
-		return userRoleRep.findOne(example).orElseThrow(() -> new NotFoundException("UserRole not found"));
+		return userRoleRep.findOne(example).orElseThrow(() -> new NotFoundException("User not found"));
 	}
 	
 	public UserRole findById(Long id) throws NotFoundException {
-		return userRoleRep.findById(id).orElseThrow(() -> new NotFoundException("UserRole not found"));
+		return userRoleRep.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
 	}
 	
 	public UserRole findByName(String name) throws NotFoundException {
-		return userRoleRep.findByName(name).orElseThrow(() -> new NotFoundException("UserRole not found"));
+		return userRoleRep.findByName(name).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<UserRole> findAll() {
@@ -79,8 +81,18 @@ public class UserRoleService{
 		return userRoleRep.findAllById(ids);
 	}
 
-	public UserRole save(UserRole entity) {
-		return userRoleRep.save(entity);
+	public UserRole save(UserRole entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return userRoleRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return userRoleRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<UserRole> saveAll(Iterable<UserRole> entities) {
@@ -89,6 +101,11 @@ public class UserRoleService{
 	
 	public UserRole saveAndFlush(UserRole entity) {
 		return userRoleRep.saveAndFlush(entity);
+	}
+	
+	public UserRole update(UserRole entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return userRoleRep.save(entity);
 	}
 
 	public void flush() {
@@ -119,7 +136,6 @@ public class UserRoleService{
 
 	public void deleteAllInBatch() {
 		userRoleRep.deleteAllInBatch();
-		
 	}
 
 }

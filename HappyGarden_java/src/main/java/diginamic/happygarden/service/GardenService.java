@@ -40,11 +40,11 @@ public class GardenService{
 	}
 	
 	public Garden findOne(Example<Garden> example) throws NotFoundException {
-		return gardenRep.findOne(example).orElseThrow(() -> new NotFoundException("Garden not found"));
+		return gardenRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Garden findById(Long id) throws NotFoundException {
-		return gardenRep.findById(id).orElseThrow(() -> new NotFoundException("Garden not found"));
+		return gardenRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Garden> findAll() {

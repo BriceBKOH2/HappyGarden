@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Pot;
 import diginamic.happygarden.repository.PotRepository;
@@ -40,11 +41,11 @@ public class PotService{
 	}
 	
 	public Pot findOne(Example<Pot> example) throws NotFoundException {
-		return potRep.findOne(example).orElseThrow(() -> new NotFoundException("Pot not found"));
+		return potRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Pot findById(Long id) throws NotFoundException {
-		return potRep.findById(id).orElseThrow(() -> new NotFoundException("Pot not found"));
+		return potRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Pot> findAll() {
@@ -75,8 +76,18 @@ public class PotService{
 		return potRep.findAllById(ids);
 	}
 
-	public Pot save(Pot entity) {
-		return potRep.save(entity);
+	public Pot save(Pot entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return potRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return potRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Pot> saveAll(Iterable<Pot> entities) {
@@ -85,6 +96,11 @@ public class PotService{
 	
 	public Pot saveAndFlush(Pot entity) {
 		return potRep.saveAndFlush(entity);
+	}
+	
+	public Pot update(Pot entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return potRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,6 +131,6 @@ public class PotService{
 
 	public void deleteAllInBatch() {
 		potRep.deleteAllInBatch();
-		
 	}
+
 }

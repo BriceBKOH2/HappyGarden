@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Comment;
 import diginamic.happygarden.repository.CommentRepository;
@@ -40,11 +41,11 @@ public class CommentService{
 	}
 	
 	public Comment findOne(Example<Comment> example) throws NotFoundException {
-		return commentRep.findOne(example).orElseThrow(() -> new NotFoundException("Comment not found"));
+		return commentRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Comment findById(Long id) throws NotFoundException {
-		return commentRep.findById(id).orElseThrow(() -> new NotFoundException("Comment not found"));
+		return commentRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Comment> findAll() {
@@ -75,8 +76,18 @@ public class CommentService{
 		return commentRep.findAllById(ids);
 	}
 
-	public Comment save(Comment entity) {
-		return commentRep.save(entity);
+	public Comment save(Comment entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return commentRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return commentRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Comment> saveAll(Iterable<Comment> entities) {
@@ -85,6 +96,11 @@ public class CommentService{
 	
 	public Comment saveAndFlush(Comment entity) {
 		return commentRep.saveAndFlush(entity);
+	}
+	
+	public Comment update(Comment entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return commentRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,7 +131,6 @@ public class CommentService{
 
 	public void deleteAllInBatch() {
 		commentRep.deleteAllInBatch();
-		
 	}
 
 }

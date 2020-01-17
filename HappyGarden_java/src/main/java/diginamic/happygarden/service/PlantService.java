@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Plant;
 import diginamic.happygarden.repository.PlantRepository;
@@ -40,11 +41,11 @@ public class PlantService{
 	}
 	
 	public Plant findOne(Example<Plant> example) throws NotFoundException {
-		return plantRep.findOne(example).orElseThrow(() -> new NotFoundException("Plant not found"));
+		return plantRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public Plant findById(Long id) throws NotFoundException {
-		return plantRep.findById(id).orElseThrow(() -> new NotFoundException("Plant not found"));
+		return plantRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Plant> findAll() {
@@ -75,8 +76,18 @@ public class PlantService{
 		return plantRep.findAllById(ids);
 	}
 
-	public Plant save(Plant entity) {
-		return plantRep.save(entity);
+	public Plant save(Plant entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return plantRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return plantRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Plant> saveAll(Iterable<Plant> entities) {
@@ -85,6 +96,11 @@ public class PlantService{
 	
 	public Plant saveAndFlush(Plant entity) {
 		return plantRep.saveAndFlush(entity);
+	}
+	
+	public Plant update(Plant entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return plantRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,7 +131,6 @@ public class PlantService{
 
 	public void deleteAllInBatch() {
 		plantRep.deleteAllInBatch();
-		
 	}
 
 }
