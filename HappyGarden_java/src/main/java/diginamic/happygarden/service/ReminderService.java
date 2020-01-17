@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Reminder;
 import diginamic.happygarden.repository.ReminderRepository;
 
@@ -39,12 +39,12 @@ public class ReminderService{
 		return reminderRep.getOne(id);
 	}
 	
-	public Optional<Reminder> findOne(Example<Reminder> example) {
-		return reminderRep.findOne(example);
+	public Reminder findOne(Example<Reminder> example) throws NotFoundException {
+		return reminderRep.findOne(example).orElseThrow(() -> new NotFoundException("Reminder not found"));
 	}
 	
-	public Optional<Reminder> findById(Long id) {
-		return reminderRep.findById(id);
+	public Reminder findById(Long id) throws NotFoundException {
+		return reminderRep.findById(id).orElseThrow(() -> new NotFoundException("Reminder not found"));
 	}
 
 	public List<Reminder> findAll() {
@@ -75,16 +75,16 @@ public class ReminderService{
 		return reminderRep.findAllById(ids);
 	}
 
-	public Reminder save(Reminder entitie) {
-		return reminderRep.save(entitie);
+	public Reminder save(Reminder entity) {
+		return reminderRep.save(entity);
 	}
 
 	public List<Reminder> saveAll(Iterable<Reminder> entities) {
 		return reminderRep.saveAll(entities);
 	}
 	
-	public Reminder saveAndFlush(Reminder entitie) {
-		return reminderRep.saveAndFlush(entitie);
+	public Reminder saveAndFlush(Reminder entity) {
+		return reminderRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class ReminderService{
 		reminderRep.deleteById(id);
 		
 	}
-	public void delete(Reminder entitie) {
-		reminderRep.delete(entitie);
+	public void delete(Reminder entity) {
+		reminderRep.delete(entity);
 	}
 
 	public void deleteAll(List<Reminder> entities) {

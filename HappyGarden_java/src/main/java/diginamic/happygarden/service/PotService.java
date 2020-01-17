@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Pot;
 import diginamic.happygarden.repository.PotRepository;
 
@@ -39,12 +39,12 @@ public class PotService{
 		return potRep.getOne(id);
 	}
 	
-	public Optional<Pot> findOne(Example<Pot> example) {
-		return potRep.findOne(example);
+	public Pot findOne(Example<Pot> example) throws NotFoundException {
+		return potRep.findOne(example).orElseThrow(() -> new NotFoundException("Pot not found"));
 	}
 	
-	public Optional<Pot> findById(Long id) {
-		return potRep.findById(id);
+	public Pot findById(Long id) throws NotFoundException {
+		return potRep.findById(id).orElseThrow(() -> new NotFoundException("Pot not found"));
 	}
 
 	public List<Pot> findAll() {
@@ -75,16 +75,16 @@ public class PotService{
 		return potRep.findAllById(ids);
 	}
 
-	public Pot save(Pot entitie) {
-		return potRep.save(entitie);
+	public Pot save(Pot entity) {
+		return potRep.save(entity);
 	}
 
 	public List<Pot> saveAll(Iterable<Pot> entities) {
 		return potRep.saveAll(entities);
 	}
 	
-	public Pot saveAndFlush(Pot entitie) {
-		return potRep.saveAndFlush(entitie);
+	public Pot saveAndFlush(Pot entity) {
+		return potRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class PotService{
 		potRep.deleteById(id);
 		
 	}
-	public void delete(Pot entitie) {
-		potRep.delete(entitie);
+	public void delete(Pot entity) {
+		potRep.delete(entity);
 	}
 
 	public void deleteAll(List<Pot> entities) {

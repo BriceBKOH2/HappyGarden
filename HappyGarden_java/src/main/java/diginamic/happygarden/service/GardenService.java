@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.repository.GardenRepository;
 
@@ -39,12 +39,12 @@ public class GardenService{
 		return gardenRep.getOne(id);
 	}
 	
-	public Optional<Garden> findOne(Example<Garden> example) {
-		return gardenRep.findOne(example);
+	public Garden findOne(Example<Garden> example) throws NotFoundException {
+		return gardenRep.findOne(example).orElseThrow(() -> new NotFoundException("Garden not found"));
 	}
 	
-	public Optional<Garden> findById(Long id) {
-		return gardenRep.findById(id);
+	public Garden findById(Long id) throws NotFoundException {
+		return gardenRep.findById(id).orElseThrow(() -> new NotFoundException("Garden not found"));
 	}
 
 	public List<Garden> findAll() {
@@ -75,16 +75,16 @@ public class GardenService{
 		return gardenRep.findAllById(ids);
 	}
 
-	public Garden save(Garden entitie) {
-		return gardenRep.save(entitie);
+	public Garden save(Garden entity) {
+		return gardenRep.save(entity);
 	}
 
 	public List<Garden> saveAll(Iterable<Garden> entities) {
 		return gardenRep.saveAll(entities);
 	}
 	
-	public Garden saveAndFlush(Garden entitie) {
-		return gardenRep.saveAndFlush(entitie);
+	public Garden saveAndFlush(Garden entity) {
+		return gardenRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class GardenService{
 		gardenRep.deleteById(id);
 		
 	}
-	public void delete(Garden entitie) {
-		gardenRep.delete(entitie);
+	public void delete(Garden entity) {
+		gardenRep.delete(entity);
 	}
 
 	public void deleteAll(List<Garden> entities) {

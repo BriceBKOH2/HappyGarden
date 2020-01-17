@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.PlantingArea;
 import diginamic.happygarden.repository.PlantingAreaRepository;
 
@@ -39,12 +39,12 @@ public class PlantingAreaService{
 		return plantingAreaRep.getOne(id);
 	}
 	
-	public Optional<PlantingArea> findOne(Example<PlantingArea> example) {
-		return plantingAreaRep.findOne(example);
+	public PlantingArea findOne(Example<PlantingArea> example) throws NotFoundException {
+		return plantingAreaRep.findOne(example).orElseThrow(() -> new NotFoundException("PlantingArea not found"));
 	}
 	
-	public Optional<PlantingArea> findById(Long id) {
-		return plantingAreaRep.findById(id);
+	public PlantingArea findById(Long id) throws NotFoundException {
+		return plantingAreaRep.findById(id).orElseThrow(() -> new NotFoundException("PlantingArea not found"));
 	}
 
 	public List<PlantingArea> findAll() {
@@ -75,16 +75,16 @@ public class PlantingAreaService{
 		return plantingAreaRep.findAllById(ids);
 	}
 
-	public PlantingArea save(PlantingArea entitie) {
-		return plantingAreaRep.save(entitie);
+	public PlantingArea save(PlantingArea entity) {
+		return plantingAreaRep.save(entity);
 	}
 
 	public List<PlantingArea> saveAll(Iterable<PlantingArea> entities) {
 		return plantingAreaRep.saveAll(entities);
 	}
 	
-	public PlantingArea saveAndFlush(PlantingArea entitie) {
-		return plantingAreaRep.saveAndFlush(entitie);
+	public PlantingArea saveAndFlush(PlantingArea entity) {
+		return plantingAreaRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class PlantingAreaService{
 		plantingAreaRep.deleteById(id);
 		
 	}
-	public void delete(PlantingArea entitie) {
-		plantingAreaRep.delete(entitie);
+	public void delete(PlantingArea entity) {
+		plantingAreaRep.delete(entity);
 	}
 
 	public void deleteAll(List<PlantingArea> entities) {

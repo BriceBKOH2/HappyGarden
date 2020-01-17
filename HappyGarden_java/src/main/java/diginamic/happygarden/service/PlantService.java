@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Plant;
 import diginamic.happygarden.repository.PlantRepository;
 
@@ -39,12 +39,12 @@ public class PlantService{
 		return plantRep.getOne(id);
 	}
 	
-	public Optional<Plant> findOne(Example<Plant> example) {
-		return plantRep.findOne(example);
+	public Plant findOne(Example<Plant> example) throws NotFoundException {
+		return plantRep.findOne(example).orElseThrow(() -> new NotFoundException("Plant not found"));
 	}
 	
-	public Optional<Plant> findById(Long id) {
-		return plantRep.findById(id);
+	public Plant findById(Long id) throws NotFoundException {
+		return plantRep.findById(id).orElseThrow(() -> new NotFoundException("Plant not found"));
 	}
 
 	public List<Plant> findAll() {
@@ -75,16 +75,16 @@ public class PlantService{
 		return plantRep.findAllById(ids);
 	}
 
-	public Plant save(Plant entitie) {
-		return plantRep.save(entitie);
+	public Plant save(Plant entity) {
+		return plantRep.save(entity);
 	}
 
 	public List<Plant> saveAll(Iterable<Plant> entities) {
 		return plantRep.saveAll(entities);
 	}
 	
-	public Plant saveAndFlush(Plant entitie) {
-		return plantRep.saveAndFlush(entitie);
+	public Plant saveAndFlush(Plant entity) {
+		return plantRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class PlantService{
 		plantRep.deleteById(id);
 		
 	}
-	public void delete(Plant entitie) {
-		plantRep.delete(entitie);
+	public void delete(Plant entity) {
+		plantRep.delete(entity);
 	}
 
 	public void deleteAll(List<Plant> entities) {

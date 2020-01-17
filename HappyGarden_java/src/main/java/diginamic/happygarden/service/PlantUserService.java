@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.PlantUser;
 import diginamic.happygarden.repository.PlantUserRepository;
 
@@ -39,12 +39,12 @@ public class PlantUserService{
 		return plantUserRep.getOne(id);
 	}
 	
-	public Optional<PlantUser> findOne(Example<PlantUser> example) {
-		return plantUserRep.findOne(example);
+	public PlantUser findOne(Example<PlantUser> example) throws NotFoundException {
+		return plantUserRep.findOne(example).orElseThrow(() -> new NotFoundException("PlantUser not found"));
 	}
 	
-	public Optional<PlantUser> findById(Long id) {
-		return plantUserRep.findById(id);
+	public PlantUser findById(Long id) throws NotFoundException {
+		return plantUserRep.findById(id).orElseThrow(() -> new NotFoundException("PlantUser not found"));
 	}
 
 	public List<PlantUser> findAll() {
@@ -75,16 +75,16 @@ public class PlantUserService{
 		return plantUserRep.findAllById(ids);
 	}
 
-	public PlantUser save(PlantUser entitie) {
-		return plantUserRep.save(entitie);
+	public PlantUser save(PlantUser entity) {
+		return plantUserRep.save(entity);
 	}
 
 	public List<PlantUser> saveAll(Iterable<PlantUser> entities) {
 		return plantUserRep.saveAll(entities);
 	}
 	
-	public PlantUser saveAndFlush(PlantUser entitie) {
-		return plantUserRep.saveAndFlush(entitie);
+	public PlantUser saveAndFlush(PlantUser entity) {
+		return plantUserRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class PlantUserService{
 		plantUserRep.deleteById(id);
 		
 	}
-	public void delete(PlantUser entitie) {
-		plantUserRep.delete(entitie);
+	public void delete(PlantUser entity) {
+		plantUserRep.delete(entity);
 	}
 
 	public void deleteAll(List<PlantUser> entities) {

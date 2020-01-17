@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Parcel;
 import diginamic.happygarden.repository.ParcelRepository;
 
@@ -39,12 +39,12 @@ public class ParcelService{
 		return parcelRep.getOne(id);
 	}
 	
-	public Optional<Parcel> findOne(Example<Parcel> example) {
-		return parcelRep.findOne(example);
+	public Parcel findOne(Example<Parcel> example) throws NotFoundException {
+		return parcelRep.findOne(example).orElseThrow(() -> new NotFoundException("Parcel not found"));
 	}
 	
-	public Optional<Parcel> findById(Long id) {
-		return parcelRep.findById(id);
+	public Parcel findById(Long id) throws NotFoundException {
+		return parcelRep.findById(id).orElseThrow(() -> new NotFoundException("Parcel not found"));
 	}
 
 	public List<Parcel> findAll() {
@@ -75,16 +75,16 @@ public class ParcelService{
 		return parcelRep.findAllById(ids);
 	}
 
-	public Parcel save(Parcel entitie) {
-		return parcelRep.save(entitie);
+	public Parcel save(Parcel entity) {
+		return parcelRep.save(entity);
 	}
 
 	public List<Parcel> saveAll(Iterable<Parcel> entities) {
 		return parcelRep.saveAll(entities);
 	}
 	
-	public Parcel saveAndFlush(Parcel entitie) {
-		return parcelRep.saveAndFlush(entitie);
+	public Parcel saveAndFlush(Parcel entity) {
+		return parcelRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class ParcelService{
 		parcelRep.deleteById(id);
 		
 	}
-	public void delete(Parcel entitie) {
-		parcelRep.delete(entitie);
+	public void delete(Parcel entity) {
+		parcelRep.delete(entity);
 	}
 
 	public void deleteAll(List<Parcel> entities) {

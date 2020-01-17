@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.repository.UserRoleRepository;
 
@@ -39,16 +39,16 @@ public class UserRoleService{
 		return userRoleRep.getOne(id);
 	}
 	
-	public Optional<UserRole> findOne(Example<UserRole> example) {
-		return userRoleRep.findOne(example);
+	public UserRole findOne(Example<UserRole> example) throws NotFoundException {
+		return userRoleRep.findOne(example).orElseThrow(() -> new NotFoundException("UserRole not found"));
 	}
 	
-	public Optional<UserRole> findById(Long id) {
-		return userRoleRep.findById(id);
+	public UserRole findById(Long id) throws NotFoundException {
+		return userRoleRep.findById(id).orElseThrow(() -> new NotFoundException("UserRole not found"));
 	}
 	
-	public Optional<UserRole> findByName(String name) {
-		return userRoleRep.findByName(name);
+	public UserRole findByName(String name) throws NotFoundException {
+		return userRoleRep.findByName(name).orElseThrow(() -> new NotFoundException("UserRole not found"));
 	}
 
 	public List<UserRole> findAll() {
@@ -79,16 +79,16 @@ public class UserRoleService{
 		return userRoleRep.findAllById(ids);
 	}
 
-	public UserRole save(UserRole entitie) {
-		return userRoleRep.save(entitie);
+	public UserRole save(UserRole entity) {
+		return userRoleRep.save(entity);
 	}
 
 	public List<UserRole> saveAll(Iterable<UserRole> entities) {
 		return userRoleRep.saveAll(entities);
 	}
 	
-	public UserRole saveAndFlush(UserRole entitie) {
-		return userRoleRep.saveAndFlush(entitie);
+	public UserRole saveAndFlush(UserRole entity) {
+		return userRoleRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -99,8 +99,8 @@ public class UserRoleService{
 		userRoleRep.deleteById(id);
 		
 	}
-	public void delete(UserRole entitie) {
-		userRoleRep.delete(entitie);
+	public void delete(UserRole entity) {
+		userRoleRep.delete(entity);
 	}
 
 	public void deleteAll(List<UserRole> entities) {

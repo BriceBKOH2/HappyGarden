@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Comment;
 import diginamic.happygarden.repository.CommentRepository;
 
@@ -39,12 +39,12 @@ public class CommentService{
 		return commentRep.getOne(id);
 	}
 	
-	public Optional<Comment> findOne(Example<Comment> example) {
-		return commentRep.findOne(example);
+	public Comment findOne(Example<Comment> example) throws NotFoundException {
+		return commentRep.findOne(example).orElseThrow(() -> new NotFoundException("Comment not found"));
 	}
 	
-	public Optional<Comment> findById(Long id) {
-		return commentRep.findById(id);
+	public Comment findById(Long id) throws NotFoundException {
+		return commentRep.findById(id).orElseThrow(() -> new NotFoundException("Comment not found"));
 	}
 
 	public List<Comment> findAll() {
@@ -75,16 +75,16 @@ public class CommentService{
 		return commentRep.findAllById(ids);
 	}
 
-	public Comment save(Comment entitie) {
-		return commentRep.save(entitie);
+	public Comment save(Comment entity) {
+		return commentRep.save(entity);
 	}
 
 	public List<Comment> saveAll(Iterable<Comment> entities) {
 		return commentRep.saveAll(entities);
 	}
 	
-	public Comment saveAndFlush(Comment entitie) {
-		return commentRep.saveAndFlush(entitie);
+	public Comment saveAndFlush(Comment entity) {
+		return commentRep.saveAndFlush(entity);
 	}
 
 	public void flush() {
@@ -95,8 +95,8 @@ public class CommentService{
 		commentRep.deleteById(id);
 		
 	}
-	public void delete(Comment entitie) {
-		commentRep.delete(entitie);
+	public void delete(Comment entity) {
+		commentRep.delete(entity);
 	}
 
 	public void deleteAll(List<Comment> entities) {
