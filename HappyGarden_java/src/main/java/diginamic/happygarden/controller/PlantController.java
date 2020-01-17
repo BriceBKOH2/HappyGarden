@@ -70,7 +70,6 @@ public class PlantController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public Plant update(@RequestBody Plant plant) throws NotFoundException {
 		return plantServ.update(plant);
-		
 	}
 	
 	/**

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.repository.GardenRepository;
@@ -75,8 +76,18 @@ public class GardenService{
 		return gardenRep.findAllById(ids);
 	}
 
-	public Garden save(Garden entity) {
-		return gardenRep.save(entity);
+	public Garden save(Garden entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return gardenRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return gardenRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Garden> saveAll(Iterable<Garden> entities) {
@@ -85,6 +96,11 @@ public class GardenService{
 	
 	public Garden saveAndFlush(Garden entity) {
 		return gardenRep.saveAndFlush(entity);
+	}
+	
+	public Garden update(Garden entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return gardenRep.save(entity);
 	}
 
 	public void flush() {
@@ -115,6 +131,6 @@ public class GardenService{
 
 	public void deleteAllInBatch() {
 		gardenRep.deleteAllInBatch();
-		
 	}
+
 }
