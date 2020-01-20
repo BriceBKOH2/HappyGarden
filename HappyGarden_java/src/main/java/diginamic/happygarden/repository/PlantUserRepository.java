@@ -3,9 +3,9 @@ package diginamic.happygarden.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import diginamic.happygarden.model.Message;
+import diginamic.happygarden.model.PlantUser;
 
 @Repository
-public interface MessageRepository extends JpaRepository<Message, Long>{
+public interface PlantUserRepository extends JpaRepository<PlantUser, Long>{
 
 }

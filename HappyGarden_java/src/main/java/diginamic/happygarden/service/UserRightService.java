@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.repository.UserRightRepository;
 
@@ -39,12 +40,16 @@ public class UserRightService{
 		return userRightRep.getOne(id);
 	}
 	
-	public Optional<UserRight> findOne(Example<UserRight> example) {
-		return userRightRep.findOne(example);
+	public UserRight findOne(Example<UserRight> example) throws NotFoundException {
+		return userRightRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
-	public Optional<UserRight> findById(Long id) {
-		return userRightRep.findById(id);
+	public UserRight findById(Long id) throws NotFoundException {
+		return userRightRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
+	}
+	
+	public UserRight findByName(String name) throws NotFoundException {
+		return userRightRep.findByName(name).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<UserRight> findAll() {
@@ -75,16 +80,31 @@ public class UserRightService{
 		return userRightRep.findAllById(ids);
 	}
 
-	public UserRight save(UserRight entitie) {
-		return userRightRep.save(entitie);
+	public UserRight save(UserRight entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return userRightRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return userRightRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<UserRight> saveAll(Iterable<UserRight> entities) {
 		return userRightRep.saveAll(entities);
 	}
 	
-	public UserRight saveAndFlush(UserRight entitie) {
-		return userRightRep.saveAndFlush(entitie);
+	public UserRight saveAndFlush(UserRight entity) {
+		return userRightRep.saveAndFlush(entity);
+	}
+	
+	public UserRight update(UserRight entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return userRightRep.save(entity);
 	}
 
 	public void flush() {
@@ -95,8 +115,8 @@ public class UserRightService{
 		userRightRep.deleteById(id);
 		
 	}
-	public void delete(UserRight entitie) {
-		userRightRep.delete(entitie);
+	public void delete(UserRight entity) {
+		userRightRep.delete(entity);
 	}
 
 	public void deleteAll(List<UserRight> entities) {
@@ -115,7 +135,6 @@ public class UserRightService{
 
 	public void deleteAllInBatch() {
 		userRightRep.deleteAllInBatch();
-		
 	}
 
 }

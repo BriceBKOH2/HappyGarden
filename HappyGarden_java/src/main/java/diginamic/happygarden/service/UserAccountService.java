@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.UserAccountRepository;
 
@@ -39,12 +40,20 @@ public class UserAccountService{
 		return userAccRep.getOne(id);
 	}
 	
-	public Optional<UserAccount> findOne(Example<UserAccount> example) {
-		return userAccRep.findOne(example);
+	public UserAccount findOne(Example<UserAccount> example) throws NotFoundException {
+		return userAccRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
-	public Optional<UserAccount> findById(Long id) {
-		return userAccRep.findById(id);
+	public UserAccount findById(Long id) throws NotFoundException {
+		return userAccRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
+	}
+	
+	public UserAccount findByIdFetchAll(Long id) throws NotFoundException {
+		return userAccRep.findByIdFetchAll(id).orElseThrow(() -> new NotFoundException("Entity not found"));
+	}
+	
+	public UserAccount findByPseudonyme(String pseudonyme) throws NotFoundException {
+		return userAccRep.findByPseudonyme(pseudonyme).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<UserAccount> findAll() {
@@ -75,16 +84,31 @@ public class UserAccountService{
 		return userAccRep.findAllById(ids);
 	}
 
-	public UserAccount save(UserAccount entitie) {
-		return userAccRep.save(entitie);
+	public UserAccount save(UserAccount entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return userAccRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return userAccRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<UserAccount> saveAll(Iterable<UserAccount> entities) {
 		return userAccRep.saveAll(entities);
 	}
 	
-	public UserAccount saveAndFlush(UserAccount entitie) {
-		return userAccRep.saveAndFlush(entitie);
+	public UserAccount saveAndFlush(UserAccount entity) {
+		return userAccRep.saveAndFlush(entity);
+	}
+	
+	public UserAccount update(UserAccount entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return userAccRep.save(entity);
 	}
 
 	public void flush() {
@@ -95,8 +119,8 @@ public class UserAccountService{
 		userAccRep.deleteById(id);
 		
 	}
-	public void delete(UserAccount entitie) {
-		userAccRep.delete(entitie);
+	public void delete(UserAccount entity) {
+		userAccRep.delete(entity);
 	}
 
 	public void deleteAll(List<UserAccount> entities) {

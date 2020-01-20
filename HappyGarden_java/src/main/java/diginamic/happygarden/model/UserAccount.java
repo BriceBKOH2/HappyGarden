@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,19 +40,18 @@ public class UserAccount implements HibernateClass {
 	private UserRole userRole;
 
 	@ManyToMany
-	@ElementCollection
 	private List<Conversation> conversations = new ArrayList<Conversation>();
 
 	@ManyToMany
-	@ElementCollection
 	private List<UserAccount> friends  = new ArrayList<UserAccount>();
 
 	@ManyToMany
-	@ElementCollection
+	private List<Plant> usedPlants = new ArrayList<Plant>();
+	
+	@ManyToMany
 	private List<Plant> favoritePlants = new ArrayList<Plant>();
 
 	@OneToMany
-	@ElementCollection
 	private List<Garden> gardens = new ArrayList<Garden>();;
 
 	/* Constructors */
@@ -159,6 +157,22 @@ public class UserAccount implements HibernateClass {
 		}
 	}
 
+	
+	public List<Plant> getUsedPlants() {
+		return usedPlants;
+	}
+
+	public void setUsedPlants(List<Plant> usedPlants) {
+		this.usedPlants = usedPlants;
+	}
+	
+	public void setUsedPlants(Plant... usedPlants) {
+		this.usedPlants.clear();
+		for (Plant usedPlant : usedPlants) {
+			this.usedPlants.add(usedPlant);
+		}
+	}
+
 	public List<Plant> getFavoritePlants() {
 		return favoritePlants;
 	}
@@ -208,6 +222,16 @@ public class UserAccount implements HibernateClass {
 	public void addFriends(UserAccount... friends) {
 		for (UserAccount friend : friends) {
 			this.friends.add(friend);
+		}
+	}
+	
+	public void addUsedPlants(List<Plant> usedPlants) {
+		this.usedPlants.addAll(usedPlants);
+	}
+
+	public void addUsedPlants(Plant... usedPlants) {
+		for (Plant usedPlant : usedPlants) {
+			this.usedPlants.add(usedPlant);
 		}
 	}
 

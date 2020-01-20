@@ -1,0 +1,14 @@
+nav {
+  background: #E0EFE7;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  width: 8%;
+}
+
+li a {
+  color: #354463;
+}

@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.repository.ConversationRepository;
 
@@ -39,12 +40,12 @@ public class ConversationService{
 		return conversationRep.getOne(id);
 	}
 	
-	public Optional<Conversation> findOne(Example<Conversation> example) {
-		return conversationRep.findOne(example);
+	public Conversation findOne(Example<Conversation> example) throws NotFoundException {
+		return conversationRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
-	public Optional<Conversation> findById(Long id) {
-		return conversationRep.findById(id);
+	public Conversation findById(Long id) throws NotFoundException {
+		return conversationRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Conversation> findAll() {
@@ -75,16 +76,31 @@ public class ConversationService{
 		return conversationRep.findAllById(ids);
 	}
 
-	public Conversation save(Conversation entitie) {
-		return conversationRep.save(entitie);
+	public Conversation save(Conversation entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return conversationRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return conversationRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Conversation> saveAll(Iterable<Conversation> entities) {
 		return conversationRep.saveAll(entities);
 	}
 	
-	public Conversation saveAndFlush(Conversation entitie) {
-		return conversationRep.saveAndFlush(entitie);
+	public Conversation saveAndFlush(Conversation entity) {
+		return conversationRep.saveAndFlush(entity);
+	}
+	
+	public Conversation update(Conversation entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return conversationRep.save(entity);
 	}
 
 	public void flush() {
@@ -95,8 +111,8 @@ public class ConversationService{
 		conversationRep.deleteById(id);
 		
 	}
-	public void delete(Conversation entitie) {
-		conversationRep.delete(entitie);
+	public void delete(Conversation entity) {
+		conversationRep.delete(entity);
 	}
 
 	public void deleteAll(List<Conversation> entities) {
@@ -115,6 +131,6 @@ public class ConversationService{
 
 	public void deleteAllInBatch() {
 		conversationRep.deleteAllInBatch();
-		
 	}
+
 }

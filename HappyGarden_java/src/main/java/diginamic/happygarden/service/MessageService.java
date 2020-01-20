@@ -1,7 +1,6 @@
 package diginamic.happygarden.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.exception.AlreadyExistException;
+import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Message;
 import diginamic.happygarden.repository.MessageRepository;
 
@@ -39,12 +40,12 @@ public class MessageService{
 		return messageRep.getOne(id);
 	}
 	
-	public Optional<Message> findOne(Example<Message> example) {
-		return messageRep.findOne(example);
+	public Message findOne(Example<Message> example) throws NotFoundException {
+		return messageRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
-	public Optional<Message> findById(Long id) {
-		return messageRep.findById(id);
+	public Message findById(Long id) throws NotFoundException {
+		return messageRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 
 	public List<Message> findAll() {
@@ -75,16 +76,31 @@ public class MessageService{
 		return messageRep.findAllById(ids);
 	}
 
-	public Message save(Message entitie) {
-		return messageRep.save(entitie);
+	public Message save(Message entity) throws AlreadyExistException {
+		if (entity.getId() == null) {
+			return messageRep.save(entity);
+		}
+
+		try {
+			this.findById(entity.getId());
+		}
+		catch (NotFoundException e) {
+			return messageRep.save(entity);
+		}
+		throw new AlreadyExistException(entity.getId());
 	}
 
 	public List<Message> saveAll(Iterable<Message> entities) {
 		return messageRep.saveAll(entities);
 	}
 	
-	public Message saveAndFlush(Message entitie) {
-		return messageRep.saveAndFlush(entitie);
+	public Message saveAndFlush(Message entity) {
+		return messageRep.saveAndFlush(entity);
+	}
+	
+	public Message update(Message entity) throws NotFoundException {
+		this.findById(entity.getId());
+		return messageRep.save(entity);
 	}
 
 	public void flush() {
@@ -95,8 +111,8 @@ public class MessageService{
 		messageRep.deleteById(id);
 		
 	}
-	public void delete(Message entitie) {
-		messageRep.delete(entitie);
+	public void delete(Message entity) {
+		messageRep.delete(entity);
 	}
 
 	public void deleteAll(List<Message> entities) {
@@ -115,6 +131,6 @@ public class MessageService{
 
 	public void deleteAllInBatch() {
 		messageRep.deleteAllInBatch();
-		
 	}
+
 }
