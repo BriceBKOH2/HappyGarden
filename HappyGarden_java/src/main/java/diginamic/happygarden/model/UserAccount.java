@@ -1,7 +1,9 @@
 package diginamic.happygarden.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,10 +51,10 @@ public class UserAccount implements HibernateClass {
 	private List<Plant> usedPlants = new ArrayList<Plant>();
 	
 	@ManyToMany
-	private List<Plant> favoritePlants = new ArrayList<Plant>();
+	private Set<Plant> favoritePlants = new HashSet<Plant>();
 
 	@OneToMany
-	private List<Garden> gardens = new ArrayList<Garden>();;
+	private Set<Garden> gardens = new HashSet<Garden>();;
 
 	/* Constructors */
 
@@ -173,11 +175,11 @@ public class UserAccount implements HibernateClass {
 		}
 	}
 
-	public List<Plant> getFavoritePlants() {
+	public Set<Plant> getFavoritePlants() {
 		return favoritePlants;
 	}
 
-	public void setFavoritePlants(List<Plant> favoritePlants) {
+	public void setFavoritePlants(Set<Plant> favoritePlants) {
 		this.favoritePlants = favoritePlants;
 	}
 
@@ -188,11 +190,11 @@ public class UserAccount implements HibernateClass {
 		}
 	}
 
-	public List<Garden> getGardens() {
+	public Set<Garden> getGardens() {
 		return gardens;
 	}
 
-	public void setGardens(List<Garden> gardens) {
+	public void setGardens(Set<Garden> gardens) {
 		this.gardens = gardens;
 	}
 
