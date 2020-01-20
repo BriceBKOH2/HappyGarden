@@ -1,11 +1,26 @@
 nav {
   background: #e0efe7;
   position: fixed;
+  top: 0;
+  z-index: 1000;
   width: 100%;
 }
+
 .logo {
   width: 8%;
 }
 li a {
   color: #354463;
+}
+
+// .menu-burger {
+//   display: none;
+// }
+
+.menu-burger div {
+  background: var(--blanc);
+  width: 35px;
+  height: 3px;
+  margin-bottom: 5px;
+  border-radius: 2px;
 }
