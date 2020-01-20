@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.repository.UserRoleRepository;
 

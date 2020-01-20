@@ -48,10 +48,6 @@ public class UserAccountService{
 		return userAccRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
-	public UserAccount findByIdFetchAll(Long id) throws NotFoundException {
-		return userAccRep.findByIdFetchAll(id).orElseThrow(() -> new NotFoundException("Entity not found"));
-	}
-	
 	public UserAccount findByPseudonyme(String pseudonyme) throws NotFoundException {
 		return userAccRep.findByPseudonyme(pseudonyme).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
