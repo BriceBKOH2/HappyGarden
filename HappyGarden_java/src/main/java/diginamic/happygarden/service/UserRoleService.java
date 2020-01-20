@@ -42,11 +42,11 @@ public class UserRoleService{
 	}
 	
 	public UserRole findOne(Example<UserRole> example) throws NotFoundException {
-		return userRoleRep.findOne(example).orElseThrow(() -> new NotFoundException("User not found"));
+		return userRoleRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public UserRole findById(Long id) throws NotFoundException {
-		return userRoleRep.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+		return userRoleRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public UserRole findByName(String name) throws NotFoundException {
