@@ -14,5 +14,5 @@ exception thrown from the method trying to initialising database with existing d
 /!\ When you run the application for the first time :
 do a Run Configuration...
 go to Arguments
-in WM arguments put : -Dspring.profiles.active=dev
+in "WM arguments" put : -Dspring.profiles.active=dev
 If you run it in command line just add -Dspring.profiles.active=dev at the end.

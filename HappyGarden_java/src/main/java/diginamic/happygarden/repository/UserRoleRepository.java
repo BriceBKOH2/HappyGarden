@@ -11,6 +11,6 @@ import diginamic.happygarden.model.UserRole;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 	
-	@Query("select r from UserRole r left join fetch r.userRights where r.name = :name")
+	@Query("SELECT r from UserRole r LEFT JOIN FETCH r.userRights WHERE r.name = :name")
 	public Optional<UserRole> findByName(String name);
 }

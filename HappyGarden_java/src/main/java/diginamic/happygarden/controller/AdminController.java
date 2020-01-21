@@ -19,6 +19,7 @@ import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
 import diginamic.happygarden.service.UserRoleService;
 
+@PreAuthorize("admnistration")
 @RestController
 @RequestMapping("/Admin")
 public class AdminController {
@@ -55,7 +56,7 @@ public class AdminController {
 			userRightServ.saveAll(userRightsBasic);
 
 			/* Saving role basic for regular users in DataBase*/
-			UserRole userRoleBasic = new UserRole("basic",userRightsBasic);
+			UserRole userRoleBasic = new UserRole("basic", userRightsBasic);
 			userRoleServ.save(userRoleBasic);
 		}
 		
@@ -99,7 +100,7 @@ public class AdminController {
 		}
 		catch (NotFoundException e) {
 			/* Saving a basic user in DataBase*/
-			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme",userRoleServ.findByName("basic"));
+			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme", userRoleServ.findByName("basic"));
 			userAccBasic.setPassword("testPassword");
 			userAccServ.save(userAccBasic);
 		}

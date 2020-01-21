@@ -48,17 +48,7 @@ public class UserAccountController {
 		return userAccServ.findById(id);
 	}
 	
-	/**
-	 * Returns a list of all clients.
-	 * 
-	 * @return	UserAccount
-	 * @throws NotFoundException 
-	 */
-	@GetMapping(value = "/fetchEager/{id}")
-	public UserAccount findByIdFetchAll(@PathVariable Long id) throws NotFoundException {
-		return userAccServ.findByIdFetchAll(id);
-	}
-	
+
 	/**
 	 * Returns a user based on pseudonyme.
 	 * 
