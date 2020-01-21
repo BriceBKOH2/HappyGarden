@@ -78,13 +78,6 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;
 	}
-		
-//	public void setReminders(Reminder... reminders) {
-//		this.reminders.clear();
-//		for (Reminder reminder : reminders) {
-//			this.reminders.add(reminder);
-//		}
-//	}
 	
 	public List<Slot> getSlots() {
 		return slots;
@@ -93,14 +86,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setSlots(List<Slot> slots) {
 		this.slots = slots;
 	}
-	
-//	public void setSlots(Slot... slots) {
-//		this.slots.clear();
-//		for (Slot slot : slots) {
-//			this.slots.add(slot);
-//		}
-//	}
-	
+
 	
 	/* Methods */
 

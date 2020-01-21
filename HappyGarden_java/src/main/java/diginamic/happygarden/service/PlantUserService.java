@@ -81,12 +81,6 @@ public class PlantUserService{
 			return plantUserRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return plantUserRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

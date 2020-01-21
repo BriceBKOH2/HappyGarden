@@ -81,12 +81,6 @@ public class ParcelService{
 			return parcelRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return parcelRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

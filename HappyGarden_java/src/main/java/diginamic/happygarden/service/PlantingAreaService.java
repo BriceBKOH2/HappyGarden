@@ -81,12 +81,6 @@ public class PlantingAreaService{
 			return plantingAreaRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return plantingAreaRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

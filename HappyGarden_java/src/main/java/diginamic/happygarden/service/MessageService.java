@@ -81,12 +81,6 @@ public class MessageService{
 			return messageRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return messageRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

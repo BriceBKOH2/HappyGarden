@@ -80,13 +80,6 @@ public class GardenService{
 		if (entity.getId() == null) {
 			return gardenRep.save(entity);
 		}
-
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return gardenRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

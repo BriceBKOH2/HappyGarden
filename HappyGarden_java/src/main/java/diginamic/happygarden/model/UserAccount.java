@@ -62,15 +62,6 @@ public class UserAccount implements HibernateClass {
 		super();
 	}
 
-	public UserAccount(String firstName, String lastName, String pseudonyme) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.pseudonyme = pseudonyme;
-		/*/!\ DEFINE A userRole BY DEFAULT (basic user)!!!!!!!! */
-		// userRole = new userRole(????);		
-	}
-
 	public UserAccount(String firstName, String lastName, String pseudonyme, UserRole userRole) {
 		super();
 		this.firstName = firstName;
@@ -137,13 +128,6 @@ public class UserAccount implements HibernateClass {
 		this.conversations = conversations;
 	}
 
-//	public void setConversations(Conversation... conversations) {
-//		this.conversations.clear();
-//		for (Conversation conversation : conversations) {
-//			this.conversations.add(conversation);
-//		}
-//	}
-
 	public List<UserAccount> getFriends() {
 		return friends;
 	}
@@ -151,13 +135,6 @@ public class UserAccount implements HibernateClass {
 	public void setFriends(List<UserAccount> friends) {
 		this.friends = friends;
 	}
-
-//	public void setFriends(UserAccount... friends) {
-//		this.friends.clear();
-//		for (UserAccount friend : friends) {
-//			this.friends.add(friend);
-//		}
-//	}
 	
 	public List<Plant> getUsedPlants() {
 		return usedPlants;
@@ -166,13 +143,6 @@ public class UserAccount implements HibernateClass {
 	public void setUsedPlants(List<Plant> usedPlants) {
 		this.usedPlants = usedPlants;
 	}
-	
-//	public void setUsedPlants(Plant... usedPlants) {
-//		this.usedPlants.clear();
-//		for (Plant usedPlant : usedPlants) {
-//			this.usedPlants.add(usedPlant);
-//		}
-//	}
 
 	public Set<Plant> getFavoritePlants() {
 		return favoritePlants;
@@ -182,13 +152,6 @@ public class UserAccount implements HibernateClass {
 		this.favoritePlants = favoritePlants;
 	}
 
-//	public void setFavoritePlants(Plant... favoritePlants) {
-//		this.favoritePlants.clear();
-//		for (Plant favoritePlant : favoritePlants) {
-//			this.favoritePlants.add(favoritePlant);
-//		}
-//	}
-
 	public Set<Garden> getGardens() {
 		return gardens;
 	}
@@ -197,13 +160,7 @@ public class UserAccount implements HibernateClass {
 		this.gardens = gardens;
 	}
 
-//	public void setGardens(Garden... gardens) {
-//		this.gardens.clear();
-//		for (Garden garden : gardens) {
-//			this.gardens.add(garden);
-//		}
-//	}
-
+	
 	/* Methods */
 
 	public void addConversations(List<Conversation> conversations) {

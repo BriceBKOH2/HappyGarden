@@ -81,12 +81,6 @@ public class PotService{
 			return potRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return potRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

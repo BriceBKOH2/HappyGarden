@@ -81,12 +81,6 @@ public class CommentService{
 			return commentRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return commentRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

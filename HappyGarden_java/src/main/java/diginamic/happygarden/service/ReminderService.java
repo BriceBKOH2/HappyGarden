@@ -81,12 +81,6 @@ public class ReminderService{
 			return reminderRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return reminderRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

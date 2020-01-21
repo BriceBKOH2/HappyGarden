@@ -85,12 +85,6 @@ public class UserRoleService{
 			return userRoleRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return userRoleRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 
