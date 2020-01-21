@@ -19,7 +19,7 @@ import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
 import diginamic.happygarden.service.UserRoleService;
 
-@PreAuthorize("admnistration")
+//@PreAuthorize("admnistration")
 @RestController
 @RequestMapping("/Admin")
 public class AdminController {

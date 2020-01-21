@@ -72,12 +72,12 @@ public class Garden implements HibernateClass{
 		this.comments = comments;
 	}
 	
-	public void setComments(Comment...comments) {
-		this.comments.clear();
-		for (Comment comment : comments) {
-			this.comments.add(comment);
-		}
-	}
+//	public void setComments(Comment...comments) {
+//		this.comments.clear();
+//		for (Comment comment : comments) {
+//			this.comments.add(comment);
+//		}
+//	}
 
 	public List<PlantingArea> getPlantingAreas() {
 		return plantingAreas;
@@ -87,12 +87,12 @@ public class Garden implements HibernateClass{
 		this.plantingAreas = plantingAreas;
 	}
 	
-	public void setComments(PlantingArea...plantingAreas) {
-		this.plantingAreas.clear();
-		for (PlantingArea plantingArea : plantingAreas) {
-			this.plantingAreas.add(plantingArea);
-		}
-	}
+//	public void setComments(PlantingArea...plantingAreas) {
+//		this.plantingAreas.clear();
+//		for (PlantingArea plantingArea : plantingAreas) {
+//			this.plantingAreas.add(plantingArea);
+//		}
+//	}
 	
 	
 	/* Methods */

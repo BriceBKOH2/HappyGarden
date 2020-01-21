@@ -66,7 +66,7 @@ public class UserAccountController {
 	 * @return	UserAccount
 	 * @throws AlreadyExistException 
 	 */
-	@PostMapping
+	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserAccount save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
 		return userAccServ.save(userAcc);

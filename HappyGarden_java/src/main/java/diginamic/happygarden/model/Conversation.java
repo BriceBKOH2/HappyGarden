@@ -63,12 +63,12 @@ public class Conversation implements HibernateClass{
 		this.messages = messages;
 	}
 	
-	public void setMessages(Message... messages) {
-		this.messages.clear();
-		for (Message message : messages) {
-			this.messages.add(message);
-		}
-	}
+//	public void setMessages(Message... messages) {
+//		this.messages.clear();
+//		for (Message message : messages) {
+//			this.messages.add(message);
+//		}
+//	}
 	
 	
 	/* Methods */

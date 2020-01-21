@@ -169,11 +169,11 @@ public class Plant implements HibernateClass{
 		this.seasons = seasons;
 	}
 	
-	public void setSeasons(Season...seasons) {
-		this.seasons.clear();
-		for (Season season : seasons) {
-			this.seasons.add(season);
-		}
-	}
+//	public void setSeasons(Season...seasons) {
+//		this.seasons.clear();
+//		for (Season season : seasons) {
+//			this.seasons.add(season);
+//		}
+//	}
 	
 }
