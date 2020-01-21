@@ -5,4 +5,6 @@ export class PlantingArea {
   name: string;
   reminders: Reminder[];
   slots: Slot[];
+  length: number;
+  width: number;
 }
