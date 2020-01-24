@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import com.sun.istack.NotNull;
 
 @Entity
-public class Comment implements HibernateClass{
+public class Comment implements HibernateEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
-public class Garden implements HibernateClass{
+public class Garden implements HibernateEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

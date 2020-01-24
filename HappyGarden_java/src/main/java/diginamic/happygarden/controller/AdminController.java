@@ -69,7 +69,7 @@ public class AdminController {
 			userRightsAdmin.add(userRightAdmin);
 			userRightAdmin = new UserRight("account_suppression");
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight("plant_suppresion");
+			userRightAdmin = new UserRight("plant_suppression");
 			userRightsAdmin.add(userRightAdmin);
 			userRightAdmin = new UserRight("plant_addition");
 			userRightsAdmin.add(userRightAdmin);

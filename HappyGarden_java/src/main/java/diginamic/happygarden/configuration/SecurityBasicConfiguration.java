@@ -35,7 +35,7 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 			.and().httpBasic()
 			.and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository
-						.withHttpOnlyFalse());
+					.withHttpOnlyFalse());
 	}
 
 	@Autowired

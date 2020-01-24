@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 /** The list of information contained in a User's account **/
 @Entity
-public class UserAccount implements HibernateClass {
+public class UserAccount implements HibernateEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

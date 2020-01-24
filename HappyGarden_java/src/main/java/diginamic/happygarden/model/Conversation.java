@@ -15,7 +15,7 @@ import com.sun.istack.NotNull;
 /** A Conversation between Users that contains a list of messages **/
 @Entity
 @Table
-public class Conversation implements HibernateClass{
+public class Conversation implements HibernateEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

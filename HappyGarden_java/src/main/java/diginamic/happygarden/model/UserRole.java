@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * functionalities of the application
  **/
 @Entity
-public class UserRole implements HibernateClass {
+public class UserRole implements HibernateEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
