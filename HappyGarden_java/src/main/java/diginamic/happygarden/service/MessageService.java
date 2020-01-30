@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Message;
+import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.MessageRepository;
 
 @Service
@@ -19,6 +20,9 @@ public class MessageService{
 	
 	@Autowired
 	MessageRepository messageRep;
+	
+	@Autowired
+	UserAccountService userAccRep;
 
 	public long count() {
 		return messageRep.count();
@@ -78,6 +82,7 @@ public class MessageService{
 
 	public Message save(Message entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
+			userAccRep.save(entity.getAuthor());
 			return messageRep.save(entity);
 		}
 

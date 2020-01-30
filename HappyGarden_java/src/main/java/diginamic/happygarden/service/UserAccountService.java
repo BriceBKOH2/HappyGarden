@@ -12,7 +12,13 @@ import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
+import diginamic.happygarden.model.Conversation;
+import diginamic.happygarden.model.Garden;
+import diginamic.happygarden.model.Plant;
 import diginamic.happygarden.model.UserAccount;
+import diginamic.happygarden.repository.ConversationRepository;
+import diginamic.happygarden.repository.GardenRepository;
+import diginamic.happygarden.repository.PlantRepository;
 import diginamic.happygarden.repository.UserAccountRepository;
 
 @Service
@@ -20,6 +26,17 @@ public class UserAccountService {
 
 	@Autowired
 	UserAccountRepository userAccRep;
+
+	@Autowired
+	ConversationService convServ;
+
+	@Autowired
+	GardenService gardenServ;
+
+	@Autowired
+	PlantService plantServ;
+	
+
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -85,8 +102,24 @@ public class UserAccountService {
 	}
 
 	public UserAccount save(UserAccount entity) throws AlreadyExistException {
+
 		if (entity.getId() == null) {
 			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+			for (Conversation c : entity.getConversations()) {
+				convServ.save(c);
+			}
+			for (UserAccount c : entity.getFriends()) {
+				userAccRep.save(c);
+			}
+			for (Plant c : entity.getUsedPlants()) {
+				plantServ.save(c);
+			}
+			for (Plant c : entity.getFavoritePlants()) {
+				plantServ.save(c);
+			}
+			for (Garden c : entity.getGardens()) {
+				gardenServ.save(c);
+			}
 			return userAccRep.save(entity);
 		}
 		throw new AlreadyExistException(entity.getId());

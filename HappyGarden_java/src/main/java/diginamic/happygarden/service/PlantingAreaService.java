@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.PlantingArea;
+import diginamic.happygarden.model.Reminder;
+import diginamic.happygarden.model.Slot;
 import diginamic.happygarden.repository.PlantingAreaRepository;
 
 @Service
@@ -19,6 +21,12 @@ public class PlantingAreaService{
 	
 	@Autowired
 	PlantingAreaRepository plantingAreaRep;
+	
+	@Autowired
+	ReminderService remServ;
+
+	@Autowired
+	SlotService slotServ;
 
 	public long count() {
 		return plantingAreaRep.count();
@@ -78,6 +86,13 @@ public class PlantingAreaService{
 
 	public PlantingArea save(PlantingArea entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
+			for (Slot c : entity.getSlots()) {
+				slotServ.save(c);
+			}
+			for (Reminder c : entity.getReminders()) {
+				remServ.save(c);
+			}
+			
 			return plantingAreaRep.save(entity);
 		}
 

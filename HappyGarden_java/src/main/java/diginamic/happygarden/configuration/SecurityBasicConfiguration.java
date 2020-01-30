@@ -18,6 +18,7 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	private SecurityUserService securityUserServ;
 	
 	/**
+	 * 
 	 * Method to test 
 	 */
 //	@Override
