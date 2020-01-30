@@ -29,7 +29,7 @@ public class UserRole implements HibernateEntity {
 	
 	@NotNull
 	@ManyToMany
-	private List<UserRight> userRights = new ArrayList<UserRight>();
+	private List<UserRight> userRights = new ArrayList<>();
 
 	/* Constructors */
 

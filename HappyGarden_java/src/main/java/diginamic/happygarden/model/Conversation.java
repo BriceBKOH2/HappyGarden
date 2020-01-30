@@ -23,7 +23,7 @@ public class Conversation implements HibernateEntity{
 	
 	@NotNull
 	@OneToMany
-	private List<Message> messages = new ArrayList<Message>() ;
+	private List<Message> messages = new ArrayList<>() ;
 
 	
 	/* Constructors */

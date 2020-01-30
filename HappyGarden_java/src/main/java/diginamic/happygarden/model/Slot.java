@@ -24,7 +24,7 @@ public class Slot implements HibernateEntity, ReminderManager {
 	private Plant plant;
 	
 	@ManyToMany
-	private List<Reminder> reminders = new ArrayList<Reminder>();
+	private List<Reminder> reminders = new ArrayList<>();
 
 	
 	/* Constructors */

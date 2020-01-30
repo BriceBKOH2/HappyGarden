@@ -35,7 +35,7 @@ public class Plant implements HibernateEntity{
 	protected GrowthRate growthRate;
 	
 	@ElementCollection
-	protected List<Season> seasons = new ArrayList<Season>();
+	protected List<Season> seasons = new ArrayList<>();
 
 	
 	/* Constructors */

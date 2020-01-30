@@ -42,24 +42,25 @@ public class UserAccount implements HibernateEntity {
 	private UserRole userRole;
 
 	@ManyToMany
-	private List<Conversation> conversations = new ArrayList<Conversation>();
+	private List<Conversation> conversations = new ArrayList<>();
 
 	@ManyToMany
-	private List<UserAccount> friends  = new ArrayList<UserAccount>();
+	private List<UserAccount> friends  = new ArrayList<>();
 
 	@ManyToMany
-	private List<Plant> usedPlants = new ArrayList<Plant>();
+	private List<Plant> usedPlants = new ArrayList<>();
 	
 	@ManyToMany
-	private Set<Plant> favoritePlants = new HashSet<Plant>();
+	private Set<Plant> favoritePlants = new HashSet<>();
 
 	@OneToMany
-	private Set<Garden> gardens = new HashSet<Garden>();;
+	private Set<Garden> gardens = new HashSet<>();;
 
 	/* Constructors */
 
 	public UserAccount() {
 		super();
+		this.userRole = new UserRole();
 	}
 
 	public UserAccount(String firstName, String lastName, String pseudonyme, UserRole userRole) {

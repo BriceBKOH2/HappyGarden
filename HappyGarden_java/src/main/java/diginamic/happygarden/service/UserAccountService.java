@@ -2,6 +2,8 @@ package diginamic.happygarden.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -15,6 +17,7 @@ import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.UserAccountRepository;
 
+@Transactional
 @Service
 public class UserAccountService {
 
@@ -92,9 +95,11 @@ public class UserAccountService {
 		throw new AlreadyExistException(entity.getId());
 	}
 
-	public List<UserAccount> saveAll(Iterable<UserAccount> entities) {
-		entities.forEach(entity -> entity.setPassword(passwordEncoder.encode(entity.getPassword())));
-		return userAccRep.saveAll(entities);
+	public List<UserAccount> saveAll(Iterable<UserAccount> entities) throws AlreadyExistException{
+		for (UserAccount entity : entities) {
+			this.save(entity);
+		}
+		return (List<UserAccount>) entities;
 	}
 
 	public UserAccount saveAndFlush(UserAccount entity) {

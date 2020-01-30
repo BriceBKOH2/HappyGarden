@@ -25,7 +25,7 @@ public abstract class PlantingArea implements HibernateEntity, ReminderManager, 
 	protected List<Reminder> reminders = new ArrayList<Reminder>();
 	
 	@OneToMany
-	protected List<Slot> slots = new ArrayList<Slot>();
+	protected List<Slot> slots = new ArrayList<>();
 
 	
 	/* Constructors */

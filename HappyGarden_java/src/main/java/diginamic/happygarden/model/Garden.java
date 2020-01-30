@@ -22,10 +22,10 @@ public class Garden implements HibernateEntity{
 	private String name;
 
 	@OneToMany
-	private List<Comment> comments = new ArrayList<Comment>();	
+	private List<Comment> comments = new ArrayList<>();	
 	
 	@OneToMany
-	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
+	private List<PlantingArea> plantingAreas = new ArrayList<>();
 
 	
 	/* Constructors */
