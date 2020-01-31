@@ -40,7 +40,7 @@ public class Plant implements HibernateEntity{
 	
 	protected GrowthRate growthRate;
 
-	@JsonBackReference("plant_slots")
+	@JsonManagedReference("plant_slots")
 	@OneToMany(mappedBy = "plant")
 	private Set<Slot> slot = new HashSet<Slot>();
 	

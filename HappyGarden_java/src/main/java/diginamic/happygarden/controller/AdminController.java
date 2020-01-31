@@ -100,7 +100,7 @@ public class AdminController {
 		}
 		
 		try {
-			userAccServ.findByPseudonyme(ROLEADMIN);
+			userAccServ.findByPseudonyme("admin");
 		}
 		catch (NotFoundException e) {
 			/* Saving a admin user in DataBase*/
