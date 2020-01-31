@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Conversation;
+import diginamic.happygarden.model.Message;
+import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.ConversationRepository;
 
 @Transactional
@@ -22,6 +24,9 @@ public class ConversationService{
 	
 	@Autowired
 	ConversationRepository conversationRep;
+	
+	@Autowired
+	MessageService messServ;
 
 	public long count() {
 		return conversationRep.count();
@@ -81,6 +86,9 @@ public class ConversationService{
 
 	public Conversation save(Conversation entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
+			for (Message c : entity.getMessages()) {
+				messServ.save(c);
+			}
 			return conversationRep.save(entity);
 		}
 
