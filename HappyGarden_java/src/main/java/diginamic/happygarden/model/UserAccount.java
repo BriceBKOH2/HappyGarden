@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 /** The list of information contained in a User's account **/
 @Entity
-public class UserAccount implements HibernateEntity {
+public class UserAccount implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +54,7 @@ public class UserAccount implements HibernateEntity {
 	private Set<Plant> favoritePlants = new HashSet<Plant>();
 
 	@OneToMany
-	private Set<Garden> gardens = new HashSet<Garden>();;
+	private Set<Garden> gardens = new HashSet<Garden>();
 
 	/* Constructors */
 

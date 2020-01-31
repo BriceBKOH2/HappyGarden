@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
-public class Garden implements HibernateEntity{
+public class Garden implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Garden implements HibernateEntity{
 	private String name;
 
 	@OneToMany
-	private List<Comment> comments = new ArrayList<Comment>();	
+	private List<T> comments = new ArrayList<T>();	
 	
 	@OneToMany
 	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
@@ -64,11 +64,11 @@ public class Garden implements HibernateEntity{
 		this.name = name;
 	}
 
-	public List<Comment> getComments() {
+	public List<T> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(List<T> comments) {
 		this.comments = comments;
 	}
 
@@ -83,12 +83,12 @@ public class Garden implements HibernateEntity{
 	
 	/* Methods */
 	
-	public void addComments(List<Comment> comments) {
+	public void addComments(List<T> comments) {
 		this.comments.addAll(comments);
 	}
 	
-	public void addComments(Comment... comments) {
-		for (Comment comment : comments) {
+	public void addComments(T... comments) {
+		for (T comment : comments) {
 			this.comments.add(comment);
 		}
 	}
