@@ -15,7 +15,7 @@ import com.sun.istack.NotNull;
 /** A Conversation between Users that contains a list of messages **/
 @Entity
 @Table
-public class Conversation implements HibernateClass{
+public class Conversation implements HibernateEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Conversation implements HibernateClass{
 	
 	@NotNull
 	@OneToMany
-	private List<Message> messages = new ArrayList<Message>() ;
+	private List<Message> messages = new ArrayList<>() ;
 
 	
 	/* Constructors */
@@ -61,13 +61,6 @@ public class Conversation implements HibernateClass{
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
-	}
-	
-	public void setMessages(Message... messages) {
-		this.messages.clear();
-		for (Message message : messages) {
-			this.messages.add(message);
-		}
 	}
 	
 	

@@ -2,6 +2,8 @@ package diginamic.happygarden.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,7 @@ import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Message;
 import diginamic.happygarden.repository.MessageRepository;
 
+@Transactional
 @Service
 public class MessageService{
 	
@@ -81,12 +84,6 @@ public class MessageService{
 			return messageRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return messageRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

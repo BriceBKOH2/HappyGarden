@@ -1,0 +1,18 @@
+Create application-dev.properties in src\main\resources and copy the following text after replacing YOURPASSWORD
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/HappyGardenDB
+spring.datasource.password=YOURPASSWORD
+spring.jpa.hibernate.ddl-auto=create-drop
+
+
+
+you can change HappyGardenDB to your database (not recommended)
+you can change create-drop to update if you don't want that the database is dropped after killing the application
+if you change to update, put // before @EventListener(ApplicationReadyEvent.class) in AdminController to avoid
+exception thrown from the method trying to initialising database with existing data (unique contrain problem)
+
+/!\ When you run the application for the first time :
+do a Run Configuration...
+go to Arguments
+in WM arguments put : -Dspring.profiles.active=dev
+If you run it in command line just add -Dspring.profiles.active=dev at the end.

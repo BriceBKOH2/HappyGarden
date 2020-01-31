@@ -11,7 +11,7 @@ import com.sun.istack.NotNull;
 
 /** Contained in a Conversation, it has the content of the message and the User that sent it **/
 @Entity
-public class Message implements HibernateClass{
+public class Message implements HibernateEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,13 +3,11 @@ package diginamic.happygarden.model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class PlantUser extends Plant {
 
-	@ManyToOne
-	private UserAccount creator;
+	private String creator;
 	
 	/* Constructor */
 	
@@ -17,20 +15,20 @@ public class PlantUser extends Plant {
 		super();
 	}
 
-	public PlantUser(String commonName, UserAccount creator) {
+	public PlantUser(String commonName, String creator) {
 		super(commonName);
 		this.creator = creator;
 	}
 
 	public PlantUser(String scientificName, String commonName, String familyCommonName, String toxicity, Float matureHeight,
-			String lifeSpan, String bloomPeriod, GrowthRate growthRate, List<Season> seasons, UserAccount creator) {
+			String lifeSpan, String bloomPeriod, GrowthRate growthRate, List<Season> seasons, String creator) {
 		super(scientificName, commonName, familyCommonName, toxicity, matureHeight,
 				lifeSpan, bloomPeriod, growthRate, seasons);
 		this.creator = creator;
 	}
 
 	public PlantUser(String scientificName, String commonName, String familyCommonName, String toxicity, Float matureHeight,
-			String lifeSpan, String image, String bloomPeriod, GrowthRate growthRate, List<Season> seasons, UserAccount creator) {
+			String lifeSpan, String image, String bloomPeriod, GrowthRate growthRate, List<Season> seasons, String creator) {
 		super(scientificName, commonName, familyCommonName, toxicity, matureHeight,
 				lifeSpan, image, bloomPeriod, growthRate, seasons);
 		this.creator = creator;
@@ -39,11 +37,11 @@ public class PlantUser extends Plant {
 	
 	/* Getters Setters */
 
-	public UserAccount getCreator() {
+	public String getCreator() {
 		return creator;
 	}
 
-	public void setCreator(UserAccount creator) {
+	public void setCreator(String creator) {
 		this.creator = creator;
 	}
 	

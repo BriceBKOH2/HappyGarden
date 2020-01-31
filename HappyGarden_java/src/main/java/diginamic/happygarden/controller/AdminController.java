@@ -23,7 +23,21 @@ import diginamic.happygarden.service.UserRoleService;
 @RestController
 @RequestMapping("/Admin")
 public class AdminController {
-
+	
+	/* Role Constant */
+	private static final String ROLEBASIC = "Basic";
+	private static final String ROLEADMIN = "Admin";
+	
+	/* Right Constant */
+	private static final String RIGHT_COMMENT = "Comment";
+	private static final String RIGHT_MESSAGE = "Message";
+	private static final String RIGHT_ADMINISTRATION = "administration";
+	private static final String RIGHT_ACCOUNT_SUPPRESION = "account_suppression";
+	private static final String RIGHT_PLANT_SUPPRESSION = "plant_suppression";
+	private static final String RIGHT_PLANT_ADDITION = "plant_addition";
+	private static final String RIGHT_PLANT_MODIFICATION = "plant_modification";
+	
+	
 	@Autowired
 	private UserRightService userRightServ;
 	
@@ -43,54 +57,54 @@ public class AdminController {
 	@EventListener(ApplicationReadyEvent.class)
 	public List<UserAccount> intiateDB() throws NotFoundException, AlreadyExistException {
 		try {
-			userRoleServ.findByName("basic");
+			userRoleServ.findByName(ROLEBASIC);
 		}
 		catch (NotFoundException e) {
-			List<UserRight> userRightsBasic = new ArrayList<UserRight>();
-			UserRight userRightBasic = new UserRight("comment");
+			List<UserRight> userRightsBasic = new ArrayList<>();
+			UserRight userRightBasic = new UserRight(RIGHT_COMMENT);
 			userRightsBasic.add(userRightBasic);
-			userRightBasic = new UserRight("message");
+			userRightBasic = new UserRight(RIGHT_MESSAGE);
 			userRightsBasic.add(userRightBasic);
 			
 			/* Saving user rights in DataBase */
 			userRightServ.saveAll(userRightsBasic);
 
 			/* Saving role basic for regular users in DataBase*/
-			UserRole userRoleBasic = new UserRole("basic",userRightsBasic);
+			UserRole userRoleBasic = new UserRole(ROLEBASIC, userRightsBasic);
 			userRoleServ.save(userRoleBasic);
 		}
 		
 		try {
-			userRoleServ.findByName("admin");
+			userRoleServ.findByName(ROLEADMIN);
 		}
 		catch (NotFoundException e) {
 			List<UserRight> userRightsAdmin = new ArrayList<UserRight>();
-			UserRight userRightAdmin = new UserRight("administration");
+			UserRight userRightAdmin = new UserRight(RIGHT_ADMINISTRATION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight("account_suppression");
+			userRightAdmin = new UserRight(RIGHT_ACCOUNT_SUPPRESION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight("plant_suppresion");
+			userRightAdmin = new UserRight(RIGHT_PLANT_SUPPRESSION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight("plant_addition");
+			userRightAdmin = new UserRight(RIGHT_PLANT_ADDITION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight("plant_modification");
+			userRightAdmin = new UserRight(RIGHT_PLANT_MODIFICATION);
 			userRightsAdmin.add(userRightAdmin);
 			
 			/* Saving admin rights in DataBase */
 			userRightServ.saveAll(userRightsAdmin);
 			
 			/* Saving role admin for regular users in DataBase*/
-			userRightsAdmin.addAll(userRoleServ.findByName("basic").getUserRights());
-			UserRole userRoleAdmin = new UserRole("admin",userRightsAdmin);
+			userRightsAdmin.addAll(userRoleServ.findByName(ROLEBASIC).getUserRights());
+			UserRole userRoleAdmin = new UserRole(ROLEADMIN,userRightsAdmin);
 			userRoleServ.save(userRoleAdmin);
 		}
 		
 		try {
-			userAccServ.findByPseudonyme("admin");
+			userAccServ.findByPseudonyme(ROLEADMIN);
 		}
 		catch (NotFoundException e) {
 			/* Saving a admin user in DataBase*/
-			UserAccount userAccAdmin = new UserAccount("admin", "admin", "admin",userRoleServ.findByName("admin"));
+			UserAccount userAccAdmin = new UserAccount("admin", "admin", "admin",userRoleServ.findByName(ROLEADMIN));
 			userAccAdmin.setPassword("admin");
 			userAccServ.save(userAccAdmin);
 		}
@@ -100,7 +114,7 @@ public class AdminController {
 		}
 		catch (NotFoundException e) {
 			/* Saving a basic user in DataBase*/
-			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme",userRoleServ.findByName("basic"));
+			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme", userRoleServ.findByName(ROLEBASIC));
 			userAccBasic.setPassword("testPassword");
 			userAccServ.save(userAccBasic);
 		}

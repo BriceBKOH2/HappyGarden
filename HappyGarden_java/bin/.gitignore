@@ -1,7 +1,8 @@
 HELP.md
 target/
+application-dev.properties
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
+!**/src/main/java/**
 !**/src/test/**
 
 ### STS ###
@@ -29,3 +30,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/.mvn/
+/src/
