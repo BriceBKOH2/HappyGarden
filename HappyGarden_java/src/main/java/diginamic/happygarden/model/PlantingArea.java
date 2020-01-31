@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 
 /** Abstract Class for Parcel and Pot **/
 @Entity
-public abstract class PlantingArea implements HibernateEntity, ReminderManager, SlotManager{
+public abstract class PlantingArea implements HibernateEntity<Long>, ReminderManager, SlotManager{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

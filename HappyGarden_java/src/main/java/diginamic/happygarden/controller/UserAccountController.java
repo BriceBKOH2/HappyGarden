@@ -1,15 +1,9 @@
 package diginamic.happygarden.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,33 +16,9 @@ import diginamic.happygarden.service.UserAccountService;
 
 @RestController
 @RequestMapping("/UserAccount")
-public class UserAccountController {
-
-	@Autowired
-	private UserAccountService userAccServ;
-
-	/**
-	 * Returns a list of all users.
-	 * 
-	 * @return List<UserAccount>
-	 */
-	@GetMapping
-	public List<UserAccount> findAll() {
-		return userAccServ.findAll();
-	}
-
-	/**
-	 * Returns a user based on id.
-	 * 
-	 * @return	UserAccount
-	 * @throws NotFoundException 
-	 */
-	@GetMapping(value = "/{id}")
-	public UserAccount findById(@PathVariable Long id) throws NotFoundException {
-		return userAccServ.findById(id);
-	}
+public class UserAccountController extends AbstractCRUDController<UserAccount, Long, UserAccountService> {
 	
-
+	
 	/**
 	 * Returns a user based on pseudonyme.
 	 * 
@@ -57,7 +27,7 @@ public class UserAccountController {
 	 */
 	@GetMapping(value = "/pseudonyme/{pseudonyme}")
 	public UserAccount findByPseudonyme(@PathVariable String pseudonyme) throws NotFoundException {
-		return userAccServ.findByPseudonyme(pseudonyme);
+		return service.findByPseudonyme(pseudonyme);
 	}
 	
 	/**
@@ -68,29 +38,9 @@ public class UserAccountController {
 	 */
 	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserAccount save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
-		return userAccServ.save(userAcc);
+	@Override
+	public void save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
+		service.save(userAcc);
 	}
-	
-	/**
-	 * Update a user in Database and return it.
-	 * 
-	 * @return	UserAccount
-	 * @throws NotFoundException 
-	 */
-	@PutMapping
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public UserAccount update(@RequestBody UserAccount userAcc) throws NotFoundException {
-		return userAccServ.update(userAcc);
-	}
-	
-	/**
-	 * Delete a user in Database.
-	 */
-	@PreAuthorize("account_suppression")
-	@DeleteMapping
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void delete(@RequestBody UserAccount userAcc) {
-		userAccServ.delete(userAcc);
-	}
+
 }

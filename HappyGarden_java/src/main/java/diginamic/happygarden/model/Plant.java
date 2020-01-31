@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Plant implements HibernateEntity{
+public class Plant implements HibernateEntity<Long> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
