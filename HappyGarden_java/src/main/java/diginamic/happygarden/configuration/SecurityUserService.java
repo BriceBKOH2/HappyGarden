@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,11 +25,13 @@ import diginamic.happygarden.service.UserAccountService;
 @Transactional
 public class SecurityUserService implements UserDetailsService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUserService.class);
+	
 	@Autowired
 	private UserAccountService userAccServ;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username){
 		try {
 			UserAccount userAccount = userAccServ.findByPseudonyme(username);
 			
@@ -35,10 +39,9 @@ public class SecurityUserService implements UserDetailsService {
 			
 			return new User(username, userAccount.getPassword(), rights);
 		} catch (NotFoundException e) {
-			System.err.println(e.getMessage());
+			LOGGER.error("User does not exist", e);
+			throw new UsernameNotFoundException("User does not exist", e);
 		}
-		
-		return null;
 	}
 	
 	private Set<GrantedAuthority> findRights(UserAccount userAccount) {

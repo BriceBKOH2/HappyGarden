@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 /** Contained in a Conversation, it has the content of the message and the User that sent it **/
 @Entity
