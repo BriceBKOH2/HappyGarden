@@ -19,6 +19,12 @@ public class GardenService{
 	
 	@Autowired
 	GardenRepository gardenRep;
+	
+	@Autowired
+	CommentService comServ;
+	
+	@Autowired
+	PlantingAreaService plantAreaServ;
 
 	public long count() {
 		return gardenRep.count();

@@ -48,17 +48,7 @@ public class UserAccountController {
 		return userAccServ.findById(id);
 	}
 	
-	/**
-	 * Returns a list of all clients.
-	 * 
-	 * @return	UserAccount
-	 * @throws NotFoundException 
-	 */
-	@GetMapping(value = "/fetchEager/{id}")
-	public UserAccount findByIdFetchAll(@PathVariable Long id) throws NotFoundException {
-		return userAccServ.findByIdFetchAll(id);
-	}
-	
+
 	/**
 	 * Returns a user based on pseudonyme.
 	 * 
@@ -76,7 +66,7 @@ public class UserAccountController {
 	 * @return	UserAccount
 	 * @throws AlreadyExistException 
 	 */
-	@PostMapping
+	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserAccount save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
 		return userAccServ.save(userAcc);

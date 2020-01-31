@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavGardenComponent } from "./nav-garden.component";
+import { NavGardenComponent } from './nav-garden.component';
 
-describe("NavGardenComponent", () => {
+describe('NavGardenComponent', () => {
   let component: NavGardenComponent;
   let fixture: ComponentFixture<NavGardenComponent>;
 
@@ -18,7 +18,7 @@ describe("NavGardenComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -28,7 +28,7 @@ public class GardenController {
 	private GardenService gardenServ;
 	
 	/**
-	 * Returns a list of all users.
+	 * Returns a list of all gardens.
 	 * 
 	 * @return List<Garden>
 	 */
@@ -38,7 +38,7 @@ public class GardenController {
 	}
 
 	/**
-	 * Returns a user based on id.
+	 * Returns a garden based on id.
 	 * 
 	 * @return	Garden
 	 * @throws NotFoundException 
@@ -49,7 +49,7 @@ public class GardenController {
 	}
 	
 	/**
-	 * Create a user in Database and return the updated user.
+	 * Create a garden in Database and return the updated garden.
 	 * 
 	 * @return	Garden
 	 * @throws AlreadyExistException 
@@ -58,10 +58,15 @@ public class GardenController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Garden save(@RequestBody Garden garden) throws AlreadyExistException {
 		return gardenServ.save(garden);
+//		try {
+//			return gardenServ.findById(garden.getId());
+//		} catch (NotFoundException e) {
+//			return null;
+//		}
 	}
 	
 	/**
-	 * Update a user in Database and return it.
+	 * Update a garden in Database and return it.
 	 * 
 	 * @return	Garden
 	 * @throws NotFoundException 
@@ -73,7 +78,7 @@ public class GardenController {
 	}
 	
 	/**
-	 * Delete a user in Database.
+	 * Delete a garden in Database.
 	 */
 	@PreAuthorize("account_suppression")
 	@DeleteMapping

@@ -3,12 +3,17 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
@@ -23,10 +28,15 @@ public class Garden implements HibernateClass{
 
 	@OneToMany
 	private List<Comment> comments = new ArrayList<Comment>();	
-	
-	@OneToMany
+
+	@JsonManagedReference("garden_areas")
+	@OneToMany(mappedBy = "garden")
 	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
 
+	
+	@JsonBackReference("user_gardens")
+	@ManyToOne
+	private UserAccount user;
 	
 	/* Constructors */
 	
@@ -47,6 +57,8 @@ public class Garden implements HibernateClass{
 
 	
 	/* Getters Setters */
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -72,12 +84,12 @@ public class Garden implements HibernateClass{
 		this.comments = comments;
 	}
 	
-	public void setComments(Comment...comments) {
-		this.comments.clear();
-		for (Comment comment : comments) {
-			this.comments.add(comment);
-		}
-	}
+//	public void setComments(Comment...comments) {
+//		this.comments.clear();
+//		for (Comment comment : comments) {
+//			this.comments.add(comment);
+//		}
+//	}
 
 	public List<PlantingArea> getPlantingAreas() {
 		return plantingAreas;
@@ -87,12 +99,12 @@ public class Garden implements HibernateClass{
 		this.plantingAreas = plantingAreas;
 	}
 	
-	public void setComments(PlantingArea...plantingAreas) {
-		this.plantingAreas.clear();
-		for (PlantingArea plantingArea : plantingAreas) {
-			this.plantingAreas.add(plantingArea);
-		}
-	}
+//	public void setComments(PlantingArea...plantingAreas) {
+//		this.plantingAreas.clear();
+//		for (PlantingArea plantingArea : plantingAreas) {
+//			this.plantingAreas.add(plantingArea);
+//		}
+//	}
 	
 	
 	/* Methods */
@@ -116,7 +128,13 @@ public class Garden implements HibernateClass{
 			this.plantingAreas.add(plantingArea);
 		}
 	}
-	
-	
+
+	public UserAccount getUser() {
+		return user;
+	}
+
+	public void setUser(UserAccount user) {
+		this.user = user;
+	}
 	
 }

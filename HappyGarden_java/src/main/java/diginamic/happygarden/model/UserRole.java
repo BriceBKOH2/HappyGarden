@@ -82,12 +82,12 @@ public class UserRole implements HibernateClass {
 		this.userRights = userRights;
 	}
 
-	public void setUserRights(UserRight... userRights) {
-		this.userRights.clear();
-		for (UserRight right : userRights) {
-			this.userRights.add(right);
-		}
-	}
+//	public void setUserRights(UserRight... userRights) {
+//		this.userRights.clear();
+//		for (UserRight right : userRights) {
+//			this.userRights.add(right);
+//		}
+//	}
 
 	/* Methods */
 
