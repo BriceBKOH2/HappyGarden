@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Message;
-import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.MessageRepository;
 
 @Transactional

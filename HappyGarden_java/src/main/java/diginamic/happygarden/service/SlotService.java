@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.Conversation;
-import diginamic.happygarden.model.Plant;
 import diginamic.happygarden.model.Reminder;
 import diginamic.happygarden.model.Slot;
 import diginamic.happygarden.repository.SlotRepository;

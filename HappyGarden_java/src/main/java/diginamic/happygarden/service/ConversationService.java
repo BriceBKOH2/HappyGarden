@@ -15,7 +15,6 @@ import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.model.Message;
-import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.ConversationRepository;
 
 @Transactional

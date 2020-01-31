@@ -16,7 +16,6 @@ import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Comment;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.model.PlantingArea;
-import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.GardenRepository;
 
 @Transactional

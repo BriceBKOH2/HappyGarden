@@ -18,9 +18,6 @@ import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.model.Plant;
 import diginamic.happygarden.model.UserAccount;
-import diginamic.happygarden.repository.ConversationRepository;
-import diginamic.happygarden.repository.GardenRepository;
-import diginamic.happygarden.repository.PlantRepository;
 import diginamic.happygarden.repository.UserAccountRepository;
 
 @Transactional
