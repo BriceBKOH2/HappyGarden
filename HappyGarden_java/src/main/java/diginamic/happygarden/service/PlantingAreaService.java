@@ -2,6 +2,8 @@ package diginamic.happygarden.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import diginamic.happygarden.model.Reminder;
 import diginamic.happygarden.model.Slot;
 import diginamic.happygarden.repository.PlantingAreaRepository;
 
+@Transactional
 @Service
 public class PlantingAreaService {
 
@@ -89,11 +92,6 @@ public class PlantingAreaService {
 			return plantingAreaRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		} catch (NotFoundException e) {
-			return plantingAreaRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

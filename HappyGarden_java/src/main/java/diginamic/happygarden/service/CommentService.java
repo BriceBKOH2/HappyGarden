@@ -2,6 +2,8 @@ package diginamic.happygarden.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,7 @@ import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Comment;
 import diginamic.happygarden.repository.CommentRepository;
 
+@Transactional
 @Service
 public class CommentService{
 	
@@ -81,12 +84,6 @@ public class CommentService{
 			return commentRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return commentRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

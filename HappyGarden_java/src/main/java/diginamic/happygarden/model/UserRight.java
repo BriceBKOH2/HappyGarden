@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 /** a specification / autorisation given for a Role **/
 @Entity
-public class UserRight implements HibernateClass{
+public class UserRight implements HibernateEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

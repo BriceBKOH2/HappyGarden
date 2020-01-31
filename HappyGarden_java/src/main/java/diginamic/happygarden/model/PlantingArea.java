@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		})
 @Entity
 //@Inheritance(strategy = )
-public abstract class PlantingArea implements HibernateClass, ReminderManager, SlotManager{
+public abstract class PlantingArea implements HibernateEntity, ReminderManager, SlotManager{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,7 +101,6 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;
 	}
-		
 	@JsonIgnore
 	public List<Slot> getSlots() {
 		return slots;
@@ -110,6 +109,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setSlots(List<Slot> slots) {
 		this.slots = slots;
 	}
+
 	
 
 	public Garden getGarden() {

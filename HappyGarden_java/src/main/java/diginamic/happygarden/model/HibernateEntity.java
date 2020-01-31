@@ -1,6 +1,6 @@
 package diginamic.happygarden.model;
 
-public interface HibernateClass {
+public interface HibernateEntity{
 	
 	Long getId();
 

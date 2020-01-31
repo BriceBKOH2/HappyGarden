@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Slot implements HibernateClass, ReminderManager {
+public class Slot implements HibernateEntity, ReminderManager {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Slot implements HibernateClass, ReminderManager {
 	private Plant plant;
 	
 	@ManyToMany
-	private List<Reminder> reminders = new ArrayList<Reminder>();
+	private List<Reminder> reminders = new ArrayList<>();
 
 	@JsonBackReference("area_slots")
 	@ManyToOne

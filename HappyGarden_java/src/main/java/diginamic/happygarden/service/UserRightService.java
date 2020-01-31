@@ -2,6 +2,8 @@ package diginamic.happygarden.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,7 @@ import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.repository.UserRightRepository;
 
+@Transactional
 @Service
 public class UserRightService{
 	
@@ -85,12 +88,6 @@ public class UserRightService{
 			return userRightRep.save(entity);
 		}
 
-		try {
-			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
-			return userRightRep.save(entity);
-		}
 		throw new AlreadyExistException(entity.getId());
 	}
 

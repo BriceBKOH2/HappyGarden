@@ -16,22 +16,14 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private SecurityUserService securityUserServ;
-	
-	/**
-	 * 
-	 * Method to test 
-	 */
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//		auth.inMemoryAuthentication().withUser("user").password(encoder.encode("password")).roles("USER").and()
-//				.withUser("admin").password(encoder.encode("admin")).roles("USER", "ADMIN");
-//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/Admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
+//			.and().csrf()
+//				.csrfTokenRepository(CookieCsrfTokenRepository
+//					.withHttpOnlyFalse())
 			.and().httpBasic()
 			.and().csrf().disable();
 	}

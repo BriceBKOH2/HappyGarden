@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Plant implements HibernateClass{
+public class Plant implements HibernateEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +45,7 @@ public class Plant implements HibernateClass{
 	private Set<Slot> slot = new HashSet<Slot>();
 	
 	@ElementCollection
-	protected List<Season> seasons = new ArrayList<Season>();
+	protected List<Season> seasons = new ArrayList<>();
 
 	
 	/* Constructors */
@@ -188,12 +188,5 @@ public class Plant implements HibernateClass{
 	}
 	
 	
-	
-//	public void setSeasons(Season...seasons) {
-//		this.seasons.clear();
-//		for (Season season : seasons) {
-//			this.seasons.add(season);
-//		}
-//	}
 	
 }
