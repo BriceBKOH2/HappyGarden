@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		})
 @Entity
 //@Inheritance(strategy = )
-public abstract class PlantingArea implements HibernateEntity, ReminderManager, SlotManager{
+public abstract class PlantingArea implements HibernateEntity<Long>, ReminderManager, SlotManager{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 /** A Conversation between Users that contains a list of messages **/
 @Entity
 @Table
-public class Conversation implements HibernateEntity{
+public class Conversation implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

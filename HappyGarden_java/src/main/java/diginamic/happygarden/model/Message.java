@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 /** Contained in a Conversation, it has the content of the message and the User that sent it **/
 @Entity
-public class Message implements HibernateEntity{
+public class Message implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

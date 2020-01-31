@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** The list of information contained in a User's account **/
 @Entity
-public class UserAccount implements HibernateEntity {
+public class UserAccount implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

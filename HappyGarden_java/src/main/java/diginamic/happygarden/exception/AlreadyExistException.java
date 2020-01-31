@@ -18,7 +18,7 @@ public class AlreadyExistException extends Exception {
 		this.printStackTrace();
 	}
 
-	public AlreadyExistException(Long id) {
+	public AlreadyExistException(Object id) {
 		LOGGER.error("Entries exist for id : " + id);
 		this.printStackTrace();
 	}

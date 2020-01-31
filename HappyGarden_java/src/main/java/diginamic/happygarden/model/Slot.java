@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Slot implements HibernateEntity, ReminderManager {
+public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

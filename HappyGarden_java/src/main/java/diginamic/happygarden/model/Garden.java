@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
-public class Garden implements HibernateEntity{
+public class Garden implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

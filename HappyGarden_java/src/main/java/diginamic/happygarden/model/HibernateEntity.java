@@ -1,8 +1,15 @@
 package diginamic.happygarden.model;
 
-public interface HibernateEntity{
+/**
+ * Specifies that the class extending this interface must have an identification
+ * number as well as a getter and a setter.
+ * @author formation
+ *
+ * @param <ID> The type of the id
+ */
+public interface HibernateEntity <ID>{
 	
-	Long getId();
+	ID getId();
 
 	void setId(Long id);
 	
