@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 
 /** Abstract Class for Parcel and Pot **/
 @Entity
-public abstract class PlantingArea implements HibernateClass, ReminderManager, SlotManager{
+public abstract class PlantingArea implements HibernateEntity<Long>, ReminderManager, SlotManager{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	protected List<Reminder> reminders = new ArrayList<Reminder>();
 	
 	@OneToMany
-	protected List<Slot> slots = new ArrayList<Slot>();
+	protected List<Slot> slots = new ArrayList<>();
 
 	
 	/* Constructors */
@@ -78,13 +78,6 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;
 	}
-		
-	public void setReminders(Reminder... reminders) {
-		this.reminders.clear();
-		for (Reminder reminder : reminders) {
-			this.reminders.add(reminder);
-		}
-	}
 	
 	public List<Slot> getSlots() {
 		return slots;
@@ -93,14 +86,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setSlots(List<Slot> slots) {
 		this.slots = slots;
 	}
-	
-	public void setSlots(Slot... slots) {
-		this.slots.clear();
-		for (Slot slot : slots) {
-			this.slots.add(slot);
-		}
-	}
-	
+
 	
 	/* Methods */
 

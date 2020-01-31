@@ -3,12 +3,12 @@ package diginamic.happygarden.model;
 import java.util.List;
 
 public interface SlotManager {
-	public void addSlots(List<Slot> Slots);
+	public void addSlots(List<Slot> slots);
 
-	public void addSlots(Slot... Slots);
+	public void addSlots(Slot... slots);
 	
 	/*ToDo*/
-//	public void removeSlots(List<Slot> Slots);
+//	public void removeSlots(List<Slot> slots);
 //	
-//	public void removeSlot(Slot Slot);
+//	public void removeSlot(Slot slot);
 }

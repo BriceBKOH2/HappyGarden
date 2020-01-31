@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Slot implements HibernateClass, ReminderManager {
+public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Slot implements HibernateClass, ReminderManager {
 	private Plant plant;
 	
 	@ManyToMany
-	private List<Reminder> reminders = new ArrayList<Reminder>();
+	private List<Reminder> reminders = new ArrayList<>();
 
 	
 	/* Constructors */

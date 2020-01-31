@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * functionalities of the application
  **/
 @Entity
-public class UserRole implements HibernateClass {
+public class UserRole implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class UserRole implements HibernateClass {
 	
 	@NotNull
 	@ManyToMany
-	private List<UserRight> userRights = new ArrayList<UserRight>();
+	private List<UserRight> userRights = new ArrayList<>();
 
 	/* Constructors */
 
@@ -82,12 +82,6 @@ public class UserRole implements HibernateClass {
 		this.userRights = userRights;
 	}
 
-	public void setUserRights(UserRight... userRights) {
-		this.userRights.clear();
-		for (UserRight right : userRights) {
-			this.userRights.add(right);
-		}
-	}
 
 	/* Methods */
 

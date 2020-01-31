@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Plant implements HibernateClass{
+public class Plant implements HibernateEntity<Long> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class Plant implements HibernateClass{
 	protected GrowthRate growthRate;
 	
 	@ElementCollection
-	protected List<Season> seasons = new ArrayList<Season>();
+	protected List<Season> seasons = new ArrayList<>();
 
 	
 	/* Constructors */
@@ -167,13 +167,6 @@ public class Plant implements HibernateClass{
 
 	public void setSeasons(List<Season> seasons) {
 		this.seasons = seasons;
-	}
-	
-	public void setSeasons(Season...seasons) {
-		this.seasons.clear();
-		for (Season season : seasons) {
-			this.seasons.add(season);
-		}
 	}
 	
 }

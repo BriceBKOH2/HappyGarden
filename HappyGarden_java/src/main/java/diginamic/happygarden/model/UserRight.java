@@ -7,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-/** a specification / autorisation given for a Role **/
+/**
+ * a specification / autorisation given for a Role 
+ * 
+ */
 @Entity
-public class UserRight implements HibernateClass{
+public class UserRight implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
