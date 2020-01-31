@@ -83,9 +83,7 @@ public class ConversationService{
 
 	public Conversation save(Conversation entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
-			for (Message c : entity.getMessages()) {
-				messServ.save(c);
-			}
+			
 			return conversationRep.save(entity);
 		}
 

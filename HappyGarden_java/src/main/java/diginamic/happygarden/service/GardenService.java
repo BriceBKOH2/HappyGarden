@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.Comment;
 import diginamic.happygarden.model.Garden;
-import diginamic.happygarden.model.PlantingArea;
-import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.GardenRepository;
 
 @Service
@@ -87,13 +84,6 @@ public class GardenService{
 
 	public Garden save(Garden entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
-			for (Comment c : entity.getComments()) {
-				comServ.save(c);
-			}
-			for (PlantingArea c : entity.getPlantingAreas()) {
-				plantAreaServ.save(c);
-			}
-			
 			return gardenRep.save(entity);
 		}
 

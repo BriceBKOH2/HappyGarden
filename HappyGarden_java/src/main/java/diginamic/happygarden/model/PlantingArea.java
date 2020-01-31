@@ -7,11 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 /** Abstract Class for Parcel and Pot **/
+@JsonTypeInfo(
+		  use = JsonTypeInfo.Id.NAME, 
+		  include = JsonTypeInfo.As.PROPERTY, 
+		  property = "type")
+		@JsonSubTypes({ 
+		  @Type(value = Parcel.class, name = "parcel"), 
+		  @Type(value = Pot.class, name = "pot") 
+		})
 @Entity
+//@Inheritance(strategy = )
 public abstract class PlantingArea implements HibernateClass, ReminderManager, SlotManager{
 
 	@Id
@@ -23,9 +41,14 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	
 	@OneToMany
 	protected List<Reminder> reminders = new ArrayList<Reminder>();
-	
-	@OneToMany
+
+	@JsonManagedReference("area_slots")
+	@OneToMany(mappedBy = "plantingArea")
 	protected List<Slot> slots = new ArrayList<Slot>();
+	
+	@JsonBackReference("garden_areas")
+	@ManyToOne
+	private Garden garden;
 
 	
 	/* Constructors */
@@ -79,13 +102,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 		this.reminders = reminders;
 	}
 		
-//	public void setReminders(Reminder... reminders) {
-//		this.reminders.clear();
-//		for (Reminder reminder : reminders) {
-//			this.reminders.add(reminder);
-//		}
-//	}
-	
+	@JsonIgnore
 	public List<Slot> getSlots() {
 		return slots;
 	}
@@ -94,19 +111,21 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 		this.slots = slots;
 	}
 	
-//	public void setSlots(Slot... slots) {
-//		this.slots.clear();
-//		for (Slot slot : slots) {
-//			this.slots.add(slot);
-//		}
-//	}
-	
+
+	public Garden getGarden() {
+		return garden;
+	}
+
+	public void setGarden(Garden garden) {
+		this.garden = garden;
+	}
 	
 	/* Methods */
 
 	public void addReminders(List<Reminder> reminders) {
 		this.reminders.addAll(reminders);
 	}
+
 
 	public void addReminders(Reminder... reminders) {
 		for (Reminder reminder : reminders) {

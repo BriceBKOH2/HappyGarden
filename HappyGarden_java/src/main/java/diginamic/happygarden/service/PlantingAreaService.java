@@ -17,11 +17,11 @@ import diginamic.happygarden.model.Slot;
 import diginamic.happygarden.repository.PlantingAreaRepository;
 
 @Service
-public class PlantingAreaService{
-	
+public class PlantingAreaService {
+
 	@Autowired
 	PlantingAreaRepository plantingAreaRep;
-	
+
 	@Autowired
 	ReminderService remServ;
 
@@ -39,7 +39,7 @@ public class PlantingAreaService{
 	public boolean exists(Example<PlantingArea> example) {
 		return plantingAreaRep.exists(example);
 	}
-	
+
 	public boolean existsById(Long id) {
 		return plantingAreaRep.existsById(id);
 	}
@@ -47,11 +47,11 @@ public class PlantingAreaService{
 	public PlantingArea getOne(Long id) {
 		return plantingAreaRep.getOne(id);
 	}
-	
+
 	public PlantingArea findOne(Example<PlantingArea> example) throws NotFoundException {
 		return plantingAreaRep.findOne(example).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
-	
+
 	public PlantingArea findById(Long id) throws NotFoundException {
 		return plantingAreaRep.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
@@ -59,19 +59,19 @@ public class PlantingAreaService{
 	public List<PlantingArea> findAll() {
 		return plantingAreaRep.findAll();
 	}
-	
+
 	public List<PlantingArea> findAll(Example<PlantingArea> example) {
 		return plantingAreaRep.findAll(example);
 	}
-	
+
 	public Page<PlantingArea> findAll(Pageable pageable) {
 		return plantingAreaRep.findAll(pageable);
 	}
-	
+
 	public List<PlantingArea> findAll(Sort sort) {
 		return plantingAreaRep.findAll(sort);
 	}
-	
+
 	public List<PlantingArea> findAll(Example<PlantingArea> example, Sort sort) {
 		return plantingAreaRep.findAll(example, sort);
 	}
@@ -79,27 +79,19 @@ public class PlantingAreaService{
 	public Page<PlantingArea> findAll(Example<PlantingArea> example, Pageable pageable) {
 		return plantingAreaRep.findAll(example, pageable);
 	}
-	
+
 	public List<PlantingArea> findAllById(Iterable<Long> ids) {
 		return plantingAreaRep.findAllById(ids);
 	}
 
 	public PlantingArea save(PlantingArea entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
-			for (Slot c : entity.getSlots()) {
-				slotServ.save(c);
-			}
-			for (Reminder c : entity.getReminders()) {
-				remServ.save(c);
-			}
-			
 			return plantingAreaRep.save(entity);
 		}
 
 		try {
 			this.findById(entity.getId());
-		}
-		catch (NotFoundException e) {
+		} catch (NotFoundException e) {
 			return plantingAreaRep.save(entity);
 		}
 		throw new AlreadyExistException(entity.getId());
@@ -108,11 +100,11 @@ public class PlantingAreaService{
 	public List<PlantingArea> saveAll(Iterable<PlantingArea> entities) {
 		return plantingAreaRep.saveAll(entities);
 	}
-	
+
 	public PlantingArea saveAndFlush(PlantingArea entity) {
 		return plantingAreaRep.saveAndFlush(entity);
 	}
-	
+
 	public PlantingArea update(PlantingArea entity) throws NotFoundException {
 		this.findById(entity.getId());
 		return plantingAreaRep.save(entity);
@@ -121,27 +113,28 @@ public class PlantingAreaService{
 	public void flush() {
 		plantingAreaRep.flush();
 	}
-	
+
 	public void deleteById(Long id) {
 		plantingAreaRep.deleteById(id);
-		
+
 	}
+
 	public void delete(PlantingArea entity) {
 		plantingAreaRep.delete(entity);
 	}
 
 	public void deleteAll(List<PlantingArea> entities) {
 		plantingAreaRep.deleteAll(entities);
-		
+
 	}
 
 	public void deleteAll() {
 		plantingAreaRep.deleteAll();
 	}
-	
+
 	public void deleteInBatch(Iterable<PlantingArea> entities) {
 		plantingAreaRep.deleteInBatch(entities);
-		
+
 	}
 
 	public void deleteAllInBatch() {

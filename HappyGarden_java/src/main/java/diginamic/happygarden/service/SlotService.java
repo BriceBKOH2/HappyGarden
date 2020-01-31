@@ -87,10 +87,6 @@ public class SlotService {
 
 	public Slot save(Slot entity) throws AlreadyExistException {
 		if (entity.getId() == null) {
-			plantServ.save(entity.getPlant());
-			for (Reminder c : entity.getReminders()) {
-				remServ.save(c);
-			}
 			return slotRep.save(entity);
 		}
 

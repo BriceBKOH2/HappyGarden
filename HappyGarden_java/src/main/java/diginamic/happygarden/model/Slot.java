@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Slot implements HibernateClass, ReminderManager {
@@ -20,12 +24,16 @@ public class Slot implements HibernateClass, ReminderManager {
 	
 	private Date date;
 	
+	@JsonManagedReference("plant_slots")
 	@ManyToOne
 	private Plant plant;
 	
 	@ManyToMany
 	private List<Reminder> reminders = new ArrayList<Reminder>();
 
+	@JsonBackReference("area_slots")
+	@ManyToOne
+	private PlantingArea plantingArea;
 	
 	/* Constructors */
 	
@@ -91,8 +99,18 @@ public class Slot implements HibernateClass, ReminderManager {
 		this.reminders = reminders;
 	}
 	
+	
+	
 /* Methods */
 	
+	public PlantingArea getPlantingArea() {
+		return plantingArea;
+	}
+
+	public void setPlantingArea(PlantingArea plantingArea) {
+		this.plantingArea = plantingArea;
+	}
+
 	public void addReminders(List<Reminder> reminders) {
 		this.reminders.addAll(reminders);
 	}

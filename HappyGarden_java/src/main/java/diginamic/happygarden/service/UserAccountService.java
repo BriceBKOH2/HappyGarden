@@ -105,21 +105,6 @@ public class UserAccountService {
 
 		if (entity.getId() == null) {
 			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-			for (Conversation c : entity.getConversations()) {
-				convServ.save(c);
-			}
-			for (UserAccount c : entity.getFriends()) {
-				userAccRep.save(c);
-			}
-			for (Plant c : entity.getUsedPlants()) {
-				plantServ.save(c);
-			}
-			for (Plant c : entity.getFavoritePlants()) {
-				plantServ.save(c);
-			}
-			for (Garden c : entity.getGardens()) {
-				gardenServ.save(c);
-			}
 			return userAccRep.save(entity);
 		}
 		throw new AlreadyExistException(entity.getId());

@@ -100,7 +100,7 @@ public class CommentService{
 	
 	public Comment update(Comment entity) throws NotFoundException {
 		this.findById(entity.getId());
-		return commentRep.update(entity);
+		return commentRep.save(entity);
 	}
 
 	public void flush() {

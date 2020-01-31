@@ -69,10 +69,6 @@ public class UserAccountController {
 	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserAccount save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
-		userAcc.getConversations();
-		userAcc.getUsedPlants();
-		userAcc.getFavoritePlants();
-		userAcc.getGardens();
 		return userAccServ.save(userAcc);
 	}
 	

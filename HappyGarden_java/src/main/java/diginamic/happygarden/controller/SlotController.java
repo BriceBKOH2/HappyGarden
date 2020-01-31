@@ -17,74 +17,74 @@ import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.Garden;
-import diginamic.happygarden.service.GardenService;
+import diginamic.happygarden.model.Slot;
+import diginamic.happygarden.service.SlotService;
 
 @RestController
-@RequestMapping("/Garden")
-public class GardenController {
+@RequestMapping("/Slot")
+public class SlotController {
 
 	@Autowired
-	private GardenService gardenServ;
-	
+	private SlotService slotServ;
+
 	/**
-	 * Returns a list of all gardens.
+	 * Returns a list of all Slot.
 	 * 
-	 * @return List<Garden>
+	 * @return List<Slot>
 	 */
 	@GetMapping
-	public List<Garden> findAll() {
-		return gardenServ.findAll();
+	public List<Slot> findAll() {
+		return slotServ.findAll();
 	}
 
 	/**
-	 * Returns a garden based on id.
+	 * Returns a Slot based on id.
 	 * 
-	 * @return	Garden
-	 * @throws NotFoundException 
+	 * @return Slot
+	 * @throws NotFoundException
 	 */
 	@GetMapping(value = "/{id}")
-	public Garden findById(@PathVariable Long id) throws NotFoundException {
-		return gardenServ.findById(id);
+	public Slot findById(@PathVariable Long id) throws NotFoundException {
+		return slotServ.findById(id);
 	}
-	
+
 	/**
-	 * Create a garden in Database and return the updated garden.
+	 * Create a Slot in Database and return the updated Slot.
 	 * 
-	 * @return	Garden
-	 * @throws AlreadyExistException 
+	 * @return Slot
+	 * @throws AlreadyExistException
 	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Garden save(@RequestBody Garden garden) throws AlreadyExistException {
-		return gardenServ.save(garden);
+	public Slot save(@RequestBody Slot slot) throws AlreadyExistException {
+		return slotServ.save(slot);
 //		try {
 //			return gardenServ.findById(garden.getId());
 //		} catch (NotFoundException e) {
 //			return null;
 //		}
 	}
-	
+
 	/**
-	 * Update a garden in Database and return it.
+	 * Update a Slot in Database and return it.
 	 * 
-	 * @return	Garden
-	 * @throws NotFoundException 
+	 * @return Slot
+	 * @throws NotFoundException
 	 */
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Garden update(@RequestBody Garden garden) throws NotFoundException {
-		return gardenServ.update(garden);
+	public Slot update(@RequestBody Slot slot) throws NotFoundException {
+		return slotServ.update(slot);
 	}
-	
+
 	/**
-	 * Delete a garden in Database.
+	 * Delete a Slot in Database.
 	 */
 	@PreAuthorize("account_suppression")
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void delete(@RequestBody Garden garden) {
-		gardenServ.delete(garden);
+	public void delete(@RequestBody Slot slot) {
+		slotServ.delete(slot);
 	}
 
 }

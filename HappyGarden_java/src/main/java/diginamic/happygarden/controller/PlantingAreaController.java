@@ -17,74 +17,74 @@ import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.Garden;
-import diginamic.happygarden.service.GardenService;
+import diginamic.happygarden.model.PlantingArea;
+import diginamic.happygarden.service.PlantingAreaService;
 
 @RestController
-@RequestMapping("/Garden")
-public class GardenController {
+@RequestMapping("/PlantingArea")
+public class PlantingAreaController {
 
 	@Autowired
-	private GardenService gardenServ;
-	
+	private PlantingAreaService plantAreaServ;
+
 	/**
-	 * Returns a list of all gardens.
+	 * Returns a list of all PlantingAreas.
 	 * 
-	 * @return List<Garden>
+	 * @return List<PlantingArea>
 	 */
 	@GetMapping
-	public List<Garden> findAll() {
-		return gardenServ.findAll();
+	public List<PlantingArea> findAll() {
+		return plantAreaServ.findAll();
 	}
 
 	/**
-	 * Returns a garden based on id.
+	 * Returns a PlantingArea based on id.
 	 * 
-	 * @return	Garden
-	 * @throws NotFoundException 
+	 * @return PlantingArea
+	 * @throws NotFoundException
 	 */
 	@GetMapping(value = "/{id}")
-	public Garden findById(@PathVariable Long id) throws NotFoundException {
-		return gardenServ.findById(id);
+	public PlantingArea findById(@PathVariable Long id) throws NotFoundException {
+		return plantAreaServ.findById(id);
 	}
-	
+
 	/**
-	 * Create a garden in Database and return the updated garden.
+	 * Create a PlantingArea in Database and return the updated PlantingArea.
 	 * 
-	 * @return	Garden
-	 * @throws AlreadyExistException 
+	 * @return PlantingArea
+	 * @throws AlreadyExistException
 	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Garden save(@RequestBody Garden garden) throws AlreadyExistException {
-		return gardenServ.save(garden);
+	public PlantingArea save(@RequestBody PlantingArea plantingArea) throws AlreadyExistException {
+		return plantAreaServ.save(plantingArea);
 //		try {
 //			return gardenServ.findById(garden.getId());
 //		} catch (NotFoundException e) {
 //			return null;
 //		}
 	}
-	
+
 	/**
-	 * Update a garden in Database and return it.
+	 * Update a PlantingArea in Database and return it.
 	 * 
-	 * @return	Garden
-	 * @throws NotFoundException 
+	 * @return PlantingArea
+	 * @throws NotFoundException
 	 */
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Garden update(@RequestBody Garden garden) throws NotFoundException {
-		return gardenServ.update(garden);
+	public PlantingArea update(@RequestBody PlantingArea plantingArea) throws NotFoundException {
+		return plantAreaServ.update(plantingArea);
 	}
-	
+
 	/**
-	 * Delete a garden in Database.
+	 * Delete a PlantingArea in Database.
 	 */
 	@PreAuthorize("account_suppression")
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void delete(@RequestBody Garden garden) {
-		gardenServ.delete(garden);
+	public void delete(@RequestBody PlantingArea plantingArea) {
+		plantAreaServ.delete(plantingArea);
 	}
 
 }
