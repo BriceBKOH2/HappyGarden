@@ -7,9 +7,11 @@ import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navigation/navbar/navbar.component";
 import { NavGardenComponent } from "./navigation/nav-garden/nav-garden.component";
 import { NavigationModule } from "./navigation/navigation.module";
+import { UserManagementComponent } from './user-management/user-management/user-management.component';
+import { PlantManagementComponent } from './admin-management/plant-management/plant-management.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UserManagementComponent, PlantManagementComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

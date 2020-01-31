@@ -40,7 +40,7 @@ public class AdminController {
 	 * @throws NotFoundException entity doesn't exist in database
 	 */
 	@GetMapping(value ="/initiateDB")
-//	@EventListener(ApplicationReadyEvent.class)
+	@EventListener(ApplicationReadyEvent.class)
 	public List<UserAccount> intiateDB() throws NotFoundException, AlreadyExistException {
 		try {
 			userRoleServ.findByName("basic");
