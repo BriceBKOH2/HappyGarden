@@ -31,16 +31,16 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public List<UserAccount> findAllByFirstNameIgnoreCase(String name) {
-		return repo.findAllByFirstNameIgnoreCase(name);
+	public List<UserAccount> findAllByFirstnameIgnoreCase(String name) {
+		return repo.findAllByFirstnameIgnoreCase(name);
 	}
 	
-	public List<UserAccount> findByLastNameIgnoreCase(String name) {
-		return repo.findByLastNameIgnoreCase(name);
+	public List<UserAccount> findByLastnameIgnoreCase(String name) {
+		return repo.findByLastnameIgnoreCase(name);
 	}
 
-	public UserAccount findByPseudonyme(String pseudonyme) throws NotFoundException {
-		return repo.findByPseudonyme(pseudonyme).orElseThrow(() -> new NotFoundException("Entity not found"));
+	public UserAccount findByNickname(String nickname) throws NotFoundException {
+		return repo.findByNickname(nickname).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
 	public UserAccount findByIdFetchAll(Long id) {

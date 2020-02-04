@@ -87,7 +87,7 @@ public class AdminController {
 			userRoleServ.save(userRoleAdmin);
 		}
 		try {
-			userAccServ.findByPseudonyme("admin");
+			userAccServ.findByNickname("admin");
 		} catch (NotFoundException e) {
 			/* Saving a admin user in DataBase */
 			UserAccount userAccAdmin = new UserAccount("admin", "admin", "admin", userRoleServ.findByName(ROLEADMIN));
@@ -95,7 +95,7 @@ public class AdminController {
 			userAccServ.save(userAccAdmin);
 		}
 		try {
-			userAccServ.findByPseudonyme("testPseudonyme");
+			userAccServ.findByNickname("testPseudonyme");
 		} catch (NotFoundException e) {
 			/* Saving a basic user in DataBase */
 			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme",

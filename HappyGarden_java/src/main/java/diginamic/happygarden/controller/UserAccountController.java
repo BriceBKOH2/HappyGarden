@@ -21,8 +21,8 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	 * @throws NotFoundException 
 	 */
 	@GetMapping(value = "/pseudonyme/{pseudonyme}")
-	public UserAccount findByPseudonyme(@PathVariable String pseudonyme) throws NotFoundException {
-		return service.findByPseudonyme(pseudonyme);
+	public UserAccount findByNickname(@PathVariable String pseudonyme) throws NotFoundException {
+		return service.findByNickname(pseudonyme);
 	}
 
 }

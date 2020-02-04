@@ -33,7 +33,7 @@ public class SecurityUserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username){
 		try {
-			UserAccount userAccount = userAccServ.findByPseudonyme(username);
+			UserAccount userAccount = userAccServ.findByNickname(username);
 			
 			Set<GrantedAuthority> rights = findRights(userAccount);
 			
