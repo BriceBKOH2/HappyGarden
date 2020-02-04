@@ -44,7 +44,6 @@ public class UserAccount implements HibernateEntity<Long> {
 	@ManyToMany
 	private List<Conversation> conversations = new ArrayList<>();
 
-	@ManyToMany
 	private List<String> friends  = new ArrayList<>();
 
 	@ManyToMany
