@@ -40,6 +40,10 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	@JsonManagedReference("area_slots")
 	@OneToMany(mappedBy = "plantingArea")
 	protected List<Slot> slots = new ArrayList<>();
+	
+	@JsonBackReference("garden_areas")
+	@ManyToOne
+	private Garden garden;
 
 	
 	/* Constructors */
@@ -92,7 +96,7 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;
 	}
-	
+	@JsonIgnore
 	public List<Slot> getSlots() {
 		return slots;
 	}
@@ -101,6 +105,15 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 		this.slots = slots;
 	}
 
+	
+
+	public Garden getGarden() {
+		return garden;
+	}
+
+	public void setGarden(Garden garden) {
+		this.garden = garden;
+	}
 	
 	/* Methods */
 

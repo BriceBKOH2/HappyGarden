@@ -25,10 +25,10 @@ public class Garden implements HibernateEntity<Long> {
 	private String name;
 
 	@OneToMany
-	private List<Comment> comments = new ArrayList<>();	
-	
-	@OneToMany
-	private List<PlantingArea> plantingAreas = new ArrayList<>();
+	private List<Comment> comments = new ArrayList<Comment>();	
+	@JsonManagedReference("garden_areas")
+	@OneToMany(mappedBy = "garden")
+	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
 
 	
 	@JsonBackReference("user_gardens")

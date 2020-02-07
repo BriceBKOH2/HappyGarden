@@ -159,13 +159,6 @@ public class UserAccount implements HibernateEntity<Long> {
 		this.favoritePlants = favoritePlants;
 	}
 
-//	public void setFavoritePlants(Plant... favoritePlants) {
-//		this.favoritePlants.clear();
-//		for (Plant favoritePlant : favoritePlants) {
-//			this.favoritePlants.add(favoritePlant);
-//		}
-//	}
-	
 	public Set<Garden> getGardens() {
 		return gardens;
 	}
