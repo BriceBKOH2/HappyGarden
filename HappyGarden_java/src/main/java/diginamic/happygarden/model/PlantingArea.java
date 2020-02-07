@@ -7,10 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 /** Abstract Class for Parcel and Pot **/
+@JsonTypeInfo(
+		  use = JsonTypeInfo.Id.NAME, 
+		  include = JsonTypeInfo.As.PROPERTY, 
+		  property = "type")
+		@JsonSubTypes({ 
+		  @Type(value = Parcel.class, name = "parcel"), 
+		  @Type(value = Pot.class, name = "pot") 
+		})
 @Entity
 public abstract class PlantingArea implements HibernateEntity<Long>, ReminderManager, SlotManager{
 
@@ -22,10 +38,15 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	protected String name;
 	
 	@OneToMany
-	protected List<Reminder> reminders = new ArrayList<Reminder>();
-	
-	@OneToMany
+	protected List<Reminder> reminders = new ArrayList<>();
+
+	@JsonManagedReference("area_slots")
+	@OneToMany(mappedBy = "plantingArea")
 	protected List<Slot> slots = new ArrayList<>();
+	
+	@JsonBackReference("garden_areas")
+	@ManyToOne
+	private Garden garden;
 
 	
 	/* Constructors */
@@ -78,7 +99,7 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;
 	}
-	
+	@JsonIgnore
 	public List<Slot> getSlots() {
 		return slots;
 	}
@@ -88,11 +109,21 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	}
 
 	
+
+	public Garden getGarden() {
+		return garden;
+	}
+
+	public void setGarden(Garden garden) {
+		this.garden = garden;
+	}
+	
 	/* Methods */
 
 	public void addReminders(List<Reminder> reminders) {
 		this.reminders.addAll(reminders);
 	}
+
 
 	public void addReminders(Reminder... reminders) {
 		for (Reminder reminder : reminders) {
