@@ -15,10 +15,6 @@ const routes: Routes = [
   {
     path: 'libraryList',
     loadChildren: './library/library.module#LibraryModule'
-  },
-  {
-    path: 'GardenList',
-    loadChildren: './navigation/nav-garden#NavigationModule'
   }
 ];
 
