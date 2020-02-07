@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 
 import com.sun.istack.NotNull;
 
-@Entity
 public class T implements HibernateEntity<Long> {
 
 	@Id

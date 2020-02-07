@@ -63,8 +63,8 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	 */
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void save(@RequestBody T t) throws AlreadyExistException {
-		service.save(t);
+	public T save(@RequestBody T t) throws AlreadyExistException {
+		return service.save(t);
 	}
 	
 	/**

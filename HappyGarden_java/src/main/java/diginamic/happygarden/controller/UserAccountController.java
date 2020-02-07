@@ -39,8 +39,8 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
-	public void save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
-		service.save(userAcc);
+	public UserAccount save(@RequestBody UserAccount userAcc) throws AlreadyExistException {
+		return service.save(userAcc);
 	}
 
 }

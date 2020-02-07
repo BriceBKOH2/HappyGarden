@@ -51,7 +51,7 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 
 		if (entity.getId() == null) {
 			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-			return userAccRep.save(entity);
+			return repo.save(entity);
 		}
 		throw new AlreadyExistException(entity.getId());
 	}
