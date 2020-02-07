@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -33,9 +32,10 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/Admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 			.and().httpBasic()
-			.and().csrf()
-				.csrfTokenRepository(CookieCsrfTokenRepository
-					.withHttpOnlyFalse());
+//			.and().csrf()
+//				.csrfTokenRepository(CookieCsrfTokenRepository
+//					.withHttpOnlyFalse());
+			.and().csrf().disable();
 	}
 
 	@Autowired
