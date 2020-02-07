@@ -3,7 +3,6 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
-public class Garden implements HibernateClass{
+public class Garden implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +27,6 @@ public class Garden implements HibernateClass{
 
 	@OneToMany
 	private List<Comment> comments = new ArrayList<Comment>();	
-
 	@JsonManagedReference("garden_areas")
 	@OneToMany(mappedBy = "garden")
 	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
@@ -83,13 +81,6 @@ public class Garden implements HibernateClass{
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
-//	public void setComments(Comment...comments) {
-//		this.comments.clear();
-//		for (Comment comment : comments) {
-//			this.comments.add(comment);
-//		}
-//	}
 
 	public List<PlantingArea> getPlantingAreas() {
 		return plantingAreas;
@@ -98,13 +89,6 @@ public class Garden implements HibernateClass{
 	public void setPlantingAreas(List<PlantingArea> plantingAreas) {
 		this.plantingAreas = plantingAreas;
 	}
-	
-//	public void setComments(PlantingArea...plantingAreas) {
-//		this.plantingAreas.clear();
-//		for (PlantingArea plantingArea : plantingAreas) {
-//			this.plantingAreas.add(plantingArea);
-//		}
-//	}
 	
 	
 	/* Methods */

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -29,8 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		  @Type(value = Pot.class, name = "pot") 
 		})
 @Entity
-//@Inheritance(strategy = )
-public abstract class PlantingArea implements HibernateClass, ReminderManager, SlotManager{
+public abstract class PlantingArea implements HibernateEntity<Long>, ReminderManager, SlotManager{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +38,11 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	protected String name;
 	
 	@OneToMany
-	protected List<Reminder> reminders = new ArrayList<Reminder>();
+	protected List<Reminder> reminders = new ArrayList<>();
 
 	@JsonManagedReference("area_slots")
 	@OneToMany(mappedBy = "plantingArea")
-	protected List<Slot> slots = new ArrayList<Slot>();
+	protected List<Slot> slots = new ArrayList<>();
 	
 	@JsonBackReference("garden_areas")
 	@ManyToOne
@@ -101,7 +99,6 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setReminders(List<Reminder> reminders) {
 		this.reminders = reminders;
 	}
-		
 	@JsonIgnore
 	public List<Slot> getSlots() {
 		return slots;
@@ -110,6 +107,7 @@ public abstract class PlantingArea implements HibernateClass, ReminderManager, S
 	public void setSlots(List<Slot> slots) {
 		this.slots = slots;
 	}
+
 	
 
 	public Garden getGarden() {

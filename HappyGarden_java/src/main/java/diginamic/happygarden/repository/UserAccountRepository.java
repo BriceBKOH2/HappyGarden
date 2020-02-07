@@ -12,11 +12,11 @@ import diginamic.happygarden.model.UserAccount;
 @Repository
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
 	
-	public List<UserAccount> findAllByFirstNameIgnoreCase(String name);
+	public List<UserAccount> findAllByFirstnameIgnoreCase(String name);
 	
-	public List<UserAccount> findByLastNameIgnoreCase(String name);
+	public List<UserAccount> findByLastnameIgnoreCase(String name);
 	
-	public Optional<UserAccount> findByPseudonyme(String name);
+	public Optional<UserAccount> findByNickname(String name);
 	
 	/**
 	 * 

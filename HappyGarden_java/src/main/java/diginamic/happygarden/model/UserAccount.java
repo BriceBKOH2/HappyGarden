@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,26 +18,25 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** The list of information contained in a User's account **/
 @Entity
-public class UserAccount implements HibernateClass {
+public class UserAccount implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotBlank
-	private String firstName;
+	private String firstname;
 
 	@NotBlank
-	private String lastName;
+	private String lastname;
 
 	@Column(unique = true)
 	@NotBlank
-	private String pseudonyme;
+	private String nickname;
 	
 	@NotBlank
 	private String password;
@@ -46,42 +46,34 @@ public class UserAccount implements HibernateClass {
 	private UserRole userRole;
 
 	@ManyToMany
-	private List<Conversation> conversations = new ArrayList<Conversation>();
+	private List<Conversation> conversations = new ArrayList<>();
+	
+	@ElementCollection
+	private List<String> friends  = new ArrayList<>();
 
 	@ManyToMany
-	private List<UserAccount> friends  = new ArrayList<UserAccount>();
-
-	@ManyToMany
-	private List<Plant> usedPlants = new ArrayList<Plant>();
+	private List<Plant> usedPlants = new ArrayList<>();
 	
 	@ManyToMany
-	private Set<Plant> favoritePlants = new HashSet<Plant>();
+	private Set<Plant> favoritePlants = new HashSet<>();
 
 //	@JsonIgnore
 	@JsonManagedReference("user_gardens")
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Garden> gardens = new HashSet<Garden>();
+	private Set<Garden> gardens = new HashSet<>();
 
 	/* Constructors */
 
 	public UserAccount() {
 		super();
+		this.userRole = new UserRole();
 	}
 
-	public UserAccount(String firstName, String lastName, String pseudonyme) {
+	public UserAccount(String firstName, String lastName, String nickname, UserRole userRole) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.pseudonyme = pseudonyme;
-		/*/!\ DEFINE A userRole BY DEFAULT (basic user)!!!!!!!! */
-		// userRole = new userRole(????);		
-	}
-
-	public UserAccount(String firstName, String lastName, String pseudonyme, UserRole userRole) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.pseudonyme = pseudonyme;
+		this.firstname = firstName;
+		this.lastname = lastName;
+		this.nickname = nickname;
 		this.userRole = userRole;
 	}
 
@@ -95,28 +87,28 @@ public class UserAccount implements HibernateClass {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstName) {
+		this.firstname = firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastName) {
+		this.lastname = lastName;
 	}
 
-	public String getPseudonyme() {
-		return pseudonyme;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setPseudonyme(String pseudonyme) {
-		this.pseudonyme = pseudonyme;
+	public void setNickname(String pseudonyme) {
+		this.nickname = pseudonyme;
 	}
 
 	public String getPassword() {
@@ -143,27 +135,13 @@ public class UserAccount implements HibernateClass {
 		this.conversations = conversations;
 	}
 
-//	public void setConversations(Conversation... conversations) {
-//		this.conversations.clear();
-//		for (Conversation conversation : conversations) {
-//			this.conversations.add(conversation);
-//		}
-//	}
-
-	public List<UserAccount> getFriends() {
+	public List<String> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(List<UserAccount> friends) {
+	public void setFriends(List<String> friends) {
 		this.friends = friends;
 	}
-
-//	public void setFriends(UserAccount... friends) {
-//		this.friends.clear();
-//		for (UserAccount friend : friends) {
-//			this.friends.add(friend);
-//		}
-//	}
 	
 	public List<Plant> getUsedPlants() {
 		return usedPlants;
@@ -172,13 +150,6 @@ public class UserAccount implements HibernateClass {
 	public void setUsedPlants(List<Plant> usedPlants) {
 		this.usedPlants = usedPlants;
 	}
-	
-//	public void setUsedPlants(Plant... usedPlants) {
-//		this.usedPlants.clear();
-//		for (Plant usedPlant : usedPlants) {
-//			this.usedPlants.add(usedPlant);
-//		}
-//	}
 
 	public Set<Plant> getFavoritePlants() {
 		return favoritePlants;
@@ -188,13 +159,6 @@ public class UserAccount implements HibernateClass {
 		this.favoritePlants = favoritePlants;
 	}
 
-//	public void setFavoritePlants(Plant... favoritePlants) {
-//		this.favoritePlants.clear();
-//		for (Plant favoritePlant : favoritePlants) {
-//			this.favoritePlants.add(favoritePlant);
-//		}
-//	}
-	
 	public Set<Garden> getGardens() {
 		return gardens;
 	}
@@ -203,13 +167,7 @@ public class UserAccount implements HibernateClass {
 		this.gardens = gardens;
 	}
 
-//	public void setGardens(Garden... gardens) {
-//		this.gardens.clear();
-//		for (Garden garden : gardens) {
-//			this.gardens.add(garden);
-//		}
-//	}
-
+	
 	/* Methods */
 
 	public void addConversations(List<Conversation> conversations) {
@@ -222,12 +180,12 @@ public class UserAccount implements HibernateClass {
 		}
 	}
 
-	public void addFriends(List<UserAccount> friends) {
+	public void addFriends(List<String> friends) {
 		this.friends.addAll(friends);
 	}
 
-	public void addFriends(UserAccount... friends) {
-		for (UserAccount friend : friends) {
+	public void addFriends(String... friends) {
+		for (String friend : friends) {
 			this.friends.add(friend);
 		}
 	}
