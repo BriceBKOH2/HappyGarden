@@ -1,16 +1,21 @@
 package diginamic.happygarden.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Plant implements HibernateEntity{
+public class Plant implements HibernateEntity<Long> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +38,10 @@ public class Plant implements HibernateEntity{
 	protected String bloomPeriod;
 	
 	protected GrowthRate growthRate;
+
+	@JsonManagedReference("plant_slots")
+	@OneToMany(mappedBy = "plant")
+	private Set<Slot> slot = new HashSet<Slot>();
 	
 	@ElementCollection
 	protected List<Season> seasons = new ArrayList<>();
@@ -168,5 +177,15 @@ public class Plant implements HibernateEntity{
 	public void setSeasons(List<Season> seasons) {
 		this.seasons = seasons;
 	}
+
+	public Set<Slot> getSlot() {
+		return slot;
+	}
+
+	public void setSlot(Set<Slot> slot) {
+		this.slot = slot;
+	}
+	
+	
 	
 }

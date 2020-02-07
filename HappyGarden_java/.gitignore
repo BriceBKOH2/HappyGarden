@@ -1,5 +1,6 @@
 HELP.md
 target/
+logs/
 application-dev.properties
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/java/**

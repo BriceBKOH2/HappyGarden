@@ -7,12 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
-public class Garden implements HibernateEntity{
+public class Garden implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +26,15 @@ public class Garden implements HibernateEntity{
 	private String name;
 
 	@OneToMany
-	private List<Comment> comments = new ArrayList<>();	
-	
-	@OneToMany
-	private List<PlantingArea> plantingAreas = new ArrayList<>();
+	private List<Comment> comments = new ArrayList<Comment>();	
+	@JsonManagedReference("garden_areas")
+	@OneToMany(mappedBy = "garden")
+	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
 
+	
+	@JsonBackReference("user_gardens")
+	@ManyToOne
+	private UserAccount user;
 	
 	/* Constructors */
 	
@@ -47,6 +55,8 @@ public class Garden implements HibernateEntity{
 
 	
 	/* Getters Setters */
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -102,7 +112,13 @@ public class Garden implements HibernateEntity{
 			this.plantingAreas.add(plantingArea);
 		}
 	}
-	
-	
+
+	public UserAccount getUser() {
+		return user;
+	}
+
+	public void setUser(UserAccount user) {
+		this.user = user;
+	}
 	
 }
