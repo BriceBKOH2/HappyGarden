@@ -4,10 +4,9 @@ import { SidebarModule } from 'ng-sidebar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navigation/navbar/navbar.component';
-import { NavGardenComponent } from './navigation/nav-garden/nav-garden.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +14,7 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     NavigationModule,
+    HttpClientModule,
     SidebarModule.forRoot(),
     HomeModule
   ],
