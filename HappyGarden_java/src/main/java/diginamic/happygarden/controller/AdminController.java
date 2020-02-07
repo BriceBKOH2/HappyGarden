@@ -95,10 +95,10 @@ public class AdminController {
 			userAccServ.save(userAccAdmin);
 		}
 		try {
-			userAccServ.findByNickname("testPseudonyme");
+			userAccServ.findByNickname("testNickname");
 		} catch (NotFoundException e) {
 			/* Saving a basic user in DataBase */
-			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme",
+			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testNickname",
 					userRoleServ.findByName(BASIC));
 			userAccBasic.setPassword("testPassword");
 			userAccServ.save(userAccBasic);

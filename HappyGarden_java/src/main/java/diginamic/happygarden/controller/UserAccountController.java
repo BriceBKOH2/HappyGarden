@@ -15,14 +15,14 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	
 	
 	/**
-	 * Returns a user based on pseudonyme.
+	 * Returns a user based on nickname.
 	 * 
 	 * @return	UserAccount
 	 * @throws NotFoundException 
 	 */
-	@GetMapping(value = "/pseudonyme/{pseudonyme}")
-	public UserAccount findByNickname(@PathVariable String pseudonyme) throws NotFoundException {
-		return service.findByNickname(pseudonyme);
+	@GetMapping(value = "/nickname/{nickname}")
+	public UserAccount findByNickname(@PathVariable String nickname) throws NotFoundException {
+		return service.findByNickname(nickname);
 	}
 
 }
