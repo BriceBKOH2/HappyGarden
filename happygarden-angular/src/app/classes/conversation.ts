@@ -1,6 +1,6 @@
 import { Message } from './Message';
 
 export class Conversation {
-  id: string;
+  id: number;
   messages: Message[];
 }

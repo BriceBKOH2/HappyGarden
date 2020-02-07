@@ -1,1 +1,30 @@
 <p>my-gardens works!</p>
+
+<div class="row">
+  <div class="col-md-2" id="sidebar">
+    <p>Mes Jardins</p>
+    <ul>
+      <ng-container *ngFor="let garden of gardens">
+        <li (click)="selectGarden()">
+          {{ garden.name }}
+          <ul>
+            <ng-container *ngFor="let plantingArea of garden.plantingAreas">
+              <li *ngIf="parcelBoolean == true" (click)="selectPlantingArea()">
+                {{ plantingArea.name }}
+                <ul>
+                  <ng-container *ngFor="let slot of plantingArea.slots">
+                    <li *ngIf="plantBoolean == true">
+                      {{ slot.plant.commonName }}
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+
+  <div class="col-md-10" id="body"></div>
+</div>

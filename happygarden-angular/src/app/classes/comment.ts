@@ -1,7 +1,7 @@
 import { UserAccount } from './user-account';
 
 export class Comment {
-  id: string;
+  id: number;
   content: string;
   author: UserAccount;
 }

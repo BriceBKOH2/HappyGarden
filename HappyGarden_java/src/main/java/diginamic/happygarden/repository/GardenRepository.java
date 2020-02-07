@@ -1,5 +1,6 @@
 package diginamic.happygarden.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,7 @@ public interface GardenRepository extends JpaRepository<Garden, Long>{
 	
 	@Query("select g from Garden g join fetch g.user u where g.id = :id")
 	public Optional<Garden> findByIdFetchUser(Long id);
+
+	@Query("select g from Garden g join fetch g.user u where g.user.id = :userId")
+	public List<Garden> findByUserId(Long userId);
 }
