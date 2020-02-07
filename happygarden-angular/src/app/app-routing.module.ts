@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'libraryList',
     loadChildren: './library/library.module#LibraryModule'
+  },
+  {
+    path: 'plantSingle/:id',
+    loadChildren: './library/library.module#LibraryModule'
   }
 ];
 

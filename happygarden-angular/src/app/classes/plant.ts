@@ -2,7 +2,7 @@ import { GrowthRate } from '../enums/growth-rate.enum';
 import { Season } from '../enums/season.enum';
 
 export class Plant {
-  id: string;
+  id: number;
   scientificName: string;
   commonName: string;
   familyCommonName: string;

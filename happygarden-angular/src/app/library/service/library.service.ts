@@ -16,4 +16,8 @@ export class LibraryService {
   findAllPlants(): Observable<Plant[]> {
     return this.httpClient.get<Plant[]>(this.endPointPlant);
   }
+
+  findPlant(id: number) {
+    return this.httpClient.get<Plant>(`${this.endPointPlant}/${id}`);
+  }
 }

@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Plant implements HibernateEntity<Long> {
@@ -39,7 +39,7 @@ public class Plant implements HibernateEntity<Long> {
 	
 	protected GrowthRate growthRate;
 
-	@JsonManagedReference("plant_slots")
+	@JsonBackReference("plant_slots")
 	@OneToMany(mappedBy = "plant")
 	private Set<Slot> slot = new HashSet<Slot>();
 	
