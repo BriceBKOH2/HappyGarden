@@ -23,14 +23,14 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	private Date date;
 	
-	@JsonBackReference("plant_slots")
+	@JsonManagedReference("plant_slots")
 	@ManyToOne
 	private Plant plant;
 	
 	@ManyToMany
 	private List<Reminder> reminders = new ArrayList<>();
 
-	@JsonManagedReference("area_slots")
+	@JsonBackReference("area_slots")
 	@ManyToOne
 	private PlantingArea plantingArea;
 	
