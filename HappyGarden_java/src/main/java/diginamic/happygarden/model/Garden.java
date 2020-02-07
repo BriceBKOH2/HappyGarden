@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** Contains a list of Parcel, Pot with possible list of Comment" **/
 @Entity
