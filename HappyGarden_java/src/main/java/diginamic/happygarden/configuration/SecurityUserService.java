@@ -22,7 +22,7 @@ import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.service.UserAccountService;
 
 @Service
-@Transactional
+@Transactional // Important, probleme de session sinon
 public class SecurityUserService implements UserDetailsService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUserService.class);
@@ -33,7 +33,7 @@ public class SecurityUserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username){
 		try {
-			UserAccount userAccount = userAccServ.findByPseudonyme(username);
+			UserAccount userAccount = userAccServ.findByNickname(username);
 			
 			Set<GrantedAuthority> rights = findRights(userAccount);
 			

@@ -15,16 +15,13 @@ public class NotFoundException extends Exception {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUserService.class);
 	
 	public NotFoundException() {
-		this.printStackTrace();
 	}
 
 	public NotFoundException(Long id) {
 		LOGGER.error("No entries returned for id : " + id);
-		this.printStackTrace();
 	}
 
 	public NotFoundException(String msg) {
 		LOGGER.error(msg);
-		this.printStackTrace();
 	}
 }

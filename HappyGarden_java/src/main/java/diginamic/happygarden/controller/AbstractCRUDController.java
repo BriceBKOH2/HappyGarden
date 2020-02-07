@@ -61,7 +61,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	 * @param t
 	 * @throws AlreadyExistException if the entity already exists.
 	 */
-	@PostMapping
+	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.CREATED)
 	public T save(@RequestBody T t) throws AlreadyExistException {
 		return service.save(t);
@@ -73,30 +73,31 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	 * @return the updated entity.
 	 * @throws NotFoundException If the entity is not found in the database.
 	 */
-	@PutMapping
+	@PutMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public T update(@RequestBody T t) throws NotFoundException {
 		return service.update(t);
 	}
-
-	/**
-	 * Deletes all entities of the type t.
-	 */
-	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
-	@GetMapping("/deleteall")
-	public void deleteAll() {
-		service.deleteAll();
-	}
+	
 	
 	/**
 	 * Deletes the given entity.
 	 * @param t
 	 */
-	@DeleteMapping
 	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
+	@DeleteMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@RequestBody T t) {
 		service.delete(t);
 	}
-
+	
+	/**
+	 * Deletes all entities of the type t.
+	 */
+	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
+	@DeleteMapping(value = "/deleteall", consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
+	public void deleteAll() {
+		service.deleteAll();
+	}
+	
 }
