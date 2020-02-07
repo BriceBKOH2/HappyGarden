@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** The list of information contained in a User's account **/
 @Entity
@@ -54,8 +57,10 @@ public class UserAccount implements HibernateEntity<Long> {
 	@ManyToMany
 	private Set<Plant> favoritePlants = new HashSet<>();
 
-	@OneToMany
-	private Set<Garden> gardens = new HashSet<>();;
+//	@JsonIgnore
+	@JsonManagedReference("user_gardens")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Garden> gardens = new HashSet<>();
 
 	/* Constructors */
 
@@ -154,6 +159,13 @@ public class UserAccount implements HibernateEntity<Long> {
 		this.favoritePlants = favoritePlants;
 	}
 
+//	public void setFavoritePlants(Plant... favoritePlants) {
+//		this.favoritePlants.clear();
+//		for (Plant favoritePlant : favoritePlants) {
+//			this.favoritePlants.add(favoritePlant);
+//		}
+//	}
+	
 	public Set<Garden> getGardens() {
 		return gardens;
 	}

@@ -10,7 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 /** Abstract Class for Parcel and Pot **/
+@JsonTypeInfo(
+		  use = JsonTypeInfo.Id.NAME, 
+		  include = JsonTypeInfo.As.PROPERTY, 
+		  property = "type")
+		@JsonSubTypes({ 
+		  @Type(value = Parcel.class, name = "parcel"), 
+		  @Type(value = Pot.class, name = "pot") 
+		})
 @Entity
 public abstract class PlantingArea implements HibernateEntity<Long>, ReminderManager, SlotManager{
 
@@ -22,9 +35,10 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	protected String name;
 	
 	@OneToMany
-	protected List<Reminder> reminders = new ArrayList<Reminder>();
-	
-	@OneToMany
+	protected List<Reminder> reminders = new ArrayList<>();
+
+	@JsonManagedReference("area_slots")
+	@OneToMany(mappedBy = "plantingArea")
 	protected List<Slot> slots = new ArrayList<>();
 
 	
@@ -93,6 +107,7 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	public void addReminders(List<Reminder> reminders) {
 		this.reminders.addAll(reminders);
 	}
+
 
 	public void addReminders(Reminder... reminders) {
 		for (Reminder reminder : reminders) {

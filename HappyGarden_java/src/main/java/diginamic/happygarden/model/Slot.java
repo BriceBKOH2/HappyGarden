@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
@@ -20,12 +23,16 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	private Date date;
 	
+	@JsonManagedReference("plant_slots")
 	@ManyToOne
 	private Plant plant;
 	
 	@ManyToMany
 	private List<Reminder> reminders = new ArrayList<>();
 
+	@JsonBackReference("area_slots")
+	@ManyToOne
+	private PlantingArea plantingArea;
 	
 	/* Constructors */
 	
@@ -91,8 +98,18 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 		this.reminders = reminders;
 	}
 	
+	
+	
 /* Methods */
 	
+	public PlantingArea getPlantingArea() {
+		return plantingArea;
+	}
+
+	public void setPlantingArea(PlantingArea plantingArea) {
+		this.plantingArea = plantingArea;
+	}
+
 	public void addReminders(List<Reminder> reminders) {
 		this.reminders.addAll(reminders);
 	}

@@ -51,21 +51,6 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 
 		if (entity.getId() == null) {
 			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-//			for (Conversation c : entity.getConversations()) {
-//				convServ.save(c);
-//			}
-//			for (UserAccount c : entity.getFriends()) {
-//				repo.save(c);
-//			}
-//			for (Plant c : entity.getUsedPlants()) {
-//				plantServ.save(c);
-//			}
-//			for (Plant c : entity.getFavoritePlants()) {
-//				plantServ.save(c);
-//			}
-//			for (Garden c : entity.getGardens()) {
-//				gardenServ.save(c);
-//			}
 			return repo.save(entity);
 		}
 		throw new AlreadyExistException(entity.getId());
