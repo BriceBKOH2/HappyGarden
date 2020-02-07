@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
+import { FormsModule } from '@angular/forms';
+import { UserAccountRequestServiceService } from './service/user-account-request-service.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,9 +16,10 @@ import { HomeModule } from './home/home.module';
     AppRoutingModule,
     NavigationModule,
     SidebarModule.forRoot(),
-    HomeModule
+    HomeModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [UserAccountRequestServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

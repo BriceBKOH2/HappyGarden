@@ -30,7 +30,7 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	@ManyToMany
 	private List<Reminder> reminders = new ArrayList<>();
 
-	@JsonBackReference("area_slots")
+	@JsonManagedReference("area_slots")
 	@ManyToOne
 	private PlantingArea plantingArea;
 	

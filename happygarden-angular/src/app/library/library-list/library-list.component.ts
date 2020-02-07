@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAccountRequestServiceService } from 'src/app/service/user-account-request-service.service';
 
 @Component({
   selector: 'app-library-list',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./library-list.component.scss']
 })
 export class LibraryListComponent implements OnInit {
+  constructor(public userService: UserAccountRequestServiceService) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  changeId() {
+    this.userService.userAccount.id = 1000;
   }
-
 }

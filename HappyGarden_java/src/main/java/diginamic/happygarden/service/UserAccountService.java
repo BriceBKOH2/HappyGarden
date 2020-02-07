@@ -43,8 +43,8 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 		return repo.findByNickname(nickname).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
 	
-	public UserAccount findByIdFetchAll(Long id) {
-		return repo.findByIdFetchAll(id).get();
+	public UserAccount findByIdFetchAll(Long id) throws NotFoundException {
+		return repo.findByIdFetchAll(id).orElseThrow(() -> new NotFoundException(id));
 	}
 
 	public UserAccount save(UserAccount entity) throws AlreadyExistException {

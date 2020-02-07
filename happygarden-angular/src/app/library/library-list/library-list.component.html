@@ -55,4 +55,13 @@
 
     <button>Fiche complète</button>
   </div>
+  <div>
+    <input
+      type="text"
+      class="form-control"
+      name="value"
+      [(ngModel)]="userService.userAccount.id"
+    />
+    <button (click)="changeId()">apply</button>
+  </div>
 </section>

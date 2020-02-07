@@ -52,7 +52,7 @@ public abstract class AbstractService<T extends HibernateEntity<ID>, ID, R exten
 	}
 	
 	public T findById(ID id) throws NotFoundException {
-		return repo.findById(id).orElseThrow(() -> new NotFoundException("Entity not found"));
+		return repo.findById(id).orElseThrow(() -> new NotFoundException(id));
 	}
 
 	public List<T> findAll() {
