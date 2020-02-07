@@ -2,17 +2,22 @@ package diginamic.happygarden.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
+import diginamic.happygarden.model.Plant;
+import diginamic.happygarden.model.Season;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.model.UserRole;
+import diginamic.happygarden.service.PlantService;
 import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
 import diginamic.happygarden.service.UserRoleService;//@PreAuthorize("admnistration")
@@ -44,6 +49,9 @@ public class AdminController {
 	
 	@Autowired
 	private UserAccountService userAccServ;
+	
+	@Autowired
+	private PlantService plantServ;
 
 	/**
 	 * Instantiate database with rights, roles, admin and basic user
@@ -103,6 +111,12 @@ public class AdminController {
 			userAccBasic.setPassword("testPassword");
 			userAccServ.save(userAccBasic);
 		}
+		Plant plant = new Plant("Lierre");
+		ArrayList<Season> seasons = new ArrayList<>();
+		seasons.add(Season.WINTER);
+		plant.setSeasons(seasons);
+		plantServ.save(plant);
+		
 		return userAccServ.findAll();
 	}
 }
