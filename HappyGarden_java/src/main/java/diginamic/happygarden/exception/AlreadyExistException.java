@@ -15,16 +15,13 @@ public class AlreadyExistException extends Exception {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUserService.class);
 	
 	public AlreadyExistException() {
-		this.printStackTrace();
 	}
 
 	public AlreadyExistException(Object id) {
 		LOGGER.error("Entries exist for id : " + id);
-		this.printStackTrace();
 	}
 
 	public AlreadyExistException(String msg) {
 		LOGGER.error(msg);
-		this.printStackTrace();
 	}
 }

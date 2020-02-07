@@ -24,8 +24,8 @@ public class AdminController {
 	//TODO : changer de place ces constantes > entity ou enum
 	/* Role Constant */
 
-	public static final String ROLEBASIC = "Basic";
-	public static final String ROLEADMIN = "Admin";
+	public static final String BASIC = "Basic";
+	public static final String ADMIN = "Admin";
 	
 	/* Right Constant */
 	public static final String RIGHT_COMMENT = "Comment";
@@ -56,7 +56,7 @@ public class AdminController {
 	@EventListener(ApplicationReadyEvent.class)
 	public List<UserAccount> intiateDB() throws NotFoundException, AlreadyExistException {
 		try {
-			userRoleServ.findByName(ROLEBASIC);
+			userRoleServ.findByName(BASIC);
 		} catch (NotFoundException e) {
 			List<UserRight> userRightsBasic = new ArrayList<>();
 			UserRight userRightBasic = new UserRight(RIGHT_COMMENT);
@@ -64,11 +64,11 @@ public class AdminController {
 			userRightBasic = new UserRight(RIGHT_MESSAGE);
 			userRightsBasic.add(userRightBasic); /* Saving user rights in DataBase */
 			userRightServ.saveAll(userRightsBasic); /* Saving role basic for regular users in DataBase */
-			UserRole userRoleBasic = new UserRole(ROLEBASIC, userRightsBasic);
+			UserRole userRoleBasic = new UserRole(BASIC, userRightsBasic);
 			userRoleServ.save(userRoleBasic);
 		}
 		try {
-			userRoleServ.findByName(ROLEADMIN);
+			userRoleServ.findByName(ADMIN);
 		} catch (NotFoundException e) {
 			List<UserRight> userRightsAdmin = new ArrayList<UserRight>();
 			UserRight userRightAdmin = new UserRight(RIGHT_ADMINISTRATION);
@@ -82,15 +82,15 @@ public class AdminController {
 			userRightAdmin = new UserRight(RIGHT_PLANT_MODIFICATION);
 			userRightsAdmin.add(userRightAdmin); /* Saving admin rights in DataBase */
 			userRightServ.saveAll(userRightsAdmin); /* Saving role admin for regular users in DataBase */
-			userRightsAdmin.addAll(userRoleServ.findByName(ROLEBASIC).getUserRights());
-			UserRole userRoleAdmin = new UserRole(ROLEADMIN, userRightsAdmin);
+			userRightsAdmin.addAll(userRoleServ.findByName(BASIC).getUserRights());
+			UserRole userRoleAdmin = new UserRole(ADMIN, userRightsAdmin);
 			userRoleServ.save(userRoleAdmin);
 		}
 		try {
 			userAccServ.findByNickname("admin");
 		} catch (NotFoundException e) {
 			/* Saving a admin user in DataBase */
-			UserAccount userAccAdmin = new UserAccount("admin", "admin", "admin", userRoleServ.findByName(ROLEADMIN));
+			UserAccount userAccAdmin = new UserAccount("admin", "admin", "admin", userRoleServ.findByName(ADMIN));
 			userAccAdmin.setPassword("admin");
 			userAccServ.save(userAccAdmin);
 		}
@@ -99,7 +99,7 @@ public class AdminController {
 		} catch (NotFoundException e) {
 			/* Saving a basic user in DataBase */
 			UserAccount userAccBasic = new UserAccount("testFirstName", "testLastName", "testPseudonyme",
-					userRoleServ.findByName(ROLEBASIC));
+					userRoleServ.findByName(BASIC));
 			userAccBasic.setPassword("testPassword");
 			userAccServ.save(userAccBasic);
 		}

@@ -22,7 +22,7 @@ import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.service.UserAccountService;
 
 @Service
-@Transactional
+@Transactional // Important, probleme de session sinon
 public class SecurityUserService implements UserDetailsService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUserService.class);

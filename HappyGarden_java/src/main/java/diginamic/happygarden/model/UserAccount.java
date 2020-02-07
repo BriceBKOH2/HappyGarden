@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,7 +44,8 @@ public class UserAccount implements HibernateEntity<Long> {
 
 	@ManyToMany
 	private List<Conversation> conversations = new ArrayList<>();
-
+	
+	@ElementCollection
 	private List<String> friends  = new ArrayList<>();
 
 	@ManyToMany
