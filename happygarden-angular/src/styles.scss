@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '~bootstrap/scss/bootstrap';
+
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +14,6 @@
   --police: #354463;
 }
 
-// figure img {
-//   max-width: 100%;
-// }
+figure img {
+  max-width: 100%;
+}
