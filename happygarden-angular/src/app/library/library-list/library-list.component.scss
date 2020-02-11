@@ -83,6 +83,7 @@
   position: relative;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   padding-bottom: 8%;
+  margin-bottom: 8%;
 }
 
 .img {
@@ -105,7 +106,7 @@
 }
 
 .infos div:nth-child(3) p:first-child {
-  font-size: 20px;
+  // font-size: 18px;
   font-weight: bold;
 }
 
@@ -118,7 +119,7 @@
   margin: 0 5%;
 }
 
-button {
+.single-plant {
   display: block;
   margin: auto;
   border: 2px solid var(--vert);
@@ -126,6 +127,8 @@ button {
   border-radius: 20px;
   color: var(--vert);
   margin-top: 13%;
+  width: 50%;
+  cursor: pointer;
 }
 
 .encart {
@@ -147,4 +150,20 @@ button {
 
 i {
   padding-right: 4px;
+}
+
+@media screen and (max-width: 1280px) {
+  .library-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .library-list {
+    display: inherit;
+  }
+
+  .plant {
+    margin: 6% 5%;
+  }
 }

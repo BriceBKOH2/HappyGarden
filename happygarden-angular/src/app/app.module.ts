@@ -16,6 +16,7 @@ import { StorageModule } from '@ngx-pwa/local-storage';
     BrowserModule,
     AppRoutingModule,
     NavigationModule,
+    HttpClientModule,
     SidebarModule.forRoot(),
     HomeModule,
     HttpClientModule,

@@ -27,9 +27,9 @@
   </div> -->
 
   <!---->
-  <div class="plant">
+  <!-- <div class="plant">
     <div class="encart">
-      <p>Lierre</p>
+      <p>Lierre DUR</p>
     </div>
     <div class="img">
       <figure><img src="/assets/img/plant.jpg" alt="" /></figure>
@@ -54,5 +54,38 @@
     </div>
 
     <button>Fiche complète</button>
+  </div> -->
+
+  <!---->
+  <div class="plant" *ngFor="let plant of plants">
+    <div class="encart">
+      <p>{{ plant.commonName }}</p>
+    </div>
+    <div class="img">
+      <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
+    </div>
+    <div class="infos">
+      <div>
+        <p>
+          Nom <br />
+          scientifique
+        </p>
+        <p>Famille</p>
+        <p>Arrosage</p>
+        <p>Milieu</p>
+      </div>
+      <div class="border"></div>
+      <div>
+        <p>{{ plant.scientificName }}</p>
+        <p>Blabla</p>
+        <p>
+          <i class="fas fa-tint"></i>
+          <i class="fas fa-tint"></i>
+        </p>
+        <p>Blabla</p>
+      </div>
+    </div>
+
+    <a class="single-plant" [routerLink]="[plant.id]">Fiche complète</a>
   </div>
 </section>
