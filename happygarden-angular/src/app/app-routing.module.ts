@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+// import { AuthGuard } from './authenticate/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,10 +16,7 @@ const routes: Routes = [
   {
     path: 'libraryList',
     loadChildren: './library/library.module#LibraryModule'
-  },
-  {
-    path: 'plantSingle/:id',
-    loadChildren: './library/library.module#LibraryModule'
+    // canActivate: [AuthGuard]
   }
 ];
 

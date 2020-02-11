@@ -151,3 +151,19 @@
 i {
   padding-right: 4px;
 }
+
+@media screen and (max-width: 1280px) {
+  .library-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .library-list {
+    display: inherit;
+  }
+
+  .plant {
+    margin: 6% 5%;
+  }
+}

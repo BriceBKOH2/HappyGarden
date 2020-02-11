@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StorageModule } from '@ngx-pwa/local-storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationModule,
     HttpClientModule,
     SidebarModule.forRoot(),
-    HomeModule
+    HomeModule,
+    StorageModule.forRoot({ IDBNoWrap: true })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,18 @@
 <p>plant-single works!</p>
+<a [routerLink]="['..']" style="padding-top: 100px !important;">home</a>
+
+<div class="single-plant">
+  <div class="encart">
+    <p>{{ plant.commonName }}</p>
+  </div>
+  <div class="img">
+    <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
+  </div>
+  <div class="infos">
+    <div class="top-infos">
+      <p>Nom Scientifique :</p>
+      <p>{{ plant.scientificName }}</p>
+    </div>
+  </div>
+</div>
+<!-- <p>{{ plant.commonName }}</p> -->

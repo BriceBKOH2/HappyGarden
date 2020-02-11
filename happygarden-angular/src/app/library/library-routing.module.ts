@@ -5,7 +5,7 @@ import { PlantSingleComponent } from './plant-single/plant-single.component';
 
 const routes: Routes = [
   { path: '', component: LibraryListComponent },
-  { path: '', component: PlantSingleComponent }
+  { path: ':id', component: PlantSingleComponent }
 ];
 
 @NgModule({
