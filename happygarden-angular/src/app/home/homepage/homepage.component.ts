@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccountRequestServiceService } from 'src/app/service/user-account-request-service.service';
+import { UserAccountRequestService } from 'src/app/service/userAccountRequest/user-account-request.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,7 +7,13 @@ import { UserAccountRequestServiceService } from 'src/app/service/user-account-r
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  constructor(public userService: UserAccountRequestServiceService) {}
+  constructor(public userAccountRequestService: UserAccountRequestService) {
+    userAccountRequestService
+      .getUserAccountByNickname('admin')
+      .subscribe(
+        response => (userAccountRequestService.userAccount = response)
+      );
+  }
 
   ngOnInit() {}
 }

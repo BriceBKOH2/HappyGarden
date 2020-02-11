@@ -32,5 +32,7 @@
       </div>
     </div>
   </div>
-  {{ userService.userAccount.id }}
+  <ng-container *ngIf="userAccountRequestService.userAccount">
+    {{ userAccountRequestService.userAccount }}
+  </ng-container>
 </header>

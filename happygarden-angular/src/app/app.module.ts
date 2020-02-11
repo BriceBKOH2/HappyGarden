@@ -7,7 +7,10 @@ import { AppComponent } from './app.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { FormsModule } from '@angular/forms';
-import { UserAccountRequestServiceService } from './service/user-account-request-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { StorageModule } from '@ngx-pwa/local-storage';
+import { AuthenticateModule } from './authenticate/authenticate.module';
+import { AuthenticateApiService } from './service/authenticateApi/authenticate-api.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,9 +20,11 @@ import { UserAccountRequestServiceService } from './service/user-account-request
     NavigationModule,
     SidebarModule.forRoot(),
     HomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    StorageModule.forRoot({ IDBNoWrap: true }),
+    AuthenticateModule.forRoot(AuthenticateApiService)
   ],
-  providers: [UserAccountRequestServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

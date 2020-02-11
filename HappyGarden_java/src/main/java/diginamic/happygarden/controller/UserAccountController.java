@@ -24,5 +24,13 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	public UserAccount findByNickname(@PathVariable String nickname) throws NotFoundException {
 		return service.findByNickname(nickname);
 	}
+	
+	// TODO
+	
+//	@PutMapping("/{id}/password")
+//	@PreAuthorize("hasRole('ADMIN') or @securityExpression.isConnectedUser(#id)") //Only admin or user with the same id can update the object
+//	public void changePassword(@PathVariable Long id, @RequestParam String password) throws NotFoundException {
+//		service.changePassword(id, password);
+//	}
 
 }

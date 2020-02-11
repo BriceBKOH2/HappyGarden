@@ -65,4 +65,13 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 		return repo.saveAndFlush(entity);
 	}
+	
+	public boolean authentication(String nickname, String password) throws NotFoundException {
+		UserAccount user = this.findByNickname(nickname);
+		password = passwordEncoder.encode(password);
+		if (user.getNickname() == nickname && user.getPassword() == password) {
+			return true;
+		}
+		return false;
+	}
 }
