@@ -14,7 +14,7 @@
       <p class="scientific-name">{{ plant.scientificName }}</p>
       <div class="border"></div>
     </div>
-    <div class="mt-4 d-flex justify-content-between">
+    <div class="mt-4 bottom-infos">
       <div class="picto d-flex">
         <figure><img src="/assets/svg/poison.svg" alt="" /></figure>
         <div>
@@ -44,6 +44,14 @@
         <div>
           <p>Croissance</p>
           <p>{{ plant.growthRate }}</p>
+        </div>
+      </div>
+
+      <div class="picto d-flex">
+        <figure><img src="/assets/svg/flower.svg" alt="" /></figure>
+        <div>
+          <p>Période de floraison</p>
+          <p>{{ plant.bloomPeriod }}</p>
         </div>
       </div>
     </div>
