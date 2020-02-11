@@ -59,14 +59,17 @@ export class MyGardensComponent implements OnInit {
       this.currentPlant = new Plant;
       console.log('garden first if '+ garden.id);
     } else {
-      this.currentGarden = new Garden;
+      this.currentPlantingArea = new PlantingArea;
+      this.currentPlant = new Plant;
        console.log('garden else');
     }
     console.log(
       'SelectGarden - gardenId :' +
         this.currentGarden.id +
         ' plantingAreaId :' +
-        this.currentPlantingArea.id
+        this.currentPlantingArea.id +
+        ' plantId :' +
+        this.currentPlant.id
     );
   }
 
@@ -75,23 +78,9 @@ export class MyGardensComponent implements OnInit {
     event.stopPropagation();
     if (this.currentPlantingArea === null || this.currentPlantingArea !==plantingArea) {
       this.currentPlantingArea = plantingArea;
-    } else {
-      this.currentPlantingArea = new PlantingArea;
-    }
-    console.log(
-      'SelectPlantingArea - gardenId :' +
-        this.currentGarden.id +
-        ' plantingAreaId :' +
-        this.currentPlantingArea.id
-    );
-  }
-
-  selectPlant(event, plant: Plant) {
-    console.log(event);
-    event.stopPropagation();
-    if (this.currentPlant === null || this.currentPlant.id !==plant.id) {
-      this.currentPlant = plant;
-    } else {
+      this.currentPlant = new Plant;
+    } 
+    else {
       this.currentPlant = new Plant;
     }
     console.log(
@@ -100,7 +89,29 @@ export class MyGardensComponent implements OnInit {
         ' plantingAreaId :' +
         this.currentPlantingArea.id +
         ' plantId :' +
-        this.currentPlant.id
+        this.currentPlant.id  
+        
+    );
+  }
+
+  selectPlant(event, plant: Plant) {
+    console.log(event);
+    event.stopPropagation();
+    if (this.currentPlant === null || this.currentPlant.id !==plant.id) {
+      this.currentPlant = plant;
+    }
+    // else {
+    //   this.currentPlant = new Plant;
+    // }
+    console.log(
+      'SelectPlantingArea - gardenId :' +
+        this.currentGarden.id +
+        ' plantingAreaId :' +
+        this.currentPlantingArea.id +
+        ' plantId :' +
+        this.currentPlant.id +
+         ' test plant === null' 
+        
     );
   }
 }

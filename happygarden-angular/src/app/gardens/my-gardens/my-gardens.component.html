@@ -35,21 +35,24 @@
     </ul>
   </div>
 
-  <div class="col-md-10" id="body">
-     <div class="single-plant" [ngClass]="{'d-none': currentPlant === null}">
-
-  <div class="encart">
-    <p>{{ currentPlant.commonName }}</p>
-  </div>
-  <div class="img">
-    <figure><img src="/assets/img/{{ currentPlant.image }}" alt="" /></figure>
-  </div>
-  <div class="infos">
-    <div class="top-infos">
-      <p>Nom Scientifique :</p>
-      <p>{{ currentPlant.scientificName }}</p>
+  <div class="col-md-10" id="body" [ngClass]="{'d-none': !currentGarden.id}">
+    <p>{{ currentGarden.name }}</p>
+    <p>{{ currentPlantingArea.name }} 
+    <a [ngClass]="{'d-none': !currentPlant.id}">- {{ currentPlant.commonName }}</a></p>
+    <div class="single-plant" [ngClass]="{'d-none': !currentPlant.id}">
+        
+      <div class="encart">
+        <p>{{ currentPlant.commonName }}</p>
+      </div>
+      <div class="img">
+        <figure><img src="/assets/img/{{ currentPlant.image }}" alt="" /></figure>
+      </div>
+      <div class="infos">
+        <div class="top-infos">
+          <p>Nom Scientifique :</p>
+          <p>{{ currentPlant.scientificName }}</p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   </div>
 </div>
