@@ -4,33 +4,37 @@
   <div class="col-md-2" id="sidebar">
     <p>Mes Jardins</p>
     <ul>
-      <ng-container *ngFor="let garden of gardens">
-        <li>
-          <a (click)="selectGarden(garden)">{{ garden.name }}</a>
-          <ul>
-            <ng-container *ngFor="let plantingArea of garden.plantingAreas">
-              <li
-                [ngClass]="{'d-none selected': garden.id !== currentGarden.id}"
-              >
-                <a (click)="selectPlantingArea($event, plantingArea)">
-                {{ plantingArea.name }}
-                </a>
-                <ul>
-                  <ng-container *ngFor="let slot of plantingArea.slots">
-                    <li  
-                    [ngClass]="{'d-none': currentPlantingArea.id !== plantingArea.id}"
-                    ><a (click)="selectPlant($event, slot.plant)">
-                      {{ slot.plant.commonName }}
-                      </a>
-                    </li>
-                  </ng-container>
-                </ul>
-              </li>
-              <br />
-            </ng-container>
-          </ul>
-        </li>
-        <br />
+      <ng-container *ngIf="gardens$ | async as gardens">
+        <ng-container *ngFor="let garden of gardens">
+          <li>
+            <a (click)="selectGarden(garden)" [ngClass]="{'selected': garden.id === currentGarden.id}">{{ garden.name }}</a>
+            <ul>
+              <ng-container *ngFor="let plantingArea of garden.plantingAreas">
+                <li
+                  [ngClass]="{'d-none': garden.id !== currentGarden.id}"
+                >
+                  <a (click)="selectPlantingArea($event, plantingArea)"
+                  [ngClass]="{'selected': plantingArea.id === currentPlantingArea.id}">
+                  {{ plantingArea.name }}
+                  </a>
+                  <ul>
+                    <ng-container *ngFor="let slot of plantingArea.slots">
+                      <li  
+                      [ngClass]="{'d-none': currentPlantingArea.id !== plantingArea.id}"
+                      ><a (click)="selectPlant($event, slot)"
+                      [ngClass]="{'selected':  slot.plant.id === currentPlant.id}">
+                        {{ slot.plant.commonName }}
+                        </a>
+                      </li>
+                    </ng-container>
+                  </ul>
+                </li>
+                <br />
+              </ng-container>
+            </ul>
+          </li>
+          <br />
+        </ng-container>
       </ng-container>
     </ul>
   </div>
@@ -49,6 +53,7 @@
       </div>
       <div class="infos">
         <div class="top-infos">
+          <p>Plantée le {{currentSlot.date}}
           <p>Nom Scientifique :</p>
           <p>{{ currentPlant.scientificName }}</p>
         </div>

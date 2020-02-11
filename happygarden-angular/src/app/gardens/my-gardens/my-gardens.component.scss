@@ -21,7 +21,9 @@
 }
 
 .selected {
-  color: var(--police); 
+  &,&:hover{
+   color: var(--vert); 
+  }
 }
 
 .encart {
