@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserAccount } from '../classes/user-account';
-import { Garden } from '../classes/garden';
+import { UserAccount } from 'src/app/classes/user-account';
+import { Garden } from 'src/app/classes/garden';
 
 @Injectable({
   providedIn: 'root'

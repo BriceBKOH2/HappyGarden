@@ -6,27 +6,27 @@
     <ul>
       <ng-container *ngFor="let garden of gardens">
         <li>
-          <a (click)="selectGarden(garden.id)">{{ garden.name }}</a>
+          <a (click)="selectGarden(garden)">{{ garden.name }}</a>
           <ul>
             <ng-container *ngFor="let plantingArea of garden.plantingAreas">
               <li
-                [ngClass]="{'d-none': gardenId !== garden.id}"
+                [ngClass]="{'d-none selected': garden.id !== currentGarden.id}"
               >
-                <a (click)="selectPlantingArea($event, plantingArea.id)">
+                <a (click)="selectPlantingArea($event, plantingArea)">
                 {{ plantingArea.name }}
                 </a>
                 <ul>
                   <ng-container *ngFor="let slot of plantingArea.slots">
                     <li  
-                    [ngClass]="{'d-none': plantingAreaId !== plantingArea.id}"
-                    ><a (click)="selectPlant($event, slot.plant.id)">
+                    [ngClass]="{'d-none': currentPlantingArea.id !== plantingArea.id}"
+                    ><a (click)="selectPlant($event, slot.plant)">
                       {{ slot.plant.commonName }}
                       </a>
                     </li>
                   </ng-container>
                 </ul>
               </li>
-              
+              <br />
             </ng-container>
           </ul>
         </li>
@@ -35,5 +35,21 @@
     </ul>
   </div>
 
-  <div class="col-md-10" id="body"></div>
+  <div class="col-md-10" id="body">
+     <div class="single-plant" [ngClass]="{'d-none': currentPlant === null}">
+
+  <div class="encart">
+    <p>{{ currentPlant.commonName }}</p>
+  </div>
+  <div class="img">
+    <figure><img src="/assets/img/{{ currentPlant.image }}" alt="" /></figure>
+  </div>
+  <div class="infos">
+    <div class="top-infos">
+      <p>Nom Scientifique :</p>
+      <p>{{ currentPlant.scientificName }}</p>
+    </div>
+  </div>
+</div>
+  </div>
 </div>
