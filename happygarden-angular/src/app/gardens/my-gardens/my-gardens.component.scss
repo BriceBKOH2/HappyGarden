@@ -11,3 +11,11 @@
   background-color: burlywood;
   height: 100vh;
 }
+
+#sidebar li {
+  list-style-type: circle;
+}
+
+#sidebar li li {
+  list-style-type: square;
+}

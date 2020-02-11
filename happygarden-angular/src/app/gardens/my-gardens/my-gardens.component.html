@@ -5,23 +5,32 @@
     <p>Mes Jardins</p>
     <ul>
       <ng-container *ngFor="let garden of gardens">
-        <li (click)="selectGarden()">
-          {{ garden.name }}
+        <li>
+          <a (click)="selectGarden(garden.id)">{{ garden.name }}</a>
           <ul>
             <ng-container *ngFor="let plantingArea of garden.plantingAreas">
-              <li *ngIf="parcelBoolean == true" (click)="selectPlantingArea()">
+              <li
+                [ngClass]="{'d-none': gardenId !== garden.id}"
+              >
+                <a (click)="selectPlantingArea($event, plantingArea.id)">
                 {{ plantingArea.name }}
+                </a>
                 <ul>
                   <ng-container *ngFor="let slot of plantingArea.slots">
-                    <li *ngIf="plantBoolean == true">
+                    <li  
+                    [ngClass]="{'d-none': plantingAreaId !== plantingArea.id}"
+                    ><a (click)="selectPlant($event, slot.plant.id)">
                       {{ slot.plant.commonName }}
+                      </a>
                     </li>
                   </ng-container>
                 </ul>
               </li>
+              
             </ng-container>
           </ul>
         </li>
+        <br />
       </ng-container>
     </ul>
   </div>

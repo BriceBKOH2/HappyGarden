@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './authenticate/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   {
     path: 'gardenList',
     loadChildren: './gardens/gardens.module#GardensModule'
+    // canActivate: [AuthGuard]
   }
 ];
 

@@ -11,26 +11,69 @@ import { UserAccount } from 'src/app/classes/user-account';
 export class MyGardensComponent implements OnInit {
   gardens: Garden[] = [];
   userAccount: UserAccount;
-  parcelBoolean: boolean;
-  plantBoolean: boolean;
+  plantingAreaId: number;
+  gardenId: number;
+  plantId: number;
+
   constructor(private gardenListService: GardenListService) {}
 
   ngOnInit() {
-    this.parcelBoolean = false;
-    this.plantBoolean = false;
+    this.gardenId = 0;
+    this.plantingAreaId = 0;
+    this.plantId = 0;
 
     this.gardenListService.getGardens(5).subscribe(response => {
       this.gardens = response;
     });
   }
 
-  selectGarden() {
-    this.parcelBoolean = !this.parcelBoolean;
-    console.log('parcel :' + this.parcelBoolean);
+  selectGarden(gardenId: number, plantingAreaId: number) {
+    if (this.gardenId === 0 || this.gardenId !== gardenId) {
+      this.gardenId = gardenId;
+       this.plantingAreaId = 0;
+    this.plantId = 0;
+    } else {
+      this.gardenId = 0;
+    }
+    console.log(
+      'SelectGarden - gardenId :' +
+        this.gardenId +
+        ' plantingAreaId :' +
+        this.plantingAreaId
+    );
   }
 
-  selectPlantingArea() {
-    this.plantBoolean = !this.plantBoolean;
-    console.log('plant :' + this.plantBoolean);
+  selectPlantingArea(event, id: number) {
+    console.log(event);
+    event.stopPropagation();
+    if (this.plantingAreaId === 0 || this.plantingAreaId !==id) {
+      this.plantingAreaId = id;
+    } else {
+      this.plantingAreaId = 0;
+    }
+    console.log(
+      'SelectPlantingArea - gardenId :' +
+        this.gardenId +
+        ' plantingAreaId :' +
+        this.plantingAreaId
+    );
+  }
+
+  selectPlant(event, id: number) {
+    console.log(event);
+    event.stopPropagation();
+    if (this.plantId === 0 || this.plantId !==id) {
+      this.plantId = id;
+    } else {
+      this.plantId = 0;
+    }
+    console.log(
+      'SelectPlantingArea - gardenId :' +
+        this.gardenId +
+        ' plantingAreaId :' +
+        this.plantingAreaId +
+        ' plantId :' +
+        this.plantId
+    );
   }
 }
