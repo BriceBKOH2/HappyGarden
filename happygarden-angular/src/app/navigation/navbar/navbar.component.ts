@@ -23,10 +23,10 @@ export class NavbarComponent implements OnInit {
       route: 'gardenList',
       label: 'Mes jardins'
     },
-    {
-      route: '',
-      label: 'Contact'
-    },
+    // {
+    //   route: '',
+    //   label: 'Contact'
+    // },
   ];
 
   constructor(private activatedRoute: ActivatedRoute) {}
