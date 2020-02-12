@@ -16,5 +16,5 @@ public interface GardenRepository extends JpaRepository<Garden, Long>{
 	public Optional<Garden> findByIdFetchUser(Long id);
 
 	@Query("select g from Garden g join fetch g.user u where g.user.id = :userId")
-	public List<Garden> findByUserId(Long userId);
+	public List<Garden> findByUserIdOrderByNameAsc(Long userId);
 }

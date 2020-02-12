@@ -13,6 +13,6 @@ import diginamic.happygarden.repository.GardenRepository;
 @Service
 public class GardenService extends AbstractService<Garden, Long, GardenRepository> {
 	public List<Garden> findByUserId(Long id) {
-		return repo.findByUserId(id);
+		return repo.findByUserIdOrderByNameAsc(id);
 	}
 }

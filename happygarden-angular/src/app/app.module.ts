@@ -9,6 +9,8 @@ import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageModule } from '@ngx-pwa/local-storage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,8 +22,11 @@ import { StorageModule } from '@ngx-pwa/local-storage';
     SidebarModule.forRoot(),
     HomeModule,
     HttpClientModule,
-    StorageModule.forRoot({ IDBNoWrap: true })
+    StorageModule.forRoot({ IDBNoWrap: true }),
+    BrowserAnimationsModule,
+    MatCheckboxModule
   ],
+  exports: [MatCheckboxModule],
   providers: [],
   bootstrap: [AppComponent]
 })

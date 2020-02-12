@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
   templateUrl: './my-gardens.component.html',
   styleUrls: ['./my-gardens.component.scss']
 })
-
 export class MyGardensComponent implements OnInit {
   gardens$: Observable<Garden[]>;
   userAccount: UserAccount;
@@ -30,10 +29,10 @@ export class MyGardensComponent implements OnInit {
     // this.gardenId = 0;
     // this.plantingAreaId = 0;
     // this.plantId = 0;
-    this.currentGarden = new Garden;
-    this.currentPlantingArea = new PlantingArea;
-    this.currentSlot = new Slot;
-    this.currentPlant = new Plant;
+    this.currentGarden = new Garden();
+    this.currentPlantingArea = new PlantingArea();
+    this.currentSlot = new Slot();
+    this.currentPlant = new Plant();
 
     this.gardens$ = this.gardenListService.getGardens(5);
   }
@@ -57,15 +56,15 @@ export class MyGardensComponent implements OnInit {
   selectGarden(garden: Garden) {
     if (!this.currentGarden || this.currentGarden !== garden) {
       this.currentGarden = garden;
-      this.currentPlantingArea = new PlantingArea;
-      this.currentSlot = new Slot
-      this.currentPlant = new Plant;
-      console.log('garden first if '+ garden.id);
+      this.currentPlantingArea = new PlantingArea();
+      this.currentSlot = new Slot();
+      this.currentPlant = new Plant();
+      console.log('garden first if ' + garden.id);
     } else {
-      this.currentPlantingArea = new PlantingArea;
-      this.currentSlot = new Slot;
-      this.currentPlant = new Plant;
-       console.log('garden else');
+      this.currentPlantingArea = new PlantingArea();
+      this.currentSlot = new Slot();
+      this.currentPlant = new Plant();
+      console.log('garden else');
     }
     console.log(
       'SelectGarden - gardenId :' +
@@ -80,14 +79,16 @@ export class MyGardensComponent implements OnInit {
   selectPlantingArea(event, plantingArea: PlantingArea) {
     console.log(event);
     event.stopPropagation();
-    if (!this.currentPlantingArea || this.currentPlantingArea !==plantingArea) {
+    if (
+      !this.currentPlantingArea ||
+      this.currentPlantingArea !== plantingArea
+    ) {
       this.currentPlantingArea = plantingArea;
-      this.currentPlant = new Plant;
-      this.currentSlot = new Slot;
-    } 
-    else {
-      this.currentPlant = new Plant;
-      this.currentSlot = new Slot;
+      this.currentPlant = new Plant();
+      this.currentSlot = new Slot();
+    } else {
+      this.currentPlant = new Plant();
+      this.currentSlot = new Slot();
     }
     console.log(
       'SelectPlantingArea - gardenId :' +
@@ -95,14 +96,14 @@ export class MyGardensComponent implements OnInit {
         ' plantingAreaId :' +
         this.currentPlantingArea.id +
         ' plantId :' +
-        this.currentPlant.id  
+        this.currentPlant.id
     );
   }
 
   selectPlant(event, slot: Slot) {
     console.log(event);
     event.stopPropagation();
-    if (!this.currentPlant.id || this.currentPlant.id !==slot.plant.id) {
+    if (!this.currentPlant.id || this.currentPlant.id !== slot.plant.id) {
       this.currentSlot = slot;
       this.currentPlant = slot.plant;
     }
@@ -115,7 +116,7 @@ export class MyGardensComponent implements OnInit {
         ' plantingAreaId :' +
         this.currentPlantingArea.id +
         ' plantId :' +
-        this.currentPlant.id 
+        this.currentPlant.id
     );
   }
 }
