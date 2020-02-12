@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
 export interface AuthenticateApi {
-  login(data: any): Observable<any>;
+  login(username: string, password: string): Observable<any>;
   logout(): Observable<void>;
 }

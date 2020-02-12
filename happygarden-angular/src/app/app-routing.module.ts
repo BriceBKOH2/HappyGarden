@@ -18,6 +18,15 @@ const routes: Routes = [
     path: 'libraryList',
     loadChildren: './library/library.module#LibraryModule'
     // canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule'
+  },
+  {
+    path: 'account',
+    loadChildren: './account/account.module#AccountModule'
+    // canActivate: [AuthenticateGuard]
   }
 ];
 

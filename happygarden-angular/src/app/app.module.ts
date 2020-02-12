@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageModule } from '@ngx-pwa/local-storage';
 import { AuthenticateModule } from './authenticate/authenticate.module';
 import { AuthenticateApiService } from './service/authenticateApi/authenticate-api.service';
+import { AuthInterceptorService } from './authenticate/service/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,13 @@ import { AuthenticateApiService } from './service/authenticateApi/authenticate-a
     StorageModule.forRoot({ IDBNoWrap: true }),
     AuthenticateModule.forRoot(AuthenticateApiService)
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ]
 })
 export class AppModule {}

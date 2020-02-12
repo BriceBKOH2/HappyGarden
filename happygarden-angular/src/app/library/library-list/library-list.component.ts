@@ -10,4 +10,6 @@ export class LibraryListComponent implements OnInit {
   constructor(public userService: UserAccountRequestService) {}
 
   ngOnInit() {}
+
+  changeId() {}
 }
