@@ -30,8 +30,6 @@ public class Message implements HibernateEntity<Long> {
 	/* Constructors */
 	
 	public Message() {
-		content = "default";
-		author = null;
 	}
 	
 	public Message(String content, UserAccount author) {

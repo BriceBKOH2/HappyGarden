@@ -5,8 +5,6 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,8 +22,6 @@ import diginamic.happygarden.service.UserAccountService;
 @Service
 @Transactional // Important, probleme de session sinon
 public class SecurityUserService implements UserDetailsService {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUserService.class);
 	
 	@Autowired
 	private UserAccountService userAccServ;
@@ -39,7 +35,6 @@ public class SecurityUserService implements UserDetailsService {
 			
 			return new User(username, userAccount.getPassword(), rights);
 		} catch (NotFoundException e) {
-			LOGGER.error("User does not exist", e);
 			throw new UsernameNotFoundException("User does not exist", e);
 		}
 	}

@@ -11,6 +11,11 @@ import { UserManagementComponent } from './admin-management/user-management/user
 import { PlantManagementComponent } from './admin-management/plant-management/plant-management.component';
 import { HomeModule } from './home/home.module';
 import { AdminManagementRoutingModule } from './admin-management/admin-management-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { StorageModule } from '@ngx-pwa/local-storage';
+import { AuthenticateModule } from './authenticate/authenticate.module';
+import { AuthenticateApiService } from './service/authenticateApi/authenticate-api.service';
 
 @NgModule({
   declarations: [AppComponent, PlantManagementComponent],
@@ -19,9 +24,12 @@ import { AdminManagementRoutingModule } from './admin-management/admin-managemen
     AppRoutingModule,
     NavigationModule,
     SidebarModule.forRoot(),
-    HomeModule
+    HomeModule,
+    FormsModule,
+    HttpClientModule,
+    StorageModule.forRoot({ IDBNoWrap: true }),
+    AuthenticateModule.forRoot(AuthenticateApiService)
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -12,7 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Slot implements HibernateEntity<Long>, ReminderManager {
@@ -23,7 +22,6 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	private Date date;
 	
-	@JsonBackReference("plant_slots")
 	@ManyToOne
 	private Plant plant;
 	

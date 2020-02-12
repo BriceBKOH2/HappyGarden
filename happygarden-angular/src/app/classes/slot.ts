@@ -2,7 +2,7 @@ import { Reminder } from './reminder';
 import { Plant } from './plant';
 
 export class Slot {
-  id: string;
+  id: number;
   date: Date;
   plant: Plant;
   reminders: Reminder[];

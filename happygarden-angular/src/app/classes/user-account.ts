@@ -3,7 +3,7 @@ import { Plant } from './plant';
 import { Conversation } from './conversation';
 
 export class UserAccount {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   pseudonyme: string;
