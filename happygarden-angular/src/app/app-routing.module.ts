@@ -25,8 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: './account/account.module#AccountModule'
-    // canActivate: [AuthenticateGuard]
+    loadChildren: './account/account.module#AccountModule',
+    canActivate: [AuthenticateGuard]
   }
 ];
 
