@@ -8,6 +8,7 @@ import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageModule } from '@ngx-pwa/local-storage';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { StorageModule } from '@ngx-pwa/local-storage';
     HttpClientModule,
     SidebarModule.forRoot(),
     HomeModule,
+    ReactiveFormsModule,
     StorageModule.forRoot({ IDBNoWrap: true })
   ],
   providers: [],
