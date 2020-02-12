@@ -23,16 +23,11 @@ export class NavbarComponent implements OnInit {
       route: 'gardenList',
       label: 'Mes jardins'
     },
-    // {
-    //   route: '',
-    //   label: 'Contact'
-    // },
+    {
+      route: '',
+      label: 'Contact'
+    },
   ];
-
-  isSelected(): boolean {
-    console.log('tamer');
-    return true;
-  }
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
