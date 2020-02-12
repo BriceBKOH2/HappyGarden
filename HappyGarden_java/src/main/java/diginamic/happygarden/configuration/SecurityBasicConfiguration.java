@@ -27,7 +27,7 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/Admin/**").hasRole("ADMIN")
 			.antMatchers("/Login/","Login/**").permitAll()
-			.anyRequest().authenticated()
+			.anyRequest().permitAll()
 			.and().cors()
 			.and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository

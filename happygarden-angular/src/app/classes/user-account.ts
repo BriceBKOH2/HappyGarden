@@ -4,9 +4,9 @@ import { Conversation } from './conversation';
 
 export class UserAccount {
   id: number;
-  firstName: string;
-  lastName: string;
-  pseudonyme: string;
+  firstname: string;
+  lastname: string;
+  nickname: string;
   password: string;
   userRole: UserAccount;
   conversations: Conversation[];

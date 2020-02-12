@@ -1,4 +1,28 @@
 <p>user-management works!</p>
-<section class="user-management">
-  <p>nom</p>
-</section>
+<div class="panel primary">
+<div class="user-management">
+  <a> </a>
+  <h2>Liste User</h2>
+</div>
+<div class="panel-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | async">
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+            <button (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
