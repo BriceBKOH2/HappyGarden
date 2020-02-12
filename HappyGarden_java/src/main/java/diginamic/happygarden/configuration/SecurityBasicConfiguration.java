@@ -33,17 +33,16 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests().antMatchers("/login", "/logout").permitAll().and()
-			.authorizeRequests().antMatchers("/Admin/**").hasRole("ADMIN")
-//			.antMatchers("/Login","Login/**").permitAll()
+			.authorizeRequests().antMatchers("/login", "/logout").permitAll()
+			.antMatchers("/Admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
-//			.and().csrf()
-//				.csrfTokenRepository(CookieCsrfTokenRepository
-//					.withHttpOnlyFalse())
 			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout()
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
+//			.and().csrf()
+//			.csrfTokenRepository(CookieCsrfTokenRepository
+//				.withHttpOnlyFalse())
 			.and().csrf().disable();
 	}
 
