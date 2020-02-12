@@ -4,11 +4,13 @@ import { SidebarModule } from 'ng-sidebar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navigation/navbar/navbar.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageModule } from '@ngx-pwa/local-storage';
-import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,9 +21,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     SidebarModule.forRoot(),
     HomeModule,
-    ReactiveFormsModule,
-    StorageModule.forRoot({ IDBNoWrap: true })
+    HttpClientModule,
+    StorageModule.forRoot({ IDBNoWrap: true }),
+    BrowserAnimationsModule,
+    MatCheckboxModule
   ],
+  exports: [MatCheckboxModule],
   providers: [],
   bootstrap: [AppComponent]
 })

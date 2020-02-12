@@ -23,7 +23,7 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	private Date date;
 	
-	@JsonManagedReference("plant_slots")
+//	@JsonManagedReference("plant_slots")
 	@ManyToOne
 	private Plant plant;
 	

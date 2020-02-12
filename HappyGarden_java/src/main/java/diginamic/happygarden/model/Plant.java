@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Plant implements HibernateEntity<Long> {
@@ -39,9 +40,9 @@ public class Plant implements HibernateEntity<Long> {
 	
 	protected GrowthRate growthRate;
 
-	@JsonBackReference("plant_slots")
-	@OneToMany(mappedBy = "plant")
-	private Set<Slot> slot = new HashSet<Slot>();
+//	@JsonBackReference("plant_slots")
+//	@OneToMany(mappedBy = "plant")
+//	private Set<Slot> slot = new HashSet<Slot>();
 	
 	@ElementCollection
 	protected List<Season> seasons = new ArrayList<>();
@@ -177,14 +178,14 @@ public class Plant implements HibernateEntity<Long> {
 	public void setSeasons(List<Season> seasons) {
 		this.seasons = seasons;
 	}
-
-	public Set<Slot> getSlot() {
-		return slot;
-	}
-
-	public void setSlot(Set<Slot> slot) {
-		this.slot = slot;
-	}
+//
+//	public Set<Slot> getSlot() {
+//		return slot;
+//	}
+//
+//	public void setSlot(Set<Slot> slot) {
+//		this.slot = slot;
+//	}
 	
 	
 	

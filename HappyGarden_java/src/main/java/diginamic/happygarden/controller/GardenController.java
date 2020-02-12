@@ -10,4 +10,6 @@ import diginamic.happygarden.service.GardenService;
 @RequestMapping("/Garden")
 public class GardenController extends AbstractCRUDController<Garden, Long, GardenService> {
 
+	
+	
 }

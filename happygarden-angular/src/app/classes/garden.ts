@@ -2,7 +2,7 @@ import { PlantingArea } from './planting-area';
 import { Comment } from './comment';
 
 export class Garden {
-  id: string;
+  id: number;
   name: string;
   plantingAreas: PlantingArea[];
   comments: Comment[];

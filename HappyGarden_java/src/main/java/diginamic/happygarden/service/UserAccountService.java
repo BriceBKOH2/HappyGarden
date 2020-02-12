@@ -25,8 +25,6 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 
 	@Autowired
 	PlantService plantServ;
-	
-
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -65,4 +63,5 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 		return repo.saveAndFlush(entity);
 	}
+
 }
