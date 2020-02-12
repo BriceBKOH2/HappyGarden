@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'libraryList',
     loadChildren: './library/library.module#LibraryModule'
+  },
+  {
+    path: 'usermanagement',
+    loadChildren: './admin-management/admin-management.module#AdminManagementModule'
   }
 ];
 

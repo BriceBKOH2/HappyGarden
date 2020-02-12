@@ -10,9 +10,10 @@ import { NavigationModule } from './navigation/navigation.module';
 import { UserManagementComponent } from './admin-management/user-management/user-management.component';
 import { PlantManagementComponent } from './admin-management/plant-management/plant-management.component';
 import { HomeModule } from './home/home.module';
+import { AdminManagementRoutingModule } from './admin-management/admin-management-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, UserManagementComponent, PlantManagementComponent],
+  declarations: [AppComponent, PlantManagementComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
