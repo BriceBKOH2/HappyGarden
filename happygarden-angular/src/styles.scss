@@ -11,8 +11,19 @@
 
 :root {
   --vert: #4acfb0;
+  --vert-highlight: #39ebc1;
   --blanc: #fff;
   --police: #354463;
+  --police-inactive: #354463a0;
+}
+
+a {
+  color: var(--vert);
+}
+
+a:hover {
+  color: var(--vert);
+  text-decoration: wavy underline var(--vert-highlight);
 }
 
 figure img {

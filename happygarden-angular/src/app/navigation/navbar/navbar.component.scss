@@ -28,3 +28,17 @@
 nav {
   background-color: #e0efe7;
 }
+
+.navbar-brand, .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+  color: var(--police);
+}
+
+i {
+  background:linear-gradient(#354463 20%, #23deff 80%);
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--police-inactive);
+}
