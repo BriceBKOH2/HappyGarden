@@ -168,7 +168,7 @@ public class AdminController {
 			userAccServ.findByNickname("Jade");
 		}
 		catch (NotFoundException e) {
-		Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("cactus").get(0));
+		Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("Cactus").get(0));
 		ArrayList<Slot> slots = new ArrayList<>();
 		slots.add(slot);
 		
