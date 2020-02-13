@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccountRequestService } from 'src/app/service/userAccountRequest/user-account-request.service';
+import { LibraryService } from '../service/library.service';
+import { Plant } from 'src/app/classes/plant';
 
 @Component({
   selector: 'app-library-list',
@@ -7,9 +8,14 @@ import { UserAccountRequestService } from 'src/app/service/userAccountRequest/us
   styleUrls: ['./library-list.component.scss']
 })
 export class LibraryListComponent implements OnInit {
-  constructor(public userService: UserAccountRequestService) {}
+  plants: Plant[] = [];
 
-  ngOnInit() {}
+  constructor(private libraryService: LibraryService) {}
 
-  changeId() {}
+  ngOnInit() {
+    this.libraryService.findAllPlants().subscribe(response => {
+      console.log(response);
+      this.plants = response;
+    });
+  }
 }
