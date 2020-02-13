@@ -3,10 +3,12 @@ package diginamic.happygarden.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -41,11 +43,12 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	protected List<Reminder> reminders = new ArrayList<>();
 
 	@JsonManagedReference("area_slots")
-	@OneToMany(mappedBy = "plantingArea")
+	@OneToMany(mappedBy = "plantingArea", cascade = CascadeType.PERSIST)
 	protected List<Slot> slots = new ArrayList<>();
 	
 	@JsonBackReference("garden_areas")
 	@ManyToOne
+	@JoinColumn(name = "garden_id")
 	private Garden garden;
 
 	

@@ -12,24 +12,42 @@
   z-index: 1000;
 }
 
+.globale {
+  padding: 4% 8%;
+}
 .single-plant {
   position: relative;
-  // display: flex;
-  margin: 8%;
+  display: flex;
   background: #fcfcfc;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  margin-top: 20px;
 }
 
 .heart {
   position: absolute;
   font-size: 25px;
   right: 0;
-  color: var(--vert);
   padding: 2%;
 }
 
+a {
+  display: flex;
+  color: var(--police);
+  text-decoration: none;
+  padding: 0 !important;
+}
+
+a i {
+  font-size: 30px;
+}
+
+i {
+  color: var(--vert);
+  margin-right: 10px;
+}
+
 .img {
-  max-width: 50%;
+  max-width: 80%;
   // height: 200px;
   overflow: hidden;
   position: relative;
@@ -37,7 +55,7 @@
 
 .bottom-infos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .img figure img {
@@ -59,19 +77,70 @@ figure {
 }
 
 .scientific-name {
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .picto {
-  width: 200px;
-  margin-top: 20px;
+  width: 250px;
+  margin-top: 50px;
 }
 
 .picto figure {
   width: 50px;
   margin: 0;
+  padding-right: 5px;
 }
 
 .picto p {
   margin: 0;
+}
+
+.picto p:first-child {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1280px) {
+  .bottom-infos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .img figure img {
+    max-width: 180%;
+  }
+
+  .img {
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .single-plant {
+    display: inherit !important;
+  }
+
+  .bottom-infos {
+    display: inherit;
+  }
+
+  .picto {
+    margin: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .img {
+    max-width: inherit;
+  }
+
+  .img figure img {
+    max-width: 100%;
+  }
+
+  .plant {
+    margin: 6%;
+  }
+
+  .encart {
+    left: 30%;
+  }
 }

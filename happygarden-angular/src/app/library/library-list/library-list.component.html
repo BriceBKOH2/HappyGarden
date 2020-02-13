@@ -1,5 +1,36 @@
-<section class="library-list">
-  <!-- <div class="plant">
+<section class="globale">
+  <!-- <form [formGroup]="searchPlantFrom">
+    <label for="plantName">Rechercher une plante</label>
+    <input
+      formControlName="plantName"
+      id="plantName"
+      type="text"
+      placeholder="Nom de la plante"
+      class="form-control"
+    />
+    <button class="btn-api" type="button" (click)="searchPlant()">
+      Rechercher
+    </button>
+  </form> -->
+
+  <form class="form-inline" [formGroup]="searchPlantFrom">
+    <div class="form-group">
+      <label for="plantName">Rechercher une plante</label>
+      <input
+        formControlName="plantName"
+        id="plantName"
+        type="text"
+        placeholder="Nom de la plante"
+        class="form-control"
+      />
+    </div>
+    <button class="btn-api form-control" type="button" (click)="searchPlant()">
+      Rechercher
+    </button>
+  </form>
+
+  <div class="library-list">
+    <!-- <div class="plant">
     <div class="encart">
       <p>Happy Garden</p>
     </div>
@@ -23,6 +54,10 @@
   </div> -->
   <!---->
   <!-- <div class="plant">
+  </div> -->
+
+    <!---->
+    <!-- <div class="plant">
     <div class="encart">
       <p>Lierre DUR</p>
     </div>
@@ -46,40 +81,47 @@
         </p>
         <p>Blabla</p>
       </div>
-    </div>    <button>Fiche complète</button>
-  </div> -->
-  <!---->
-  <div class="plant-wrapper" *ngFor="let plant of plants">
-    <div class="plant">
-      <div class="encart">
-        <p>{{ plant.commonName }}</p>
-      </div>
-      <div class="img">
-        <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
-      </div>
-      <div class="infos">
-        <div>
-          <p>
-            Nom <br />
-            scientifique
-          </p>
-          <p>Famille</p>
-          <p>Arrosage</p>
-          <p>Milieu</p>
-        </div>
-        <div class="border"></div>
-        <div>
-          <p>{{ plant.scientificName }}</p>
-          <p>Blabla</p>
-          <p>
-            <i class="fas fa-tint"></i>
-            <i class="fas fa-tint"></i>
-          </p>
-          <p>Blabla</p>
-        </div>
-      </div>
+    </div>
 
-      <a class="single-plant" [routerLink]="[plant.id]">Fiche complète</a>
+    <button>Fiche complète</button>
+  </div> -->
+
+    <!---->
+
+    <div class="plant-wrapper" *ngFor="let plant of plants">
+      <div class="plant">
+        <div class="encart">
+          <p>{{ plant.commonName }}</p>
+        </div>
+        <div class="img">
+          <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
+        </div>
+        <div class="infos">
+          <div>
+            <p>
+              Nom <br />
+              scientifique
+            </p>
+            <p>Famille</p>
+            <p>Arrosage</p>
+            <p>Milieu</p>
+          </div>
+          <div class="border"></div>
+          <div>
+            <p>{{ plant.scientificName }}</p>
+            <p>Blabla</p>
+            <p>
+              <i class="fas fa-tint"></i>
+              <i class="fas fa-tint"></i>
+            </p>
+            <p>Blabla</p>
+          </div>
+        </div>
+
+        <a class="btn-api btn-single-plant" [routerLink]="[plant.id]"
+          >Fiche complète</a
+        >
+      </div>
     </div>
   </div>
 </section>
