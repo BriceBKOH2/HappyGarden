@@ -25,7 +25,7 @@ export class AuthenticateApiService implements AuthenticateApi {
   }
 
   login(username: string, password: string): Observable<UserAccount> {
-    this.httpClient.post<UserAccount>(this.endPointLogin, null, {
+    this.httpClient.post(this.endPointLogin, null, {
       params: {
         username: username,
         password: password

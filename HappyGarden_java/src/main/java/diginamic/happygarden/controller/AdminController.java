@@ -29,6 +29,7 @@ import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.service.ConversationService;
 import diginamic.happygarden.service.GardenService;
+import diginamic.happygarden.service.MessageService;
 import diginamic.happygarden.service.PlantService;
 import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
@@ -67,6 +68,9 @@ public class AdminController {
 	
 	@Autowired
 	private GardenService gardenServ;
+	
+	@Autowired
+	private MessageService messageServ;
 	
 	@Autowired
 	private ConversationService conversationServ;
@@ -136,7 +140,7 @@ public class AdminController {
 		}
 		
 		// adding random plants for DB
-		if (plantServ.findByCommonNameOrScientificName("cactus").isEmpty()) {
+		if (plantServ.findByCommonNameOrScientificName("Cactus").isEmpty()) {
 		ArrayList<Season> season = new ArrayList<>();
 		season.add(Season.FALL);
 		Plant lierre = new Plant("Hedera helix", "Lierre", "Lierre", "None", 91.1F, "Long", "lierre.jpg", "Mid Spring", GrowthRate.RAPID, season);
@@ -168,7 +172,7 @@ public class AdminController {
 			userAccServ.findByNickname("Jade");
 		}
 		catch (NotFoundException e) {
-		Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("cactus").get(0));
+		Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("Cactus").get(0));
 		ArrayList<Slot> slots = new ArrayList<>();
 		slots.add(slot);
 		
@@ -187,10 +191,15 @@ public class AdminController {
 		jade.setPassword("jade");
 		
 		ArrayList<Message> messages = new ArrayList<Message>();
+		
 		Message msgEstelle = new Message("Coucou Jade.", estelle);
+		messageServ.save(msgEstelle);
 		messages.add(msgEstelle);
+		
 		Message msgJade = new Message("Coucou Estelle.", jade);
 		messages.add(msgJade);
+		messageServ.save(msgJade);
+		
 		Conversation conversation = new Conversation(messages);
 		
 		jardinUn.setUser(estelle);
