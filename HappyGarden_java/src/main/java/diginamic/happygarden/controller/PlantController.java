@@ -13,11 +13,6 @@ import diginamic.happygarden.service.PlantService;
 @RestController
 @RequestMapping("/Plant")
 public class PlantController extends AbstractCRUDController<Plant, Long, PlantService> {
-
-	@Override
-	public List<Plant> getAll() {
-		return super.getAll();
-	}
 	
 	@GetMapping("/search")
 	public List<Plant> searchByName(@RequestParam("name") String name) {
