@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthApiToken } from './service/authenticate.service';
-import { AuthenticateApi } from './interface/authenticate-api';
+import { AuthApiToken } from './services/authenticate.service';
+import { AuthenticateApi } from './interfaces/authenticate-api';
 
 @NgModule({
   declarations: [],

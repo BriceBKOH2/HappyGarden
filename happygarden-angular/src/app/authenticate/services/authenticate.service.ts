@@ -2,7 +2,7 @@ import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
-import { AuthenticateApi } from '../interface/authenticate-api';
+import { AuthenticateApiService } from 'src/app/services/authenticateApi/authenticate-api.service';
 
 export const AuthApiToken = new InjectionToken('AuthApiToken');
 
@@ -14,7 +14,7 @@ export class AuthenticateService {
   userAuth$ = new BehaviorSubject<{ token: string }>(null);
 
   constructor(
-    @Inject(AuthApiToken) private api: AuthenticateApi,
+    @Inject(AuthApiToken) private api: AuthenticateApiService,
     private storage: StorageMap
   ) {}
 

@@ -20,7 +20,8 @@
         </div>
       </div>      <button>Fiche complète</button>
     </div>
-  </div> -->  <!---->
+  </div> -->
+  <!---->
   <!-- <div class="plant">
     <div class="encart">
       <p>Lierre DUR</p>
@@ -46,7 +47,7 @@
         <p>Blabla</p>
       </div>
     </div>    <button>Fiche complète</button>
-  </div> -->  
+  </div> -->
   <!---->
   <div class="plant-wrapper" *ngFor="let plant of plants">
     <div class="plant">
@@ -80,14 +81,5 @@
 
       <a class="single-plant" [routerLink]="[plant.id]">Fiche complète</a>
     </div>
-  </div>
-  <div>
-    <input
-      type="text"
-      class="form-control"
-      name="value"
-      [(ngModel)]="userService.userAccount.id"
-    />
-    <button (click)="changeId()">apply</button>
   </div>
 </section>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AuthenticateApi } from 'src/app/authenticate/interface/authenticate-api';
+import { AuthenticateApi } from 'src/app/authenticate/interfaces/authenticate-api';
 import { Observable } from 'rxjs';
-import { UserAccount } from 'src/app/classes/user-account';
 import { HttpClient } from '@angular/common/http';
 import { RequestService } from '../request/request.service';
 
@@ -9,9 +8,6 @@ import { RequestService } from '../request/request.service';
   providedIn: 'root'
 })
 export class AuthenticateApiService implements AuthenticateApi {
-  userAccount = new UserAccount();
-  token: String;
-
   constructor(
     private httpClient: HttpClient,
     private request: RequestService
