@@ -45,7 +45,7 @@ public class UserAccount implements HibernateEntity<Long> {
 	@ManyToOne
 	private UserRole userRole;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "users")
 	private List<Conversation> conversations = new ArrayList<>();
 	
 	@ElementCollection

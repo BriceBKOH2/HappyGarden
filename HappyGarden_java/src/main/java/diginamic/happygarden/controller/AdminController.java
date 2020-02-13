@@ -174,7 +174,11 @@ public class AdminController {
 		ArrayList<Message> messages = new ArrayList<Message>();
 		Message msgEstelle = new Message("Coucou Jade.", estelle);
 		Message msgJade = new Message("Coucou Estelle.", jade);
+		messages.add(msgJade);
+		messages.add(msgEstelle);
 		Conversation conversation = new Conversation(messages);
+		conversation.addUser(estelle);
+		conversation.addUser(jade);
 		
 		jardinUn.setUser(estelle);
 		
