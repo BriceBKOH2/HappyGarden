@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.HibernateEntity;
+import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.service.AbstractService;
 
 //Spring 5.1 :
@@ -87,7 +88,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * Deletes the given entity.
 	 * @param t
 	 */
-	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
+	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
 	@DeleteMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@RequestBody T t) {
@@ -97,7 +98,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	/**
 	 * Deletes all entities of the type t.
 	 */
-	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
+	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
 	@DeleteMapping(value = "/deleteall", consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	public void deleteAll() {
 		service.deleteAll();
