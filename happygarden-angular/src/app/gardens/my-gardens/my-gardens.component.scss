@@ -181,17 +181,26 @@
   width: 100%;
   grid-template-columns: repeat(6, 1fr);
   margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
 
   figure {
+    align-self: center;
     grid-column: 1;
+    margin-bottom: 0px;
   }
+
   p {
-    text-align: center;
     display: flex;
     grid-column: 2 / 5;
+    align-self: center;
+    margin-bottom: 0px;
   }
+
   mat-checkbox {
+    align-self: center;
     grid-column: 6;
     size: 2em;
+    margin-bottom: 0px;
   }
 }
