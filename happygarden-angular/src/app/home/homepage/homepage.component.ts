@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccountRequestService } from 'src/app/service/userAccountRequest/user-account-request.service';
+import { UserAccountRequestService } from 'src/app/services/userAccountRequest/user-account-request.service';
 
 @Component({
   selector: 'app-homepage',

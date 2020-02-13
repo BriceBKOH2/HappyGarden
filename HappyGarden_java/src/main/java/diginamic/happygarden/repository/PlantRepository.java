@@ -9,6 +9,6 @@ import diginamic.happygarden.model.Plant;
 
 @Repository
 public interface PlantRepository extends JpaRepository<Plant, Long> {
-	
-	public List<Plant> findByCommonNameOrScientificNameIgnoreCaseContains(String nameCommon, String nameScientific);
+
+	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(String commonName, String scientificName);
 }

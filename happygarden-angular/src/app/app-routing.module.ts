@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { AuthenticateGuard } from './authenticate/guard/authenticate.guard';
+import { AuthenticateGuard } from './authenticate/guards/authenticate.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'usermanagement',
     loadChildren: './admin-management/admin-management.module#AdminManagementModule'
+  },
+  {
+    path: 'gardenList',
+    loadChildren: './gardens/gardens.module#GardensModule'
     // canActivate: [AuthenticateGuard]
   },
   {

@@ -1,0 +1,197 @@
+.row {
+  margin-top: 55px;
+}
+
+#sidebar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-left: 50px;
+  // background-color: whitesmoke;
+  height: 100vh;
+  border-left: medium;
+}
+
+#body {
+  padding-top: 30px;
+  // background-color: whitesmoke;
+  height: 100vh;
+}
+
+#sidebar li {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+#sidebar li li {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.selected {
+  &,
+  &:hover {
+    color: var(--vert);
+  }
+}
+
+.vertical-line {
+  width: 2px;
+  height: 100vh;
+  background-color: lightgrey;
+}
+
+.plantingArea-plants {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  grid-gap: 2%;
+  margin-bottom: 4%;
+  padding: 5%;
+}
+
+.plant {
+  background: #f5f5f5;
+  position: relative;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  padding-bottom: 8%;
+  margin-bottom: 8%;
+  width: 300px;
+
+  .encart {
+    width: 100px;
+    font-size: 13px;
+    padding: 5px;
+    text-align: center;
+    background-color: var(--vert);
+    color: #fff;
+    position: absolute;
+    top: -10px;
+    left: 30%;
+    transform: translateX(-50%);
+  }
+}
+
+.imgCurrentPlantingArea {
+  // max-width: 150%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.imgCurrentPlantingArea figure img {
+  max-width: 150%;
+}
+
+.infos {
+  display: flex;
+  width: 80%;
+  padding-top: 8%;
+  margin: auto;
+  color: var(--police);
+  // justify-content: space-between;
+}
+
+.infos div:nth-child(3) p:first-child {
+  // font-size: 18px;
+  font-weight: bold;
+}
+
+.infos div:first-child {
+  text-align: right;
+}
+
+.border {
+  // border: 0.1pt solid var(--police) !important;
+  margin: 0 5%;
+}
+
+.encart {
+  width: auto;
+  font-size: 13px;
+  padding: 5px;
+  text-align: center;
+  background-color: var(--vert);
+  color: #fff;
+  position: absolute;
+  top: -10px;
+  left: 10%;
+  transform: translateX(-50%);
+}
+
+.selectPlant {
+  display: block;
+  margin: auto;
+  border: 2px solid var(--vert);
+  padding: 2% 4%;
+  border-radius: 20px;
+  color: var(--vert);
+  margin-top: 13%;
+  width: 50%;
+  cursor: pointer;
+}
+
+.currentPlant {
+  position: relative;
+  display: flex;
+  height: auto;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+  // background: #fcfcfc;
+}
+
+.img {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  max-width: 50%;
+  // height: 200px;
+  overflow: hidden;
+  figure {
+    margin-bottom: 0px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.left-infos {
+  width: 100%;
+  margin: 20px;
+  img {
+    width: 50px;
+  }
+}
+
+// .icones figure {
+//   width: 50px;
+// }
+
+.icones-div {
+  display: flex;
+}
+
+.icones {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 20px;
+
+  figure {
+    grid-column: 1;
+  }
+  p {
+    text-align: center;
+    display: flex;
+    grid-column: 2 / 5;
+  }
+  mat-checkbox {
+    grid-column: 6;
+    size: 2em;
+  }
+}

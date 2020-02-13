@@ -12,8 +12,8 @@ import diginamic.happygarden.repository.PlantRepository;
 @Transactional
 @Service
 public class PlantService extends AbstractService<Plant, Long, PlantRepository> {
-	
-	public List<Plant> findByCommonNameOrScientificNameIgnoreCaseContains(String name) {
-		return repo.findByCommonNameOrScientificNameIgnoreCaseContains(name,name);
+
+	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(String name) {
+		return repo.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(name,name);
 	}
 }
