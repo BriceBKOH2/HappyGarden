@@ -24,8 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeModule,
     StorageModule.forRoot({ IDBNoWrap: true }),
     BrowserAnimationsModule,
-    MatCheckboxModule
-    ReactiveFormsModule,
+    MatCheckboxModule,
+    ReactiveFormsModule
   ],
   exports: [MatCheckboxModule],
   providers: [],
