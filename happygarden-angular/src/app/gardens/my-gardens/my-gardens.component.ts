@@ -15,9 +15,6 @@ import { Observable } from 'rxjs';
 export class MyGardensComponent implements OnInit {
   gardens$: Observable<Garden[]>;
   userAccount: UserAccount;
-  // plantingAreaId: number;
-  // gardenId: number;
-  // plantId: number;
   currentGarden: Garden;
   currentPlantingArea: PlantingArea;
   currentSlot: Slot;
@@ -26,32 +23,20 @@ export class MyGardensComponent implements OnInit {
   constructor(private gardenListService: GardenListService) {}
 
   ngOnInit() {
-    // this.gardenId = 0;
-    // this.plantingAreaId = 0;
-    // this.plantId = 0;
     this.currentGarden = new Garden();
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();
 
-    this.gardens$ = this.gardenListService.getGardens(5);
+    this.gardens$ = this.gardenListService.getGardens(3);
   }
 
-  // selectGarden(gardenId: number) {
-  //   if (this.gardenId === 0 || this.gardenId !== gardenId) {
-  //     this.gardenId = gardenId;
-  //      this.plantingAreaId = 0;
-  //   this.plantId = 0;
-  //   } else {
-  //     this.gardenId = 0;
-  //   }
-  //   console.log(
-  //     'SelectGarden - gardenId :' +
-  //       this.gardenId +
-  //       ' plantingAreaId :' +
-  //       this.plantingAreaId
-  //   );
-  // }
+  showGardens() {
+    this.currentGarden = new Garden();
+    this.currentPlantingArea = new PlantingArea();
+    this.currentSlot = new Slot();
+    this.currentPlant = new Plant();
+  }
 
   selectGarden(garden: Garden) {
     if (!this.currentGarden || this.currentGarden !== garden) {

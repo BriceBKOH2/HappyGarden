@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,12 +28,14 @@ import diginamic.happygarden.service.AbstractService;
 * 
 * @author Jomage
 * @param <T> The type of the object to be manipulated.
-* @param <ID> The type of the ID of T
+* @param <I> The type of the Id attribute of T
 *
 */
-@CrossOrigin("http://localhost:4200")
-@RequestMapping("/default") // AbstractCRUDController<T extends HibernateEntity<ID>, ID, S extends AbstractService<T, ID>> 
-public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, S extends AbstractService<T, ID, ? extends JpaRepository<T, ID>>> {
+@RequestMapping("/default") // AbstractCRUDController<T extends HibernateEntity<I>, I, S extends AbstractService<T, I>> 
+public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S extends AbstractService<T, I, ? extends JpaRepository<T, I>>> {
+	
+	// TODO : Add logger and catch + handle errors in methods
+//	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractCRUDController.class);
 	
 	@Autowired
 	protected S service;
@@ -54,7 +55,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	 * @return 
 	 */
 	@GetMapping("/{id}")
-	public T getById(@PathVariable ID id) throws NotFoundException {
+	public T getById(@PathVariable I id) throws NotFoundException {
 		return service.findById(id); 
 	}
 

@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { logging } from 'protractor';
-import { userInfo } from 'os';
-import { Subject, BehaviorSubject, Observable, of } from 'rxjs';
-import { filter, switchMap, map, tap, catchError } from 'rxjs/operators';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
+import { AuthenticateApiService } from 'src/app/services/authenticateApi/authenticate-api.service';
+
+export const AuthApiToken = new InjectionToken('AuthApiToken');
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticateService {
   isAuth$ = new BehaviorSubject<boolean>(null);
-  userAuth$ = new BehaviorSubject<any>(null);
+  userAuth$ = new BehaviorSubject<{ token: string }>(null);
 
-  constructor(private storage: StorageMap) {}
+  constructor(
+    @Inject(AuthApiToken) private api: AuthenticateApiService,
+    private storage: StorageMap
+  ) {}
 
   get isAuthentificated$() {
     return this.isAuth$.pipe(
@@ -36,12 +40,12 @@ export class AuthService {
     );
   }
 
-  get user$() {
+  get user$(): Observable<{ token: string }> {
     return this.userAuth$.pipe(filter(user => user !== null));
   }
 
-  login(data): Observable<any> {
-    return of(data).pipe(
+  login(username, password): Observable<any> {
+    return this.api.login(username, password).pipe(
       switchMap(value => this.save(value)),
       tap(value => {
         this.isAuth$.next(true);
@@ -51,15 +55,15 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    return of(true).pipe(
-      catchError(reason => {
+    return this.api.logout().pipe(
+      catchError(() => {
         return of(true);
       }),
       switchMap(() => {
         return this.storage.clear();
       }),
       map(() => {}),
-      tap(value => {
+      tap(() => {
         this.isAuth$.next(false);
         this.userAuth$.next(null);
       })
