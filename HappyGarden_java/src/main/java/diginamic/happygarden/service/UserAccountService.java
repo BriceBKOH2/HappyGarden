@@ -69,7 +69,7 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 	public boolean authentication(String nickname, String password) throws NotFoundException {
 		UserAccount user = this.findByNickname(nickname);
 		password = passwordEncoder.encode(password);
-		if (user.getNickname() == nickname && user.getPassword() == password) {
+		if (user.getNickname().equals(nickname) && user.getPassword().equals(password)) {
 			return true;
 		}
 		return false;
