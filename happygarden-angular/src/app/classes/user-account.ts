@@ -1,6 +1,7 @@
 import { Garden } from './garden';
 import { Plant } from './plant';
 import { Conversation } from './conversation';
+import { UserRole } from './user-role';
 
 export class UserAccount {
   id: number;
@@ -8,7 +9,7 @@ export class UserAccount {
   lastname: string;
   nickname: string;
   password: string;
-  userRole: UserAccount;
+  userRole: UserRole;
   conversations: Conversation[];
   friends: UserAccount[];
   usedPlants: Plant[];

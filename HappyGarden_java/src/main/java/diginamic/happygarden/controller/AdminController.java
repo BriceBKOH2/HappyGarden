@@ -1,6 +1,7 @@
 package diginamic.happygarden.controller;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +93,7 @@ public class AdminController {
 			UserRole userRoleBasic = new UserRole(BASIC, userRightsBasic);
 			userRoleServ.save(userRoleBasic);
 		}
+		
 		try {
 			userRoleServ.findByName(ADMIN);
 		} catch (NotFoundException e) {
@@ -111,6 +113,8 @@ public class AdminController {
 			UserRole userRoleAdmin = new UserRole(ADMIN, userRightsAdmin);
 			userRoleServ.save(userRoleAdmin);
 		}
+		
+		//adding admin account to DB
 		try {
 			userAccServ.findByNickname("admin");
 		} catch (NotFoundException e) {
@@ -119,6 +123,8 @@ public class AdminController {
 			userAccAdmin.setPassword("admin");
 			userAccServ.save(userAccAdmin);
 		}
+		
+		// adding an user account for testing
 		try {
 			userAccServ.findByNickname("testNickname");
 		} catch (NotFoundException e) {
@@ -128,7 +134,9 @@ public class AdminController {
 			userAccBasic.setPassword("testPassword");
 			userAccServ.save(userAccBasic);
 		}
-		// Ajoût de plantes randomn pour la BDD
+		
+		// adding random plants for DB
+		if (plantServ.findByCommonNameOrScientificName("cactus").isEmpty()) {
 		ArrayList<Season> season = new ArrayList<>();
 		season.add(Season.FALL);
 		Plant lierre = new Plant("Hedera helix", "Lierre", "Lierre", "None", 91.1F, "Long", "lierre.jpg", "Mid Spring", GrowthRate.RAPID, season);
@@ -152,9 +160,15 @@ public class AdminController {
 		plantServ.save(cactus);
 		plantServ.save(succulente);
 		plantServ.save(tournesol);
-
+		
+		}
 		// Ajoût de jardins randomn pour la BDD
-		Slot slot = new Slot(new Date(2012,10,12), cactus);
+		try {
+			userAccServ.findByNickname("Estelle");
+			userAccServ.findByNickname("Jade");
+		}
+		catch (NotFoundException e) {
+		Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("cactus").get(0));
 		ArrayList<Slot> slots = new ArrayList<>();
 		slots.add(slot);
 		
@@ -174,7 +188,9 @@ public class AdminController {
 		
 		ArrayList<Message> messages = new ArrayList<Message>();
 		Message msgEstelle = new Message("Coucou Jade.", estelle);
+		messages.add(msgEstelle);
 		Message msgJade = new Message("Coucou Estelle.", jade);
+		messages.add(msgJade);
 		Conversation conversation = new Conversation(messages);
 		
 		jardinUn.setUser(estelle);
@@ -184,7 +200,7 @@ public class AdminController {
 		gardenServ.save(jardinUn);
 		conversationServ.save(conversation);
 		// Ajoût de Conversations randomn pour la BDD
-			
+		}
 		return userAccServ.findAll();
 	}
 	

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccount } from '../classes/user-account';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticateService } from '../authenticate/services/authenticate.service';
 
 @Component({
   selector: 'app-account',
@@ -8,9 +9,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  public users: UserAccount[] = [];
+  public users: UserAccount[];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    public authServ: AuthenticateService
+  ) {}
 
   ngOnInit() {
     this.httpClient
