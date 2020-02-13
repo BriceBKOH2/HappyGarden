@@ -1,60 +1,73 @@
-<a [routerLink]="['..']" style="padding-top: 100px !important;">home</a>
+<section class="globale">
+  <a [routerLink]="['..']" style="padding-top: 100px !important;"
+    ><i class="far fa-arrow-alt-circle-left"></i>
+    <p>Retour à la bibliothèque</p></a
+  >
 
-<div class="single-plant d-flex">
-  <div class="encart">
-    <p>{{ plant.commonName }}</p>
-  </div>
-  <div class="img">
-    <i class="far fa-heart heart"></i>
-    <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
-  </div>
-  <div class="infos">
-    <div class="top-infos">
-      <p>Nom Scientifique :</p>
-      <p class="scientific-name">{{ plant.scientificName }}</p>
-      <div class="border"></div>
+  <div class="single-plant">
+    <div class="encart">
+      <p>{{ plant.commonName }}</p>
     </div>
-    <div class="mt-4 bottom-infos">
-      <div class="picto d-flex">
-        <figure><img src="/assets/svg/poison.svg" alt="" /></figure>
-        <div>
-          <p>Toxicité</p>
-          <p>{{ plant.toxicity }}</p>
-        </div>
+    <div class="img">
+      <i class="far fa-heart heart"></i>
+      <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
+    </div>
+    <div class="infos">
+      <div class="top-infos">
+        <p>Nom Scientifique :</p>
+        <p class="scientific-name">{{ plant.scientificName }}</p>
+        <div class="border"></div>
       </div>
-
-      <div class="picto d-flex">
-        <figure><img src="/assets/svg/sun.svg" alt="" /></figure>
-        <div>
-          <p>Saison</p>
-          <p>{{ plant.seasons }}</p>
+      <div class="bottom-infos">
+        <div class="picto d-flex">
+          <figure><img src="/assets/svg/poison.svg" alt="" /></figure>
+          <div>
+            <p>Toxicité</p>
+            <p>{{ plant.toxicity }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="picto d-flex">
-        <figure><img src="/assets/svg/leaf.svg" alt="" /></figure>
-        <div>
-          <p>Durée de vie</p>
-          <p>{{ plant.lifeSpan }}</p>
+        <div class="picto d-flex">
+          <figure><img src="/assets/svg/sun.svg" alt="" /></figure>
+          <div>
+            <p>Saison</p>
+            <p>{{ plant.seasons }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="picto d-flex">
-        <figure><img src="/assets/svg/plant.svg" alt="" /></figure>
-        <div>
-          <p>Croissance</p>
-          <p>{{ plant.growthRate }}</p>
+        <div class="picto d-flex">
+          <figure><img src="/assets/svg/leaf.svg" alt="" /></figure>
+          <div>
+            <p>Durée de vie</p>
+            <p>{{ plant.lifeSpan }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="picto d-flex">
-        <figure><img src="/assets/svg/flower.svg" alt="" /></figure>
-        <div>
-          <p>Période de floraison</p>
-          <p>{{ plant.bloomPeriod }}</p>
+        <div class="picto d-flex">
+          <figure><img src="/assets/svg/plant.svg" alt="" /></figure>
+          <div>
+            <p>Croissance</p>
+            <p>{{ plant.growthRate }}</p>
+          </div>
+        </div>
+
+        <div class="picto d-flex">
+          <figure><img src="/assets/svg/flower.svg" alt="" /></figure>
+          <div>
+            <p>Période de floraison</p>
+            <p>{{ plant.bloomPeriod }}</p>
+          </div>
+        </div>
+
+        <div class="picto d-flex">
+          <figure><img src="/assets/svg/ruler.svg" alt="" /></figure>
+          <div>
+            <p>Taille définitive</p>
+            <p>{{ plant.matureHeight }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 <!-- <p>{{ plant.commonName }}</p> -->

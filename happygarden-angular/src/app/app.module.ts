@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StorageModule } from '@ngx-pwa/local-storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,10 +22,10 @@ import { MatCheckboxModule } from '@angular/material';
     HttpClientModule,
     SidebarModule.forRoot(),
     HomeModule,
-    HttpClientModule,
     StorageModule.forRoot({ IDBNoWrap: true }),
     BrowserAnimationsModule,
     MatCheckboxModule
+    ReactiveFormsModule,
   ],
   exports: [MatCheckboxModule],
   providers: [],

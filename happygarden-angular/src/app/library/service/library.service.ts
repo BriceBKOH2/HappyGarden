@@ -20,4 +20,10 @@ export class LibraryService {
   findPlant(id: number) {
     return this.httpClient.get<Plant>(`${this.endPointPlant}/${id}`);
   }
+
+  searchByCommonNameOrScientificName(name: string): Observable<Plant[]> {
+    return this.httpClient.get<Plant[]>(`${this.endPointPlant}/search`, {
+      params: new HttpParams().set('name', name)
+    });
+  }
 }
