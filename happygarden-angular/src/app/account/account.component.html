@@ -1,5 +1,61 @@
 <section class="account">
-  <ng-container *ngFor="let user of users"
-    >{{ user.firstname }} {{ user.lastname }}
+  <!-- <ng-container *ngFor="let user of users">
+    <li>
+      <ul>
+        {{
+          user.firstname
+        }}
+        {{
+          user.lastname
+        }}
+      </ul>
+    </li>
+  </ng-container> -->
+  <ng-container *ngIf="authServ.user$ | async as userLoggedIn">
+    <li>
+      <ul>
+        Utilisateur connecté :
+      </ul>
+      <ul>
+        id :
+        {{
+          userLoggedIn.id
+        }}
+      </ul>
+      <ul>
+        prénom :
+        {{
+          userLoggedIn.firstname
+        }}
+      </ul>
+      <ul>
+        nom :
+        {{
+          userLoggedIn.lastname
+        }}
+      </ul>
+      <ul>
+        pseudonyme :
+        {{
+          userLoggedIn.nickname
+        }}
+      </ul>
+      <ul>
+        role :
+        {{
+          userLoggedIn.userRole.name
+        }}
+      </ul>
+      <ul>
+        droits :
+        <li *ngFor="let right of userLoggedIn.userRole.userRights">
+          <ul>
+            {{
+              right.name
+            }}
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ng-container>
 </section>

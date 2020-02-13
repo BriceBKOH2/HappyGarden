@@ -37,10 +37,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes, {
-      enableTracing: !environment.production, //Enable trace of routing and process in browser console
-      paramsInheritanceStrategy: 'always' // Keep all data en params from url in routing
-    }),
+    RouterModule.forRoot(
+      routes //, {
+      // enableTracing: !environment.production, //Enable trace of routing and process in browser console
+      // paramsInheritanceStrategy: 'always' // Keep all data en params from url in routing
+      //}
+    ),
     CommonModule
   ],
   exports: [RouterModule]
