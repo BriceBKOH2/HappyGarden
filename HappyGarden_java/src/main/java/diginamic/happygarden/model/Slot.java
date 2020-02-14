@@ -4,15 +4,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Slot implements HibernateEntity<Long>, ReminderManager {
@@ -23,15 +24,15 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	private Date date;
 	
-//	@JsonManagedReference("plant_slots")
 	@ManyToOne
 	private Plant plant;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Reminder> reminders = new ArrayList<>();
 
 	@JsonBackReference("area_slots")
 	@ManyToOne
+	@JoinColumn(name = "planting_area_id")
 	private PlantingArea plantingArea;
 	
 	/* Constructors */

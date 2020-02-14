@@ -28,7 +28,7 @@ export class MyGardensComponent implements OnInit {
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();
 
-    this.gardens$ = this.gardenListService.getGardens(5);
+    this.gardens$ = this.gardenListService.getGardens(3);
   }
 
   showGardens() {

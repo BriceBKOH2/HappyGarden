@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.HibernateEntity;
+import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.service.AbstractService;
 
 //Spring 5.1 :
@@ -29,12 +29,14 @@ import diginamic.happygarden.service.AbstractService;
 * 
 * @author Jomage
 * @param <T> The type of the object to be manipulated.
-* @param <ID> The type of the ID of T
+* @param <I> The type of the Id attribute of T
 *
 */
-@CrossOrigin("http://localhost:4200")
-@RequestMapping("/default") // AbstractCRUDController<T extends HibernateEntity<ID>, ID, S extends AbstractService<T, ID>> 
-public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, S extends AbstractService<T, ID, ? extends JpaRepository<T, ID>>> {
+@RequestMapping("/default") // AbstractCRUDController<T extends HibernateEntity<I>, I, S extends AbstractService<T, I>> 
+public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S extends AbstractService<T, I, ? extends JpaRepository<T, I>>> {
+	
+	// TODO : Add logger and catch + handle errors in methods
+//	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractCRUDController.class);
 	
 	@Autowired
 	protected S service;
@@ -54,7 +56,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	 * @return 
 	 */
 	@GetMapping("/{id}")
-	public T getById(@PathVariable ID id) throws NotFoundException {
+	public T getById(@PathVariable I id) throws NotFoundException {
 		return service.findById(id); 
 	}
 
@@ -86,7 +88,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	 * Deletes the given entity.
 	 * @param t
 	 */
-	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
+	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
 	@DeleteMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@RequestBody T t) {
@@ -96,7 +98,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<ID>, ID, 
 	/**
 	 * Deletes all entities of the type t.
 	 */
-	@PreAuthorize(AdminController.RIGHT_ADMINISTRATION)
+	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
 	@DeleteMapping(value = "/deleteall", consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	public void deleteAll() {
 		service.deleteAll();
