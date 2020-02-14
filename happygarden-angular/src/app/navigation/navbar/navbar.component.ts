@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -18,21 +19,38 @@ export class NavbarComponent implements OnInit {
       route: 'libraryList',
       label: 'Bibliothèque'
     },
+    // {
+    //   route: 'login',
+    //   label: 'Log in'
+    // },
+  ];
+
+  // links that need the user to be logged in to view
+  linksAuth = [
     {
       route: 'gardenList',
       label: 'Mes jardins'
     },
     {
-      route: 'login',
-      label: 'Login'
-    },
-    {
       route: 'userAccount',
       label: 'Mon Compte'
-    }
-  ];
+    },
+  ]
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(public authServ: AuthenticateService,
+              private router: Router) {}
 
   ngOnInit() {}
+
+  logOut() {
+    this.authServ.logout().subscribe(
+      () => {
+        this.router.navigate(['login']);
+      },
+      error => {
+        console.log('Error login out' + error);
+        alert(error.status + ' : ' + error.statusText);
+      }
+    );
+  }
 }

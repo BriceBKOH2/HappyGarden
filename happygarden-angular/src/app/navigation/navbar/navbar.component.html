@@ -23,6 +23,16 @@
           class="nav-item">
         <a class="nav-link" [routerLink]="link.route">{{ link.label }}</a>
       </li>
+      <li *ngIf="!(this.authServ.isAuthentificated$ | async) ; else loggedIn" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'login'">Log in</a>
+      </li>
+      <ng-template #loggedIn >
+        <li *ngFor="let linkAuth of linksAuth" routerLinkActive="active"
+        class="nav-item">
+          <a class="nav-link" [routerLink]="linkAuth.route">{{ linkAuth.label }}</a>
+        </li>
+      </ng-template>
     </ul>
+    <button class="btn btn-light" *ngIf="this.authServ.isAuthentificated$ | async" (click)="logOut()">Log Out</button>
   </div>
 </nav>

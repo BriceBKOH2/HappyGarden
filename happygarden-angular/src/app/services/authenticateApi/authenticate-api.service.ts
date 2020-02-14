@@ -52,7 +52,8 @@ export class AuthenticateApiService implements AuthenticateApi {
     return user;
   }
 
-  logout(): Observable<void> {
-    return this.httpClient.delete<void>(this.endPointLogout);
+  logout(): Observable<any> {
+    return this.httpClient.get(this.endPointLogout);
+    // return this.httpClient.delete<void>(this.endPointLogout);
   }
 }

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6 login-container">
+  <div *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="col-md-6 login-container">
     <h2 style="margin: auto">Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -48,4 +48,10 @@
       </div>
     </form>
   </div>
+  <ng-template #logout>
+    <div class="col-md-6 login-container">
+      <h2>Vous êtes déjà connecté. Se déconnecter ?</h2>
+      <button class="btn btn-danger" (click)="logOut()">Se déconnecter</button>
+    </div>
+  </ng-template>
 </div>
