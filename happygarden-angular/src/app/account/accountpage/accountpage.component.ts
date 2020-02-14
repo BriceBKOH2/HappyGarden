@@ -3,6 +3,7 @@ import { UserAccount } from 'src/app/classes/user-account';
 import { switchMap } from 'rxjs/operators';
 import { AccountService } from '../service/account.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 
 @Component({
   selector: 'app-accountpage',
@@ -10,24 +11,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./accountpage.component.scss']
 })
 export class AccountpageComponent implements OnInit {
-  constructor(
-    private accountService: AccountService,
-    private activatedRoute: ActivatedRoute
-  ) {}
-
-  user: UserAccount;
-
+  constructor(public authServ: AuthenticateService) {}
+  // userSave = new UserAccount();
   ngOnInit() {
-    this.activatedRoute.params
-      .pipe(
-        switchMap(params => {
-          console.log(params);
-          return this.accountService.getUser(params.id);
-        })
-      )
-      .subscribe(response => {
-        console.log(response);
-        this.user = response;
-      });
+    // this.authServ.user$.subscribe(response => (this.userSave = response));
   }
 }

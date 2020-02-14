@@ -62,9 +62,7 @@ public class AdminController {
 	
 	@Autowired
 	private ConversationService conversationServ;
-	
-	@Autowired
-	private MessageService messageServ;
+
 
 	/**
 	 * Instantiate database with rights, roles, admin and basic user

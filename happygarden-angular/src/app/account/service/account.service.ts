@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserAccount } from 'src/app/classes/user-account';
+import { RequestService } from 'src/app/services/request/request.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   get endPointUser() {
-    return 'http://localhost:8082/happygarden/api/UserAccount';
+    return this.request.endPoint + '/UserAccount';
   }
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private request: RequestService
+  ) {}
 
   // get httpOptions(): { headers: HttpHeaders } {
   //   const headers = new HttpHeaders().set('Content-Type', 'application/json');

@@ -25,9 +25,16 @@
   delectus!
 </p>
 
-<p style="color: rebeccapurple;">
+<p *ngIf="authServ.user$ | async as user" style="color: rebeccapurple;">
   {{ user.lastname }}
   {{ user.id }}
   {{ user.firstname }}
+  {{ user.userRole.name }}
+</p>
+<p style="color: rebeccapurple;">
+  {{ userSave.lastname }}
+  {{ userSave.id }}
+  {{ userSave.firstname }}
+  {{ userSave.userRole.name }}
 </p>
 <app-sidebar-account></app-sidebar-account>

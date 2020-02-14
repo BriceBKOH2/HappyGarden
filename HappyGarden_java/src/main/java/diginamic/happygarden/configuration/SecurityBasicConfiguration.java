@@ -35,6 +35,7 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/Admin/**").hasRole("ADMIN")
+			.antMatchers("/Plant").permitAll()
 			.anyRequest().authenticated()
 			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout().permitAll()
 			.and().httpBasic()
