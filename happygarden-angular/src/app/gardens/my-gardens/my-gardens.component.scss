@@ -41,7 +41,7 @@
 
 .plantingArea-plants {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
   grid-gap: 2%;
   margin-bottom: 4%;
@@ -145,5 +145,37 @@
     grid-column: 6;
     size: 2em;
     margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .plantingArea-plants {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .plantingArea-plants {
+    display: inherit;
+  }
+
+  .plant {
+    margin: auto;
+    margin-bottom: 6%;
+  }
+
+  form {
+    margin-top: 45px;
+  }
+
+  form div {
+    margin: auto;
+  }
+
+  form button {
+    // width: 70%;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
 }
