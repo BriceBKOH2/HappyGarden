@@ -19,10 +19,13 @@ export class AccountComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // TODO : debug this
+    // console.log("error from account.component");
     this.httpClient
       .get<UserAccount[]>(this.request.endPoint + '/Admin/users')
       .subscribe(data => {
         this.users = data;
       });
+
   }
 }

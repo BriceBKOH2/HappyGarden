@@ -45,13 +45,17 @@ export class AuthenticateService {
     return this.userAuth$.pipe(filter(user => user !== null));
   }
 
-  login(username, password): Observable<UserAccount> {
+  testLogin(username : string, password: string): Observable<any> {
+    return this.api.login(username, password);
+  }
+
+  login(username : string, password: string): Observable<UserAccount> {
     return this.api.login(username, password).pipe(
-      switchMap(value => this.save(value)),
-      tap(value => {
-        this.isAuth$.next(true);
-        this.userAuth$.next(value);
-      })
+        switchMap(value => this.save(value)),
+        tap(value => {
+          this.isAuth$.next(true);
+          this.userAuth$.next(value);
+        })
     );
   }
 

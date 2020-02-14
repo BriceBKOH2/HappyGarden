@@ -1,5 +1,5 @@
 <section class="account">
-  <!-- <ng-container *ngFor="let user of users">
+  <ng-container *ngFor="let user of users">
     <li>
       <ul>
         {{
@@ -10,7 +10,7 @@
         }}
       </ul>
     </li>
-  </ng-container> -->
+  </ng-container>
   <ng-container *ngIf="authServ.user$ | async as userLoggedIn">
     <li>
       <ul>

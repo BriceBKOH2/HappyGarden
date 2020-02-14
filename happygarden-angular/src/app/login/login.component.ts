@@ -42,5 +42,16 @@ export class LoginComponent implements OnInit {
         alert(error.status + ' : ' + error.statusText);
       }
     );
+
+    // this.authServ.login(username, password).subscribe(
+    //   () => {
+    //     this.router.navigate(['account']);
+    //   },
+    //   error => {
+    //     this.invalidLogin = true;
+    //     console.log(error);
+    //     alert(error.status + ' : ' + error.statusText);
+    //   }
+    // );
   }
 }
