@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccount } from '../classes/user-account';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticateService } from '../authenticate/services/authenticate.service';
+import { RequestService } from '../services/request/request.service';
 
 @Component({
   selector: 'app-account',
@@ -8,13 +10,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  public users: UserAccount[] = [];
+  public users: UserAccount[];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private request: RequestService,
+    public authServ: AuthenticateService
+  ) {}
 
   ngOnInit() {
     this.httpClient
-      .get<UserAccount[]>('http://localhost:8082/happygarden/api/Admin/users')
+      .get<UserAccount[]>(this.request.endPoint + '/Admin/users')
       .subscribe(data => {
         this.users = data;
       });
