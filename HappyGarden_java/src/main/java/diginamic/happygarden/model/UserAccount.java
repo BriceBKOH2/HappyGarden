@@ -71,14 +71,15 @@ public class UserAccount implements HibernateEntity<Long> {
 		super();
 		this.userRole = new UserRole();
 	}
-
-	public UserAccount(String firstName, String lastName, String nickname, UserRole userRole) {
+	
+	public UserAccount(String firstName, String lastName, String nickname,UserRole userRole) {
 		super();
 		this.firstname = firstName;
 		this.lastname = lastName;
 		this.nickname = nickname;
 		this.userRole = userRole;
 	}
+
 
 	/* Getters Setters */
 

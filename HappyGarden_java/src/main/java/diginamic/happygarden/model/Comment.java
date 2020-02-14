@@ -27,8 +27,6 @@ public class Comment implements HibernateEntity<Long> {
 	/* Constructors */
 
 	public Comment() {
-		content = "default";
-		author = null;
 	}
 
 	public Comment(String content, UserAccount author) {

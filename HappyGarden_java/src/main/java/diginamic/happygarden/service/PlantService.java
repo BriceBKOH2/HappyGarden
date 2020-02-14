@@ -13,6 +13,10 @@ import diginamic.happygarden.repository.PlantRepository;
 @Service
 public class PlantService extends AbstractService<Plant, Long, PlantRepository> {
 
+	public List<Plant> findByCommonNameOrScientificName(String name) {
+		return repo.findByCommonNameOrScientificName(name,name);
+	}
+	
 	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(String name) {
 		return repo.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(name,name);
 	}

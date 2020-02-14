@@ -28,10 +28,10 @@ public class Garden implements HibernateEntity<Long> {
 	private String name;
 
 	@OneToMany
-	private List<Comment> comments = new ArrayList<Comment>();	
+	private List<Comment> comments = new ArrayList<>();	
 	@JsonManagedReference("garden_areas")
 	@OneToMany(mappedBy = "garden", cascade = CascadeType.PERSIST)
-	private List<PlantingArea> plantingAreas = new ArrayList<PlantingArea>();
+	private List<PlantingArea> plantingAreas = new ArrayList<>();
 
 	
 	@JsonBackReference("user_gardens")

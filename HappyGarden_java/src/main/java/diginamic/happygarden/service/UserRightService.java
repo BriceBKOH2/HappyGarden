@@ -15,4 +15,5 @@ public class UserRightService extends AbstractService<UserRight, Long, UserRight
 	public UserRight findByName(String name) throws NotFoundException {
 		return repo.findByName(name).orElseThrow(() -> new NotFoundException("Entity not found"));
 	}
+
 }
