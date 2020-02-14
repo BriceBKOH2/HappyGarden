@@ -45,7 +45,7 @@ export class AuthenticateService {
     return this.userAuth$.pipe(filter(user => user !== null));
   }
 
-  login(username, password): Observable<UserAccount> {
+  login(username: string, password: string): Observable<UserAccount> {
     return this.api.login(username, password).pipe(
       switchMap(value => this.save(value)),
       tap(value => {

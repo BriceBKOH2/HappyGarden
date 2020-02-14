@@ -29,6 +29,7 @@ import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.service.ConversationService;
 import diginamic.happygarden.service.GardenService;
+import diginamic.happygarden.service.MessageService;
 import diginamic.happygarden.service.PlantService;
 import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
@@ -38,20 +39,8 @@ import diginamic.happygarden.service.UserRoleService;//@PreAuthorize("admnistrat
 @RequestMapping("/Admin")
 public class AdminController {
 
-	// TODO : changer de place ces constantes > entity ou enum
-	/* Role Constant */
-
 	public static final String BASIC = "Basic";
 	public static final String ADMIN = "Admin";
-
-	/* Right Constant */
-	public static final String RIGHT_COMMENT = "Comment";
-	public static final String RIGHT_MESSAGE = "Message";
-	public static final String RIGHT_ADMINISTRATION = "administration";
-	public static final String RIGHT_ACCOUNT_SUPPRESION = "account_suppression";
-	public static final String RIGHT_PLANT_SUPPRESSION = "plant_suppression";
-	public static final String RIGHT_PLANT_ADDITION = "plant_addition";
-	public static final String RIGHT_PLANT_MODIFICATION = "plant_modification";
 
 	@Autowired
 	private UserRightService userRightServ;
@@ -69,7 +58,11 @@ public class AdminController {
 	private GardenService gardenServ;
 	
 	@Autowired
+	private MessageService messageServ;
+	
+	@Autowired
 	private ConversationService conversationServ;
+
 
 	/**
 	 * Instantiate database with rights, roles, admin and basic user
@@ -85,9 +78,9 @@ public class AdminController {
 			userRoleServ.findByName(BASIC);
 		} catch (NotFoundException e) {
 			List<UserRight> userRightsBasic = new ArrayList<>();
-			UserRight userRightBasic = new UserRight(RIGHT_COMMENT);
+			UserRight userRightBasic = new UserRight(UserRight.RIGHT_COMMENT);
 			userRightsBasic.add(userRightBasic);
-			userRightBasic = new UserRight(RIGHT_MESSAGE);
+			userRightBasic = new UserRight(UserRight.RIGHT_MESSAGE);
 			userRightsBasic.add(userRightBasic); /* Saving user rights in DataBase */
 			userRightServ.saveAll(userRightsBasic); /* Saving role basic for regular users in DataBase */
 			UserRole userRoleBasic = new UserRole(BASIC, userRightsBasic);
@@ -98,15 +91,15 @@ public class AdminController {
 			userRoleServ.findByName(ADMIN);
 		} catch (NotFoundException e) {
 			List<UserRight> userRightsAdmin = new ArrayList<UserRight>();
-			UserRight userRightAdmin = new UserRight(RIGHT_ADMINISTRATION);
+			UserRight userRightAdmin = new UserRight(UserRight.RIGHT_ADMINISTRATION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight(RIGHT_ACCOUNT_SUPPRESION);
+			userRightAdmin = new UserRight(UserRight.RIGHT_ACCOUNT_SUPPRESION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight(RIGHT_PLANT_SUPPRESSION);
+			userRightAdmin = new UserRight(UserRight.RIGHT_PLANT_SUPPRESSION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight(RIGHT_PLANT_ADDITION);
+			userRightAdmin = new UserRight(UserRight.RIGHT_PLANT_ADDITION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight(RIGHT_PLANT_MODIFICATION);
+			userRightAdmin = new UserRight(UserRight.RIGHT_PLANT_MODIFICATION);
 			userRightsAdmin.add(userRightAdmin); /* Saving admin rights in DataBase */
 			userRightServ.saveAll(userRightsAdmin); /* Saving role admin for regular users in DataBase */
 			userRightsAdmin.addAll(userRoleServ.findByName(BASIC).getUserRights());
@@ -136,7 +129,7 @@ public class AdminController {
 		}
 		
 		// adding random plants for DB
-		if (plantServ.findByCommonNameOrScientificName("cactus").isEmpty()) {
+		if (plantServ.findByCommonNameOrScientificName("Cactus").isEmpty()) {
 		ArrayList<Season> season = new ArrayList<>();
 		season.add(Season.FALL);
 		Plant lierre = new Plant("Hedera helix", "Lierre", "Lierre", "None", 91.1F, "Long", "lierre.jpg", "Mid Spring", GrowthRate.RAPID, season);
@@ -168,38 +161,43 @@ public class AdminController {
 			userAccServ.findByNickname("Jade");
 		}
 		catch (NotFoundException e) {
-		Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("Cactus").get(0));
-		ArrayList<Slot> slots = new ArrayList<>();
-		slots.add(slot);
-		
-		Parcel parcel = new Parcel("parcelle ta mère", 19L, 157486532156L, slots);
-		ArrayList<PlantingArea> parcels = new ArrayList<>();
-		parcels.add(parcel);
-		slot.setPlantingArea(parcel);
-		
-		Garden jardinUn = new Garden("plantes aromatiques", parcels);
-		parcel.setGarden(jardinUn);
-		
-		UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
-		estelle.setPassword("estelle");
-		
-		UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
-		jade.setPassword("jade");
-		
-		ArrayList<Message> messages = new ArrayList<Message>();
-		Message msgEstelle = new Message("Coucou Jade.", estelle);
-		messages.add(msgEstelle);
-		Message msgJade = new Message("Coucou Estelle.", jade);
-		messages.add(msgJade);
-		Conversation conversation = new Conversation(messages);
-		
-		jardinUn.setUser(estelle);
-		
-		userAccServ.save(estelle);
-		userAccServ.save(jade);
-		gardenServ.save(jardinUn);
-		conversationServ.save(conversation);
-		// Ajoût de Conversations randomn pour la BDD
+			Slot slot = new Slot(Date.valueOf(LocalDate.now()), plantServ.findByCommonNameOrScientificName("Cactus").get(0));
+			ArrayList<Slot> slots = new ArrayList<>();
+			slots.add(slot);
+			
+			Parcel parcel = new Parcel("parcelle ta mère", 19L, 157486532156L, slots);
+			ArrayList<PlantingArea> parcels = new ArrayList<>();
+			parcels.add(parcel);
+			slot.setPlantingArea(parcel);
+			
+			Garden jardinUn = new Garden("plantes aromatiques", parcels);
+			parcel.setGarden(jardinUn);
+			
+			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
+			estelle.setPassword("estelle");
+			userAccServ.save(estelle);
+			
+			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
+			jade.setPassword("jade");
+			userAccServ.save(jade);
+			
+			ArrayList<Message> messages = new ArrayList<Message>();
+			
+			Message msgEstelle = new Message("Coucou Jade.", estelle);
+			messageServ.save(msgEstelle);
+			messages.add(msgEstelle);
+			
+			Message msgJade = new Message("Coucou Estelle.", jade);
+			messages.add(msgJade);
+			messageServ.save(msgJade);
+			
+			Conversation conversation = new Conversation(messages);
+			
+			jardinUn.setUser(estelle);
+			
+			gardenServ.save(jardinUn);
+			conversationServ.save(conversation);
+			// Ajoût de Conversations randomn pour la BDD
 		}
 		return userAccServ.findAll();
 	}

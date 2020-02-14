@@ -8,12 +8,8 @@ import { RequestService } from '../request/request.service';
   providedIn: 'root'
 })
 export class UserAccountRequestService {
-  userAccount = new UserAccount();
 
   constructor(private httpClient: HttpClient, private request: RequestService) {
-    this.getUserAccountByNickname('admin').subscribe(
-      response => (this.userAccount = response)
-    );
   }
 
   get endPoint(): string {

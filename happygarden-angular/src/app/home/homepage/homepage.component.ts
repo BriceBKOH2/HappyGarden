@@ -7,13 +7,7 @@ import { UserAccountRequestService } from 'src/app/services/userAccountRequest/u
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  constructor(public userAccountRequestService: UserAccountRequestService) {
-    userAccountRequestService
-      .getUserAccountByNickname('admin')
-      .subscribe(
-        response => (userAccountRequestService.userAccount = response)
-      );
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

@@ -33,10 +33,11 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests().antMatchers("/login", "/logout").permitAll()
+			.authorizeRequests()
 			.antMatchers("/Admin/**").hasRole("ADMIN")
+			.antMatchers("/Plant").permitAll()
 			.anyRequest().authenticated()
-			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout()
+			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout().permitAll()
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
