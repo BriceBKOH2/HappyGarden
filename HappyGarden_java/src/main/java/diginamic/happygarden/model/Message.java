@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /** Contained in a Conversation, it has the content of the message and the User that sent it **/
 @Entity
 public class Message implements HibernateEntity<Long> {
@@ -22,8 +24,7 @@ public class Message implements HibernateEntity<Long> {
 	
 	/** The user that sent the message**/
 	@NotNull
-	@ManyToOne
-	private UserAccount author;
+	private String author;
 
 	
 	/* Constructors */
@@ -36,7 +37,7 @@ public class Message implements HibernateEntity<Long> {
 	public Message(String content, UserAccount author) {
 		super();
 		this.content = content;
-		this.author = author;
+		this.author = author.getNickname();
 	}
 
 	
@@ -58,12 +59,12 @@ public class Message implements HibernateEntity<Long> {
 		this.content = content;
 	}
 
-	public UserAccount getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
 	public void setAuthor(UserAccount author) {
-		this.author = author;
+		this.author = author.getNickname();
 	}
 
 	

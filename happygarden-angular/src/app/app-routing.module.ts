@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'gardenList',
     loadChildren: './gardens/gardens.module#GardensModule'
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'userAccount',
+    loadChildren: './account/account.module#AccountModule'
   }
 ];
 

@@ -27,6 +27,7 @@ import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.service.ConversationService;
 import diginamic.happygarden.service.GardenService;
+import diginamic.happygarden.service.MessageService;
 import diginamic.happygarden.service.PlantService;
 import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
@@ -68,6 +69,9 @@ public class AdminController {
 	
 	@Autowired
 	private ConversationService conversationServ;
+	
+	@Autowired
+	private MessageService messageServ;
 
 	/**
 	 * Instantiate database with rights, roles, admin and basic user
@@ -171,19 +175,22 @@ public class AdminController {
 		UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 		jade.setPassword("jade");
 		
+		userAccServ.save(estelle);
+		userAccServ.save(jade);
 		ArrayList<Message> messages = new ArrayList<Message>();
 		Message msgEstelle = new Message("Coucou Jade.", estelle);
 		Message msgJade = new Message("Coucou Estelle.", jade);
 		messages.add(msgJade);
 		messages.add(msgEstelle);
+		
 		Conversation conversation = new Conversation(messages);
 		conversation.addUser(estelle);
 		conversation.addUser(jade);
-		
+		messageServ.save(msgJade);
+		messageServ.save(msgEstelle);
 		jardinUn.setUser(estelle);
 		
-		userAccServ.save(estelle);
-		userAccServ.save(jade);
+
 		gardenServ.save(jardinUn);
 		conversationServ.save(conversation);
 		// Ajoût de Conversations randomn pour la BDD
