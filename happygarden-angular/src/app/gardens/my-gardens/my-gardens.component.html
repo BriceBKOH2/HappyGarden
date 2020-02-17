@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2" id="sidebar">
     <div>
-      <a (click)="showGardens()">Mes Jardins</a>
+      <a class="cursor" (click)="showGardens()">Mes Jardins</a>
       <br />
       <br />
       <ul>
@@ -11,7 +11,8 @@
               <a
                 (click)="selectGarden(garden)"
                 [ngClass]="{ selected: garden.id === currentGarden.id }"
-                >{{ garden.name }}</a
+                ><i class="fas fa-chevron-right"></i
+                ><span class="cursor">{{ garden.name }}</span></a
               >
               <ul>
                 <ng-container *ngFor="let plantingArea of garden.plantingAreas">
@@ -21,8 +22,8 @@
                       [ngClass]="{
                         selected: plantingArea.id === currentPlantingArea.id
                       }"
-                    >
-                      {{ plantingArea.name }}
+                      ><i class="fas fa-chevron-right"></i
+                      ><span class="cursor"> {{ plantingArea.name }}</span>
                     </a>
                     <ul>
                       <ng-container *ngFor="let slot of plantingArea.slots">
@@ -36,8 +37,10 @@
                             [ngClass]="{
                               selected: slot.plant.id === currentPlant.id
                             }"
-                          >
-                            {{ slot.plant.commonName }}
+                            ><i class="fas fa-chevron-right"></i
+                            ><span class="cursor">
+                              {{ slot.plant.commonName }}</span
+                            >
                           </a>
                         </li>
                       </ng-container>
@@ -56,9 +59,15 @@
 
   <div class="col-md-10" id="body">
     <div [ngClass]="{ 'd-none': !currentGarden.id }">
-      <p>{{ currentGarden.name }}</p>
+      <p class="cursor" (click)="selectGarden(currentGarden)">
+        {{ currentGarden.name }}
+      </p>
       <p>
-        {{ currentPlantingArea.name }}
+        <a
+          class="currentPlantingArea-title cursor"
+          (click)="selectPlantingArea($event, currentPlantingArea)"
+          >{{ currentPlantingArea.name }}</a
+        >
         <a [ngClass]="{ 'd-none': !currentPlant.id }"
           >- {{ currentPlant.commonName }}</a
         >
@@ -142,8 +151,13 @@
                 <mat-checkbox class="example-margin" labelPosition="before">
                 </mat-checkbox>
               </div>
+              <a class="plante-single-button">
+                <!-- [routerLink]="['../libraryList', currentPlant.id]" -->
+                Fiche complète</a
+              >
             </div>
           </div>
+          <!-- <app-plant-single></app-plant-single> -->
         </div>
       </div>
     </div>

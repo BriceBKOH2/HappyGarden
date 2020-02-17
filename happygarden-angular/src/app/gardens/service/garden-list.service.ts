@@ -3,26 +3,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserAccount } from 'src/app/classes/user-account';
 import { Garden } from 'src/app/classes/garden';
+import { RequestService } from 'src/app/services/request/request.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GardenListService {
-  private baseUrl = 'http://localhost:8082/happygarden/api/UserAccount';
+  private baseUrl = this.request.endPoint + '/UserAccount';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private request: RequestService
+  ) {}
 
-  get httpOptions(): { headers: HttpHeaders } {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return {
-      headers
-    };
-  }
+  // get httpOptions(): { headers: HttpHeaders } {
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   return {
+  //     headers
+  //   };
+  // }
 
   getGardens(id: number): Observable<Garden[]> {
-    return this.httpClient.get<Garden[]>(
-      `${this.baseUrl}/${id}/gardens`,
-      this.httpOptions
-    );
+    return this.httpClient.get<Garden[]>(`${this.baseUrl}/${id}/gardens`);
   }
 }

@@ -1,6 +1,6 @@
-.row {
-  margin-top: 55px;
-}
+// .row {
+//   margin-top: 55px;
+// }
 
 #sidebar {
   display: flex;
@@ -16,15 +16,46 @@
   height: 100vh;
 }
 
-#sidebar li {
-  padding-left: 20px;
-  list-style-type: disc;
+.cursor {
+  cursor: pointer;
 }
 
-#sidebar li li {
-  padding-left: 20px;
-  list-style-type: disc;
+#sidebar {
+  li {
+    padding-left: 0px;
+    list-style-type: none;
+
+    li {
+      padding-left: 10px;
+      list-style-type: none;
+
+      span {
+        padding-left: 15px;
+        // cursor: pointer;
+      }
+    }
+  }
+
+  i {
+    font-size: 0.6em;
+    vertical-align: middle;
+  }
+
+  span {
+    padding-left: 15px;
+    // cursor: pointer;
+  }
 }
+
+// #sidebar li li {
+//   padding-left: 10px;
+//   list-style-type: none;
+
+//   span {
+//     padding-left: 15px;
+//     // cursor: pointer;
+//   }
+// }
 
 .selected {
   &,
@@ -37,6 +68,10 @@
   width: 2px;
   height: 100vh;
   background-color: lightgrey;
+}
+
+.currentPlantingArea-title {
+  padding-right: 15px;
 }
 
 .plantingArea-plants {
@@ -96,7 +131,7 @@
     margin-bottom: 0px;
 
     img {
-      max-width: 100%;
+      width: 100%;
     }
   }
 }
@@ -146,6 +181,19 @@
     size: 2em;
     margin-bottom: 0px;
   }
+}
+
+.plante-single-button {
+  display: block;
+  margin: auto;
+  border: 2px solid var(--vert);
+  padding: 2% 4%;
+  border-radius: 20px;
+  color: var(--vert);
+  text-align: center;
+  margin-top: 20px;
+  width: 50%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1280px) {

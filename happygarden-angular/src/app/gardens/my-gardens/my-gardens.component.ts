@@ -6,6 +6,8 @@ import { PlantingArea } from 'src/app/classes/planting-area';
 import { Plant } from 'src/app/classes/plant';
 import { Slot } from 'src/app/classes/slot';
 import { Observable } from 'rxjs';
+import { UserAccountRequestService } from 'src/app/services/userAccountRequest/user-account-request.service';
+import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 
 @Component({
   selector: 'app-my-gardens',
@@ -19,16 +21,26 @@ export class MyGardensComponent implements OnInit {
   currentPlantingArea: PlantingArea;
   currentSlot: Slot;
   currentPlant: Plant;
+  plant: Plant;
 
-  constructor(private gardenListService: GardenListService) {}
+  constructor(
+    private gardenListService: GardenListService,
+    private userAccServ: UserAccountRequestService,
+    private authServ: AuthenticateService
+  ) {}
 
   ngOnInit() {
     this.currentGarden = new Garden();
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();
+    this.plant = new Plant();
 
-    this.gardens$ = this.gardenListService.getGardens(3);
+    // this.gardens$ = this.userAccServ.getGardens();
+
+    let id: number;
+    this.authServ.user$.subscribe(response => (id = response.id));
+    this.gardens$ = this.userAccServ.getGardens(id);
   }
 
   showGardens() {
