@@ -1,0 +1,48 @@
+.panelprimary {
+  padding: 5%;
+}
+
+label {
+  color: var(--police);
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+input {
+  margin-right: 5px;
+}
+
+.btn-api {
+  border: 2px solid var(--vert);
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--vert);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+  }
+
+.btn-del {
+  border: 2px solid var(--red);
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--red);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+  margin-right: 5px;
+}
+
+.btn-del:hover {
+  background: var(--red);
+  color: var(--blanc);
+  transition: all 0.5s;
+}
+
+.btn-api:hover {
+  background: var(--vert);
+  color: var(--blanc);
+  transition: all 0.5s;
+}

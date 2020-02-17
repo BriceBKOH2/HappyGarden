@@ -1,8 +1,22 @@
-<p>user-management works!</p>
-<div class="panel primary">
+<section class="panelprimary">
+  <form class="form-inline" [formGroup]="searchUserFrom">
+    <div class="form-group">
+      <label for="userName">Rechercher un utilisateur</label>
+      <input
+        formControlName="userName"
+        id="userName"
+        type="text"
+        placeholder="Nom de l'utilisateur"
+        class="form-control"
+      />
+    </div>
+    <button class="btn-api form-control" type="button" (click)="searchUser()">
+      Rechercher
+    </button>
+  </form>
+
 <div class="user-management">
-  <a> </a>
-  <h2>Liste User</h2>
+  <h4>Liste des utilisateurs</h4>
 </div>
 <div class="panel-body">
   <table class="table table-striped">
@@ -10,19 +24,24 @@
       <tr>
         <th>Firstname</th>
         <th>Lastname</th>
+        <th>Pseudo</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users | async">
-        <td>{{user.firstname}}</td>
-        <td>{{user.lastname}}</td>
-        <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
-            <button (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+      <tr *ngFor="let user of users">
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.nickname }}</td>
+        <td><!-- <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button> -->
+            <!--<a [routerLink]=":id" class="btn btn-info" routerLinkActive="active">Détail</a> -->
+            <a class="btn-del" type="button" (click)="deleteUser(user.id)">Suppression</a>
+            <a class="btn-api" [routerLink]="[user.id]">Détail</a>
+            <!-- <button (click)="UserSingleComponent(userAccount.id)" class="btn btn-info" style="margin-left: 10px">Details</button> -->
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-</div>
+</section>
 

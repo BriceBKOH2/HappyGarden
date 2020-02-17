@@ -29,6 +29,10 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	public List<UserAccount> findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(String name) {
+		return repo.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name,name, name);
+	}
+	
 	public List<UserAccount> findAllByFirstnameIgnoreCase(String name) {
 		return repo.findAllByFirstnameIgnoreCase(name);
 	}

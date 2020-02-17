@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.exception.NotFoundException;
@@ -36,7 +37,14 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	@GetMapping(value = "/{id}/gardens")
 	public List<Garden> findGardensByUserId(@PathVariable Long id) throws NotFoundException {
 		return gardenService.findByUserId(id);
-	}}
+	}
+	
+	@GetMapping("/search")
+	public List<UserAccount> searchByName(@RequestParam("name") String name) {
+		return service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);
+	}
+	
+}
 	
 	// TODO
 	

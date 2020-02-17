@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
   <a class="navbar-brand" href="#"><i class="fas fa-leaf"></i> Happy Garden</a>
 
-  <div id="navbarSupportedContent">
+  <! <div id="navbarSupportedContent">>
   <button
     class="navbar-toggler hidden-sm-up"
     type="button"
@@ -23,25 +23,6 @@
       <li *ngFor="let link of links" routerLinkActive="active"
           class="nav-item">
         <a class="nav-link" [routerLink]="link.route">{{ link.label }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['login']">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['account']">Compte</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['libraryList']">Bibliothèque</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"
-          >Mes jardins</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"
-          >Contact</a
-        >
       </li>
     </ul>
   </div>
