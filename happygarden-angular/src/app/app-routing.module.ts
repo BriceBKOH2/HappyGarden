@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginModule'
   },
   {
-    path: 'account',
+    path: 'userAccount',
     loadChildren: './account/account.module#AccountModule',
     canActivate: [AuthenticateGuard]
   }
@@ -41,10 +41,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes, {
-      enableTracing: !environment.production, //Enable trace of routing and process in browser console
-      paramsInheritanceStrategy: 'always' // Keep all data en params from url in routing
-    }),
+    RouterModule.forRoot(
+      routes //, {
+      // enableTracing: !environment.production, //Enable trace of routing and process in browser console
+      // paramsInheritanceStrategy: 'always' // Keep all data en params from url in routing
+      //}
+    ),
     CommonModule
   ],
   exports: [RouterModule]

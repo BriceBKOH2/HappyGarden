@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { AccountpageComponent } from './accountpage/accountpage.component';
 import { AccountRoutingModule } from './account-routing.module';
-import { AccountComponent } from './account.component';
-
+import { SidebarAccountComponent } from './sidebar-account/sidebar-account.component';
 
 @NgModule({
-  declarations: [AccountComponent],
-  imports: [
-    CommonModule,
-    AccountRoutingModule
-  ]
+  declarations: [AccountpageComponent, SidebarAccountComponent],
+  imports: [CommonModule, AccountRoutingModule]
 })
-export class AccountModule { }
+export class AccountModule {}

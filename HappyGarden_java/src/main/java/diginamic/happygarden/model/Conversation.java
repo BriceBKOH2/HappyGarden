@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 /** A Conversation between Users that contains a list of messages **/
@@ -23,12 +26,15 @@ public class Conversation implements HibernateEntity<Long> {
 	
 	@NotNull
 	@OneToMany
+	//@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Message> messages = new ArrayList<>() ;
 
+	@JsonBackReference("user_conversations")
+	@ManyToMany
+	private List<UserAccount> users = new ArrayList<>();
 	
 	/* Constructors */
-	
-	public Conversation() {
+	public Conversation() { 
 		super();
 	}
 
@@ -43,7 +49,6 @@ public class Conversation implements HibernateEntity<Long> {
 			this.messages.add(message);
 		}
 	}
-	
 	
 	/* Getters Setters */
 	
@@ -63,9 +68,20 @@ public class Conversation implements HibernateEntity<Long> {
 		this.messages = messages;
 	}
 	
-	
+	public List<UserAccount> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<UserAccount> users) {
+		this.users = users;
+	}
+		
 	/* Methods */
 	
+	public void addUser(UserAccount user) {
+		this.users.add(user);
+	}
+
 	public void addMessages(List<Message> messages) {
 		this.messages.addAll(messages);
 	}

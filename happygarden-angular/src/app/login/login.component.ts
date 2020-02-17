@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticateService } from '../authenticate/services/authenticate.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription;
   loginForm: FormGroup;
   invalidLogin = false;
 
@@ -32,9 +35,9 @@ export class LoginComponent implements OnInit {
     let username = this.loginForm.controls.username.value;
     let password = this.loginForm.controls.password.value;
 
-    this.authServ.login(username, password).subscribe(
+    this.subscription = this.authServ.login(username, password).subscribe(
       () => {
-        this.router.navigate(['account']);
+        this.router.navigate(['userAccount']);
       },
       error => {
         this.invalidLogin = true;
@@ -42,5 +45,22 @@ export class LoginComponent implements OnInit {
         alert(error.status + ' : ' + error.statusText);
       }
     );
+  }
+
+  logOut() {
+    this.authServ.logout().subscribe(
+      () => {
+        this.router.navigate(['login']);
+      },
+      error => {
+        console.log('Error login out' + error);
+        alert(error.status + ' : ' + error.statusText);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    // throw error when navigating to other pages
+    // this.subscription.unsubscribe();
   }
 }

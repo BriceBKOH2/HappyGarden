@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LibraryService } from '../service/library.service';
 import { Plant } from 'src/app/classes/plant';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 
 @Component({
   selector: 'app-library-list',

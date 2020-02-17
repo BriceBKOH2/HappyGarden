@@ -3,6 +3,7 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 import { AuthenticateApiService } from 'src/app/services/authenticateApi/authenticate-api.service';
+import { UserAccount } from 'src/app/classes/user-account';
 
 export const AuthApiToken = new InjectionToken('AuthApiToken');
 
@@ -11,7 +12,7 @@ export const AuthApiToken = new InjectionToken('AuthApiToken');
 })
 export class AuthenticateService {
   isAuth$ = new BehaviorSubject<boolean>(null);
-  userAuth$ = new BehaviorSubject<{ token: string }>(null);
+  userAuth$ = new BehaviorSubject<UserAccount>(null);
 
   constructor(
     @Inject(AuthApiToken) private api: AuthenticateApiService,
@@ -40,11 +41,11 @@ export class AuthenticateService {
     );
   }
 
-  get user$(): Observable<{ token: string }> {
+  get user$(): Observable<UserAccount> {
     return this.userAuth$.pipe(filter(user => user !== null));
   }
 
-  login(username, password): Observable<any> {
+  login(username: string, password: string): Observable<UserAccount> {
     return this.api.login(username, password).pipe(
       switchMap(value => this.save(value)),
       tap(value => {
