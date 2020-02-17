@@ -7,10 +7,10 @@ import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-single',
-  templateUrl: './user-single.component.html',
-  styleUrls: ['./user-single.component.scss']
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.scss']
 })
-export class UserSingleComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
 
   public user: UserAccount = new UserAccount();
 

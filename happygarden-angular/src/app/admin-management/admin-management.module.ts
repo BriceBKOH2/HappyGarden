@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminManagementRoutingModule} from './admin-management-routing.module';
 import { UserManagementComponent} from './user-management/user-management.component';
-import { UserSingleComponent } from './user-single/user-single.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 @NgModule({
-  declarations: [UserManagementComponent, UserSingleComponent],
+  declarations: [UserManagementComponent, UserDetailsComponent],
   imports: [CommonModule, AdminManagementRoutingModule,
     FormsModule,
     ReactiveFormsModule]

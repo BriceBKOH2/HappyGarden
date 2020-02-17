@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserManagementComponent } from './user-management/user-management.component';
-import { UserSingleComponent } from './user-single/user-single.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 const routes: Routes = [{ path: '', component: UserManagementComponent},
-                         { path: ':id', component: UserSingleComponent }];
+                         { path: ':id', component: UserDetailsComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
