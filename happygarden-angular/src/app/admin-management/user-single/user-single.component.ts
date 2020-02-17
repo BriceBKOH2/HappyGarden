@@ -11,12 +11,15 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./user-single.component.scss']
 })
 export class UserSingleComponent implements OnInit {
+
+  public user: UserAccount = new UserAccount();
+
   constructor(
     private userAccountRequestService: UserAccountRequestService,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {
+  }
 
-  user: UserAccount;
   ngOnInit() {
     this.activatedRoute.params
       .pipe(

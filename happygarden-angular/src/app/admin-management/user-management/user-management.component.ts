@@ -41,8 +41,8 @@ export class UserManagementComponent implements OnInit {
     this.userService.deleteUser(id)
     .subscribe(
       data => {
-        console.log(data);
-        this.users;
+        this.searchUser();
+        location.reload();
       },
       error => console.log(error)
     );
