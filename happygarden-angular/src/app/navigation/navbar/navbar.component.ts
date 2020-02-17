@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 import { Router } from '@angular/router';
-import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-navbar',

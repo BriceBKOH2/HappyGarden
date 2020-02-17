@@ -28,10 +28,15 @@
           class="log-in">
         <a class="nav-link" [routerLink]="'login'">Sign in</a>
       </li>
-      <ng-template #loggedIn >
+      <ng-template #loggedIn>
         <li *ngFor="let linkAuth of linksAuth" routerLinkActive="active"
-        class="nav-item">
+            class="nav-item">
           <a class="nav-link" [routerLink]="linkAuth.route">{{ linkAuth.label }}</a>
+        </li>
+        <li class="nav-item logged-as" *ngIf="(this.authServ.user$ | async) as user">
+          <span class="nav-link">
+            Signed in as <b>{{ user.firstname + ' ' + user.lastname }}</b> ({{ user.userRole.name }})
+          </span>
         </li>
         <li class="log-out">
           <a class="nav-link" (click)="logOut()">Sign Out</a>
