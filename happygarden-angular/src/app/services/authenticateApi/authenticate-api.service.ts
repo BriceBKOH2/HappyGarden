@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AuthenticateApi } from 'src/app/authenticate/interfaces/authenticate-api';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { RequestService } from '../request/request.service';
 import { UserAccount } from 'src/app/classes/user-account';
 import { UserAccountRequestService } from '../userAccountRequest/user-account-request.service';
-import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,11 +43,48 @@ export class AuthenticateApiService implements AuthenticateApi {
     let params = new HttpParams().set('username', username).set('password', password);
 
     let user = new BehaviorSubject<UserAccount>(null);
-    this.httpClient.post(this.endPointLogin, null, { params } ).subscribe(
-      () => this.userServ.getUserAccountByNickname(username).subscribe(
-        (response) => (user.next(response))
-      )
-    );
+
+    // this.httpClient.post(this.endPointLogin, null, { params } ).subscribe(
+    //   (value) => (console.log("login post subscribe value " + value)),
+    //   (error) => (console.log("login post subscribe error >" + error)),
+    //   () => {
+    //     this.userServ.getUserAccountByNickname(username).subscribe(
+    //       (response) => {
+    //         console.log("getUser : response ");
+    //         console.log(response);
+    //         (user.next(response));
+    //       },
+    //       (error) => {
+    //         console.log("getUser : error " + error);
+    //         (error.next(error));
+    //       },
+    //       () => {
+    //         console.log("getUser : complete ");
+    //       }
+    //     );
+    //     console.log("login post subscribe complete");
+    //   }
+    // );
+
+    this.httpClient.post(this.endPointLogin, null, {params})
+      .pipe(catchError(val => of(val)))
+      .subscribe(
+        (err) => {
+          // we check if value contains an error
+          if (err instanceof HttpErrorResponse) {
+            alert(err.status + ' : ' + err.message);
+          } else {
+            // no error : retrieving account
+            this.userServ.getUserAccountByNickname(username).subscribe(
+              (response: UserAccount) => (user.next(response)),
+              (error) => {
+                console.log("getUser : error ");
+                console.log(error);
+              }
+            );
+          }
+        }
+      );
 
     return user;
   }

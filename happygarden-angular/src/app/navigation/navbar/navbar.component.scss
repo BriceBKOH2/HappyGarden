@@ -8,6 +8,10 @@ nav {
   border-bottom: solid 1px var(--vert);
 }
 
+.navbar-nav {
+  width: 100%;
+}
+
 .navbar-brand {
   font-weight: 500;
   color: var(--police);
@@ -25,5 +29,11 @@ i {
 
 .navbar-light .navbar-nav .nav-link {
   color: var(--police-inactive);
+}
+
+.log-out, .log-in {
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: auto;
 }
 
