@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticateService } from '../authenticate/services/authenticate.service';
 import { Subscription } from 'rxjs';
+import { UserAccountRequestService } from '../services/userAccountRequest/user-account-request.service';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   loginForm: FormGroup;
+  createAccForm: FormGroup;
   invalidLogin = false;
   needlogin: string;
 
   constructor(
-    private formBuilder: FormBuilder,
     public authServ: AuthenticateService,
+    private userAccServ: UserAccountRequestService,
+    private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -32,13 +35,34 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Validator for password matching when creating new user account.
+   * @param group
+   */
+  checkPwd(group: FormGroup) {
+    let password = group.get('password').value;
+    let confirmPassword = group.get('passwordConfirm').value;
+
+    return password === confirmPassword ? null : { notSame: true }
+  }
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
     });
+
+    this.createAccForm = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      password: ['', Validators.required],
+      passwordConfirm: ['', [Validators.required]]
+    }, {validators: this.checkPwd}
+    )
   }
 
+  /**
+   * Manage credential validation and request to log in.
+   */
   onSubmit() {
     if (this.loginForm.invalid) {
       return;
@@ -63,6 +87,20 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     );
     // this.subscription.unsubscribe();
+  }
+
+  /**
+   * Manage account creation.
+   */
+  onSubmitCreate() {
+    if (this.createAccForm.invalid) {
+      return;
+    }
+
+    let username = this.createAccForm.controls.username.value;
+    let password = this.createAccForm.controls.password.value;
+
+    this.userAccServ.createUserAccount(username, password);
   }
 
   logOut() {

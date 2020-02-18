@@ -4,15 +4,15 @@ import { Conversation } from './conversation';
 import { UserRole } from './user-role';
 
 export class UserAccount {
-  id: number;
+  id?: number;
   firstname: string;
   lastname: string;
   nickname: string;
   password: string;
   userRole: UserRole;
-  conversations: Conversation[];
-  friends: UserAccount[];
-  usedPlants: Plant[];
-  favoritePlants: Plant[];
-  gardens: Garden[];
+  conversations?: Conversation[];
+  friends?: UserAccount[];
+  usedPlants?: Plant[];
+  favoritePlants?: Plant[];
+  gardens?: Garden[];
 }

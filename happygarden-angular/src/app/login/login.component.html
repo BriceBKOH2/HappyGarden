@@ -1,55 +1,113 @@
 <div *ngIf="needlogin" class="alert alert-danger">You need to log in to access this page.</div>
 
 <div class="row">
-  <div *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="col-md-6 login-container">
-    <h2 style="margin: auto">Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">UserName:</label>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="username"
-          id="username"
-          autocomplete="off"
-        />
-        <div
-          class="error"
-          *ngIf="
-            loginForm.controls['username'].hasError('required') &&
-            loginForm.controls['username'].touched
-          "
-        >
-          Username is required
+  <ng-container *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="flex-row">
+    <div class="col-md-6 login-container">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">UserName:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            id="username"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              loginForm.controls['username'].hasError('required') &&
+              loginForm.controls['username'].touched">
+            Username is required
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          id="pwd"
-          autocomplete="off"
-        />
-        <div
-          class="error"
-          *ngIf="
-            loginForm.controls['password'].hasError('required') &&
-            loginForm.controls['password'].touched
-          "
-        >
-          Password is required
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            id="pwd"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              loginForm.controls['password'].hasError('required') &&
+              loginForm.controls['password'].touched
+            "
+          >
+            Password is required
+          </div>
         </div>
-      </div>
-      <button class="btn btn-success" [disabled]="loginForm.invalid">
-        Login
-      </button>
-      <div *ngIf="invalidLogin" class="error">
-        <div>Invalid credentials.</div>
-      </div>
-    </form>
-  </div>
+        <button class="btn btn-success" [disabled]="loginForm.invalid">
+          Login
+        </button>
+        <div *ngIf="invalidLogin" class="error">
+          <div>Invalid credentials.</div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-6 login-container">
+      <h2>Create account</h2>
+      <form [formGroup]="createAccForm" (ngSubmit)="onSubmitCreate()">
+        <div class="form-group">
+          <label for="createFormUsername">UserName:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            id="createFormUsername"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              createAccForm.controls['username'].hasError('minlength')">
+            Username must have minimum 4 characters.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="createFormPwd">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            id="createFormPwd"
+            autocomplete="off"
+          />
+          <div
+            class="alert error"
+            *ngIf="createAccForm.controls['password'].hasError('required') &&
+            createAccForm.controls['password'].touched">
+            Password is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="createFormPwdConfirm">Confirm password:</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="passwordConfirm"
+            id="createFormPwdConfirm"
+            autocomplete="off"
+          />
+          <div
+            class="alert error"
+            *ngIf="
+              createAccForm.hasError('notSame') &&
+              createAccForm.controls['passwordConfirm'].touched">
+            Passwords must match.
+          </div>
+        </div>
+        <button class="btn btn-danger" [disabled]="createAccForm.invalid">
+          Create Account
+        </button>
+      </form>
+    </div>
+  </ng-container>
   <ng-template #logout>
     <div class="col-md-6 login-container">
       <h2>Vous êtes déjà connecté. Se déconnecter ?</h2>
