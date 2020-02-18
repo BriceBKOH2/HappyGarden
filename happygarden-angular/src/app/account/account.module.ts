@@ -6,6 +6,7 @@ import { SidebarAccountComponent } from './sidebar-account/sidebar-account.compo
 
 @NgModule({
   declarations: [AccountpageComponent, SidebarAccountComponent],
-  imports: [CommonModule, AccountRoutingModule]
+  imports: [CommonModule, AccountRoutingModule],
+  exports: [SidebarAccountComponent]
 })
 export class AccountModule {}

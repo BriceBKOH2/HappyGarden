@@ -11,9 +11,19 @@ import { AuthenticateService } from 'src/app/authenticate/services/authenticate.
   styleUrls: ['./accountpage.component.scss']
 })
 export class AccountpageComponent implements OnInit {
-  constructor(public authServ: AuthenticateService) {}
-  // userSave = new UserAccount();
+  constructor(
+    public authServ: AuthenticateService,
+    private accountService: AccountService
+  ) {}
+  //userSave = new UserAccount()
+  nbGardens: number;
   ngOnInit() {
-    // this.authServ.user$.subscribe(response => (this.userSave = response));
+    let id: number;
+    this.authServ.user$.subscribe(response => {
+      id = response.id;
+      this.accountService
+        .countGardens(id)
+        .subscribe(count => (this.nbGardens = count));
+    });
   }
 }

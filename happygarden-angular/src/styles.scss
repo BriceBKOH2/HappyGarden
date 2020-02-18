@@ -16,18 +16,32 @@
   --police-inactive: #354463a0;
 }
 
-a {
-  color: var(--vert);
-}
+// a {
+//   color: var(--vert);
+// }
+
+// a:hover {
+//   color: var(--vert);
+//   text-decoration: wavy underline var(--vert);
+// }
 
 a:hover {
-  color: var(--vert);
-  text-decoration: wavy underline var(--vert);
+  text-decoration: none;
 }
 
 figure img {
   max-width: 100%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.profile-section {
+  margin: 4% 5% 5% 18%;
+}

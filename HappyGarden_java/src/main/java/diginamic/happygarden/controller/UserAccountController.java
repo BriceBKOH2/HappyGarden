@@ -36,7 +36,13 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	@GetMapping(value = "/{id}/gardens")
 	public List<Garden> findGardensByUserId(@PathVariable Long id) throws NotFoundException {
 		return gardenService.findByUserId(id);
-	}}
+	}
+	
+	@GetMapping(value = "/{id}/gardens/count")
+	public Long countNbGardens(@PathVariable Long id) {
+		return gardenService.countNbGardensByUserId(id);
+	}
+}
 	
 	// TODO
 	

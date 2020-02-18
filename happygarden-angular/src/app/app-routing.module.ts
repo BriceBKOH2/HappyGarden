@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'userAccount',
     loadChildren: './account/account.module#AccountModule',
     canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'userAccount/conversations',
+    loadChildren: './conversations/conversations.module#ConversationsModule',
+    canActivate: [AuthenticateGuard]
   }
 ];
 

@@ -49,6 +49,11 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	public List<T> getAll() {
 		return service.findAll();
 	}
+	
+	@GetMapping("/count")
+	public Long count() {
+		return service.count();
+	}
 
 	/**
 	 * Returns the entity with the id in the path variable.

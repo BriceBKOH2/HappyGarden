@@ -1,34 +1,37 @@
-<p>
-  accountpage works! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-  Dolorem exercitationem omnis, optio animi necessitatibus impedit fugit dolore
-  molestias nam eos cumque quam doloremque vero nesciunt ipsam nemo rerum nisi
-  delectus!
-</p>
-<p>
-  accountpage works! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-  Dolorem exercitationem omnis, optio animi necessitatibus impedit fugit dolore
-  molestias nam eos cumque quam doloremque vero nesciunt ipsam nemo rerum nisi
-  delectus!
-</p>
-
-<p>
-  accountpage works! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-  Dolorem exercitationem omnis, optio animi necessitatibus impedit fugit dolore
-  molestias nam eos cumque quam doloremque vero nesciunt ipsam nemo rerum nisi
-  delectus!
-</p>
-
-<p>
-  accountpage works! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-  Dolorem exercitationem omnis, optio animi necessitatibus impedit fugit dolore
-  molestias nam eos cumque quam doloremque vero nesciunt ipsam nemo rerum nisi
-  delectus!
-</p>
-
-<p *ngIf="authServ.user$ | async as user" style="color: rebeccapurple;">
-  {{ user.lastname }}
-  {{ user.id }}
-  {{ user.firstname }}
-  {{ user.userRole.name }}
-</p>
 <app-sidebar-account></app-sidebar-account>
+<section class="profile-section">
+  <p *ngIf="authServ.user$ | async as user">Bienvenue {{ user.firstname }}</p>
+
+  <div class="widgets">
+    <div class="widget jardins">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>
+          Jardins <span *ngIf="nbGardens">({{ nbGardens }})</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="widget conv">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>Conversations</p>
+        <a [routerLink]="['/userAccount/conversations']">CLICK</a>
+      </div>
+    </div>
+
+    <div class="widget abo">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>Abonnements</p>
+      </div>
+    </div>
+
+    <div class="widget profil">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>Modifier profil</p>
+      </div>
+    </div>
+  </div>
+</section>

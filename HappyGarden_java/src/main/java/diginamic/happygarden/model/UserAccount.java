@@ -19,6 +19,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** The list of information contained in a User's account **/
@@ -42,12 +43,13 @@ public class UserAccount implements HibernateEntity<Long> {
 	@NotBlank
 	private String password;
 	
+	private String profileImg;
+	
 	@NotNull
 	@ManyToOne
 	private UserRole userRole;
 
-	@JsonManagedReference("user_conversations")
-	@JsonBackReference("user_msg")
+	@JsonIgnore
 	@ManyToMany(mappedBy = "users")
 	private List<Conversation> conversations = new ArrayList<>();
 	
@@ -223,4 +225,14 @@ public class UserAccount implements HibernateEntity<Long> {
 			this.gardens.add(garden);
 		}
 	}
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	
+	
 }

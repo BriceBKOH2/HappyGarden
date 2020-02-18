@@ -27,4 +27,10 @@ export class AccountService {
   getUser(id: number): Observable<UserAccount> {
     return this.httpClient.get<UserAccount>(`${this.endPointUser}/${id}`);
   }
+
+  countGardens(id: number): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.endPointUser}/${id}/gardens/count`
+    );
+  }
 }

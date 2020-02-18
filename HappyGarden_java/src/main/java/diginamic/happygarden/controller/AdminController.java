@@ -175,10 +175,12 @@ public class AdminController {
 			
 			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
 			estelle.setPassword("estelle");
+			estelle.setProfileImg("profil.jpg");
 			userAccServ.save(estelle);
 			
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
+			jade.setProfileImg("succulente.jpg");
 			userAccServ.save(jade);
 			
 			ArrayList<Message> messages = new ArrayList<Message>();
@@ -192,6 +194,11 @@ public class AdminController {
 			messageServ.save(msgJade);
 			
 			Conversation conversation = new Conversation(messages);
+			
+			List<UserAccount> usersConv = new ArrayList<UserAccount>();
+			usersConv.add(jade);
+			usersConv.add(estelle);
+			conversation.setUsers(usersConv);
 			
 			jardinUn.setUser(estelle);
 			
