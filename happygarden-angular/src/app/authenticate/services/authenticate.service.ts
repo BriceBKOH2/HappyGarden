@@ -41,6 +41,19 @@ export class AuthenticateService {
     );
   }
 
+  /**
+   * Returns true if the role of the current user is 'Admin'.
+   */
+  isAdmin(): boolean {
+    let isAdmin = false;
+
+    this.user$.subscribe(
+      (user) => (isAdmin = user.userRole.name == 'Admin')
+    );
+
+    return isAdmin;
+  }
+
   get user$(): Observable<UserAccount> {
     return this.userAuth$.pipe(filter(user => user !== null));
   }

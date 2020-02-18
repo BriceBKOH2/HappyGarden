@@ -1,10 +1,10 @@
 
 <ng-container *ngIf="authServ.user$ | async as user">
   <div style="color: rebeccapurple;">
-    {{ user.firstname }} {{ user.lastname }} <br>
-    Id : {{ user.id }} <br>
-    Role : {{ user.userRole.name }} <br>
-    User Rights :
+    <b>{{ user.firstname }} {{ user.lastname }}</b><br>
+    <em>Id :</em> {{ user.id }} <br>
+    <em>Role :</em> {{ user.userRole.name }} <br>
+    <em>User Rights :</em>
     <ul *ngFor="let userRight of user.userRole.userRights">
         <li>{{ userRight.name }}</li>
     </ul>

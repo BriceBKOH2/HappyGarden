@@ -1,3 +1,5 @@
+<div *ngIf="needlogin" class="alert alert-danger">You need to log in to access this page.</div>
+
 <div class="row">
   <div *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="col-md-6 login-container">
     <h2 style="margin: auto">Login</h2>

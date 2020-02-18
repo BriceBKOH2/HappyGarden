@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticateService } from '../authenticate/services/authenticate.service';
 import { Subscription } from 'rxjs';
 
@@ -14,12 +14,23 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   loginForm: FormGroup;
   invalidLogin = false;
+  needlogin: string;
 
   constructor(
     private formBuilder: FormBuilder,
     public authServ: AuthenticateService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.paramMap.subscribe(
+      params => {this.needlogin = params.get('needlogin')}
+    );
+
+    // this.activatedRoute.queryParams.subscribe(params => {
+    //   this.needlogin = params['needlogin'];
+    // });
+
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

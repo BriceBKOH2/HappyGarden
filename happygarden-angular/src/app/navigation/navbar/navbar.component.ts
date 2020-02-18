@@ -19,6 +19,10 @@ export class NavbarComponent implements OnInit {
       route: 'libraryList',
       label: 'Bibliothèque'
     },
+    {
+      route: 'admin',
+      label: 'ADMIN O-O'
+    },
   ];
 
   // links that need the user to be logged in to view
