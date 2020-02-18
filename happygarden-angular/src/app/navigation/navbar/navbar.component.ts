@@ -35,6 +35,13 @@ export class NavbarComponent implements OnInit {
       route: 'userAccount',
       label: 'Mon Compte'
     },
+  ];
+
+  linksAdmin = [
+    {
+      route: 'usermanagement',
+      label: 'Gestion des utilisateurs'
+    },
   ]
 
   constructor(public authServ: AuthenticateService,

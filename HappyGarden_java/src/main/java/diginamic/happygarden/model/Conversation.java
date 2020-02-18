@@ -12,8 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 
 /** A Conversation between Users that contains a list of messages **/
 @Entity
@@ -29,7 +27,6 @@ public class Conversation implements HibernateEntity<Long> {
 	//@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Message> messages = new ArrayList<>() ;
 
-	@JsonBackReference("user_conversations")
 	@ManyToMany
 	private List<UserAccount> users = new ArrayList<>();
 	

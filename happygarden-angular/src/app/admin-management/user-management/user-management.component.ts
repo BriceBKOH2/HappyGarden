@@ -17,7 +17,7 @@ export class UserManagementComponent implements OnInit {
   usersTab: UserAccount[];*/
 
   searchUserFrom = new FormGroup({
-    userName: new FormControl()
+    userName: new FormControl('')
   });
 
   constructor(private userService : UserAccountRequestService,
@@ -39,6 +39,17 @@ export class UserManagementComponent implements OnInit {
 
   deleteUser(id: number) {
     this.userService.deleteUser(id)
+    .subscribe(
+      data => {
+        this.searchUser();
+        location.reload();
+      },
+      error => console.log(error)
+    );
+  }
+
+  deleteAllEntityFromUser(id: number) {
+    this.userService.deleteAllEntityFromUser(id)
     .subscribe(
       data => {
         this.searchUser();

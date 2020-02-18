@@ -33,6 +33,12 @@
           <a class="nav-link" [routerLink]="linkAuth.route">{{ linkAuth.label }}</a>
         </li>
       </ng-template>
+      <ng-container *ngIf="this.authServ.isAdmin$ | async">
+        <li *ngFor="let linkAdmin of linksAdmin" routerLinkActive="active"
+        class="nav-item">
+          <a class="nav-link" [routerLink]="linkAdmin.route">{{ linkAdmin.label }}</a>
+        </li>
+      </ng-container>
     </ul>
     <button class="btn btn-light" *ngIf="this.authServ.isAuthentificated$ | async" (click)="logOut()">Log Out</button>
   </div>

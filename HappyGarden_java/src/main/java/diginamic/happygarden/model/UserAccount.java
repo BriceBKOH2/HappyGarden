@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /** The list of information contained in a User's account **/
@@ -46,9 +46,8 @@ public class UserAccount implements HibernateEntity<Long> {
 	@ManyToOne
 	private UserRole userRole;
 
-	@JsonManagedReference("user_conversations")
-	@JsonBackReference("user_msg")
-	@ManyToMany(mappedBy = "users")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	private List<Conversation> conversations = new ArrayList<>();
 	
 	@ElementCollection

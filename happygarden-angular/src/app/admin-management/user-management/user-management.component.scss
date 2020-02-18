@@ -12,7 +12,7 @@ input {
   margin-right: 5px;
 }
 
-.btn-api {
+.btn-update {
   border: 2px solid var(--vert);
   padding: 3px 6px;
   border-radius: 5px;
@@ -35,13 +35,31 @@ input {
   margin-right: 5px;
 }
 
+.btn-detail {
+  border: 2px solid var(--vert);
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--vert);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+  margin-right: 5px;
+}
+
 .btn-del:hover {
   background: var(--red);
   color: var(--blanc);
   transition: all 0.5s;
 }
 
-.btn-api:hover {
+.btn-update:hover {
+  background: var(--vert);
+  color: var(--blanc);
+  transition: all 0.5s;
+}
+
+.btn-detail:hover {
   background: var(--vert);
   color: var(--blanc);
   transition: all 0.5s;

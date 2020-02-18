@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, filter, map, switchMap, tap } from 'rxjs/operators';
 import { AuthenticateApiService } from 'src/app/services/authenticateApi/authenticate-api.service';
 import { UserAccount } from 'src/app/classes/user-account';
+import { isArray } from 'util';
 
 export const AuthApiToken = new InjectionToken('AuthApiToken');
 
@@ -38,6 +39,21 @@ export class AuthenticateService {
         return of(isAuth);
       }),
       filter(isAuth => isAuth !== null)
+    );
+  }
+
+  get isAdmin$() {
+    return this.isAuthentificated$.pipe(
+      switchMap(isAuth => {
+          if (isAuth) {
+            let user = this.userAuth$.value;
+            if (user != undefined && user != null && user.userRole != undefined && user.userRole != null) {
+              return of(user.userRole.userRights.findIndex(right => right.name === 'ADMINISTRATION') >= 0);
+            }
+          }
+          return of(false)
+        }
+      )
     );
   }
 

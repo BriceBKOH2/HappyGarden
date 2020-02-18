@@ -36,7 +36,8 @@
         <td><!-- <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button> -->
             <!--<a [routerLink]=":id" class="btn btn-info" routerLinkActive="active">Détail</a> -->
             <a class="btn-del" type="button" (click)="deleteUser(user.id)">Suppression</a>
-            <a class="btn-api" [routerLink]="[user.id]">Détail</a>
+            <a class="btn-detail" [routerLink]="[user.id]">Détail</a>
+            <a class="btn-update" [routerLink]="['update',user.id]">Update</a>
             <!-- <button (click)="UserSingleComponent(userAccount.id)" class="btn btn-info" style="margin-left: 10px">Details</button> -->
         </td>
       </tr>
