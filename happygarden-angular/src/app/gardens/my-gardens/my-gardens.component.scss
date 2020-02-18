@@ -1,16 +1,3 @@
-// .row {
-//   margin-top: 55px;
-// }
-
-#sidebar {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 30px;
-  padding-left: 50px;
-  height: 100vh;
-  border-left: medium;
-}
-
 #body {
   padding-top: 30px;
   height: 100vh;
@@ -20,67 +7,8 @@
   cursor: pointer;
 }
 
-#sidebar {
-  li {
-    padding-left: 0px;
-    list-style-type: none;
-
-    li {
-      padding-left: 10px;
-      list-style-type: none;
-
-      span {
-        padding-left: 15px;
-        // cursor: pointer;
-      }
-    }
-  }
-
-  i {
-    font-size: 0.6em;
-    vertical-align: middle;
-  }
-
-  span {
-    padding-left: 15px;
-    // cursor: pointer;
-  }
-}
-
-// #sidebar li li {
-//   padding-left: 10px;
-//   list-style-type: none;
-
-//   span {
-//     padding-left: 15px;
-//     // cursor: pointer;
-//   }
-// }
-
-.selected {
-  &,
-  &:hover {
-    color: var(--vert);
-  }
-}
-
-.vertical-line {
-  width: 2px;
-  height: 100vh;
-  background-color: lightgrey;
-}
-
 .currentPlantingArea-title {
   padding-right: 15px;
-}
-
-.plantingArea-plants {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  grid-gap: 2%;
-  margin-bottom: 4%;
-  padding: 5%;
 }
 
 .selectPlant {
@@ -95,135 +23,21 @@
   cursor: pointer;
 }
 
-.currentPlant {
-  position: relative;
+.titles-add-plant {
   display: flex;
-  height: auto;
-  margin-top: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
-  // background: #fcfcfc;
+  justify-content: space-between;
+  padding-right: 60px;
 
-  .encart {
-    width: auto;
-    font-size: 13px;
-    padding: 5px;
+  .add-button {
+    display: block;
+    margin: auto;
+    border: 2px solid var(--vert);
+    padding: 2% 4%;
+    border-radius: 20px;
+    color: var(--vert);
     text-align: center;
-    background-color: var(--vert);
-    color: #fff;
-    position: absolute;
-    top: -10px;
-    left: 10%;
-    transform: translateX(-50%);
-
-    p {
-      margin-bottom: 0px;
-    }
-  }
-}
-
-.img {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
-  max-width: 50%;
-  // height: 200px;
-  overflow: hidden;
-  figure {
-    margin-bottom: 0px;
-
-    img {
-      width: 100%;
-    }
-  }
-}
-
-.left-infos {
-  width: 100%;
-  margin: 20px;
-  img {
-    width: 50px;
-  }
-}
-
-.icones-div {
-  display: flex;
-}
-
-.icones {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(1, 1fr);
-}
-
-.grid-row {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(6, 1fr);
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-
-  figure {
-    align-self: center;
-    grid-column: 1;
-    margin-bottom: 0px;
-  }
-
-  p {
-    display: flex;
-    grid-column: 2 / 5;
-    align-self: center;
-    margin-bottom: 0px;
-  }
-
-  mat-checkbox {
-    align-self: center;
-    grid-column: 6;
-    size: 2em;
-    margin-bottom: 0px;
-  }
-}
-
-.plante-single-button {
-  display: block;
-  margin: auto;
-  border: 2px solid var(--vert);
-  padding: 2% 4%;
-  border-radius: 20px;
-  color: var(--vert);
-  text-align: center;
-  margin-top: 20px;
-  width: 50%;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 1280px) {
-  .plantingArea-plants {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .plantingArea-plants {
-    display: inherit;
-  }
-
-  .plant {
-    margin: auto;
-    margin-bottom: 6%;
-  }
-
-  form {
-    margin-top: 45px;
-  }
-
-  form div {
-    margin: auto;
-  }
-
-  form button {
-    // width: 70%;
-    margin: auto;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    // margin-top: 20px;
+    width: 150%;
+    cursor: pointer;
   }
 }

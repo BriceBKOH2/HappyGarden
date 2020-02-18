@@ -4,10 +4,12 @@ import { MyGardensComponent } from './my-gardens/my-gardens.component';
 import { GardensRoutingModule } from './gardens-routing.module';
 import { MatCheckboxModule } from '@angular/material';
 import { LibraryModule } from '../library/library.module';
-import { GardenSidebarComponent } from './my-gardens/garden-sidebar/garden-sidebar.component';
+import { GardenSidebarComponent } from './my-gardens/gardens-sidebar/garden-sidebar.component';
+import { BodyPlantingAreaComponent } from './my-gardens/body-planting-area/body-planting-area.component';
+import { BodyPlantComponent } from './my-gardens/body-plant/body-plant.component';
 
 @NgModule({
-  declarations: [MyGardensComponent, GardenSidebarComponent],
+  declarations: [MyGardensComponent, GardenSidebarComponent, BodyPlantingAreaComponent, BodyPlantComponent],
   imports: [
     CommonModule,
     GardensRoutingModule,

@@ -7,7 +7,7 @@ import { MyGardensComponent } from '../my-gardens.component';
   styleUrls: ['./garden-sidebar.component.scss']
 })
 export class GardenSidebarComponent implements OnInit {
-  constructor(private myGardens: MyGardensComponent) {}
+  constructor(public myGardens: MyGardensComponent) {}
 
   ngOnInit() {}
 }
