@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Garden } from 'src/app/classes/garden';
-import { GardenListService } from 'src/app/gardens/service/garden-list.service';
 import { UserAccount } from 'src/app/classes/user-account';
 import { PlantingArea } from 'src/app/classes/planting-area';
 import { Plant } from 'src/app/classes/plant';
@@ -22,9 +21,9 @@ export class MyGardensComponent implements OnInit {
   currentSlot: Slot;
   currentPlant: Plant;
   plant: Plant;
+  addButtonTitle: String;
 
   constructor(
-    private gardenListService: GardenListService,
     private userAccServ: UserAccountRequestService,
     private authServ: AuthenticateService
   ) {}
@@ -35,6 +34,7 @@ export class MyGardensComponent implements OnInit {
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();
     this.plant = new Plant();
+    this.addButtonTitle = 'Ajouter un jardin';
 
     // this.gardens$ = this.userAccServ.getGardens();
 
@@ -44,6 +44,7 @@ export class MyGardensComponent implements OnInit {
   }
 
   showGardens() {
+    this.addButtonTitle = 'Ajouter un jardin';
     this.currentGarden = new Garden();
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
@@ -51,6 +52,7 @@ export class MyGardensComponent implements OnInit {
   }
 
   selectGarden(garden: Garden) {
+    this.addButtonTitle = 'Ajouter une zone de plantation';
     if (!this.currentGarden || this.currentGarden !== garden) {
       this.currentGarden = garden;
       this.currentPlantingArea = new PlantingArea();
@@ -76,6 +78,7 @@ export class MyGardensComponent implements OnInit {
   selectPlantingArea(event, plantingArea: PlantingArea) {
     console.log(event);
     event.stopPropagation();
+    this.addButtonTitle = 'Ajouter une plante';
     if (
       !this.currentPlantingArea ||
       this.currentPlantingArea !== plantingArea

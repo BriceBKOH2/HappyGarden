@@ -1,0 +1,18 @@
+.garden-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  grid-gap: 2%;
+  margin-bottom: 4%;
+  padding: 5%;
+}
+
+.plantingArea-wrapper {
+  // background: #f5f5f5;
+  position: relative;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  padding-bottom: 8%;
+  margin-bottom: 8%;
+  width: 90%;
+  height: 300px;
+}

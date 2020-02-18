@@ -7,9 +7,10 @@ import { LibraryModule } from '../library/library.module';
 import { GardenSidebarComponent } from './my-gardens/gardens-sidebar/garden-sidebar.component';
 import { BodyPlantingAreaComponent } from './my-gardens/body-planting-area/body-planting-area.component';
 import { BodyPlantComponent } from './my-gardens/body-plant/body-plant.component';
+import { BodyGardenComponent } from './my-gardens/body-garden/body-garden.component';
 
 @NgModule({
-  declarations: [MyGardensComponent, GardenSidebarComponent, BodyPlantingAreaComponent, BodyPlantComponent],
+  declarations: [MyGardensComponent, GardenSidebarComponent, BodyPlantingAreaComponent, BodyPlantComponent, BodyGardenComponent],
   imports: [
     CommonModule,
     GardensRoutingModule,

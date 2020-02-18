@@ -1,6 +1,11 @@
 #body {
   padding-top: 30px;
+  padding-right: 0px;
   height: 100vh;
+}
+
+.body-wrapper {
+  padding-right: 40px;
 }
 
 .cursor {
@@ -11,33 +16,26 @@
   padding-right: 15px;
 }
 
-.selectPlant {
+.titles-add-plant {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 130px;
+}
+
+.add-button-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-button {
   display: block;
   margin: auto;
   border: 2px solid var(--vert);
   padding: 2% 4%;
   border-radius: 20px;
   color: var(--vert);
-  margin-top: 13%;
-  width: 50%;
+  text-align: center;
+  // margin-top: 20px;
+  width: 150%;
   cursor: pointer;
-}
-
-.titles-add-plant {
-  display: flex;
-  justify-content: space-between;
-  padding-right: 60px;
-
-  .add-button {
-    display: block;
-    margin: auto;
-    border: 2px solid var(--vert);
-    padding: 2% 4%;
-    border-radius: 20px;
-    color: var(--vert);
-    text-align: center;
-    // margin-top: 20px;
-    width: 150%;
-    cursor: pointer;
-  }
 }

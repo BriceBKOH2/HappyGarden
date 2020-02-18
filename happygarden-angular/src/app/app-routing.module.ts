@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: './library/library.module#LibraryModule'
   },
   {
-    path: 'gardenList',
+    path: 'gardens',
     loadChildren: './gardens/gardens.module#GardensModule'
     // canActivate: [AuthenticateGuard]
   },

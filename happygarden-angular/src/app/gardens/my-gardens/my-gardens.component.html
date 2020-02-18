@@ -4,8 +4,12 @@
   </div>
 
   <div class="col-md-10" id="body">
-    <div [ngClass]="{ 'd-none': !currentGarden.id }">
-      <p class="cursor" (click)="selectGarden(currentGarden)">
+    <div class="body-wrapper">
+      <p
+        class="cursor"
+        [ngClass]="{ 'd-none': !currentGarden.id }"
+        (click)="selectGarden(currentGarden)"
+      >
         {{ currentGarden.name }}
       </p>
       <div class="titles-add-plant">
@@ -22,13 +26,15 @@
         <div class="add-button-div">
           <a class="add-button">
             <!-- [routerLink]="['../libraryList', currentPlant.id]" -->
-            Ajouter un jardin</a
+            {{ addButtonTitle }}</a
           >
         </div>
       </div>
-
-      <app-body-planting-area></app-body-planting-area>
-      <app-body-plant></app-body-plant>
+      <div>
+        <app-body-garden></app-body-garden>
+        <app-body-planting-area></app-body-planting-area>
+        <app-body-plant></app-body-plant>
+      </div>
     </div>
   </div>
 </div>

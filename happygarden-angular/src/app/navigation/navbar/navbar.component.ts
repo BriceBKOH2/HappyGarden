@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
   isNavbarCollapsed = true;
 
   links = [
@@ -20,7 +19,7 @@ export class NavbarComponent implements OnInit {
       label: 'Bibliothèque'
     },
     {
-      route: 'gardenList',
+      route: 'gardens',
       label: 'Mes jardins'
     },
     {
@@ -30,7 +29,7 @@ export class NavbarComponent implements OnInit {
     {
       route: 'account',
       label: 'Mon Compte'
-    },
+    }
   ];
 
   constructor(private activatedRoute: ActivatedRoute) {}

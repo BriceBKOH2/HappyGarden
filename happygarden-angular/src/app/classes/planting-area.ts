@@ -8,4 +8,7 @@ export class PlantingArea {
   slots: Slot[];
   length: number;
   width: number;
+  image: string;
+  type: string;
+  interior: boolean;
 }
