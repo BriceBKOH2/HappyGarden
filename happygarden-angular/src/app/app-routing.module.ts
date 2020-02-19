@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticateGuard } from './authenticate/guards/authenticate.guard';
 import { AdminGuard } from './administration/guards/admin.guard';
-import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
@@ -17,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'notloggedin',
-    redirectTo: 'login;needlogin=true',
+    redirectTo: 'login;status=needlogin',
     pathMatch: 'full'
   },
   {

@@ -14,5 +14,5 @@ export class UserAccount {
   friends?: UserAccount[];
   usedPlants?: Plant[];
   favoritePlants?: Plant[];
-  gardens?: Garden[];
+  user_gardens?: Garden[];
 }

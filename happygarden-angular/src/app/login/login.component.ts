@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthenticateService } from '../authenticate/services/authenticate.service';
 import { Subscription } from 'rxjs';
 import { UserAccountRequestService } from '../services/userAccountRequest/user-account-request.service';
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   createAccForm: FormGroup;
   invalidLogin = false;
-  needlogin: string;
+
+  param: string;
 
   constructor(
     public authServ: AuthenticateService,
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.paramMap.subscribe(
-      params => {this.needlogin = params.get('needlogin')}
+      (p) => {this.param = p.get('status')}
     );
 
     // this.activatedRoute.queryParams.subscribe(params => {
@@ -54,6 +55,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.createAccForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
       password: ['', Validators.required],
       passwordConfirm: ['', [Validators.required]]
     }, {validators: this.checkPwd}
@@ -71,9 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     let password = this.loginForm.controls.password.value;
 
     this.subscription = this.authServ.login(username, password).subscribe(
-      (value) => {
-
-        console.log("login.component::onSubmit > value : " + value);
+      () => {
         this.router.navigate(['userAccount']);
       },
       (error) => {
@@ -81,9 +82,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log("login.component::onSubmit > error");
         console.log(error);
         alert(error.status + ' : ' + error.statusText);
-      },
-      () => {
-        console.log("login.component::onSubmit > complete");
       }
     );
     // this.subscription.unsubscribe();
@@ -99,8 +97,26 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     let username = this.createAccForm.controls.username.value;
     let password = this.createAccForm.controls.password.value;
+    let firstname = this.createAccForm.controls.firstname.value;
+    let lastname = this.createAccForm.controls.lastname.value;
 
-    this.userAccServ.createUserAccount(username, password);
+    console.log("appel du service...")
+    this.userAccServ.createUserAccount(username, password, firstname, lastname).subscribe(
+      () => {
+        // account created.
+        this.resetForms();
+        this.router.navigate(['login', { status: 'createsuccess'}]);
+      },
+      (e) => (console.log(e))
+    );
+  }
+
+  /**
+   * Reset state of forms in the page.
+   */
+  resetForms() {
+    this.loginForm.reset();
+    this.createAccForm.reset();
   }
 
   logOut() {

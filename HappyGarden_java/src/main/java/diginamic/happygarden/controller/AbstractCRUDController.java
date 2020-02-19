@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,7 +66,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * @param t
 	 * @throws AlreadyExistException if the entity already exists.
 	 */
-	@PostMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public T save(@RequestBody T t) throws AlreadyExistException {
 		return service.save(t);
@@ -77,7 +78,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * @return the updated entity.
 	 * @throws NotFoundException If the entity is not found in the database.
 	 */
-	@PutMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public T update(@RequestBody T t) throws NotFoundException {
 		return service.update(t);
@@ -89,7 +90,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * @param t
 	 */
 	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
-	@DeleteMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
+	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@RequestBody T t) {
 		service.delete(t);
