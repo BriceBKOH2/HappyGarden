@@ -10,7 +10,7 @@
   >
     <div>
       <figure>
-        <img src="/assets/img/plantingAreas/{{ plantingArea.image }}" alt="" />
+        <!-- <img src="/assets/img/plantingAreas/{{ plantingArea.image }}" alt="" /> -->
       </figure>
       <p>{{ plantingArea.name }}</p>
       <p *ngIf="plantingArea.type == 'pot'">
@@ -18,5 +18,6 @@
       </p>
       <p>{{ plantingArea.image }}</p>
     </div>
+    <app-file-up-download></app-file-up-download>
   </div>
 </div>

@@ -35,7 +35,8 @@ public class FileController {
     private FileStorageService fileStorageService;
     
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("type") String type) {
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+//    	, @RequestParam("type") String type
         String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -48,15 +49,15 @@ public class FileController {
     }
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @RequestParam("type") String type) {
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
-                .map(file -> uploadFile(file, type))
+                .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/downloadFile/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, @RequestParam("type") String type, HttpServletRequest request) {
         // Load file as Resource
         Resource resource = fileStorageService.loadFileAsResource(fileName);
 

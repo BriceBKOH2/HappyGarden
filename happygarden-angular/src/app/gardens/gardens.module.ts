@@ -8,14 +8,24 @@ import { GardenSidebarComponent } from './my-gardens/gardens-sidebar/garden-side
 import { BodyPlantingAreaComponent } from './my-gardens/body-planting-area/body-planting-area.component';
 import { BodyPlantComponent } from './my-gardens/body-plant/body-plant.component';
 import { BodyGardenComponent } from './my-gardens/body-garden/body-garden.component';
+import { HttpModule } from '@angular/http';
+import { FileModule } from '../file/file.module';
 
 @NgModule({
-  declarations: [MyGardensComponent, GardenSidebarComponent, BodyPlantingAreaComponent, BodyPlantComponent, BodyGardenComponent],
+  declarations: [
+    MyGardensComponent,
+    GardenSidebarComponent,
+    BodyPlantingAreaComponent,
+    BodyPlantComponent,
+    BodyGardenComponent
+  ],
   imports: [
     CommonModule,
     GardensRoutingModule,
     MatCheckboxModule,
-    LibraryModule
+    LibraryModule,
+    HttpModule,
+    FileModule
   ],
   exports: [GardenSidebarComponent]
 })

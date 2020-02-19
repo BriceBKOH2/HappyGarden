@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyGardensComponent } from '../my-gardens.component';
 import { PlantingArea } from 'src/app/classes/planting-area';
+import { FileUpDownloadComponent } from 'src/app/file/file-up-download/file-up-download.component';
 
 @Component({
   selector: 'app-body-garden',
