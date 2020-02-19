@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserAccount } from '../../classes/user-account';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { RequestService } from '../request/request.service';
-import { UserRole } from 'src/app/classes/user-role';
 import { UserRolesService } from '../userRoles/user-roles.service';
-import { userInfo } from 'os';
 
 @Injectable({
   providedIn: 'root'

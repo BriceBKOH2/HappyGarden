@@ -1,5 +1,12 @@
-<div *ngIf="param == 'needlogin'" class="alert alert-danger">Please log in to access this page.</div>
-<div *ngIf="param == 'createsuccess'" class="alert alert-success">Account successfully created. Please log in with your new account !</div>
+<div [ngClass]="{'alert alert-danger': true,
+             'd-none': param != 'needlogin'}">
+  Please log in to access this page.
+</div>
+
+<div [ngClass]="{'alert alert-success': true,
+             'd-none': param != 'createsuccess'}">
+  Account successfully created. Please log in with your new account !
+</div>
 
 <div class="d-flex justify-content-around">
   <ng-container *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="">
