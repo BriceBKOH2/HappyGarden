@@ -4,5 +4,5 @@ import { UserAccount } from './user-account';
 export class Message {
   id: number;
   content: Content;
-  author: UserAccount;
+  author: string;
 }

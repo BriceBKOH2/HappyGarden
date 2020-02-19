@@ -5,6 +5,7 @@ import { Conversation } from 'src/app/classes/conversation';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/classes/Message';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-conversation',
@@ -17,16 +18,22 @@ export class ConversationComponent implements OnInit {
     private convService: ConversationsService,
     private activatedRoute: ActivatedRoute
   ) {}
-  messages: Message[] = [];
-  ngOnInit() {
-    // let id: number;
-    // this.authServ.user$.subscribe(response => {
-    //   id = response.id;
-    //   this.convService
-    //     .getConversation(id)
-    //     .subscribe(response => (this.messages = response));
-    // });
 
+  messages: Message[] = [];
+
+  message: Message;
+
+  sendMessageForm = new FormGroup({
+    author: new FormControl('', Validators.required),
+    content: new FormControl('', Validators.required)
+  });
+
+  onSubmitCreationForm() {
+    this.message.author = this.sendMessageForm.value.author;
+    this.message.content = this.sendMessageForm.value.content;
+  }
+
+  ngOnInit() {
     this.activatedRoute.params
       .pipe(
         switchMap(params => {
@@ -38,5 +45,14 @@ export class ConversationComponent implements OnInit {
         console.log(response);
         this.messages = response;
       });
+  }
+
+  sendMessage() {
+    this.message.author = this.sendMessageForm.value.author;
+    this.message.content = this.sendMessageForm.value.content;
+
+    this.convService.sendMessage(this.message).subscribe(response => {
+      this.message = response;
+    });
   }
 }

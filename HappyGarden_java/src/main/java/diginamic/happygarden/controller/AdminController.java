@@ -173,6 +173,7 @@ public class AdminController {
 			Garden jardinUn = new Garden("plantes aromatiques", parcels);
 			parcel.setGarden(jardinUn);
 			
+			
 			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
 			estelle.setPassword("estelle");
 			estelle.setProfileImg("profil.jpg");
@@ -180,30 +181,58 @@ public class AdminController {
 			
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
-			jade.setProfileImg("succulente.jpg");
+			jade.setProfileImg("profil_2.jpg");
 			userAccServ.save(jade);
 			
-			ArrayList<Message> messages = new ArrayList<Message>();
+			UserAccount jordi = new UserAccount("Jordi", "Mage", "Jordi", userRoleServ.findByName(ADMIN));
+			jordi.setPassword("jordi");
+			jordi.setProfileImg("profil_3.jpg");
+			userAccServ.save(jordi);
+			
+			// Conversation Estelle Jade
+			ArrayList<Message> messagesEstelleJade = new ArrayList<Message>();
 			
 			Message msgEstelle = new Message("Coucou Jade.", estelle);
 			messageServ.save(msgEstelle);
-			messages.add(msgEstelle);
+			messagesEstelleJade.add(msgEstelle);
 			
 			Message msgJade = new Message("Coucou Estelle.", jade);
-			messages.add(msgJade);
+			messagesEstelleJade.add(msgJade);
 			messageServ.save(msgJade);
 			
-			Conversation conversation = new Conversation(messages);
+			Conversation conversationEstelleJade = new Conversation(messagesEstelleJade);
 			
-			List<UserAccount> usersConv = new ArrayList<UserAccount>();
-			usersConv.add(jade);
-			usersConv.add(estelle);
-			conversation.setUsers(usersConv);
+			List<UserAccount> usersConvEstelleJade = new ArrayList<UserAccount>();
+			usersConvEstelleJade.add(jade);
+			usersConvEstelleJade.add(estelle);
+			conversationEstelleJade.setUsers(usersConvEstelleJade);
+			
+			// Conversation Estelle Jordi
+			ArrayList<Message> messagesEstelleJordi = new ArrayList<Message>();
+			
+			Message msgEstellej = new Message("Coucou Jade.", estelle);
+			messageServ.save(msgEstellej);
+			messagesEstelleJordi.add(msgEstellej);
+			
+			Message msgJordi = new Message("Coucou Estelle.", jordi);
+			messagesEstelleJordi.add(msgJordi);
+			messageServ.save(msgJordi);
+			
+			Conversation conversationEstelleJordi = new Conversation(messagesEstelleJordi);
+			
+			List<UserAccount> usersConvEstelleJordi = new ArrayList<UserAccount>();
+			usersConvEstelleJordi.add(jordi);
+			usersConvEstelleJordi.add(estelle);
+			conversationEstelleJordi.setUsers(usersConvEstelleJordi);
+			
+			
+			
 			
 			jardinUn.setUser(estelle);
 			
 			gardenServ.save(jardinUn);
-			conversationServ.save(conversation);
+			conversationServ.save(conversationEstelleJade);
+			conversationServ.save(conversationEstelleJordi);
 			// Ajoût de Conversations randomn pour la BDD
 		}
 		return userAccServ.findAll();

@@ -54,7 +54,7 @@
 //------------------------------------------------------------------------------------
 
 .globale {
-  padding: 5%;
+  padding: 0 5% 5% 5%;
 }
 
 .library-list {
@@ -147,6 +147,7 @@ form {
   top: -10px;
   left: 30%;
   transform: translateX(-50%);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .encart p {

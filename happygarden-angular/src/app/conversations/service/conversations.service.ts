@@ -30,4 +30,8 @@ export class ConversationsService {
     // return this.httpClient.get<Conversation>(`${this.endPointUser}/${id}`);
     return this.httpClient.get<Message[]>(`${this.endPointMessage}/conv/${id}`);
   }
+
+  sendMessage(message: Message): Observable<Message> {
+    return this.httpClient.put<Message>(this.endPointMessage, message);
+  }
 }

@@ -1,4 +1,52 @@
-<p>TEST</p>
-<div *ngFor="let message of messages">
-  <p>{{ message.content }}</p>
-</div>
+<app-sidebar-account></app-sidebar-account>
+<section class="profile-section">
+  <div *ngFor="let message of messages">
+    <div class="msg">
+      <div *ngIf="authServ.user$ | async as user">
+        <div
+          [className]="
+            user.nickname == message.author ? 'current-user' : 'other-user'
+          "
+        >
+          <!-- <div class="author">
+            <figure>
+              <img src="" alt="" />
+            </figure>
+          </div> -->
+          <p>{{ message.content }}</p>
+        </div>
+        <!-- <div
+          [className]="
+            user.nickname == message.author
+              ? 'triangle-current-user'
+              : 'triangle-other-user'
+          "
+        ></div> -->
+      </div>
+      <p></p>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="sendMessageForm"
+    (ngSubmit)="onSubmitCreationForm()"
+    class="form-simul"
+  >
+    <div class="form-group">
+      <label for="client_firstName">Votre message </label>
+      <input
+        formControlName="clientFirstName"
+        id="client_first_name"
+        name="client_first_name"
+        class="form-control"
+        type="text"
+        required
+      />
+    </div>
+    <div class="div-width">
+      <button class="btn btn btn-success" type="submit" (click)="sendMessage()">
+        Envoyer message
+      </button>
+    </div>
+  </form>
+</section>
