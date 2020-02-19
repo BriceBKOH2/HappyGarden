@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { AuthenticateGuard } from './authenticate/guards/authenticate.guard';
 
 const routes: Routes = [
@@ -31,6 +30,11 @@ const routes: Routes = [
     path: 'userAccount',
     loadChildren: './account/account.module#AccountModule',
     canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'plantAdministration',
+    loadChildren:
+      './plant-administration/plant-administration.module#PlantAdministrationModule'
   }
 ];
 

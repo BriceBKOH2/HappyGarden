@@ -20,6 +20,10 @@ export class NavbarComponent implements OnInit {
       route: 'libraryList',
       label: 'Bibliothèque'
     },
+    {
+      route: 'plantAdministration',
+      label: 'plant admin'
+    }
   ];
 
   // links that need the user to be logged in to view
@@ -31,21 +35,20 @@ export class NavbarComponent implements OnInit {
     {
       route: 'userAccount',
       label: 'Mon Compte'
-    },
-  ]
+    }
+  ];
 
-  constructor(public authServ: AuthenticateService,
-              private router: Router) {}
+  constructor(public authServ: AuthenticateService, private router: Router) {}
 
   ngOnInit() {}
 
   logOut() {
-    if (confirm("Se déconnecter ?")) {
+    if (confirm('Se déconnecter ?')) {
       this.authServ.logout().subscribe(
         () => {
           this.router.navigate(['homePage']);
         },
-        (error) => {
+        error => {
           console.log('Error login out' + error);
           alert(error.status + ' : ' + error.statusText);
         }
