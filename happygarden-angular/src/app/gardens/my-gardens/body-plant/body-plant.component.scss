@@ -1,0 +1,100 @@
+.currentPlant {
+  position: relative;
+  display: flex;
+  height: auto;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+  // background: #fcfcfc;
+
+  .encart {
+    width: auto;
+    font-size: 13px;
+    padding: 5px;
+    text-align: center;
+    background-color: var(--vert);
+    color: #fff;
+    position: absolute;
+    top: -10px;
+    left: 10%;
+    transform: translateX(-50%);
+
+    p {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.img {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  max-width: 50%;
+  height: 450px;
+  overflow: hidden;
+  figure {
+    margin-bottom: 0px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.left-infos {
+  width: 100%;
+  margin: 20px;
+  img {
+    width: 50px;
+  }
+}
+
+.icones-div {
+  display: flex;
+}
+
+.icones {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+
+  figure {
+    align-self: center;
+    grid-column: 1;
+    margin-bottom: 0px;
+  }
+
+  p {
+    display: flex;
+    grid-column: 2 / 5;
+    align-self: center;
+    margin-bottom: 0px;
+  }
+
+  mat-checkbox {
+    align-self: center;
+    grid-column: 6;
+    size: 2em;
+    margin-bottom: 0px;
+  }
+}
+
+.plante-single-button {
+  display: block;
+  margin: auto;
+  border: 2px solid var(--vert);
+  padding: 2% 4%;
+  border-radius: 20px;
+  color: var(--vert);
+  text-align: center;
+  margin-top: 20px;
+  width: 50%;
+  cursor: pointer;
+}

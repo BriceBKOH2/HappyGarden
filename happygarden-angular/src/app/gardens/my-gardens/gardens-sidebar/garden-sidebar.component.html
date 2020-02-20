@@ -1,0 +1,64 @@
+<div id="sidebar">
+  <div class="sidebar-menu">
+    <a class="cursor" (click)="myGardens.showGardens()">Mes Jardins</a>
+    <br />
+    <br />
+    <ul>
+      <ng-container *ngIf="myGardens.gardens$ | async as gardens">
+        <ng-container *ngFor="let garden of gardens">
+          <li>
+            <a
+              (click)="myGardens.selectGarden(garden)"
+              [ngClass]="{ selected: garden.id === myGardens.currentGarden.id }"
+              ><i class="fas fa-chevron-right"></i
+              ><span class="cursor">{{ garden.name }}</span></a
+            >
+            <ul>
+              <ng-container *ngFor="let plantingArea of garden.plantingAreas">
+                <li
+                  [ngClass]="{
+                    'd-none': garden.id !== myGardens.currentGarden.id
+                  }"
+                >
+                  <a
+                    (click)="myGardens.selectPlantingArea($event, plantingArea)"
+                    [ngClass]="{
+                      selected:
+                        plantingArea.id === myGardens.currentPlantingArea.id
+                    }"
+                    ><i class="fas fa-chevron-right"></i
+                    ><span class="cursor"> {{ plantingArea.name }}</span>
+                  </a>
+                  <ul>
+                    <ng-container *ngFor="let slot of plantingArea.slots">
+                      <li
+                        [ngClass]="{
+                          'd-none':
+                            myGardens.currentPlantingArea.id !== plantingArea.id
+                        }"
+                      >
+                        <a
+                          (click)="myGardens.selectPlant($event, slot)"
+                          [ngClass]="{
+                            selected:
+                              slot.plant.id === myGardens.currentPlant.id
+                          }"
+                          ><i class="fas fa-chevron-right"></i
+                          ><span class="cursor">
+                            {{ slot.plant.commonName }}</span
+                          >
+                        </a>
+                      </li>
+                    </ng-container>
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+          <br />
+        </ng-container>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="vertical-line"></div>
+</div>

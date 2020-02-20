@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: './admin-management/admin-management.module#AdminManagementModule'
   },
   {
-    path: 'gardenList',
+    path: 'gardens',
     loadChildren: './gardens/gardens.module#GardensModule'
     // canActivate: [AuthenticateGuard]
   },

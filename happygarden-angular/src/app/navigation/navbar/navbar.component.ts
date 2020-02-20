@@ -28,13 +28,13 @@ export class NavbarComponent implements OnInit {
   // links that need the user to be logged in to view
   linksAuth = [
     {
-      route: 'gardenList',
+      route: 'gardens',
       label: 'Mes jardins'
     },
     {
       route: 'userAccount',
       label: 'Mon Compte'
-    },
+    }
   ];
 
   linksAdmin = [

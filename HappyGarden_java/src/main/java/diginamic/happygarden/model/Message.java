@@ -8,39 +8,38 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-/** Contained in a Conversation, it has the content of the message and the User that sent it **/
+/**
+ * Contained in a Conversation, it has the content of the message and the User
+ * that sent it
+ **/
 @Entity
 public class Message implements HibernateEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	/** The content of the message shown in the conversation **/
 	@NotBlank
 	private String content;
-	
-	/** The user that sent the message**/
+
+	/** The user that sent the message **/
 	@NotNull
 	private String author;
 
-	
 	/* Constructors */
-	
+
 	public Message() {
 	}
-	
+
 	public Message(String content, UserAccount author) {
 		super();
 		this.content = content;
 		this.author = author.getNickname();
 	}
 
-	
 	/* Getters Setters */
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -65,5 +64,4 @@ public class Message implements HibernateEntity<Long> {
 		this.author = author.getNickname();
 	}
 
-	
 }

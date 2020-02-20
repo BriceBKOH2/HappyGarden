@@ -1,0 +1,23 @@
+<div
+  class="garden-body"
+  [ngClass]="{
+    'd-none': !myGardens.currentGarden.id || myGardens.currentPlantingArea.id
+  }"
+>
+  <div
+    class="plantingArea-wrapper"
+    *ngFor="let plantingArea of myGardens.currentGarden.plantingAreas"
+  >
+    <div>
+      <figure>
+        <!-- <img src="/assets/img/plantingAreas/{{ plantingArea.image }}" alt="" /> -->
+      </figure>
+      <p>{{ plantingArea.name }}</p>
+      <p *ngIf="plantingArea.type == 'pot'">
+        {{ plantingArea.type }} <span>{{ isInterior(plantingArea) }}</span>
+      </p>
+      <p>{{ plantingArea.image }}</p>
+    </div>
+    <app-file-up-download></app-file-up-download>
+  </div>
+</div>

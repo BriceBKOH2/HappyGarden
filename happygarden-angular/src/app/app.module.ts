@@ -14,6 +14,8 @@ import { AuthenticateApiService } from './services/authenticateApi/authenticate-
 import { AuthInterceptorService } from './authenticate/services/auth-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [AppComponent,],
@@ -29,7 +31,9 @@ import { MatCheckboxModule } from '@angular/material';
     StorageModule.forRoot({ IDBNoWrap: true }),
     AuthenticateModule.forRoot(AuthenticateApiService),
     BrowserAnimationsModule,
-    MatCheckboxModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    HttpModule
   ],
   exports: [MatCheckboxModule],
   providers: [
