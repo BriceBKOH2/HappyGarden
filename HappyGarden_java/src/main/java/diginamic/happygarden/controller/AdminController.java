@@ -21,6 +21,7 @@ import diginamic.happygarden.model.GrowthRate;
 import diginamic.happygarden.model.Message;
 import diginamic.happygarden.model.Parcel;
 import diginamic.happygarden.model.Plant;
+import diginamic.happygarden.model.PlantUser;
 import diginamic.happygarden.model.PlantingArea;
 import diginamic.happygarden.model.Season;
 import diginamic.happygarden.model.Slot;
@@ -31,6 +32,7 @@ import diginamic.happygarden.service.ConversationService;
 import diginamic.happygarden.service.GardenService;
 import diginamic.happygarden.service.MessageService;
 import diginamic.happygarden.service.PlantService;
+import diginamic.happygarden.service.PlantUserService;
 import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
 import diginamic.happygarden.service.UserRoleService;//@PreAuthorize("admnistration")
@@ -62,8 +64,11 @@ public class AdminController {
 	
 	@Autowired
 	private ConversationService conversationServ;
-
-
+	
+	@Autowired
+	private PlantUserService plantUserServ;
+	
+	
 	/**
 	 * Instantiate database with rights, roles, admin and basic user
 	 * 
@@ -155,6 +160,15 @@ public class AdminController {
 		plantServ.save(tournesol);
 		
 		}
+		
+		// Adding PLant User
+		if (plantUserServ.findByCommonNameOrScientificName("Cactus").isEmpty()) {
+			ArrayList<Season> season = new ArrayList<>();
+			season.add(Season.FALL);
+		PlantUser rose = new PlantUser("Rosa", "Rose", "Rose", "None", 150.7F, "Long", "rose.jpg", "Mid Spring", GrowthRate.RAPID, season, "Estelle");
+		plantUserServ.save(rose);
+		}
+		
 		// Ajoût de jardins randomn pour la BDD
 		try {
 			userAccServ.findByNickname("Estelle");
@@ -179,6 +193,7 @@ public class AdminController {
 			
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
+			jade.addFriends("Estelle");
 			userAccServ.save(jade);
 			
 			ArrayList<Message> messages = new ArrayList<Message>();

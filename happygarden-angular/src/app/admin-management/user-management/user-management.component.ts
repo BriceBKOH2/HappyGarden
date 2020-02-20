@@ -38,6 +38,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   deleteUser(id: number) {
+    if (confirm("Voulez-vous supprimer ?")) {
     this.userService.deleteUser(id)
     .subscribe(
       data => {
@@ -47,16 +48,6 @@ export class UserManagementComponent implements OnInit {
       error => console.log(error)
     );
   }
-
-  deleteAllEntityFromUser(id: number) {
-    this.userService.deleteAllEntityFromUser(id)
-    .subscribe(
-      data => {
-        this.searchUser();
-        location.reload();
-      },
-      error => console.log(error)
-    );
-  }
+}
 
 }

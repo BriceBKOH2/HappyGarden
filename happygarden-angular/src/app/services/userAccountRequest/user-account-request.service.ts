@@ -24,7 +24,7 @@ export class UserAccountRequestService {
     return this.httpClient.get<UserAccount>(`${this.endPoint}/${id}`);
   }
 
-  findUser(id: number) {
+  findUser(id: number): Observable<UserAccount> {
     return this.httpClient.get<UserAccount>(`${this.endPoint}/${id}`);
   }
 

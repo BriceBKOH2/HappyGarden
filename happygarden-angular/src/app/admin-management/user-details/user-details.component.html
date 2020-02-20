@@ -10,6 +10,7 @@
         <th>Lastname</th>
         <th>Pseudo</th>
         <th>Rôle</th>
+        <th>Amis</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td>{{ user.nickname }}</td>
         <!-- <td *ngFor="let name of user.userRole?.name">{{name}}</td> -->
         <td>{{ user.userRole?.name }}</td>
+        <td *ngFor="let friend of user.friends">{{friend}}</td>
       </tr>
     </tbody>
   </table>
