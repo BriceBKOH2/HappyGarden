@@ -36,6 +36,14 @@ public class PlantApiLink {
 
 	public void setScientificName(String scientificName) {
 		this.scientificName = scientificName;
+	}
+
+	/* Methods */
+	
+	@Override
+	public String toString() {
+		return "PlantApiLink [id=" + id + ", completeData=" + completeData + ", scientificName=" + scientificName + "]";
 	} 
 
+	
 }

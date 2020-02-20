@@ -41,10 +41,10 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
+			.and().csrf().disable();
 //			.and().csrf()
 //			.csrfTokenRepository(CookieCsrfTokenRepository
-//				.withHttpOnlyFalse())
-			.and().csrf().disable();
+//			.withHttpOnlyFalse());
 	}
 
 	@Autowired

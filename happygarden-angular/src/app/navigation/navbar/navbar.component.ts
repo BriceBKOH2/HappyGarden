@@ -19,10 +19,6 @@ export class NavbarComponent implements OnInit {
     {
       route: 'libraryList',
       label: 'Bibliothèque'
-    },
-    {
-      route: 'plantAdministration',
-      label: 'plant admin'
     }
   ];
 

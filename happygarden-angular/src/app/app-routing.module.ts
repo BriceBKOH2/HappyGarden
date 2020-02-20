@@ -30,11 +30,6 @@ const routes: Routes = [
     path: 'userAccount',
     loadChildren: './account/account.module#AccountModule',
     canActivate: [AuthenticateGuard]
-  },
-  {
-    path: 'plantAdministration',
-    loadChildren:
-      './plant-administration/plant-administration.module#PlantAdministrationModule'
   }
 ];
 

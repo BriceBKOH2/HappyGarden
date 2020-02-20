@@ -60,7 +60,6 @@ public class UserAccount implements HibernateEntity<Long> {
 	@ManyToMany
 	private Set<Plant> favoritePlants = new HashSet<>();
 
-//	@JsonIgnore
 	@JsonManagedReference("user_gardens")
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Garden> gardens = new HashSet<>();
