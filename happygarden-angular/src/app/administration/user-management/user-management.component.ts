@@ -25,7 +25,6 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit() {
     this.userService.findAllUser().subscribe(response => {
-      console.log(response);
       this.users = response;
     });
 
@@ -38,7 +37,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    if (confirm("Voulez-vous supprimer ?")) {
+    if (confirm("Cette action est irréversible. Voulez-vous vraiment supprimer cet utilisateur ?")) {
     this.userService.deleteUser(id)
     .subscribe(
       () => {

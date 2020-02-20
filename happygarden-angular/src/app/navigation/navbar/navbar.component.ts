@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
   isNavbarCollapsed = true;
 
   links = [
@@ -19,9 +20,9 @@ export class NavbarComponent implements OnInit {
       route: 'libraryList',
       label: 'Bibliothèque'
     },
-    {
+    { // Example of a restricted area. Guards require to be logged in, then to have admin role.
       route: 'admin',
-      label: 'ADMIN O-O'
+      label: 'Admin menu'
     },
   ];
 
@@ -37,7 +38,17 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  constructor(public authServ: AuthenticateService, private router: Router) {}
+  // links that require the user to have admin role to see.
+  linksAdmin = [
+    {
+      route: '',
+      label: 'Admin only'
+    },
+  ]
+
+  constructor(
+    public authServ: AuthenticateService,
+    private router: Router) {}
 
   ngOnInit() {}
 

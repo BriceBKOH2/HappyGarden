@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
   <a class="navbar-brand" [routerLink]="''"><i class="fas fa-leaf"></i> Happy Garden</a>
 
-  <! <div id="navbarSupportedContent">>
+  <!-- <div id="navbarSupportedContent"> -->
   <button
     class="navbar-toggler hidden-sm-up"
     type="button"
@@ -29,11 +29,20 @@
           class="log-in">
         <a class="nav-link" [routerLink]="'login'">Sign in</a>
       </li>
+
       <ng-template #loggedIn>
         <li *ngFor="let linkAuth of linksAuth" routerLinkActive="active"
             class="nav-item">
           <a class="nav-link" [routerLink]="linkAuth.route">{{ linkAuth.label }}</a>
         </li>
+
+        <ng-container *ngIf="this.authServ.isAdmin()">
+          <li *ngFor="let linkAdmin of linksAdmin" routerLinkActive="active"
+          class="nav-item">
+            <a class="nav-link" [routerLink]="linkAdmin.route">{{ linkAdmin.label }}</a>
+          </li>
+        </ng-container>
+
         <li class="nav-item logged-as" *ngIf="(this.authServ.user$ | async) as user">
           <span class="nav-link">
             Signed in as <b>{{ user.firstname + ' ' + user.lastname }}</b> ({{ user.userRole.name }})
@@ -43,12 +52,7 @@
           <a class="nav-link" (click)="logOut()">Sign Out</a>
         </li>
       </ng-template>
-      <ng-container *ngIf="this.authServ.isAdmin$ | async">
-        <li *ngFor="let linkAdmin of linksAdmin" routerLinkActive="active"
-        class="nav-item">
-          <a class="nav-link" [routerLink]="linkAdmin.route">{{ linkAdmin.label }}</a>
-        </li>
-      </ng-container>
     </ul>
-    </div>
+
+  </div>
 </nav>

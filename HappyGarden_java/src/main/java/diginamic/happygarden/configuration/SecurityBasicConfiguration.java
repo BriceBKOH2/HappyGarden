@@ -36,8 +36,8 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/Admin/**").hasRole("ADMIN")
-			.antMatchers("/Plant", "/UserRole/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/UserAccount").permitAll()
+			.antMatchers("/Plant", "/UserRole/**").permitAll() // UserRole : to retrieve default user role when creating new user.
+			.antMatchers(HttpMethod.POST, "/UserAccount").permitAll() // can create a new user without being logged in. (for new users)
 			.anyRequest().authenticated()
 			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout().permitAll()
 			.and().httpBasic()
