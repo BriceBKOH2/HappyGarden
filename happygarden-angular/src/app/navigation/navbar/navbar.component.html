@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
   <a class="navbar-brand" [routerLink]="''"><i class="fas fa-leaf"></i> Happy Garden</a>
 
+  <! <div id="navbarSupportedContent">>
   <button
     class="navbar-toggler hidden-sm-up"
     type="button"
@@ -42,6 +43,12 @@
           <a class="nav-link" (click)="logOut()">Sign Out</a>
         </li>
       </ng-template>
+      <ng-container *ngIf="this.authServ.isAdmin$ | async">
+        <li *ngFor="let linkAdmin of linksAdmin" routerLinkActive="active"
+        class="nav-item">
+          <a class="nav-link" [routerLink]="linkAdmin.route">{{ linkAdmin.label }}</a>
+        </li>
+      </ng-container>
     </ul>
     </div>
 </nav>

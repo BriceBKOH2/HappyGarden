@@ -18,6 +18,8 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
 	
 	public Optional<UserAccount> findByNickname(String name);
 	
+	public List<UserAccount> findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(String firstname, String lastname, String nickname);
+	
 	/**
 	 * 
 	 * @param id

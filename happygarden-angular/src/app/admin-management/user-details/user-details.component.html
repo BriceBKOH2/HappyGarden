@@ -1,0 +1,27 @@
+<div class="panel-body">
+  <a [routerLink]="['..']" style="padding-top: 50px !important;"
+    ><i class="far fa-arrow-alt-circle-left"></i>
+    <p>Retour à la liste</p></a
+  >
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Pseudo</th>
+        <th>Rôle</th>
+        <th>Amis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.nickname }}</td>
+        <!-- <td *ngFor="let name of user.userRole?.name">{{name}}</td> -->
+        <td>{{ user.userRole?.name }}</td>
+        <td *ngFor="let friend of user.friends">{{friend}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

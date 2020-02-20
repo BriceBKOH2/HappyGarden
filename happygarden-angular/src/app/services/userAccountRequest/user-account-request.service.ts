@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { UserAccount } from '../../classes/user-account';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { RequestService } from '../request/request.service';
@@ -25,6 +25,25 @@ export class UserAccountRequestService {
 
   getUserAccountById(id: number): Observable<UserAccount> {
     return this.httpClient.get<UserAccount>(`${this.endPoint}/${id}`);
+  }
+
+  findUser(id: number): Observable<UserAccount> {
+    return this.httpClient.get<UserAccount>(`${this.endPoint}/${id}`);
+  }
+
+  deleteUser(id: number) {
+    return this.httpClient.delete(`${this.endPoint}/${id}`);
+  }
+
+  deleteAllEntityFromUser(id: number) {
+    return this.httpClient.delete(`${this.endPoint}/deleteall/${id}`);
+  }
+
+  updateUser(id: number, value: any) {
+    ///${id}
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.httpClient.put(`${this.endPoint}/`, value, { headers : headers, withCredentials: true } );
   }
 
   getUserAccountByNickname(nickname: string): Observable<UserAccount> {
@@ -68,5 +87,15 @@ export class UserAccountRequestService {
       (err) => (console.log(err))
     );
     return user;
+  }
+
+  findAllUser(): Observable<UserAccount[]> {
+    return this.httpClient.get<UserAccount[]>(this.endPoint);
+  }
+
+  searchByFirstnameOrLastnameOrNickName(name: string): Observable<UserAccount[]> {
+    return this.httpClient.get<UserAccount[]>(`${this.endPoint}/search`, {
+      params: new HttpParams().set('name', name)
+    });
   }
 }
