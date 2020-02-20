@@ -17,6 +17,7 @@ export class UserUpdateComponent implements OnInit {
   public user: UserAccount = new UserAccount();
 
   constructor(
+    private router: Router,
     private userAccountRequestService: UserAccountRequestService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -29,20 +30,22 @@ export class UserUpdateComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         switchMap(params => {
-          console.log(params);
           return this.userAccountRequestService.findUser(params.id);
         })
       )
       .subscribe(response => {
-        console.log(response);
         this.user = response;
       });
   }
 
   updateUser() {
     this.userAccountRequestService.updateUser(this.id, this.user)
-    .subscribe(data => console.log(data), error => console.log(error));
-
+    .subscribe(
+      () => {
+        this.router.navigate(['admin/usermanagement']);
+      },
+      error => console.log(error)
+    );
   }
 
     onSubmit(){

@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { UserAccountRequestService } from 'src/app/services/userAccountRequest/user-account-request.service';
 import { UserAccount } from '../../classes/user-account';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-management',
@@ -41,9 +41,9 @@ export class UserManagementComponent implements OnInit {
     if (confirm("Voulez-vous supprimer ?")) {
     this.userService.deleteUser(id)
     .subscribe(
-      data => {
+      () => {
         this.searchUser();
-        location.reload();
+        this.router.navigate(['admin/usermanagement']);
       },
       error => console.log(error)
     );

@@ -40,10 +40,7 @@ export class UserAccountRequestService {
   }
 
   updateUser(id: number, value: any) {
-    ///${id}
-    let headers: HttpHeaders = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.endPoint}/`, value, { headers : headers, withCredentials: true } );
+    return this.httpClient.put(`${this.endPoint}/`, value);
   }
 
   getUserAccountByNickname(nickname: string): Observable<UserAccount> {
