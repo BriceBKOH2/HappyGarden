@@ -37,25 +37,17 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  linksAdmin = [
-    {
-      route: 'usermanagement',
-      label: 'Gestion des utilisateurs'
-    },
-  ]
-
-  constructor(public authServ: AuthenticateService,
-              private router: Router) {}
+  constructor(public authServ: AuthenticateService, private router: Router) {}
 
   ngOnInit() {}
 
   logOut() {
-    if (confirm("Se déconnecter ?")) {
+    if (confirm('Se déconnecter ?')) {
       this.authServ.logout().subscribe(
         () => {
           this.router.navigate(['homePage']);
         },
-        (error) => {
+        error => {
           console.log('Error login out' + error);
           alert(error.status + ' : ' + error.statusText);
         }

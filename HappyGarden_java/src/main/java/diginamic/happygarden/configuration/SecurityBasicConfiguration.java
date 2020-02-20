@@ -43,10 +43,10 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
+			.and().csrf().disable();
 //			.and().csrf()
 //			.csrfTokenRepository(CookieCsrfTokenRepository
-//				.withHttpOnlyFalse())
-			.and().csrf().disable();
+//			.withHttpOnlyFalse());
 	}
 
 	@Autowired
@@ -58,17 +58,7 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(10);
 	}
-	
-//	@Bean
-//	public CorsConfigurationSource corsConfigurationSource() {
-//		CorsConfiguration configuration = new CorsConfiguration();
-//		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-//		configuration.setAllowedMethods(Arrays.asList( "GET","POST","PUT","DELETE"));
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		source.registerCorsConfiguration("/", configuration);
-//		return source;
-//	}
-	
+
 	@Bean
 	public WebMvcConfigurer configurer(){
 	  return new WebMvcConfigurer(){
