@@ -8,7 +8,6 @@ import { GardenSidebarComponent } from './my-gardens/gardens-sidebar/garden-side
 import { BodyPlantingAreaComponent } from './my-gardens/body-planting-area/body-planting-area.component';
 import { BodyPlantComponent } from './my-gardens/body-plant/body-plant.component';
 import { BodyGardenComponent } from './my-gardens/body-garden/body-garden.component';
-import { HttpModule } from '@angular/http';
 import { FileModule } from '../file/file.module';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { FileModule } from '../file/file.module';
     GardensRoutingModule,
     MatCheckboxModule,
     LibraryModule,
-    HttpModule,
     FileModule
   ],
   exports: [GardenSidebarComponent]

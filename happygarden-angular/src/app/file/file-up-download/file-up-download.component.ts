@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as fileSaver from 'file-saver';
+// import * as fileSaver from 'file-saver';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FileService } from 'src/app/services/file/file.service';
 

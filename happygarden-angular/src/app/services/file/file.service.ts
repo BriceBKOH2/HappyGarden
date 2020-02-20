@@ -5,7 +5,9 @@ import {
   HttpEvent,
   HttpRequest
 } from '@angular/common/http';
-import { HttpModule, Http, ResponseContentType } from '@angular/http';
+
+// import { HttpModule, Http, ResponseContentType } from '@angular/http';
+
 import { Observable } from 'rxjs';
 import { RequestService } from '../request/request.service';
 
@@ -17,8 +19,8 @@ export class FileService {
   private inconeUrl: string;
 
   constructor(
-    private http: Http,
-    private https: HttpClient,
+    // private http: Http,
+    private http: HttpClient,
     private request: RequestService
   ) {
     this.plantImgUrl = 'http://192.168.1.11:8082/happygarden/api/downloadFile';
@@ -35,7 +37,7 @@ export class FileService {
 
   downloadFile(file: string): Observable<any> {
     return this.http.get(`${this.endPointDownload}/${file}`, {
-      responseType: ResponseContentType.Blob
+      // responseType: ResponseContentType.Blob
     });
   }
 
@@ -46,6 +48,6 @@ export class FileService {
       reportProgress: true,
       responseType: 'text'
     });
-    return this.https.request(newRequest);
+    return this.http.request(newRequest);
   }
 }

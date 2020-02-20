@@ -4,21 +4,17 @@ import { UserAccount } from '../../classes/user-account';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { RequestService } from '../request/request.service';
 import { UserRolesService } from '../userRoles/user-roles.service';
-import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 import { Garden } from 'src/app/classes/garden';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccountRequestService {
+
   constructor(
     private httpClient: HttpClient,
-    private request: RequestService
-  ) {}
-
-  constructor(private httpClient: HttpClient,
-     private request: RequestService,
-     private roleServ: UserRolesService) {
+    private request: RequestService,
+    private roleServ: UserRolesService) {
   }
 
   get endPoint(): string {

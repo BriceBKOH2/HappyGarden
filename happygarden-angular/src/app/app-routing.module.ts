@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: './library/library.module#LibraryModule'
   },
   {
-    path: 'usermanagement',
-    loadChildren: './admin-management/admin-management.module#AdminManagementModule'
-  },
-  {
     path: 'gardens',
     loadChildren: './gardens/gardens.module#GardensModule'
     // canActivate: [AuthenticateGuard]

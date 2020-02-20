@@ -15,10 +15,9 @@ import { AuthInterceptorService } from './authenticate/services/auth-interceptor
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,8 +31,7 @@ import { HttpModule } from '@angular/http';
     AuthenticateModule.forRoot(AuthenticateApiService),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatCheckboxModule,
-    HttpModule
+    MatCheckboxModule
   ],
   exports: [MatCheckboxModule],
   providers: [
