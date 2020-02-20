@@ -13,11 +13,17 @@ import { RequestService } from '../request/request.service';
   providedIn: 'root'
 })
 export class FileService {
+  private plantImgUrl: string;
+  private inconeUrl: string;
+
   constructor(
     private http: Http,
     private https: HttpClient,
     private request: RequestService
-  ) {}
+  ) {
+    this.plantImgUrl = 'http://192.168.1.11:8082/happygarden/api/downloadFile';
+    this.inconeUrl = 'http://192.168.1.11:8082/happygarden/api/downloadFile';
+  }
 
   get endPointDownload(): string {
     return this.request.endPoint + '/downloadFile';
