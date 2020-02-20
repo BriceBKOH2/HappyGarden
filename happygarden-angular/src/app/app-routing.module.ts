@@ -5,11 +5,11 @@ import { environment } from 'src/environments/environment';
 import { AuthenticateGuard } from './authenticate/guards/authenticate.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'homePage',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'homePage',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'homePage',
     loadChildren: './home/home.module#HomeModule'
@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'account',
     loadChildren: './account/account.module#AccountModule',
     canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'create',
+    loadChildren: './gardens-create/gardens-create.module#GardensCreateModule'
+    // canActivate: [AuthenticateGuard]
   }
 ];
 

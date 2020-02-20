@@ -211,6 +211,10 @@ public class UserAccount implements HibernateEntity<Long> {
 		}
 	}
 
+	public void addGarden(Garden garden) {
+		this.gardens.add(garden);
+	}
+	
 	public void addGardens(List<Garden> gardens) {
 		this.gardens.addAll(gardens);
 	}

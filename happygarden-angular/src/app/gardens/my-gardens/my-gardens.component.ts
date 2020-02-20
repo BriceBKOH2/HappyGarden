@@ -29,7 +29,7 @@ export class MyGardensComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.currentGarden = new Garden();
+    this.currentGarden = new Garden('');
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();
@@ -45,7 +45,7 @@ export class MyGardensComponent implements OnInit {
 
   showGardens() {
     this.addButtonTitle = 'Ajouter un jardin';
-    this.currentGarden = new Garden();
+    this.currentGarden = new Garden('');
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();

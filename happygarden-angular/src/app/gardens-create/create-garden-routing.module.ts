@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MyGardensComponent } from './my-gardens/my-gardens.component';
-import { PlantSingleComponent } from '../library/plant-single/plant-single.component';
+import { CreateGardenComponent } from './create-garden/create-garden.component';
 
 const routes: Routes = [
-  { path: '', component: MyGardensComponent }
+  { path: 'garden', component: CreateGardenComponent }
   // { path: ':id', component: PlantSingleComponent }
 ];
 
@@ -12,4 +11,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GardensRoutingModule {}
+export class CreateGardenRoutingModule {}

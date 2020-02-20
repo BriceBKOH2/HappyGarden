@@ -1,0 +1,26 @@
+<!-- <ng-container *ngFor="userAccount$ | async as userAccount"></ng-container> -->
+<fieldset class="fieldsetBorder">
+  <legend class="fieldsetBorder">Creation d'un jardin</legend>
+  <div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <form
+          [formGroup]="createGardenForm"
+          (ngSubmit)="onSubmit(createGardenForm.value)"
+        >
+          <div class="form-group row">
+            <label for="set">Nom</label>
+            <input
+              class="form-control sharp"
+              formControlName="gardenName"
+              type="text"
+              placeholder="Nom"
+            />
+          </div>
+          <button class="btn btn-success" type="submit">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</fieldset>
+<!-- </ng-container> -->
