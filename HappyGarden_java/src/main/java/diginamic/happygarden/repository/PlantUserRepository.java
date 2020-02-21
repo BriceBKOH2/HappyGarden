@@ -13,4 +13,6 @@ import diginamic.happygarden.model.PlantUser;
 @Repository
 public interface PlantUserRepository extends JpaRepository<PlantUser, Long>{
 	public List<Plant> findByCommonNameOrScientificName(String commonName, String scientificName);
+	
+	public List<Plant> findByCreator(String creator);
 }
