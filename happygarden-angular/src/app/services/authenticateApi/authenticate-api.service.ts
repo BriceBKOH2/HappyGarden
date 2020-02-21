@@ -50,7 +50,7 @@ export class AuthenticateApiService implements AuthenticateApi {
           console.log('HttpErrorResponse : ');
           console.log(err);
         } else {
-          console.log('Not and HttpErrorResponse : ');
+          console.log('Not a HttpErrorResponse : ');
           console.log(err);
         }
         return throwError(err);
