@@ -25,4 +25,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
 	 */
 	@Query("select distinct u from UserAccount u left join fetch u.gardens left join fetch u.userRole left join fetch u.favoritePlants where u.id = :id")
 	public Optional<UserAccount> findByIdFetchAll(Long id);
+	
+	@Query("select count(f) from UserAccount u join u.friends f where u.id = :userId")
+	public Long countFriendsByUserId(Long userId);
 }

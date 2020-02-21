@@ -13,23 +13,32 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit {
-  constructor(
-    public authServ: AuthenticateService,
-    private convService: ConversationsService,
-    private activatedRoute: ActivatedRoute
-  ) {}
-
   messages: Message[] = [];
 
   message: Message;
 
+  conversation: Conversation;
+
+  constructor(
+    public authServ: AuthenticateService,
+    private convService: ConversationsService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.message = new Message();
+  }
+
   sendMessageForm = new FormGroup({
     author: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required)
+    content: new FormControl('', Validators.required),
+    conversation: new FormControl('', Validators.required)
   });
 
   onSubmitCreationForm() {
-    this.message.author = this.sendMessageForm.value.author;
+    this.authServ.user$.subscribe(
+      user => (this.message.author = user.nickname)
+    );
+    //----CONV-----------------
+    this.message.conversation = this.conversation;
     this.message.content = this.sendMessageForm.value.content;
   }
 
@@ -38,7 +47,10 @@ export class ConversationComponent implements OnInit {
       .pipe(
         switchMap(params => {
           console.log(params);
-          return this.convService.getConversation(params.id);
+          this.convService
+            .getConversation(params.id)
+            .subscribe(response => (this.conversation = response));
+          return this.convService.getMessagesConversation(params.id);
         })
       )
       .subscribe(response => {
@@ -48,11 +60,23 @@ export class ConversationComponent implements OnInit {
   }
 
   sendMessage() {
-    this.message.author = this.sendMessageForm.value.author;
+    this.authServ.user$.subscribe(
+      user => (this.message.author = user.nickname)
+    );
+    this.message.conversation = this.conversation;
     this.message.content = this.sendMessageForm.value.content;
 
     this.convService.sendMessage(this.message).subscribe(response => {
       this.message = response;
+      console.log(this.message);
+      // this.conversation.messages.push(this.message);
+      // this.convService
+      //   .updateConversation(this.conversation)
+      //   .subscribe(responseConv => {
+      //     console.log(this.conversation);
+      //     console.log(responseConv);
+      //   });
+      this.message = new Message();
     });
   }
 }

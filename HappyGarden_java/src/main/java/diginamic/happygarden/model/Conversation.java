@@ -26,6 +26,7 @@ public class Conversation implements HibernateEntity<Long> {
 	
 	@NotNull
 	@OneToMany
+	@JsonBackReference("conversation_messages")
 	//@OneToMany(cascade = CascadeType.PERSIST)
 	private List<Message> messages = new ArrayList<>() ;
 

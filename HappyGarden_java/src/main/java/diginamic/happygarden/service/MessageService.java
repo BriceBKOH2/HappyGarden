@@ -16,4 +16,8 @@ public class MessageService extends AbstractService<Message, Long, MessageReposi
 	public List<Message> findByIdConversation(Long id) {
 		return repo.findByIdConversation(id);
 	}
+	
+	public Long countMessagesByConvId(Long id) {
+		return repo.countMessagesByConvId(id);
+	}
 }

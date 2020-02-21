@@ -17,6 +17,8 @@ export class AccountpageComponent implements OnInit {
   ) {}
   //userSave = new UserAccount()
   nbGardens: number;
+  nbConvs: number;
+  nbFriends: number;
   ngOnInit() {
     let id: number;
     this.authServ.user$.subscribe(response => {
@@ -24,6 +26,12 @@ export class AccountpageComponent implements OnInit {
       this.accountService
         .countGardens(id)
         .subscribe(count => (this.nbGardens = count));
+      this.accountService
+        .countConvs(id)
+        .subscribe(count => (this.nbConvs = count));
+      this.accountService
+        .countFriends(id)
+        .subscribe(count => (this.nbFriends = count));
     });
   }
 }

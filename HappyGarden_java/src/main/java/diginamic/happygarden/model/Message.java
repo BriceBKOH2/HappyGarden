@@ -4,8 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /** Contained in a Conversation, it has the content of the message and the User that sent it **/
 @Entity
@@ -14,6 +18,13 @@ public class Message implements HibernateEntity<Long> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	
+//	@NotBlank
+	@JsonBackReference("conversation_messages")
+	@ManyToOne
+	@JoinColumn(name = "conversation_id")
+	private Conversation conversation;
 	
 	/** The content of the message shown in the conversation **/
 	@NotBlank
@@ -35,6 +46,11 @@ public class Message implements HibernateEntity<Long> {
 		this.author = author.getNickname();
 	}
 
+	public Message(String content, String author) {
+		super();
+		this.content = content;
+		this.author = author;
+	}
 	
 	/* Getters Setters */
 	
@@ -62,5 +78,7 @@ public class Message implements HibernateEntity<Long> {
 		this.author = author.getNickname();
 	}
 
-	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 }

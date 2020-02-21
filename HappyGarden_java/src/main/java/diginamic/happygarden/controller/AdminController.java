@@ -174,15 +174,24 @@ public class AdminController {
 			parcel.setGarden(jardinUn);
 			
 			
-			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
-			estelle.setPassword("estelle");
-			estelle.setProfileImg("profil.jpg");
-			userAccServ.save(estelle);
-			
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
 			jade.setProfileImg("profil_2.jpg");
 			userAccServ.save(jade);
+			
+			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
+			estelle.setPassword("estelle");
+			estelle.setProfileImg("profil.jpg");
+			
+			
+			// Ajoût Amis
+			List<String> friends = new ArrayList<String>();
+			friends.add(jade.getNickname());
+			estelle.addFriends(friends);
+			
+			userAccServ.save(estelle);
+			
+
 			
 			UserAccount jordi = new UserAccount("Jordi", "Mage", "Jordi", userRoleServ.findByName(ADMIN));
 			jordi.setPassword("jordi");
@@ -233,7 +242,13 @@ public class AdminController {
 			gardenServ.save(jardinUn);
 			conversationServ.save(conversationEstelleJade);
 			conversationServ.save(conversationEstelleJordi);
-			// Ajoût de Conversations randomn pour la BDD
+			
+			Message msgJordi2 = new Message("Ceci est un deuxième test.", jordi);
+
+			messageServ.save(msgJordi2);
+			conversationEstelleJordi.addMessages(msgJordi2);
+//			conversationServ.update(conversationEstelleJordi);
+				
 		}
 		return userAccServ.findAll();
 	}

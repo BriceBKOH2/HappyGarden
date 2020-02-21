@@ -1,4 +1,5 @@
 <app-sidebar-account></app-sidebar-account>
+
 <section class="profile-section">
   <div *ngFor="let message of messages">
     <div class="msg">
@@ -8,20 +9,8 @@
             user.nickname == message.author ? 'current-user' : 'other-user'
           "
         >
-          <!-- <div class="author">
-            <figure>
-              <img src="" alt="" />
-            </figure>
-          </div> -->
           <p>{{ message.content }}</p>
         </div>
-        <!-- <div
-          [className]="
-            user.nickname == message.author
-              ? 'triangle-current-user'
-              : 'triangle-other-user'
-          "
-        ></div> -->
       </div>
       <p></p>
     </div>
@@ -33,11 +22,15 @@
     class="form-simul"
   >
     <div class="form-group">
-      <label for="client_firstName">Votre message </label>
+      <!-- <div *ngIf="authServ.user$ | async as user">
+        <input formControlName="author" type="text" type="hidden" />
+      </div>
+      <input formControlName="conversation" type="text" type="hidden" /> -->
+      <label for="msg">Répondre</label>
       <input
-        formControlName="clientFirstName"
-        id="client_first_name"
-        name="client_first_name"
+        formControlName="content"
+        id="msg"
+        name="msg"
         class="form-control"
         type="text"
         required

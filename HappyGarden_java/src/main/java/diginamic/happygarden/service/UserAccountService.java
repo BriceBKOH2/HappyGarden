@@ -72,5 +72,9 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 		}
 		return false;
 	}
+	
+	public Long countNbFriendsByUserId(Long id) {
+		return repo.countFriendsByUserId(id);
+	}
 
 }

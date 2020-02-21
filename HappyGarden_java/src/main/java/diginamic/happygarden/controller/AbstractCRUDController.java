@@ -85,6 +85,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	@PutMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public T update(@RequestBody T t) throws NotFoundException {
+		System.out.println(t);
 		return service.update(t);
 	}
 	

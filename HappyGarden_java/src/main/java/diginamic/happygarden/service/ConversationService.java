@@ -18,6 +18,10 @@ public class ConversationService extends AbstractService<Conversation, Long, Con
 		return repo.findAllByUserId(id);
 	}
 	
+	public Long countNbCOnversationsByUserId(Long id) {
+		return repo.countByUserId(id);
+	}
+//	
 //	public List<UserAccount> findUsersByConvId(Long id) {
 //		return repo.findAllUserAccountbyConversationId(id);
 //	}

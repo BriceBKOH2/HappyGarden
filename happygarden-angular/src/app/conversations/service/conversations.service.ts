@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RequestService } from 'src/app/services/request/request.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Conversation } from 'src/app/classes/conversation';
 import { Message } from 'src/app/classes/Message';
 
@@ -9,7 +9,7 @@ import { Message } from 'src/app/classes/Message';
   providedIn: 'root'
 })
 export class ConversationsService {
-  get endPointUser() {
+  get endPointConversation() {
     return this.request.endPoint + '/Conversation';
   }
   get endPointMessage() {
@@ -22,16 +22,39 @@ export class ConversationsService {
 
   getConversations(id: number): Observable<Conversation[]> {
     return this.httpClient.get<Conversation[]>(
-      `${this.endPointUser}/user/${id}`
+      `${this.endPointConversation}/user/${id}`
     );
   }
 
-  getConversation(id: number): Observable<Message[]> {
+  getMessagesConversation(id: number): Observable<Message[]> {
     // return this.httpClient.get<Conversation>(`${this.endPointUser}/${id}`);
     return this.httpClient.get<Message[]>(`${this.endPointMessage}/conv/${id}`);
   }
 
+  getConversation(id: number): Observable<Conversation> {
+    // return this.httpClient.get<Conversation>(`${this.endPointUser}/${id}`);
+    return this.httpClient.get<Conversation>(
+      `${this.endPointConversation}/${id}`
+    );
+  }
+
   sendMessage(message: Message): Observable<Message> {
-    return this.httpClient.put<Message>(this.endPointMessage, message);
+    console.log(JSON.stringify(message));
+    return this.httpClient.post<Message>(
+      this.endPointMessage,
+      JSON.stringify(message)
+    );
+  }
+
+  updateConversation(conversation: Conversation): Observable<Conversation> {
+    console.log(conversation);
+    // return this.httpClient.put<Conversation>(
+    //   this.endPointConversation,
+    //   conversation
+    // );
+    return this.httpClient.put<Conversation>(
+      this.endPointConversation,
+      JSON.stringify(conversation)
+    );
   }
 }

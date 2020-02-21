@@ -33,4 +33,16 @@ export class AccountService {
       `${this.endPointUser}/${id}/gardens/count`
     );
   }
+
+  countConvs(id: number): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.endPointUser}/${id}/conversations/count`
+    );
+  }
+
+  countFriends(id: number): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.endPointUser}/${id}/friends/count`
+    );
+  }
 }
