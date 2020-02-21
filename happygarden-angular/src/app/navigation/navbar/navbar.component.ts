@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     },
     { // Example of a restricted area. Guards require to be logged in, then to have admin role.
       route: 'admin',
-      label: 'Admin menu'
+      label: 'Example restricted area'
     },
   ];
 
@@ -41,8 +41,8 @@ export class NavbarComponent implements OnInit {
   // links that require the user to have admin role to see.
   linksAdmin = [
     {
-      route: '',
-      label: 'Admin only'
+      route: 'admin',
+      label: 'Admin Menu'
     },
   ]
 

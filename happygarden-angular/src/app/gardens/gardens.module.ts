@@ -9,6 +9,7 @@ import { BodyPlantingAreaComponent } from './my-gardens/body-planting-area/body-
 import { BodyPlantComponent } from './my-gardens/body-plant/body-plant.component';
 import { BodyGardenComponent } from './my-gardens/body-garden/body-garden.component';
 import { FileModule } from '../file/file.module';
+import { ReminderEditComponent } from '../reminders/reminder-edit/reminder-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FileModule } from '../file/file.module';
     GardenSidebarComponent,
     BodyPlantingAreaComponent,
     BodyPlantComponent,
-    BodyGardenComponent
+    BodyGardenComponent,
+    ReminderEditComponent
   ],
   imports: [
     CommonModule,

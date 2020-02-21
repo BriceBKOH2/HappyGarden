@@ -18,8 +18,7 @@
         <div class="grid-row">
           <figure><img src="/assets/icones/arrosoir.png" /></figure>
           <p>Arroser</p>
-          <mat-checkbox class="example-margin" labelPosition="before">
-          </mat-checkbox>
+          <button class="btn btn-info" (click)="test()">Créer un rappel</button>
         </div>
         <div class="border"></div>
         <div class="grid-row">
@@ -42,5 +41,16 @@
       </div>
     </div>
     <!-- <app-plant-single></app-plant-single> -->
+  </div>
+  <div *ngIf="reminders$ | async as reminders">
+    <ng-container *ngFor="let reminder of reminders">
+      <h2>{{ reminder.name }}</h2>
+      <p>{{ reminder.content }}</p>
+      <p>{{ reminder.activationDate }}</p>
+    </ng-container>
+  </div>
+  <div [ngClass]="{'d.none': reminderCreate}">
+    <h2>Créer un rappel</h2>
+    <app-reminder-edit></app-reminder-edit>
   </div>
 </div>
