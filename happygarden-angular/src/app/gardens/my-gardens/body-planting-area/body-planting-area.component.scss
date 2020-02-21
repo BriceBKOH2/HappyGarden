@@ -1,0 +1,37 @@
+.plantingArea-plants {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  grid-gap: 2%;
+  margin-bottom: 4%;
+  padding: 5%;
+}
+
+.selectPlant {
+  display: block;
+  margin: auto;
+  border: 2px solid var(--vert);
+  padding: 2% 4%;
+  border-radius: 20px;
+  color: var(--vert);
+  margin-top: 13%;
+  width: 50%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1280px) {
+  .plantingArea-plants {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .plantingArea-plants {
+    display: inherit;
+  }
+
+  .plant {
+    margin: auto;
+    margin-bottom: 6%;
+  }
+}

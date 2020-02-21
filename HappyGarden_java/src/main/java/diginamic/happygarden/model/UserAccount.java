@@ -47,6 +47,8 @@ public class UserAccount implements HibernateEntity<Long> {
 	private UserRole userRole;
 
 	@JsonIgnore
+//	@JsonManagedReference("user_conversations")
+//	@JsonBackReference("user_msg")
 	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	private List<Conversation> conversations = new ArrayList<>();
 	
@@ -59,7 +61,6 @@ public class UserAccount implements HibernateEntity<Long> {
 	@ManyToMany
 	private Set<Plant> favoritePlants = new HashSet<>();
 
-//	@JsonIgnore
 	@JsonManagedReference("user_gardens")
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Garden> gardens = new HashSet<>();

@@ -90,7 +90,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * @param t
 	 */
 	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
-	@DeleteMapping(consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
+	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@RequestBody T t) {
 		service.delete(t);

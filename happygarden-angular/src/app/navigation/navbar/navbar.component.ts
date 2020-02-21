@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
   isNavbarCollapsed = true;
 
   links = [
@@ -19,45 +20,49 @@ export class NavbarComponent implements OnInit {
       route: 'libraryList',
       label: 'Bibliothèque'
     },
-    // {
-    //   route: 'login',
-    //   label: 'Log in'
-    // },
+    { // Example of a restricted area. Guards require to be logged in, then to have admin role.
+      route: 'admin',
+      label: 'Admin menu'
+    },
   ];
 
   // links that need the user to be logged in to view
   linksAuth = [
     {
-      route: 'gardenList',
+      route: 'gardens',
       label: 'Mes jardins'
     },
     {
       route: 'userAccount',
       label: 'Mon Compte'
-    },
+    }
   ];
 
+  // links that require the user to have admin role to see.
   linksAdmin = [
     {
-      route: 'usermanagement',
-      label: 'Gestion des utilisateurs'
+      route: '',
+      label: 'Admin only'
     },
   ]
 
-  constructor(public authServ: AuthenticateService,
-              private router: Router) {}
+  constructor(
+    public authServ: AuthenticateService,
+    private router: Router) {}
 
   ngOnInit() {}
 
   logOut() {
-    this.authServ.logout().subscribe(
-      () => {
-        this.router.navigate(['login']);
-      },
-      error => {
-        console.log('Error login out' + error);
-        alert(error.status + ' : ' + error.statusText);
-      }
-    );
+    if (confirm('Se déconnecter ?')) {
+      this.authServ.logout().subscribe(
+        () => {
+          this.router.navigate(['homePage']);
+        },
+        error => {
+          console.log('Error login out' + error);
+          alert(error.status + ' : ' + error.statusText);
+        }
+      );
+    }
   }
 }

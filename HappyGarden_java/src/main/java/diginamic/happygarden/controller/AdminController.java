@@ -98,7 +98,7 @@ public class AdminController {
 			List<UserRight> userRightsAdmin = new ArrayList<UserRight>();
 			UserRight userRightAdmin = new UserRight(UserRight.RIGHT_ADMINISTRATION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight(UserRight.RIGHT_ACCOUNT_SUPPRESION);
+			userRightAdmin = new UserRight(UserRight.RIGHT_ACCOUNT_SUPPRESSION);
 			userRightsAdmin.add(userRightAdmin);
 			userRightAdmin = new UserRight(UserRight.RIGHT_PLANT_SUPPRESSION);
 			userRightsAdmin.add(userRightAdmin);

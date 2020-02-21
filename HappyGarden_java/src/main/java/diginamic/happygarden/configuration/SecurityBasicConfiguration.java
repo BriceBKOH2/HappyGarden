@@ -36,16 +36,17 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 			.antMatchers("/Admin/**").hasRole("ADMIN")
-			.antMatchers("/Plant").permitAll()
+			.antMatchers(HttpMethod.GET, "/Plant/**", "/UserRole/**").permitAll() // UserRole : to retrieve default user role when creating new user.
+			.antMatchers(HttpMethod.POST, "/UserAccount").permitAll() // can create a new user without being logged in. (for new users)
 			.anyRequest().authenticated()
 			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout().permitAll()
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
+			.and().csrf().disable();
 //			.and().csrf()
 //			.csrfTokenRepository(CookieCsrfTokenRepository
-//				.withHttpOnlyFalse())
-			.and().csrf().disable();
+//			.withHttpOnlyFalse());
 	}
 
 	@Autowired
@@ -57,17 +58,7 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(10);
 	}
-	
-//	@Bean
-//	public CorsConfigurationSource corsConfigurationSource() {
-//		CorsConfiguration configuration = new CorsConfiguration();
-//		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-//		configuration.setAllowedMethods(Arrays.asList( "GET","POST","PUT","DELETE"));
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		source.registerCorsConfiguration("/", configuration);
-//		return source;
-//	}
-	
+
 	@Bean
 	public WebMvcConfigurer configurer(){
 	  return new WebMvcConfigurer(){

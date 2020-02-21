@@ -16,7 +16,7 @@ public class UserRoleService extends AbstractService<UserRole, Long, UserRoleRep
 		return repo.findByName(name).orElseThrow(() -> new NotFoundException("User role with name \"" + name + "\" not found.")); 
 
 	}
-	
+
 	public UserRole getDefaultRole() throws NotFoundException {
 		return repo.getDefaultRole().orElseThrow(() -> new NotFoundException("Cannot retrieve default role."));
 	}

@@ -8,6 +8,12 @@ nav {
   border-bottom: solid 1px var(--vert);
 }
 
+.navbar-nav {
+  width: 100%;
+  align-items: flex-end;
+  justify-items: flex-end;
+}
+
 .navbar-brand {
   font-weight: 500;
   color: var(--police);
@@ -27,3 +33,18 @@ i {
   color: var(--police-inactive);
 }
 
+.log-out, .log-in, .navbar-nav b {
+  font-weight: 500;
+}
+
+.log-out {
+  cursor: pointer;
+}
+
+.log-in, .logged-as {
+  margin-left: auto;
+}
+
+.logged-as {
+  font-size: 0.9em;
+}

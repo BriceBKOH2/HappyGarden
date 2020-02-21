@@ -1,0 +1,46 @@
+<div class="currentPlant" [ngClass]="{ 'd-none': !myGardens.currentPlant.id }">
+  <div class="encart">
+    <p>{{ myGardens.currentPlant.commonName }}</p>
+  </div>
+  <div class="img">
+    <figure>
+      <img
+        src="{{ fileService.plantImgUrl }}/{{ myGardens.currentPlant.image }}"
+        alt=""
+      />
+    </figure>
+  </div>
+
+  <div class="left-infos">
+    <p>Plantée le {{ myGardens.currentSlot.date }}</p>
+    <div class="icones-div">
+      <div class="icones">
+        <div class="grid-row">
+          <figure><img src="/assets/icones/arrosoir.png" /></figure>
+          <p>Arroser</p>
+          <mat-checkbox class="example-margin" labelPosition="before">
+          </mat-checkbox>
+        </div>
+        <div class="border"></div>
+        <div class="grid-row">
+          <figure><img src="/assets/icones/pruning-shears.png" /></figure>
+          <p class="align-middle">Tailler</p>
+          <mat-checkbox class="example-margin" labelPosition="before">
+          </mat-checkbox>
+        </div>
+        <div class="border"></div>
+        <div class="grid-row">
+          <figure><img src="/assets/icones/fertilizer.png" /></figure>
+          <p>Mettre de l'engrais</p>
+          <mat-checkbox class="example-margin" labelPosition="before">
+          </mat-checkbox>
+        </div>
+        <a class="plante-single-button">
+          <!-- [routerLink]="['../libraryList', currentPlant.id]" -->
+          Fiche complète</a
+        >
+      </div>
+    </div>
+    <!-- <app-plant-single></app-plant-single> -->
+  </div>
+</div>

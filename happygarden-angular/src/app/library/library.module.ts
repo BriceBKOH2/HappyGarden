@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LibraryRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  exports: [PlantSingleComponent]
 })
 export class LibraryModule {}

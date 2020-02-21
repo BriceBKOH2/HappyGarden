@@ -1,15 +1,13 @@
-<p>
-  accountpage works! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-  Dolorem exercitationem omnis, optio animi necessitatibus impedit fugit dolore
-  molestias nam eos cumque quam doloremque vero nesciunt ipsam nemo rerum nisi
-  delectus!
-</p>
 
-
-<p *ngIf="authServ.user$ | async as user" style="color: rebeccapurple;">
-  {{ user.lastname }}
-  {{ user.id }}
-  {{ user.firstname }}
-  {{ user.userRole.name }}
-</p>
+<ng-container *ngIf="authServ.user$ | async as user">
+  <div style="color: rebeccapurple;">
+    <b>{{ user.firstname }} {{ user.lastname }}</b><br>
+    <em>Id :</em> {{ user.id }} <br>
+    <em>Role :</em> {{ user.userRole.name }} <br>
+    <em>User Rights :</em>
+    <ul *ngFor="let userRight of user.userRole.userRights">
+        <li>{{ userRight.name }}</li>
+    </ul>
+  </div>
+</ng-container>
 <app-sidebar-account></app-sidebar-account>

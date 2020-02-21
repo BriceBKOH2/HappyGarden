@@ -14,13 +14,13 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class UserRight implements HibernateEntity<Long> {
 	
-	public final static String RIGHT_COMMENT = "COMMENT";
-	public final static String RIGHT_MESSAGE = "MESSAGE";
-	public final static String RIGHT_ADMINISTRATION = "ADMINISTRATION";
-	public final static String RIGHT_ACCOUNT_SUPPRESION = "ACCOUNT_SUPPRESSION";
-	public final static String RIGHT_PLANT_SUPPRESSION = "PLANT_SUPPRESSION";
-	public final static String RIGHT_PLANT_ADDITION = "PLANT_ADDITION";
-	public final static String RIGHT_PLANT_MODIFICATION = "PLANT_MODIFICATION";
+	public final static String RIGHT_COMMENT = "comment";
+	public final static String RIGHT_MESSAGE = "message";
+	public final static String RIGHT_ADMINISTRATION = "administration";
+	public final static String RIGHT_ACCOUNT_SUPPRESSION = "account_suppression";
+	public final static String RIGHT_PLANT_SUPPRESSION = "plant_suppression";
+	public final static String RIGHT_PLANT_ADDITION = "plant_addition";
+	public final static String RIGHT_PLANT_MODIFICATION = "plant_modification";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
