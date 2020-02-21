@@ -1,5 +1,5 @@
 <section class="globale">
-    <form class="form-inline" [formGroup]="searchPlantFrom">
+    <form class="form-inline" [formGroup]="searchPlantFrom" (ngSubmit)="searchPlant()">
     <div class="form-group">
       <label for="plantName">Rechercher une plante</label>
       <input
@@ -10,7 +10,7 @@
         class="form-control"
       />
     </div>
-    <button class="btn-api form-control" type="button" (click)="searchPlant()">
+    <button class="btn-api form-control" type="submit">
       Rechercher
     </button>
   </form>
