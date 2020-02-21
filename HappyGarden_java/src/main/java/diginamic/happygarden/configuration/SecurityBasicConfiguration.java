@@ -35,11 +35,11 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/Admin/**").hasRole("ADMIN")
-			.antMatchers(HttpMethod.GET, "/Plant/**", "/UserRole/**").permitAll() // UserRole : to retrieve default user role when creating new user.
+			.antMatchers("/Admin/**","UserRole").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/Plant", "/Plant/**","/UserRole/**").permitAll() // UserRole : to retrieve default user role when creating new user.
 			.antMatchers(HttpMethod.POST, "/UserAccount").permitAll() // can create a new user without being logged in. (for new users)
 			.anyRequest().authenticated()
-			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout().permitAll()
+			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).permitAll().and().logout().deleteCookies("JSESSIONID").permitAll()
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
