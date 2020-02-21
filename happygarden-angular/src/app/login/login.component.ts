@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   createAccForm: FormGroup;
   invalidLogin = false;
+  showLogin = true;
 
   param: string;
 
@@ -129,6 +130,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         alert(error.status + ' : ' + error.statusText);
       }
     );
+  }
+
+  showLoginForm() {
+    this.showLogin = true;
+  }
+
+  showCreateAccForm() {
+    this.showLogin = false;
   }
 
   ngOnDestroy() {

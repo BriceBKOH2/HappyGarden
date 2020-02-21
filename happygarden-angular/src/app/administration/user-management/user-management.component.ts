@@ -46,7 +46,7 @@ export class UserManagementComponent implements OnInit {
       },
       error => console.log(error)
     );
+    }
   }
-}
 
 }
