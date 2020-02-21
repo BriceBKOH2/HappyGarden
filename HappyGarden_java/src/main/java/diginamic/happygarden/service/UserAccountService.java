@@ -76,5 +76,10 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 		}
 		return false;
 	}
+	
+	public UserAccount changePassword(UserAccount user, String password) {
+		user.setPassword(passwordEncoder.encode(password));
+		return repo.save(user);
+	}
 
 }

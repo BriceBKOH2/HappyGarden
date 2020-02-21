@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.model.UserAccount;
+import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.service.GardenService;
 import diginamic.happygarden.service.UserAccountService;
 
@@ -47,18 +50,18 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 		return service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);
 	}
 	
-//	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
+	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@PathVariable Long id) {
 		service.deleteById(id);
 	}
+	
+	@PutMapping("/{id}/password")
+	@PreAuthorize("hasRole('ADMIN') or @securityExpression.isConnectedUser(#id)") //Only admin or user with the same id can update the object
+	public void changePassword(@PathVariable Long id, @RequestParam String password) throws NotFoundException {
+		UserAccount user = service.findById(id);
+		service.changePassword(user, password);
+	}
+	
 }
-	
-	// TODO
-	
-//	@PutMapping("/{id}/password")
-//	@PreAuthorize("hasRole('ADMIN') or @securityExpression.isConnectedUser(#id)") //Only admin or user with the same id can update the object
-//	public void changePassword(@PathVariable Long id, @RequestParam String password) throws NotFoundException {
-//		service.changePassword(id, password);
-//	}

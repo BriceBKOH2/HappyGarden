@@ -40,8 +40,8 @@ import diginamic.happygarden.service.UserRoleService;//@PreAuthorize("admnistrat
 @RequestMapping("/Admin")
 public class AdminController {
 
-	public static final String BASIC = "Basic";
-	public static final String ADMIN = "Admin";
+	public static final String BASIC = "BASIC";
+	public static final String ADMIN = "ADMIN";
 
 	@Autowired
 	private UserRightService userRightServ;

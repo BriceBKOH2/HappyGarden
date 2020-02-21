@@ -48,9 +48,7 @@ export class AuthenticateService {
   isAdmin(): boolean {
     let isAdmin = false;
 
-    this.user$.subscribe(
-      (user) => (isAdmin = user.userRole.name == 'Admin')
-    );
+    this.user$.subscribe(user => (isAdmin = user.userRole.name == 'ADMIN'));
 
     return isAdmin;
   }
@@ -58,15 +56,23 @@ export class AuthenticateService {
   get isAdmin$() {
     return this.isAuthentificated$.pipe(
       switchMap(isAuth => {
-          if (isAuth) {
-            let user = this.userAuth$.value;
-            if (user != undefined && user != null && user.userRole != undefined && user.userRole != null) {
-              return of(user.userRole.userRights.findIndex(right => right.name === 'ADMINISTRATION') >= 0);
-            }
+        if (isAuth) {
+          let user = this.userAuth$.value;
+          if (
+            user != undefined &&
+            user != null &&
+            user.userRole != undefined &&
+            user.userRole != null
+          ) {
+            return of(
+              user.userRole.userRights.findIndex(
+                right => right.name === 'ADMINISTRATION'
+              ) >= 0
+            );
           }
-          return of(false)
         }
-      )
+        return of(false);
+      })
     );
   }
 
@@ -84,12 +90,13 @@ export class AuthenticateService {
     // );
     return this.api.login(username, password).pipe(
       tap(value => {
-        if(value == null) {
+        if (value == null) {
         } else {
           this.isAuth$.next(true);
           this.userAuth$.next(value);
         }
-    }));
+      })
+    );
   }
 
   logout(): Observable<void> {
