@@ -13,7 +13,7 @@
 
 <div class="col-md-10 d-flex justify-content-around flex-column">
   <ng-container *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills">
       <li class="nav-item">
         <h4>
           <a [ngClass]="{'nav-link': true,
