@@ -11,7 +11,6 @@ import { UserAccountRequestService } from '../services/userAccountRequest/user-a
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
   private subscription: Subscription;
   loginForm: FormGroup;
   createAccForm: FormGroup;
@@ -78,11 +77,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       () => {
         this.router.navigate(['userAccount']);
       },
-      (error) => {
+      error => {
         this.invalidLogin = true;
-        console.log("login.component::onSubmit > error");
+        console.log('login.component::onSubmit > error');
         console.log(error);
-        alert(error.status + ' : ' + error.statusText);
+      },
+      () => {
+        console.log('login.component::onSubmit > complete');
       }
     );
     // this.subscription.unsubscribe();
