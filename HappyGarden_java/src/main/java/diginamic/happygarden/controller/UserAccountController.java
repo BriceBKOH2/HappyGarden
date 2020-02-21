@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,6 +23,12 @@ import diginamic.happygarden.model.UserRight;
 import diginamic.happygarden.service.GardenService;
 import diginamic.happygarden.service.UserAccountService;
 
+/** 
+ * Controller should always send back UserAcccount object without the password
+ * for security reasons !
+ * @author Brice B
+ *
+ */
 @RestController
 @RequestMapping("/UserAccount")
 public class UserAccountController extends AbstractCRUDController<UserAccount, Long, UserAccountService> {
@@ -30,26 +38,63 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	
 	/**
 	 * Returns a user based on nickname.
-	 * 
+	 * @param String
 	 * @return	UserAccount
 	 * @throws NotFoundException 
 	 */
 	@GetMapping(value = "/nickname/{nickname}")
 	public UserAccount findByNickname(@PathVariable String nickname) throws NotFoundException {
-		return service.findByNickname(nickname);
+		UserAccount user = service.findByNickname(nickname);
+		user.setPassword(null);
+		return user;
 	}
 	
-	
+	/**
+	 * Returns @param List<Garden> from a UserAccount object based on its @param id
+	 * @param id from UserAccount
+	 * @return List<Garden>
+	 * @throws NotFoundException
+	 */
 	@GetMapping(value = "/{id}/gardens")
 	public List<Garden> findGardensByUserId(@PathVariable Long id) throws NotFoundException {
 		return gardenService.findByUserId(id);
 	}
 	
+	/**
+	 * Returns a List<UserAccount> base on a query that contains the @param name 
+	 * in the firstname, lastname or nickname in the UserAccount table.
+	 * Each UserAccount has had its password attribute set to @null;
+	 * @param String
+	 * @return List<UserAccount>
+	 */
 	@GetMapping("/search")
 	public List<UserAccount> searchByName(@RequestParam("name") String name) {
-		return service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);
+		List<UserAccount> users = service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);
+		for (UserAccount user : users) {
+			user.setPassword(null);
+		}
+		return users;
 	}
 	
+	/**
+	 * Returns the UserAccount
+	 * @body UserAccount
+	 * @return UserAccount
+	 */
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public UserAccount update(@RequestBody UserAccount entity) throws NotFoundException {
+		UserAccount user = service.findById(entity.getId());
+		entity.setPassword(user.getPassword());
+		service.update(entity);
+		entity.setPassword(null);
+		return entity;
+	}
+	
+	/**
+	 * Delete UserAccount in Database base on its id
+	 * @param id
+	 */
 	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
@@ -57,6 +102,13 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 		service.deleteById(id);
 	}
 	
+	/**
+	 * Change password of UserAccount based on @param id, only avaible
+	 * for admin or UserAccount authenticated with same id as @param id
+	 * @param id
+	 * @param password
+	 * @throws NotFoundException
+	 */
 	@PutMapping("/{id}/password")
 	@PreAuthorize("hasRole('ADMIN') or @securityExpression.isConnectedUser(#id)") //Only admin or user with the same id can update the object
 	public void changePassword(@PathVariable Long id, @RequestParam String password) throws NotFoundException {

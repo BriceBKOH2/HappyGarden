@@ -12,7 +12,11 @@ import diginamic.happygarden.service.UserRoleService;
 @RequestMapping("/UserRole")
 public class UserRoleController extends AbstractCRUDController<UserRole, Long, UserRoleService> {
 	
-//	getDefaultRole
+	/**
+	 * Get the UserRole set by default in UserRoleRepository.getDefaultRole
+	 * @return UserRole
+	 * @throws NotFoundException
+	 */
 	@GetMapping("/getDefaultRole")
 	public UserRole getDefaultRole() throws NotFoundException {
 		return this.service.getDefaultRole();

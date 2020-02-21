@@ -66,6 +66,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * @param t
 	 * @throws AlreadyExistException if the entity already exists.
 	 */
+	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public T save(@RequestBody T t) throws AlreadyExistException {
