@@ -19,7 +19,7 @@
     <h2>CONVERSATIONS</h2>
   </div>
 
-  <div *ngFor="let conv of conversations">
+  <div *ngFor="let conv of conversations$ | async">
     <div class="conv jumbotron-fluid">
       <div class="container">
         <!-- <a [routerLink]="[conv.id]">CLICK</a> -->
@@ -33,7 +33,8 @@
         <div class="delimit-conv"></div>
         <div>
           <div class="msg">
-            <h2 class="display-4">4 Messages</h2>
+            <h2 class="display-4">{{ conv.nbMessages }} Messages</h2>
+            <!-- <h2 *ngIf="nbMessages">{{ nbMessages }} Messages</h2> -->
             <figure>
               <img src="/assets/icones/chat.png" alt="" />
             </figure>

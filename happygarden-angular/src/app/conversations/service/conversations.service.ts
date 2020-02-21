@@ -26,6 +26,10 @@ export class ConversationsService {
     );
   }
 
+  countMessages(id: number): Observable<number> {
+    return this.httpClient.get<number>(`${this.endPointMessage}/${id}/count`);
+  }
+
   getMessagesConversation(id: number): Observable<Message[]> {
     // return this.httpClient.get<Conversation>(`${this.endPointUser}/${id}`);
     return this.httpClient.get<Message[]>(`${this.endPointMessage}/conv/${id}`);

@@ -198,55 +198,72 @@ public class AdminController {
 			jordi.setProfileImg("profil_3.jpg");
 			userAccServ.save(jordi);
 			
-			// Conversation Estelle Jade
-			ArrayList<Message> messagesEstelleJade = new ArrayList<Message>();
 			
-			Message msgEstelle = new Message("Coucou Jade.", estelle);
-			messageServ.save(msgEstelle);
-			messagesEstelleJade.add(msgEstelle);
+			//TEST
+			Conversation conv = new Conversation();
+			conv.addUser(estelle);
+			conv.addUser(jade);
+			Message msgJade = new Message("Coucou Estelle.", jade, conv);
+			Message msgEstelle = new Message("Coucou Jade.", estelle, conv);
+			Message msgJade2 = new Message("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam.", jade, conv);
+			Message msgEstelle2 = new Message("dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam, quis nostrud", estelle, conv);
 			
-			Message msgJade = new Message("Coucou Estelle.", jade);
-			messagesEstelleJade.add(msgJade);
+			conversationServ.save(conv);
 			messageServ.save(msgJade);
-			
-			Conversation conversationEstelleJade = new Conversation(messagesEstelleJade);
-			
-			List<UserAccount> usersConvEstelleJade = new ArrayList<UserAccount>();
-			usersConvEstelleJade.add(jade);
-			usersConvEstelleJade.add(estelle);
-			conversationEstelleJade.setUsers(usersConvEstelleJade);
-			
-			// Conversation Estelle Jordi
-			ArrayList<Message> messagesEstelleJordi = new ArrayList<Message>();
-			
-			Message msgEstellej = new Message("Coucou Jade.", estelle);
-			messageServ.save(msgEstellej);
-			messagesEstelleJordi.add(msgEstellej);
-			
-			Message msgJordi = new Message("Coucou Estelle.", jordi);
-			messagesEstelleJordi.add(msgJordi);
-			messageServ.save(msgJordi);
-			
-			Conversation conversationEstelleJordi = new Conversation(messagesEstelleJordi);
-			
-			List<UserAccount> usersConvEstelleJordi = new ArrayList<UserAccount>();
-			usersConvEstelleJordi.add(jordi);
-			usersConvEstelleJordi.add(estelle);
-			conversationEstelleJordi.setUsers(usersConvEstelleJordi);
+			messageServ.save(msgEstelle);
+			messageServ.save(msgJade2);
+			messageServ.save(msgEstelle2);
 			
 			
-			
-			
-			jardinUn.setUser(estelle);
-			
-			gardenServ.save(jardinUn);
-			conversationServ.save(conversationEstelleJade);
-			conversationServ.save(conversationEstelleJordi);
-			
-			Message msgJordi2 = new Message("Ceci est un deuxième test.", jordi);
-
-			messageServ.save(msgJordi2);
-			conversationEstelleJordi.addMessages(msgJordi2);
+			// Conversation Estelle Jade
+//			ArrayList<Message> messagesEstelleJade = new ArrayList<Message>();
+//			
+//			Message msgEstelle = new Message("Coucou Jade.", estelle);
+//			messageServ.save(msgEstelle);
+//			messagesEstelleJade.add(msgEstelle);
+//			
+//			Message msgJade = new Message("Coucou Estelle.", jade);
+//			messagesEstelleJade.add(msgJade);
+//			messageServ.save(msgJade);
+//			
+//			Conversation conversationEstelleJade = new Conversation(messagesEstelleJade);
+//			
+//			List<UserAccount> usersConvEstelleJade = new ArrayList<UserAccount>();
+//			usersConvEstelleJade.add(jade);
+//			usersConvEstelleJade.add(estelle);
+//			conversationEstelleJade.setUsers(usersConvEstelleJade);
+//			
+//			// Conversation Estelle Jordi
+//			ArrayList<Message> messagesEstelleJordi = new ArrayList<Message>();
+//			
+//			Message msgEstellej = new Message("Coucou Jade.", estelle);
+//			messageServ.save(msgEstellej);
+//			messagesEstelleJordi.add(msgEstellej);
+//			
+//			Message msgJordi = new Message("Coucou Estelle.", jordi);
+//			messagesEstelleJordi.add(msgJordi);
+//			messageServ.save(msgJordi);
+//			
+//			Conversation conversationEstelleJordi = new Conversation(messagesEstelleJordi);
+//			
+//			List<UserAccount> usersConvEstelleJordi = new ArrayList<UserAccount>();
+//			usersConvEstelleJordi.add(jordi);
+//			usersConvEstelleJordi.add(estelle);
+//			conversationEstelleJordi.setUsers(usersConvEstelleJordi);
+//			
+//			
+//			
+//			
+//			jardinUn.setUser(estelle);
+//			
+//			gardenServ.save(jardinUn);
+//			conversationServ.save(conversationEstelleJade);
+//			conversationServ.save(conversationEstelleJordi);
+//			
+//			Message msgJordi2 = new Message("Ceci est un deuxième test.", jordi);
+//
+//			messageServ.save(msgJordi2);
+//			conversationEstelleJordi.addMessages(msgJordi2);
 //			conversationServ.update(conversationEstelleJordi);
 				
 		}

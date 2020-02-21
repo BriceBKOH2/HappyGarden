@@ -5,6 +5,7 @@
   width: 70%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   margin-bottom: 2%;
+  float: right;
 }
 
 .other-user {
@@ -12,9 +13,10 @@
   padding: 2%;
   border-radius: 10px;
   width: 70%;
-  float: right;
+
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   margin-bottom: 2%;
+  clear: both;
 }
 
 p {

@@ -40,10 +40,11 @@ public class Message implements HibernateEntity<Long> {
 	public Message() {
 	}
 	
-	public Message(String content, UserAccount author) {
+	public Message(String content, UserAccount author, Conversation conversation) {
 		super();
 		this.content = content;
 		this.author = author.getNickname();
+		this.conversation = conversation;
 	}
 
 	public Message(String content, String author) {
@@ -81,4 +82,14 @@ public class Message implements HibernateEntity<Long> {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+	public Conversation getConversation() {
+		return conversation;
+	}
+
+	public void setConversation(Conversation conversation) {
+		this.conversation = conversation;
+	}
+	
+	
 }

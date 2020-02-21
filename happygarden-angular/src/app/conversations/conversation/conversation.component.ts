@@ -6,6 +6,8 @@ import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/classes/Message';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-conversation',
@@ -19,10 +21,15 @@ export class ConversationComponent implements OnInit {
 
   conversation: Conversation;
 
+  message$: Observable<Message>;
+
+  conversation$: Observable<Conversation>;
+
   constructor(
     public authServ: AuthenticateService,
     private convService: ConversationsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.message = new Message();
   }
@@ -46,7 +53,6 @@ export class ConversationComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         switchMap(params => {
-          console.log(params);
           this.convService
             .getConversation(params.id)
             .subscribe(response => (this.conversation = response));
@@ -56,6 +62,7 @@ export class ConversationComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.messages = response;
+        console.log(this.message.conversation.id);
       });
   }
 
@@ -69,14 +76,11 @@ export class ConversationComponent implements OnInit {
     this.convService.sendMessage(this.message).subscribe(response => {
       this.message = response;
       console.log(this.message);
-      // this.conversation.messages.push(this.message);
-      // this.convService
-      //   .updateConversation(this.conversation)
-      //   .subscribe(responseConv => {
-      //     console.log(this.conversation);
-      //     console.log(responseConv);
-      //   });
       this.message = new Message();
+      this.router.navigate([
+        'userAccount/conversations/',
+        { queryParams: { refresh: 2 } }
+      ]);
     });
   }
 }
