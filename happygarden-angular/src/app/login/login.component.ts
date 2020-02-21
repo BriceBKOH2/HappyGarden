@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
   private subscription: Subscription;
   loginForm: FormGroup;
   invalidLogin = false;
@@ -36,19 +35,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     let password = this.loginForm.controls.password.value;
 
     this.subscription = this.authServ.login(username, password).subscribe(
-      (value) => {
-
-        console.log("login.component::onSubmit > value : " + value);
+      value => {
+        console.log('login.component::onSubmit > value : ' + value);
         this.router.navigate(['userAccount']);
       },
-      (error) => {
+      error => {
         this.invalidLogin = true;
-        console.log("login.component::onSubmit > error");
+        console.log('login.component::onSubmit > error');
         console.log(error);
-        alert(error.status + ' : ' + error.statusText);
       },
       () => {
-        console.log("login.component::onSubmit > complete");
+        console.log('login.component::onSubmit > complete');
       }
     );
     // this.subscription.unsubscribe();
