@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import diginamic.happygarden.controller.AdminController;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.UserRole;
 import diginamic.happygarden.repository.UserRoleRepository;
@@ -18,6 +19,6 @@ public class UserRoleService extends AbstractService<UserRole, Long, UserRoleRep
 	}
 
 	public UserRole getDefaultRole() throws NotFoundException {
-		return repo.getDefaultRole().orElseThrow(() -> new NotFoundException("Cannot retrieve default role."));
+		return repo.getDefaultRole(AdminController.BASIC).orElseThrow(() -> new NotFoundException("Cannot retrieve default role."));
 	}
 }

@@ -77,29 +77,19 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	}
 	
 	/**
-	 * Returns the UserAccount
+	 * Returns the UserAccount after updating the Database with the entity retrieve from request body.
+	 * Before updating entity, it sets its password from the one saved in Database then send the update.
+	 * Before returning entity, it sets its password to null.
 	 * @body UserAccount
 	 * @return UserAccount
 	 */
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public UserAccount update(@RequestBody UserAccount entity) throws NotFoundException {
-		UserAccount user = service.findById(entity.getId());
-		entity.setPassword(user.getPassword());
+		entity.setPassword(service.findById(entity.getId()).getPassword());
 		service.update(entity);
 		entity.setPassword(null);
 		return entity;
-	}
-	
-	/**
-	 * Delete UserAccount in Database base on its id
-	 * @param id
-	 */
-	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
-	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void delete(@PathVariable Long id) {
-		service.deleteById(id);
 	}
 	
 	/**
@@ -114,6 +104,17 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	public void changePassword(@PathVariable Long id, @RequestParam String password) throws NotFoundException {
 		UserAccount user = service.findById(id);
 		service.changePassword(user, password);
+	}
+	
+	/**
+	 * Delete UserAccount in Database based on its id
+	 * @param id
+	 */
+	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void delete(@PathVariable Long id) {
+		service.deleteById(id);
 	}
 	
 }
