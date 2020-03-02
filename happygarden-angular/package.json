@@ -27,6 +27,7 @@
     "bootstrap": "^4.4.1",
     "file-saver": "^2.0.2",
     "ng-sidebar": "^9.2.0",
+    "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
