@@ -12,16 +12,17 @@
       </div>
     </div>
 
-    <div class="widget conv">
-      <div class="opac"></div>
-      <div class="widget-infos">
-        <p>
-          Conversations
-        </p>
-        <p *ngIf="nbConvs">{{ nbConvs }}</p>
-        <a [routerLink]="['/userAccount/conversations']">CLICK</a>
+    <a [routerLink]="['/userAccount/conversations']">
+      <div class="widget conv">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <p>
+            Conversations
+          </p>
+          <p *ngIf="nbConvs">{{ nbConvs }}</p>
+        </div>
       </div>
-    </div>
+    </a>
 
     <div class="widget abo">
       <div class="opac"></div>

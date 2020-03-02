@@ -1,7 +1,7 @@
 <app-sidebar-account></app-sidebar-account>
 
 <section class="profile-section">
-  <div *ngFor="let message of messages">
+  <div *ngFor="let message of messages$ | async">
     <div class="msg">
       <div *ngIf="authServ.user$ | async as user">
         <div
