@@ -66,6 +66,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * @param t
 	 * @throws AlreadyExistException if the entity already exists.
 	 */
+	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public T save(@RequestBody T t) throws AlreadyExistException {
@@ -89,7 +90,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	 * Deletes the given entity.
 	 * @param t
 	 */
-	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
+	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
 	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@RequestBody T t) {
@@ -99,7 +100,7 @@ public abstract class AbstractCRUDController<T extends HibernateEntity<I>, I, S 
 	/**
 	 * Deletes all entities of the type t.
 	 */
-	@PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
+	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
 	@DeleteMapping(value = "/deleteall", consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
 	public void deleteAll() {
 		service.deleteAll();

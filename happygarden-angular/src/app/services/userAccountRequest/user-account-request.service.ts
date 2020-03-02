@@ -72,8 +72,6 @@ export class UserAccountRequestService {
           password: submittedPassword,
           userRole: r
         };
-        console.log(`envoi de la requête avec le nouvel user vers ${this.endPoint}`);
-        console.log(newUser);
 
         // creating and retrieving new user
         this.httpClient.post<UserAccount>(this.endPoint, JSON.stringify(newUser))

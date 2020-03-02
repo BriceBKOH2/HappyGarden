@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.model.UserAccount;
@@ -74,6 +76,16 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 			user.setPassword(null);
 		}
 		return users;
+	}
+	
+	@Override
+	@PreAuthorize("permitAll()")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
+	public UserAccount save(@RequestBody UserAccount entity) throws AlreadyExistException {
+		entity = service.save(entity);
+		entity.setPassword(null);
+		return entity;
 	}
 	
 	/**
