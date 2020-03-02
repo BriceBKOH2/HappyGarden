@@ -10,7 +10,7 @@ import { FileService } from 'src/app/services/file/file.service';
 export class BodyPlantComponent implements OnInit {
   constructor(
     public myGardens: MyGardensComponent,
-    private fileService: FileService
+    public fileService: FileService
   ) {}
 
   ngOnInit() {}

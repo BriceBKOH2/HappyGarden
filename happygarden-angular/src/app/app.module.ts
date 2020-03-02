@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,8 @@ import { HttpModule } from '@angular/http';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    HttpModule
+    HttpModule,
+    MatRadioModule
   ],
   exports: [MatCheckboxModule],
   providers: [

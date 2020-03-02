@@ -5,6 +5,8 @@ import { UserAccount } from 'src/app/classes/user-account';
 import { Observable } from 'rxjs';
 import { Garden } from 'src/app/classes/garden';
 import { CreateService } from '../services/create.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-garden',
@@ -20,8 +22,11 @@ export class CreateGardenComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authServ: AuthenticateService,
-    private createServ: CreateService
-  ) {}
+    private createServ: CreateService,
+    private router: Router
+  ) {
+    this.userAccount = new UserAccount();
+  }
 
   get f() {
     return this.createGardenForm.controls;
@@ -34,11 +39,18 @@ export class CreateGardenComponent implements OnInit {
     this.authServ.user$.subscribe(response => (this.userAccount = response));
   }
 
-  onSubmit(formData: FormData) {
+  onSubmit(formData: FormData): void {
     this.gardenName = this.f.gardenName.value;
     this.newGarden = new Garden(this.gardenName);
     this.newGarden.user = this.userAccount;
-    console.log('this.gardenName');
-    this.createServ.postGarden(this.newGarden);
+    console.log(this.userAccount.nickname);
+    this.createServ
+      .postGarden(this.newGarden)
+      .pipe(untilDestroyed(this))
+      .subscribe();
+
+    this.router.navigate(['/gardens']);
   }
+
+  ngOnDestroy() {}
 }

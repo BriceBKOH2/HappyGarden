@@ -8,4 +8,11 @@ import diginamic.happygarden.model.PlantingArea;
 @Repository
 public interface PlantingAreaRepository extends JpaRepository<PlantingArea, Long> {
 
+	
+	public long countGardenById(Long id);
+	
+
+
+	
+	
 }

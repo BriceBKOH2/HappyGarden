@@ -16,8 +16,9 @@
       <p *ngIf="plantingArea.type == 'pot'">
         {{ plantingArea.type }} <span>{{ isInterior(plantingArea) }}</span>
       </p>
-      <p>{{ plantingArea.image }}</p>
+      <p *ngIf="countPlants(plantingArea.id) | async as truc">
+        {{ truc }}
+      </p>
     </div>
-    <app-file-up-download></app-file-up-download>
   </div>
 </div>

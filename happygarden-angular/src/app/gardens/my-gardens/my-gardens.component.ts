@@ -7,6 +7,8 @@ import { Slot } from 'src/app/classes/slot';
 import { Observable } from 'rxjs';
 import { UserAccountRequestService } from 'src/app/services/userAccountRequest/user-account-request.service';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-gardens',
@@ -22,6 +24,7 @@ export class MyGardensComponent implements OnInit {
   currentPlant: Plant;
   plant: Plant;
   addButtonTitle: String;
+  createRouter: String;
 
   constructor(
     private userAccServ: UserAccountRequestService,
@@ -35,16 +38,19 @@ export class MyGardensComponent implements OnInit {
     this.currentPlant = new Plant();
     this.plant = new Plant();
     this.addButtonTitle = 'Ajouter un jardin';
+    this.createRouter = '/create/garden';
 
-    // this.gardens$ = this.userAccServ.getGardens();
+    // this.gardens$ = this.userAccServ.getGardens()
 
-    let id: number;
-    this.authServ.user$.subscribe(response => (id = response.id));
-    this.gardens$ = this.userAccServ.getGardens(id);
+    this.gardens$ = this.authServ.user$.pipe(
+      map(response => response.id),
+      switchMap(id => this.userAccServ.getGardens(id))
+    );
   }
 
   showGardens() {
     this.addButtonTitle = 'Ajouter un jardin';
+    this.createRouter = '/create/garden';
     this.currentGarden = new Garden('');
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
@@ -52,7 +58,6 @@ export class MyGardensComponent implements OnInit {
   }
 
   selectGarden(garden: Garden) {
-    this.addButtonTitle = 'Ajouter une zone de plantation';
     if (!this.currentGarden || this.currentGarden !== garden) {
       this.currentGarden = garden;
       this.currentPlantingArea = new PlantingArea();
@@ -73,12 +78,14 @@ export class MyGardensComponent implements OnInit {
         ' plantId :' +
         this.currentPlant.id
     );
+    this.addButtonTitle = 'Ajouter une zone de plantation';
+    this.createRouter = '/create/' + this.currentGarden.id + '/plantingArea';
+    console.log(this.createRouter);
   }
 
   selectPlantingArea(event, plantingArea: PlantingArea) {
     console.log(event);
     event.stopPropagation();
-    this.addButtonTitle = 'Ajouter une plante';
     if (
       !this.currentPlantingArea ||
       this.currentPlantingArea !== plantingArea
@@ -98,6 +105,9 @@ export class MyGardensComponent implements OnInit {
         ' plantId :' +
         this.currentPlant.id
     );
+
+    this.addButtonTitle = 'Ajouter une plante';
+    this.createRouter = '/create/' + this.currentPlant + '/plant';
   }
 
   selectPlant(event, slot: Slot) {
@@ -119,4 +129,6 @@ export class MyGardensComponent implements OnInit {
         this.currentPlant.id
     );
   }
+
+  ngOnDestroy() {}
 }
