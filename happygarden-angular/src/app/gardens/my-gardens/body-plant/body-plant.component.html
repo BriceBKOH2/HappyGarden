@@ -1,4 +1,6 @@
-<div class="currentPlant" [ngClass]="{ 'd-none': !myGardens.currentPlant.id }">
+<div class="currentPlant" [ngClass]="{
+  'd-none': !myGardens.currentPlant.id
+}">
   <div class="encart">
     <p>{{ myGardens.currentPlant.commonName }}</p>
   </div>
@@ -18,7 +20,7 @@
         <div class="grid-row">
           <figure><img src="/assets/icones/arrosoir.png" /></figure>
           <p>Arroser</p>
-          <button class="btn btn-info" (click)="test()">Créer un rappel</button>
+          <button class="btn btn-info" (click)="toggleReminderForm()">Créer un rappel</button>
         </div>
         <div class="border"></div>
         <div class="grid-row">
@@ -49,7 +51,7 @@
       <p>{{ reminder.activationDate }}</p>
     </ng-container>
   </div>
-  <div [ngClass]="{'d.none': reminderCreate}">
+  <div [ngClass]="{'d-none': !reminderCreate}">
     <h2>Créer un rappel</h2>
     <app-reminder-edit></app-reminder-edit>
   </div>

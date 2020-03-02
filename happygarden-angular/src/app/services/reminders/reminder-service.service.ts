@@ -33,4 +33,15 @@ export class ReminderServiceService {
     }
     return null;
   }
+
+  createReminder(reminder: Reminder, plantingArea: PlantingArea) {
+    // Creation du reminder
+    this.httpClient.post<Reminder>(`${this.endPoint}`, JSON.stringify(reminder))
+      .subscribe(
+        (r)=> (plantingArea.reminders.push(r))
+      )
+
+    // Association du reminder sur le plantingArea et update
+    // TODO
+  }
 }

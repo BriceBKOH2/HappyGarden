@@ -1,1 +1,47 @@
-<p>reminder-edit works!</p>
+
+<form [formGroup]="reminderCreationForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="reminderName">Nom du rappel</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="reminderName"
+      id="reminderName"
+      autocomplete="off"
+      />
+    <div
+      class="error"
+      *ngIf="
+        reminderCreationForm.controls['reminderName'].hasError('required') &&
+        reminderCreationForm.controls['reminderName'].touched">
+      Nom requis.
+    </div>
+
+    <label for="reminderContent">Corps du texte</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="reminderContent"
+      id="reminderContent"
+      autocomplete="off"/>
+
+    <label for="reminderActivationDate">Corps du texte</label>
+    <input
+      type="date"
+      class="form-control"
+      formControlName="reminderActivationDate"
+      id="reminderActivationDate"
+      autocomplete="off"/>
+    <div
+      class="error"
+      *ngIf="
+        reminderCreationForm.controls['reminderActivationDate'].hasError('required') &&
+        reminderCreationForm.controls['reminderActivationDate'].touched">
+      Date requise.
+    </div>
+
+    <button class="btn btn-info" [disabled]="reminderCreationForm.invalid">
+      Créer rappel
+    </button>
+  </div>
+</form>
