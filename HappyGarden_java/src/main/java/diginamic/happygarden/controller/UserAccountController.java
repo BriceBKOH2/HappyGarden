@@ -28,13 +28,13 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 
 	@Autowired
 	private GardenService gardenService;
-	
+
 	@Autowired
 	private ConversationService convService;
-	
+
 	@Autowired
 	private UserAccountService userService;
-	
+
 	/**
 	 * Returns a user based on nickname.
 	 * 
@@ -45,65 +45,66 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	public UserAccount findByNickname(@PathVariable String nickname) throws NotFoundException {
 		return service.findByNickname(nickname);
 	}
-	
+
 	@GetMapping("/friends/{id}")
 	public List<UserAccount> findAllFriendsByUserId(@PathVariable Long id) {
 		return service.findAllFriendsByUserId(id);
 	}
-	
+
 	@GetMapping(value = "/{id}/gardens")
 	public List<Garden> findGardensByUserId(@PathVariable Long id) throws NotFoundException {
 		return gardenService.findByUserId(id);
 	}
-	
+
 	@GetMapping(value = "/{id}/gardens/count")
 	public Long countNbGardens(@PathVariable Long id) {
 		return gardenService.countNbGardensByUserId(id);
 	}
-	
+
 	@GetMapping(value = "/{id}/conversations/count")
 	public Long countNbConversations(@PathVariable Long id) {
 		return convService.countNbCOnversationsByUserId(id);
 	}
-	
+
 	@GetMapping(value = "/{id}/friends/count")
 	public Long countNbFriends(@PathVariable Long id) {
 		return userService.countNbFriendsByUserId(id);
 	}
-	
+
 	@GetMapping("/search")
 	public List<UserAccount> searchByName(@RequestParam("name") String name) {
 		return service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);
 	}
-	
+
 //	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void delete(@PathVariable Long id) {
 		service.deleteById(id);
 	}
-}
-	
+
 	// TODO
-	
-	}
 
-//	@PostMapping(value = "/{id}/gardens/create")
-//	public UserAccount addGardenByUserId(@PathVariable Long id, @RequestBody Garden garden) throws NotFoundException {
-//		UserAccount user = service.findById(id);
-//		garden.setUser(user);
-//		user.addGarden(garden);
-//		 service.update(user);
-//		 user = service.findById(id);
-//		 return user;
-////		return garden;
-//	}
+	// @PostMapping(value = "/{id}/gardens/create")
+	// public UserAccount addGardenByUserId(@PathVariable Long id, @RequestBody
+	// Garden garden) throws NotFoundException {
+	// UserAccount user = service.findById(id);
+	// garden.setUser(user);
+	// user.addGarden(garden);
+	// service.update(user);
+	// user = service.findById(id);
+	// return user;
+	//// return garden;
+	// }
+
+	// TODO
+
+	// @PutMapping("/{id}/password")
+	// @PreAuthorize("hasRole('ADMIN') or @securityExpression.isConnectedUser(#id)")
+	// //Only admin or user with the same id can update the object
+	// public void changePassword(@PathVariable Long id, @RequestParam String
+	// password) throws NotFoundException {
+	// service.changePassword(id, password);
+	// }
+
 }
-
-// TODO
-
-//	@PutMapping("/{id}/password")
-//	@PreAuthorize("hasRole('ADMIN') or @securityExpression.isConnectedUser(#id)") //Only admin or user with the same id can update the object
-//	public void changePassword(@PathVariable Long id, @RequestParam String password) throws NotFoundException {
-//		service.changePassword(id, password);
-//	}

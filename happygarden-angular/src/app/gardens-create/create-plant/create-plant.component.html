@@ -1,1 +1,82 @@
-<p>create-plant works!</p>
+<!-- <ng-container *ngFor="userAccount$ | async as userAccount"></ng-container> -->
+<section class="section-create">
+  <a [routerLink]="['/gardens']" style="padding-top: 100px !important;"
+    ><i class="far fa-arrow-alt-circle-left"></i>
+    <p>Retour à mes jardins</p></a
+  >
+  <fieldset class="fieldsetBorder">
+    <legend class="fieldsetBorder">Ajouter une plante</legend>
+    <div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <form
+            [formGroup]="createPlantForm"
+            (ngSubmit)="onSubmit(createPlantForm.value)"
+          >
+            <div class="form-group row">
+              <label>Nom</label>
+              <input
+                class="form-control sharp"
+                formControlName="plantName"
+                type="text"
+                placeholder="Nom"
+              />
+            </div>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                formIsSubmitted &&
+                createPlantForm.get('plantName').errors as errors
+              "
+            >
+              <span *ngIf="errors.required">
+                Requis
+              </span>
+            </div>
+            <div class="form-group row">
+              <label>Type de zone de plantation</label>
+              <div>
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  name="radioTypeZDP"
+                  class="example-radio-group"
+                  formControlName="typeZDP"
+                  (change)="radioTypeChange($event)"
+                >
+                  <mat-radio-button
+                    class="example-radio-button"
+                    *ngFor="let type of types"
+                    [value]="type"
+                  >
+                    {{ type }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div [ngClass]="{ 'd-none': !potSelected }">
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  name="radioPot"
+                  class="example-radio-group"
+                  formControlName="potLocation"
+                  (change)="radioTypeChange($event)"
+                >
+                  <mat-radio-button
+                    class="example-radio-button"
+                    *ngFor="let location of locations"
+                    [value]="location"
+                  >
+                    {{ location }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <button class="btn add-button" type="submit">
+              Enregistrer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <!-- </ng-container> -->
+</section>
