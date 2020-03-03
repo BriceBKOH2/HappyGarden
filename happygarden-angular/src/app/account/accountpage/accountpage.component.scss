@@ -26,6 +26,12 @@
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   background-size: cover;
   color: var(--white);
+  transition: all 0.5s;
+}
+
+.widget:hover {
+  transform: scale(1.03);
+  transition: all 0.5s;
 }
 
 .jardins {

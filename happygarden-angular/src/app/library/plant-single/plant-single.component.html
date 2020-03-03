@@ -3,6 +3,7 @@
     ><i class="far fa-arrow-alt-circle-left"></i>
     <p>Retour à la bibliothèque</p></a
   >
+<ng-container *ngIf="plant$ | async as plant">
 
   <div class="single-plant">
     <div class="encart">
@@ -69,5 +70,7 @@
       </div>
     </div>
   </div>
+
+</ng-container>
+
 </section>
-<!-- <p>{{ plant.commonName }}</p> -->

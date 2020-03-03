@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { AuthenticateGuard } from './authenticate/guards/authenticate.guard';
+import { AdminGuard } from './administration/guards/admin.guard';
 
 const routes: Routes = [
   // {
@@ -10,6 +10,20 @@ const routes: Routes = [
   //   redirectTo: 'homePage',
   //   pathMatch: 'full'
   // },
+  {
+    path: '',
+    redirectTo: 'homePage',
+    pathMatch: 'full'
+  },
+  {
+    path: 'error',
+    loadChildren: './errorpages/errorpages.module#ErrorpagesModule'
+  },
+  {
+    path: 'notloggedin',
+    redirectTo: 'login;status=needlogin',
+    pathMatch: 'full'
+  },
   {
     path: 'homePage',
     loadChildren: './home/home.module#HomeModule'
@@ -33,8 +47,18 @@ const routes: Routes = [
     canActivate: [AuthenticateGuard]
   },
   {
+    path: 'admin',
+    loadChildren: './administration/administration.module#AdministrationModule',
+    canActivate: [AuthenticateGuard, AdminGuard]
+  },
+  {
     path: 'userAccount/conversations',
     loadChildren: './conversations/conversations.module#ConversationsModule',
+    canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'userAccount/friends',
+    loadChildren: './friends/friends.module#FriendsModule',
     canActivate: [AuthenticateGuard]
   },
   {
@@ -47,12 +71,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(
-      routes //, {
-      // enableTracing: !environment.production, //Enable trace of routing and process in browser console
+    RouterModule.forRoot(routes, {
+      //  enableTracing: !environment.production, //Enable trace of routing and process in browser console
       // paramsInheritanceStrategy: 'always' // Keep all data en params from url in routing
-      //}
-    ),
+    }),
     CommonModule
   ],
   exports: [RouterModule]

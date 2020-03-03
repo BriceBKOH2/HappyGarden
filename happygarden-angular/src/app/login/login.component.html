@@ -1,51 +1,210 @@
-<div class="row">
-  <div class="col-md-6 login-container">
-    <h2 style="margin: auto">Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">UserName:</label>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="username"
-          id="username"
-          autocomplete="off"
-        />
-        <div
-          class="error"
-          *ngIf="
-            loginForm.controls['username'].hasError('required') &&
-            loginForm.controls['username'].touched
-          "
-        >
-          Username is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          id="pwd"
-          autocomplete="off"
-        />
-        <div
-          class="error"
-          *ngIf="
-            loginForm.controls['password'].hasError('required') &&
-            loginForm.controls['password'].touched
-          "
-        >
-          Password is required
-        </div>
-      </div>
-      <button class="btn btn-success" [disabled]="loginForm.invalid">
-        Login
-      </button>
-      <div *ngIf="invalidLogin" class="error">
-        <div>Invalid credentials.</div>
-      </div>
-    </form>
+<ng-container *ngIf="activatedRoute.paramMap | async as param">
+  <div class="error-container col-md-10 container p-4">
+    <div
+      [ngClass]="{
+        'alert alert-danger': true,
+        'd-none': param.get('status') != 'needlogin'
+      }"
+    >
+      Please log in to access this page.
+    </div>
+    <div
+      [ngClass]="{
+        'alert alert-success': true,
+        'd-none': param.get('status') != 'createsuccess'
+      }"
+    >
+      Account successfully created. Please log in with your new account !
+    </div>
   </div>
+</ng-container>
+
+<div class="col-md-10 d-flex justify-content-around flex-column login">
+  <ng-container
+    *ngIf="!(this.authServ.isAuthentificated$ | async); else logout"
+    class=""
+  >
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <h4>
+          <a
+            [ngClass]="{ 'nav-link': true, active: showLogin }"
+            (click)="showLoginForm()"
+          >
+            Log in
+          </a>
+        </h4>
+      </li>
+      <li class="nav-item">
+        <h4>
+          <a
+            [ngClass]="{ 'nav-link': true, active: !showLogin }"
+            (click)="showCreateAccForm()"
+          >
+            Create Account
+          </a>
+        </h4>
+      </li>
+    </ul>
+
+    <div [ngClass]="{ 'col-md-4 login-container': true, 'd-none': !showLogin }">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">UserName:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            id="username"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              loginForm.controls['username'].hasError('required') &&
+              loginForm.controls['username'].touched
+            "
+          >
+            Username is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            id="pwd"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              loginForm.controls['password'].hasError('required') &&
+              loginForm.controls['password'].touched
+            "
+          >
+            Password is required
+          </div>
+        </div>
+        <button class="btn btn-success" [disabled]="loginForm.invalid">
+          Login
+        </button>
+        <div *ngIf="invalidLogin" class="error">
+          <div>Invalid credentials.</div>
+        </div>
+      </form>
+    </div>
+    <div [ngClass]="{ 'col-md-4 login-container': true, 'd-none': showLogin }">
+      <h2>Create account</h2>
+      <form [formGroup]="createAccForm" (ngSubmit)="onSubmitCreate()">
+        <div class="form-group">
+          <label for="createFormUsername">UserName:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            id="createFormUsername"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="createAccForm.controls['username'].hasError('minlength')"
+          >
+            Username must have minimum 4 characters.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="createFormFirstname">Firstname:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="firstname"
+            id="createFormFirstname"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              createAccForm.controls['firstname'].hasError('required') &&
+              createAccForm.controls['password'].touched
+            "
+          >
+            Firstname is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="createFormLastname">Lastname:</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastname"
+            id="createFormLastname"
+            autocomplete="off"
+          />
+          <div
+            class="error"
+            *ngIf="
+              createAccForm.controls['lastname'].hasError('required') &&
+              createAccForm.controls['password'].touched
+            "
+          >
+            Lastname is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="createFormPwd">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            id="createFormPwd"
+            autocomplete="off"
+          />
+          <div
+            class="alert error"
+            *ngIf="
+              createAccForm.controls['password'].hasError('required') &&
+              createAccForm.controls['password'].touched
+            "
+          >
+            Password is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="createFormPwdConfirm">Confirm password:</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="passwordConfirm"
+            id="createFormPwdConfirm"
+            autocomplete="off"
+          />
+          <div
+            class="alert error"
+            *ngIf="
+              createAccForm.hasError('notSame') &&
+              createAccForm.controls['passwordConfirm'].touched
+            "
+          >
+            Passwords must match.
+          </div>
+        </div>
+        <button class="btn btn-danger" [disabled]="createAccForm.invalid">
+          Create Account
+        </button>
+      </form>
+    </div>
+  </ng-container>
+  <ng-template #logout>
+    <div class="col-md-6 login-container">
+      <h2>Vous êtes déjà connecté. Se déconnecter ?</h2>
+      <button class="btn btn-danger" (click)="logOut()">Se déconnecter</button>
+    </div>
+  </ng-template>
 </div>

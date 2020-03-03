@@ -3,14 +3,19 @@ package diginamic.happygarden.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.exception.NotFoundException;
+import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.service.ConversationService;
@@ -40,7 +45,12 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	public UserAccount findByNickname(@PathVariable String nickname) throws NotFoundException {
 		return service.findByNickname(nickname);
 	}
-
+	
+	@GetMapping("/friends/{id}")
+	public List<UserAccount> findAllFriendsByUserId(@PathVariable Long id) {
+		return service.findAllFriendsByUserId(id);
+	}
+	
 	@GetMapping(value = "/{id}/gardens")
 	public List<Garden> findGardensByUserId(@PathVariable Long id) throws NotFoundException {
 		return gardenService.findByUserId(id);
@@ -59,6 +69,18 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	@GetMapping(value = "/{id}/friends/count")
 	public Long countNbFriends(@PathVariable Long id) {
 		return userService.countNbFriendsByUserId(id);
+	}
+	
+	@GetMapping("/search")
+	public List<UserAccount> searchByName(@RequestParam("name") String name) {
+		return service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);
+	}
+	
+//	@PreAuthorize("hasAuthority('" + UserRight.RIGHT_ADMINISTRATION + "')")
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void delete(@PathVariable Long id) {
+		service.deleteById(id);
 	}
 }
 	

@@ -1,0 +1,8 @@
+<app-sidebar-account></app-sidebar-account>
+
+<section class="profile-section">
+  <p>friends-list works!</p>
+  <div *ngFor="let friend of friends$ | async">
+    <p>{{ friend.firstname }}</p>
+  </div>
+</section>

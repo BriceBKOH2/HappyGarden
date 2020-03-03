@@ -44,7 +44,7 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	protected List<Reminder> reminders = new ArrayList<>();
 
 	@JsonManagedReference("area_slots")
-	@OneToMany(mappedBy = "plantingArea", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "plantingArea", cascade = CascadeType.ALL)
 	protected List<Slot> slots = new ArrayList<>();
 	
 	@JsonBackReference("garden_areas")
