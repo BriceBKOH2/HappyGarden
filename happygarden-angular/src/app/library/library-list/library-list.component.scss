@@ -169,6 +169,22 @@ label {
 input {
   margin-right: 5px;
 }
+.btn-detail {
+  border: 2px solid var(--vert);
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--vert);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+  margin-right: 5px;
+}
+.btn-detail:hover {
+  background: var(--vert);
+  color: var(--blanc);
+  transition: all 0.5s;
+}
 
 @media screen and (max-width: 1280px) {
   .library-list {

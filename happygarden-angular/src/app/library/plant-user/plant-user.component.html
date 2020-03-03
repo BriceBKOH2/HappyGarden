@@ -1,0 +1,175 @@
+<a [routerLink]="['../']" style="padding-top: 50px !important;"
+    ><i class="far fa-arrow-alt-circle-left"></i>
+    <p>Retour à la liste</p></a
+  >
+
+<h3>Création de plante</h3>
+
+<form [formGroup]="createFormPlantUser" (ngSubmit)="onSubmitPlantCreate()"  class="container-fluid">
+  <div class="row">
+  <div class="formGroup col-md-6">
+    <label for="createFormPlantScientificName">Nom Scientifique:</label>
+    <input
+            type="text"
+            class="form-control"
+            formControlName="scientificname"
+            id="createPlantFormScientificName"
+            autocomplete="off"
+          />
+    <div
+          class="error"
+          *ngIf="
+          createFormPlantUser.controls['scientificname'].hasError('minlength')">
+          Username must have minimum 4 characters.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormCommonName">Nom commun:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="commonName"
+      id="createFormCommonName"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['commonName'].hasError('required') &&
+      createFormPlantUser.controls['commonName'].touched">
+      CommonName is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormfamilyCommonName">Famille:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="familyCommonName"
+      id="createFormfamilyCommonName"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['familyCommonName'].hasError('required')&&
+      createFormPlantUser.controls['familyCommonName'].touched">
+      familyCommonName is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormtoxicity">toxicité:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="toxicity"
+      id="createFormtoxicity"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['toxicity'].hasError('required')&&
+      createFormPlantUser.controls['toxicity'].touched">
+      toxicity is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormmatureHeight">Taille adulte:</label>
+    <input
+      type="number"
+      class="form-control"
+      formControlName="matureHeight"
+      id="createFormmatureHeight"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['matureHeight'].hasError('required')&&
+      createFormPlantUser.controls['matureHeight'].touched">
+      matureHeight is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormlifeSpan">Durée de vie:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="lifeSpan"
+      id="createFormlifeSpan"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['lifeSpan'].hasError('required')&&
+      createFormPlantUser.controls['lifeSpan'].touched">
+      lifeSpan is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormimage">image:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="image"
+      id="createFormimage"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['image'].hasError('required')&&
+      createFormPlantUser.controls['image'].touched">
+      image is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormbloomPeriod">Pèriode de floraison:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="bloomPeriod"
+      id="createFormbloomPeriod"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['bloomPeriod'].hasError('required')&&
+      createFormPlantUser.controls['bloomPeriod'].touched">
+      bloomPeriod is required.
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="createFormgrowthRate">Croissance:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="growthRate"
+      id="createFormgrowthRate"
+      autocomplete="off"
+    />
+    <div
+      class="error"
+      *ngIf="
+      createFormPlantUser.controls['growthRate'].hasError('required')&&
+      createFormPlantUser.controls['growthRate'].touched">
+      growthRate is required.
+    </div>
+  </div>
+</div>
+  <button class="btn btn-danger" [disabled]="createFormPlantUser.invalid">
+    Create app-plant-user
+  </button>
+
+</form>
