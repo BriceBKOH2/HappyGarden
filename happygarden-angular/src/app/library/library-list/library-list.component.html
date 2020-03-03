@@ -1,5 +1,5 @@
 <section class="globale">
-    <form class="form-inline" [formGroup]="searchPlantFrom" (ngSubmit)="searchPlant()">
+    <form class="form-inline" [formGroup]="searchPlantFrom">
     <div class="form-group">
       <label for="plantName">Rechercher une plante</label>
       <input
@@ -10,21 +10,25 @@
         class="form-control"
       />
     </div>
-    <button class="btn-api form-control" type="submit">
+    <button class="btn-api form-control" type="submit" (click)="searchPlant()">
       Rechercher
     </button>
-  </form>
+    <button class="btn-detail form-control" [routerLink]="'create'" type="button">
+      Créer
+    </button>
+    </form>
+
 
   <div class="library-list">
     <div class="plant-wrapper" *ngFor="let plantUser of plantsUsers">
       <div class="plant">
         <div class="encart">
-          <p>{{ plantUser.commonName }}</p>
+          <p>Fiche perso : {{ plantUser.commonName }}</p>
         </div>
-        <div class="img">
+        <div class="imgPlant">
           <figure><img src="/assets/img/{{ plantUser.image }}" alt="" /></figure>
         </div>
-        <div class="infos">
+        <div class="plant-infos">
           <div>
             <p>
               Nom <br />
@@ -36,7 +40,7 @@
           </div>
           <div class="border"></div>
           <div>
-            <p>{{ plantUser.scientificName }}</p>
+            <p class="on-two-lines">{{ plantUser.scientificName }}</p>
             <p>Blabla</p>
             <p>
               <i class="fas fa-tint"></i>
@@ -46,7 +50,7 @@
           </div>
         </div>
 
-        <a class="btn-api btn-single-plant" [routerLink]="[plantUser.id]"
+        <a class="btn-api btn-single-plant" [routerLink]="['id',plantUser.id]"
           >Fiche complète</a
         >
       </div>
@@ -82,7 +86,7 @@
           </div>
         </div>
 
-        <a class="btn-api btn-single-plant" [routerLink]="[plant.id]"
+        <a class="btn-api btn-single-plant" [routerLink]="['id',plant.id]"
           >Fiche complète</a
         >
       </div>
