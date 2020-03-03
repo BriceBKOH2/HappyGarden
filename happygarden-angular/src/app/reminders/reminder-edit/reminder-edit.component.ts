@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Reminder } from 'src/app/classes/reminder';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReminderServiceService } from 'src/app/services/reminders/reminder-service.service';
+import { PlantingArea } from 'src/app/classes/planting-area';
+import { Slot } from 'src/app/classes/slot';
 
 @Component({
   selector: 'app-reminder-edit',
@@ -9,6 +11,12 @@ import { ReminderServiceService } from 'src/app/services/reminders/reminder-serv
   styleUrls: ['./reminder-edit.component.scss']
 })
 export class ReminderEditComponent implements OnInit {
+
+  @Input()
+  selectedSlot: Slot
+
+  @Input()
+  selectedPlantingArea: PlantingArea
 
   reminderCreationForm: FormGroup;
   reminder: Reminder;
@@ -42,9 +50,7 @@ export class ReminderEditComponent implements OnInit {
       activationDate: this.reminderCreationForm.controls.reminderActivationDate.value
     }
 
-    console.log(this.reminder)
-    this.reminderService.createReminder(this.reminder, null)
-    // TODO : associer le reminder à la bonne planting area. = > this.myGardens.currentSlot
+    this.reminderService.createReminderSlot(this.reminder, this.selectedSlot, this.selectedPlantingArea.id)
   }
 
 }

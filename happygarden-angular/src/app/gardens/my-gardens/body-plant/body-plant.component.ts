@@ -19,7 +19,7 @@ export class BodyPlantComponent implements OnInit {
 
   reminders$: Observable<Reminder[]>;
 
-  // flag to check for displaying reminder creation.
+  // flag to check for displaying reminder form creation.
   reminderCreate: Boolean;
 
   ngOnInit() {

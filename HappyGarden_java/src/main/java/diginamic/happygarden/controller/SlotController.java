@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Slot;
+import diginamic.happygarden.service.PlantingAreaService;
 import diginamic.happygarden.service.SlotService;
 
 @RestController
@@ -26,6 +27,9 @@ public class SlotController {
 
 	@Autowired
 	private SlotService slotServ;
+	
+	@Autowired
+	private PlantingAreaService plantingAreaServ;
 
 	/**
 	 * Returns a list of all Slot.
@@ -66,7 +70,7 @@ public class SlotController {
 	}
 
 	/**
-	 * Update a Slot in Database and return it.
+	 * Update a Slot in Database and return it. Prefer use of updateWithPlantingArea
 	 * 
 	 * @return Slot
 	 * @throws NotFoundException
@@ -77,6 +81,17 @@ public class SlotController {
 		return slotServ.update(slot);
 	}
 
+	/**
+	 * Update a slot and associated planting area.
+	 */
+	@PutMapping("/plantingArea/{plantingAreaId}")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public Slot updateWithPlantingArea(@RequestBody Slot slot, @PathVariable Long plantingAreaId) throws NotFoundException {
+		slot.setPlantingArea(plantingAreaServ.findById(plantingAreaId));
+		return slotServ.update(slot);
+	}
+	
+	
 	/**
 	 * Delete a Slot in Database.
 	 */

@@ -53,6 +53,6 @@
   </div>
   <div [ngClass]="{'d-none': !reminderCreate}">
     <h2>Créer un rappel</h2>
-    <app-reminder-edit></app-reminder-edit>
+    <app-reminder-edit [selectedSlot]="this.myGardens.currentSlot" [selectedPlantingArea]="this.myGardens.currentPlantingArea"></app-reminder-edit>
   </div>
 </div>

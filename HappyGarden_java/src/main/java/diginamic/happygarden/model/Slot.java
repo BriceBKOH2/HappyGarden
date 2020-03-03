@@ -121,4 +121,10 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Slot [id=" + id + ", date=" + date + ", plant=" + plant + ", reminders=" + reminders + ", plantingArea="
+				+ plantingArea + "]";
+	}
+
 }
