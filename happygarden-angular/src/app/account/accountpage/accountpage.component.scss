@@ -29,6 +29,15 @@
   transition: all 0.5s;
 }
 
+.nb {
+  font-size: 35px !important;
+  border-radius: 100px;
+  width: 65px;
+  height: 65px;
+  border: 1px solid #fff;
+  margin: auto;
+}
+
 .widget:hover {
   transform: scale(1.03);
   transition: all 0.5s;

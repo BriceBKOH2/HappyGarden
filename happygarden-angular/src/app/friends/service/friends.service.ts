@@ -22,4 +22,16 @@ export class FriendsService {
       `${this.endPointConversation}/friends/${id}`
     );
   }
+
+  getFriendProfile(id: number): Observable<UserAccount> {
+    return this.httpClient.get<UserAccount>(
+      `${this.endPointConversation}/friend/${id}`
+    );
+  }
+
+  countGardens(id: number): Observable<number> {
+    return this.httpClient.get<number>(
+      `${this.endPointConversation}/${id}/gardens/count`
+    );
+  }
 }
