@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     this.authServ.login(username, password).subscribe(
       () => {
-        this.router.navigate(['account']);
+        this.router.navigate(['userAccount']);
       },
       error => {
         this.invalidLogin = true;

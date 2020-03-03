@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
       label: 'Login'
     },
     {
-      route: 'account',
+      route: 'userAccount',
       label: 'Mon Compte'
     }
   ];

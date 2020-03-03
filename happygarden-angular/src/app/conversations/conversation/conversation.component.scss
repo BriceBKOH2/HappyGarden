@@ -1,0 +1,49 @@
+.current-user {
+  background: #ffe5aa;
+  padding: 2%;
+  border-radius: 10px;
+  width: 70%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2%;
+  float: right;
+  display: inline-block;
+}
+
+.other-user {
+  background: #f5f5f5;
+  padding: 2%;
+  border-radius: 10px;
+  width: 70%;
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2%;
+  clear: both;
+}
+
+p {
+  margin: 0;
+}
+
+.triangle-current-user {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid pink;
+  margin-left: 30px;
+  position: absolute;
+}
+
+.triangle-other-user {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid pink;
+  margin-right: 30px;
+  float: right;
+}
+
+form {
+  clear: both;
+}

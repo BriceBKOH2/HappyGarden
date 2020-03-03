@@ -63,6 +63,7 @@ public class AdminController {
 	@Autowired
 	private ConversationService conversationServ;
 
+
 	/**
 	 * Instantiate database with rights, roles, admin and basic user
 	 * 
@@ -172,31 +173,99 @@ public class AdminController {
 			Garden jardinUn = new Garden("plantes aromatiques", parcels);
 			parcel.setGarden(jardinUn);
 			
-			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
-			estelle.setPassword("estelle");
-			userAccServ.save(estelle);
 			
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
+			jade.setProfileImg("profil_2.jpg");
 			userAccServ.save(jade);
 			
-			ArrayList<Message> messages = new ArrayList<Message>();
+			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
+			estelle.setPassword("estelle");
+			estelle.setProfileImg("profil.jpg");
 			
-			Message msgEstelle = new Message("Coucou Jade.", estelle);
-			messageServ.save(msgEstelle);
-			messages.add(msgEstelle);
 			
-			Message msgJade = new Message("Coucou Estelle.", jade);
-			messages.add(msgJade);
+			// Ajoût Amis
+			List<String> friends = new ArrayList<String>();
+			friends.add(jade.getNickname());
+			estelle.addFriends(friends);
+			
+			userAccServ.save(estelle);
+			
+
+			
+			UserAccount jordi = new UserAccount("Jordi", "Mage", "Jordi", userRoleServ.findByName(ADMIN));
+			jordi.setPassword("jordi");
+			jordi.setProfileImg("profil_3.jpg");
+			userAccServ.save(jordi);
+			
+			
+			//TEST
+			Conversation conv = new Conversation();
+			conv.addUser(estelle);
+			conv.addUser(jade);
+			Message msgJade = new Message("Coucou Estelle.", jade, conv);
+			Message msgEstelle = new Message("Coucou Jade.", estelle, conv);
+			Message msgJade2 = new Message("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam.", jade, conv);
+			Message msgEstelle2 = new Message("dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam, quis nostrud", estelle, conv);
+			
+			conversationServ.save(conv);
 			messageServ.save(msgJade);
+			messageServ.save(msgEstelle);
+			messageServ.save(msgJade2);
+			messageServ.save(msgEstelle2);
 			
-			Conversation conversation = new Conversation(messages);
 			
-			jardinUn.setUser(estelle);
-			
-			gardenServ.save(jardinUn);
-			conversationServ.save(conversation);
-			// Ajoût de Conversations randomn pour la BDD
+			// Conversation Estelle Jade
+//			ArrayList<Message> messagesEstelleJade = new ArrayList<Message>();
+//			
+//			Message msgEstelle = new Message("Coucou Jade.", estelle);
+//			messageServ.save(msgEstelle);
+//			messagesEstelleJade.add(msgEstelle);
+//			
+//			Message msgJade = new Message("Coucou Estelle.", jade);
+//			messagesEstelleJade.add(msgJade);
+//			messageServ.save(msgJade);
+//			
+//			Conversation conversationEstelleJade = new Conversation(messagesEstelleJade);
+//			
+//			List<UserAccount> usersConvEstelleJade = new ArrayList<UserAccount>();
+//			usersConvEstelleJade.add(jade);
+//			usersConvEstelleJade.add(estelle);
+//			conversationEstelleJade.setUsers(usersConvEstelleJade);
+//			
+//			// Conversation Estelle Jordi
+//			ArrayList<Message> messagesEstelleJordi = new ArrayList<Message>();
+//			
+//			Message msgEstellej = new Message("Coucou Jade.", estelle);
+//			messageServ.save(msgEstellej);
+//			messagesEstelleJordi.add(msgEstellej);
+//			
+//			Message msgJordi = new Message("Coucou Estelle.", jordi);
+//			messagesEstelleJordi.add(msgJordi);
+//			messageServ.save(msgJordi);
+//			
+//			Conversation conversationEstelleJordi = new Conversation(messagesEstelleJordi);
+//			
+//			List<UserAccount> usersConvEstelleJordi = new ArrayList<UserAccount>();
+//			usersConvEstelleJordi.add(jordi);
+//			usersConvEstelleJordi.add(estelle);
+//			conversationEstelleJordi.setUsers(usersConvEstelleJordi);
+//			
+//			
+//			
+//			
+//			jardinUn.setUser(estelle);
+//			
+//			gardenServ.save(jardinUn);
+//			conversationServ.save(conversationEstelleJade);
+//			conversationServ.save(conversationEstelleJordi);
+//			
+//			Message msgJordi2 = new Message("Ceci est un deuxième test.", jordi);
+//
+//			messageServ.save(msgJordi2);
+//			conversationEstelleJordi.addMessages(msgJordi2);
+//			conversationServ.update(conversationEstelleJordi);
+				
 		}
 		return userAccServ.findAll();
 	}

@@ -1,0 +1,45 @@
+<app-sidebar-account></app-sidebar-account>
+<section class="profile-section">
+  <p *ngIf="authServ.user$ | async as user">Bienvenue {{ user.firstname }}</p>
+
+  <div class="widgets">
+    <div class="widget jardins">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>
+          Jardins <span *ngIf="nbGardens">{{ nbGardens }}</span>
+        </p>
+      </div>
+    </div>
+
+    <a [routerLink]="['/userAccount/conversations']">
+      <div class="widget conv">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <p>
+            Conversations
+          </p>
+          <p *ngIf="nbConvs">{{ nbConvs }}</p>
+        </div>
+      </div>
+    </a>
+
+    <div class="widget abo">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <!-- <figure>
+          <img src="/assets/icones/rating.png" alt="" />
+        </figure> -->
+        <p>Abonnements</p>
+        <p *ngIf="nbFriends">{{ nbFriends }}</p>
+      </div>
+    </div>
+
+    <div class="widget profil">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>Modifier profil</p>
+      </div>
+    </div>
+  </div>
+</section>

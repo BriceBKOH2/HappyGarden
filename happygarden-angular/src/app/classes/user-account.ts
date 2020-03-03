@@ -10,6 +10,7 @@ export class UserAccount {
   nickname: string;
   password: string;
   userRole: UserRole;
+  profileImg: string;
   conversations: Conversation[];
   friends: UserAccount[];
   usedPlants: Plant[];

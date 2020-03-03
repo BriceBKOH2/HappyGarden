@@ -1,0 +1,53 @@
+<app-sidebar-account></app-sidebar-account>
+<section class="profile-section">
+  <!-- <div class="conversations">
+    <div *ngFor="let conv of conversations">
+      <a [routerLink]="[conv.id]">CLICK</a>
+      <div class="conversation">
+        <div *ngFor="let u of conv.users">
+          <p>{{ u.firstname }}</p>
+          <figure>
+            <img src="/assets/img/{{ u.profileImg }}" alt="" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="conversation">
+    <div class="opac"></div>
+    <h2>CONVERSATIONS</h2>
+  </div>
+
+  <div *ngFor="let conv of conversations$ | async">
+    <div class="conv jumbotron-fluid">
+      <div class="container">
+        <!-- <a [routerLink]="[conv.id]">CLICK</a> -->
+        <div *ngFor="let u of conv.users" class="users-conv">
+          <!-- <div></div> -->
+          <p>{{ u.firstname }}</p>
+          <figure class="profile-img">
+            <img src="/assets/img/{{ u.profileImg }}" alt="" />
+          </figure>
+        </div>
+        <div class="delimit-conv"></div>
+        <div>
+          <div class="msg">
+            <h2 class="display-4">{{ conv.nbMessages }} Messages</h2>
+            <!-- <h2 *ngIf="nbMessages">{{ nbMessages }} Messages</h2> -->
+            <figure>
+              <img src="/assets/icones/chat.png" alt="" />
+            </figure>
+          </div>
+          <p class="lead">
+            This is a modified jumbotron that occupies the entire horizontal
+            space of its parent.
+          </p>
+          <button [routerLink]="[conv.id]" class="btn-vert">
+            Voir la conversation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

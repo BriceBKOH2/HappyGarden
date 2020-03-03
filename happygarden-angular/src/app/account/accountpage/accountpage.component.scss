@@ -1,0 +1,81 @@
+.widgets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 7%;
+}
+.widgets figure {
+  height: 350px;
+  overflow: hidden;
+}
+
+// .widget figure::before {
+//   content: '';
+//   display: block;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+//   transition: all 0.3s;
+// }
+
+.widget {
+  height: 350px;
+  position: relative;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  color: var(--white);
+}
+
+.jardins {
+  background: url('/assets/img/liverwort.jpg');
+  background-size: cover;
+}
+
+.conv {
+  background: url('/assets/img/cactus.jpg');
+  background-size: cover;
+}
+
+.abo {
+  background: url('/assets/img/plant.jpg');
+  background-size: cover;
+}
+
+.profil {
+  background: url('/assets/img/pots.jpg');
+  background-size: cover;
+}
+// .widgets fi {
+//   height: 300px;
+// }
+
+.opac {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(transparent),
+    to(rgba(0, 0, 0, 0.4))
+  );
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.widget-infos {
+  position: absolute;
+  left: 40%;
+  top: 46%;
+}
+
+.widget-infos p {
+  font-size: 25px;
+  text-align: center;
+}
+
+figure {
+  width: 10%;
+}

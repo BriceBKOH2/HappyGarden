@@ -1,0 +1,53 @@
+.sidebar-account {
+  // background-color: pink;
+  width: 12%;
+  height: 92vh;
+
+  position: fixed;
+  color: var(--police);
+  font-size: 18px;
+  background: #feeed5;
+  margin: 0.5%;
+}
+
+#delimit {
+  background-color: grey;
+  width: 1px;
+  height: 85vh;
+  // margin: 7.5vh 0;
+  margin: 2% 0 0 13%;
+  position: fixed;
+}
+
+.sidebar-account figure {
+  overflow: hidden;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  width: 130px;
+  height: 130px;
+  // margin: auto;
+}
+
+.sidebar-account figure img {
+  max-width: 100%;
+}
+
+li {
+  margin-bottom: 7%;
+  list-style-type: none;
+}
+
+a {
+  color: var(--police);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-sidebar div {
+  margin: auto;
+}

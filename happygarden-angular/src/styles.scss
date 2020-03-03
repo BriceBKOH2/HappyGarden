@@ -10,7 +10,7 @@
 }
 
 :root {
-  --vert: #4acfb0;
+  --vert: #519548;
   --blanc: #fff;
   --police: #354463;
   --police-inactive: #354463a0;
@@ -82,13 +82,21 @@
   }
 }
 
-a {
-  color: var(--vert);
-}
+// p {
+//   margin: 0;
+// }
+
+// a {
+//   color: var(--vert);
+// }
+
+// a:hover {
+//   color: var(--vert);
+//   text-decoration: wavy underline var(--vert);
+// }
 
 a:hover {
-  color: var(--vert);
-  text-decoration: wavy underline var(--vert);
+  text-decoration: none;
 }
 
 figure img {
@@ -161,4 +169,8 @@ body {
     // width: 150%;
     cursor: pointer;
   }
+}
+
+.profile-section {
+  margin: 4% 5% 5% 17%;
 }
