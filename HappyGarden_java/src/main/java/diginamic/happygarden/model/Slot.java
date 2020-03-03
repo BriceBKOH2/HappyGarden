@@ -32,7 +32,8 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 
 	@JsonBackReference("area_slots")
 	@ManyToOne
-	@JoinColumn(name = "planting_area_id")
+	@JoinColumn(name = 
+	"planting_area_id")
 	private PlantingArea plantingArea;
 	
 	/* Constructors */

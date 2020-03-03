@@ -84,8 +84,11 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserAccount save(@RequestBody UserAccount entity) throws AlreadyExistException {
 		entity = service.save(entity);
-		entity.setPassword(null);
-		return entity;
+		if (entity!=null) {
+			entity.setPassword(null);
+			return entity;
+		}
+		return null;
 	}
 	
 	/**

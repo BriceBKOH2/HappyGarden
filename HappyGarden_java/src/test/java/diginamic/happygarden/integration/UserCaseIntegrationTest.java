@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import diginamic.happygarden.model.Plant;
+import diginamic.happygarden.model.UserRight;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -27,7 +28,7 @@ public class UserCaseIntegrationTest {
 	private ObjectMapper objectMapper;
 
 	@Test
-	@WithMockUser
+	@WithMockUser(authorities=UserRight.RIGHT_ADMINISTRATION)
 	public void PutRequestAddAPlant() throws Exception {
 		Plant plantTest = new Plant("patateTest");
 		
@@ -37,4 +38,5 @@ public class UserCaseIntegrationTest {
 				.content(objectMapper.writeValueAsString(plantTest)))
 				.andExpect(status().isCreated());
 	}
+
 }
