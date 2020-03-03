@@ -4,12 +4,16 @@ import { Plant } from 'src/app/classes/plant';
 import { PlantUser } from 'src/app/classes/plant-user.model'
 import { Observable, BehaviorSubject } from 'rxjs';
 import { RequestService } from 'src/app/services/request/request.service';
+import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
+import { GrowthRate } from 'src/app/enums/growth-rate.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibraryService {
-  constructor(private httpClient: HttpClient, private request: RequestService) {}
+  constructor(private httpClient: HttpClient,
+     private request: RequestService,
+    private authServ: AuthenticateService) {}
 
   get endPointPlant() {
     return this.request.endPoint+'/Plant';
@@ -40,28 +44,9 @@ export class LibraryService {
   }
 
   createPlantUser(
-      submittedScientificname: string,
-      submittedCommonName: string,
-      submittedFamilyCommonName: string,
-      submittedToxicity: string,
-      submittedMatureHeight: number,
-      submittedLifeSpan: string,
-      submittedImage: string,
-      submittedBloomPeriod: string): Observable<PlantUser> {
-
-        let newPlantUser: PlantUser;
-        let plantUser = new BehaviorSubject<PlantUser>(null);
-
-      this.httpClient.post<PlantUser>(this.endPointPlantUser, JSON.stringify(newPlantUser))
-        .subscribe(
-          (response: PlantUser) => (plantUser.next(response)),
-          (error) => {
-            console.log("create PLant User : error");
-            console.log(error);
-          }
-          );
-
-        return plantUser;
+      newPlantUser: PlantUser): Observable<PlantUser> {
+        console.log(newPlantUser)
+      return this.httpClient.post<PlantUser>(this.endPointPlantUser, JSON.stringify(newPlantUser));
   }
 
 }
