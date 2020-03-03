@@ -13,8 +13,11 @@ import { AuthenticateService } from 'src/app/authenticate/services/authenticate.
 import { CreateService } from '../services/create.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { MatRadioChange } from '@angular/material';
+import { PlantUser } from 'src/app/classes/plant-user.model';
+import { LibraryService } from 'src/app/library/service/library.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-plant',
@@ -26,16 +29,21 @@ export class CreatePlantComponent implements OnInit {
   userAccount: UserAccount;
   newPlant: Plant | any;
   plantName: string;
-  typeZDP: string;
-  types: string[] = ['Pot', 'Parcelle'];
-  potLocation: string;
-  locations: string[] = ['intérieur', 'extérieur'];
-  potSelected: boolean;
+  types: string[] = ['Bibliothèque', 'Mes plantes personalisées'];
   currentPlantingArea: PlantingArea;
   formIsSubmitted = false;
 
+  plants$: Observable<Plant[]>;
+  plantsUser$: Observable<PlantUser[]>;
+  plantsUser: PlantUser[];
+
+  searchPlantFrom = new FormGroup({
+    plantName: new FormControl('')
+  });
+
   constructor(
     private formBuilder: FormBuilder,
+    private libraryService: LibraryService,
     private authServ: AuthenticateService,
     private createServ: CreateService,
     private activatedRoute: ActivatedRoute,
@@ -49,89 +57,52 @@ export class CreatePlantComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createPlantForm = new FormGroup(
-      {
-        plantName: new FormControl('', Validators.required),
-        typeZDP: new FormControl('Pot', Validators.required),
-        potLocation: new FormControl('intérieur')
-      },
-      [
-        (formGroup: FormGroup) => {
-          if (
-            formGroup &&
-            formGroup.get('typeZDP') &&
-            formGroup.get('typeZDP').value === 'Pot'
-          ) {
-            if (!formGroup.get('potLocation').value) {
-              return { potLocationUndefined: true };
-            }
-          }
-        }
-      ]
-    );
+    this.plants$ = this.libraryService.findAllPlants();
+
     this.authServ.user$.subscribe(response => (this.userAccount = response));
-    this.potSelected = true;
+
+    // this.plantsUser$ = this.authServ.user$.pipe(
+    //   map(userAuth => userAuth.nickname),
+    //   switchMap(nickname => {
+    //     console.log(nickname);
+    //     return this.libraryService.findByCreator(nickname);
+    //   })
+    // );
+
+    this.authServ.user$.subscribe(userAuth =>
+      this.libraryService
+        .findByCreator(userAuth.nickname)
+        .subscribe(response => {
+          console.log(response);
+          this.plantsUser = response;
+        })
+    );
+
+    console.log();
+
     this.newPlant = new Plant();
     this.currentPlantingArea = new PlantingArea();
   }
 
+  searchPlant() {
+    this.plants$ = this.libraryService.searchByCommonNameOrScientificName(
+      this.searchPlantFrom.value.plantName
+    );
+  }
+
   radioTypeChange($event: MatRadioChange) {
-    console.log($event.source.name, $event.value);
-    if ($event.source.name === 'radioTypeZDP') {
-      console.log(this.f.typeZDP);
-      this.potSelected = !this.potSelected;
-      console.log(this.potSelected);
-    }
-    if ($event.source.name === 'radioPot') {
-      console.log(this.f.potLocation);
-    }
+    // console.log($event.source.name, $event.value);
+    // if ($event.source.name === 'radioTypeZDP') {
+    //   console.log(this.f.typeZDP);
+    //   this.potSelected = !this.potSelected;
+    //   console.log(this.potSelected);
+    // }
+    // if ($event.source.name === 'radioPot') {
+    //   console.log(this.f.potLocation);
+    // }
   }
 
-  onSubmit(formData: FormData): void {
-    this.formIsSubmitted = true;
-    if (this.createPlantForm.valid) {
-      const values = this.createPlantForm.getRawValue();
-      console.log(values);
-
-      console.log(this.f.plantingAreaName.value);
-      this.newPlant.name = this.f.plantingAreaName.value;
-
-      if (this.f.typeZDP.value === 'Pot') {
-        this.newPlant.type = 'pot';
-        if (this.f.potLocation.value === 'intérieur') {
-          console.log;
-          this.newPlant.interior = true;
-        } else {
-          this.newPlant.interior = false;
-        }
-      } else if (this.f.typeZDP.value === 'Parcelle') {
-        this.newPlant.type = 'parcel';
-      }
-      // this.newPlantingArea.type = this.f.plantingAreaName.value;
-
-      console.log('garden id: ' + this.activatedRoute.snapshot.params['id']);
-      console.log('garden name : ' + this.currentPlantingArea);
-      this.createServ
-        .getGarden(this.activatedRoute.snapshot.params['id'])
-        .pipe(
-          untilDestroyed(this),
-          switchMap(garden => {
-            this.newPlant.garden = { id: garden.id };
-            return this.createServ.postPlantingArea(this.newPlant);
-          })
-        )
-        .subscribe(response => {
-          console.log('rr', response);
-          this.formIsSubmitted = false;
-        });
-
-      // this.createServ
-      //   .postPlantingArea(this.newPlantingArea)
-      //   .pipe(untilDestroyed(this))
-      //   .subscribe();
-      // this.router.navigate(['/gardens']);
-    }
-  }
+  onSubmit(formData: FormData): void {}
 
   ngOnDestroy() {}
 }

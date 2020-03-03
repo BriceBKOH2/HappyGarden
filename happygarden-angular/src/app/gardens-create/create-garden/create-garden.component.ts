@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 import { UserAccount } from 'src/app/classes/user-account';
-import { Observable } from 'rxjs';
 import { Garden } from 'src/app/classes/garden';
 import { CreateService } from '../services/create.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Router } from '@angular/router';
-import { MyGardensComponent } from 'src/app/gardens/my-gardens/my-gardens.component';
 
 @Component({
   selector: 'app-create-garden',
@@ -24,8 +22,7 @@ export class CreateGardenComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authServ: AuthenticateService,
     private createServ: CreateService,
-    private router: Router,
-    private myGarden: MyGardensComponent
+    private router: Router
   ) {
     this.userAccount = new UserAccount();
   }

@@ -3,10 +3,12 @@ package diginamic.happygarden.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class PlantUser extends Plant {
 
+	@NotNull
 	private String creator;
 	
 	/* Constructor */

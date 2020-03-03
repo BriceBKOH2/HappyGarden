@@ -94,6 +94,9 @@ export class MyGardensComponent implements OnInit {
     this.currentPlantingArea = new PlantingArea();
     this.currentSlot = new Slot();
     this.currentPlant = new Plant();
+    console.log(this.addButtonTitle);
+    this.createRouter = '/create/garden';
+    console.log(this.createRouter);
   }
 
   selectGarden(garden: Garden) {
@@ -146,7 +149,8 @@ export class MyGardensComponent implements OnInit {
     );
 
     this.addButtonTitle = 'Ajouter une plante';
-    this.createRouter = '/create/' + this.currentPlant + '/plant';
+    this.createRouter = '/create/' + this.currentPlantingArea.id + '/plant';
+    console.log(this.createRouter);
   }
 
   selectPlant(event, slot: Slot) {

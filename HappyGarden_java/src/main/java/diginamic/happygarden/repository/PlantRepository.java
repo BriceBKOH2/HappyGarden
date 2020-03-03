@@ -16,6 +16,7 @@ public interface PlantRepository extends JpaRepository<Plant, Long>{
 	
 	public List<Plant> findByCommonNameOrScientificName(String commonName, String scientificName);
 	 
+	@Query("select distinct p from Plant p where (lower(p.commonName) like lower(concat('%', :commonName, '%')) or lower(p.scientificName) like lower(concat('%', :scientificName, '%'))) and type(p) = Plant")
 	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(String commonName, String scientificName);
 	
 	public List<Plant> findByScientificNameIgnoreCase(String scientificName);

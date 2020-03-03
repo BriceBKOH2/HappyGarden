@@ -16,21 +16,28 @@ export class LibraryListComponent implements OnInit {
   plantsUsers: PlantUser[] = [];
   userAccount = new UserAccount();
 
-  searchPlantFrom = new FormGroup({
-    plantName: new FormControl()
+  searchPlantForm = new FormGroup({
+    plantName: new FormControl('')
   });
 
-  constructor(private libraryService: LibraryService, public authServ: AuthenticateService) {}
+  constructor(
+    private libraryService: LibraryService,
+    public authServ: AuthenticateService
+  ) {}
 
   ngOnInit() {
     this.libraryService.findAllPlants().subscribe(response => {
       this.plants = response;
     });
 
-    this.authServ.user$.subscribe(userAuth => this.libraryService.findByCreator(userAuth.nickname).subscribe(response => {
-      console.log(response);
-      this.plantsUsers = response;
-    }));
+    this.authServ.user$.subscribe(userAuth =>
+      this.libraryService
+        .findByCreator(userAuth.nickname)
+        .subscribe(response => {
+          console.log(response);
+          this.plantsUsers = response;
+        })
+    );
     // this.libraryService.findByCreator(this.userAccount.nickname).subscribe(response => {
     //   console.log(response);
     //   this.plantsUsers = response;
@@ -39,7 +46,19 @@ export class LibraryListComponent implements OnInit {
 
   searchPlant() {
     this.libraryService
-      .searchByCommonNameOrScientificName(this.searchPlantFrom.value.plantName)
+      .searchByCommonNameOrScientificName(this.searchPlantForm.value.plantName)
       .subscribe(response => (this.plants = response));
+
+    this.authServ.user$.subscribe(userAuth =>
+      this.libraryService
+        .searchByCommonNameOrScientificNameAndCreator(
+          this.searchPlantForm.value.plantName,
+          userAuth.nickname
+        )
+        .subscribe(response => {
+          console.log(userAuth.nickname);
+          this.plantsUsers = response;
+        })
+    );
   }
 }

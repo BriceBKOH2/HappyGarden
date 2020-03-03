@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/services/request/request.service';
 import { Garden } from 'src/app/classes/garden';
 import { Observable } from 'rxjs';
 import { PlantingArea } from 'src/app/classes/planting-area';
+import { Plant } from 'src/app/classes/plant';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class CreateService {
     return this.request.endPoint + '/PlantingArea';
   }
 
+  get endPointPlant(): string {
+    return this.request.endPoint + '/Plant';
+  }
+
   postGarden(garden: Garden): Observable<Garden> {
     console.log('postGarden service');
     return this.httpClient.post<Garden>(`${this.endPointGarden}`, garden);
@@ -38,5 +43,10 @@ export class CreateService {
       `${this.endPointPlantingArea}`,
       plantingArea
     );
+  }
+
+  postPlant(plant: Plant): Observable<Plant> {
+    console.log('postPlant service');
+    return this.httpClient.post<Plant>(`${this.endPointPlant}`, plant);
   }
 }

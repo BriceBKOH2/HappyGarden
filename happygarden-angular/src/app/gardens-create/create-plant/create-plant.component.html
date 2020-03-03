@@ -8,75 +8,117 @@
     <legend class="fieldsetBorder">Ajouter une plante</legend>
     <div>
       <div class="row">
-        <div class="col-12 col-md-6">
-          <form
-            [formGroup]="createPlantForm"
-            (ngSubmit)="onSubmit(createPlantForm.value)"
-          >
-            <div class="form-group row">
-              <label>Nom</label>
-              <input
-                class="form-control sharp"
-                formControlName="plantName"
-                type="text"
-                placeholder="Nom"
-              />
-            </div>
-            <div
-              class="alert alert-danger"
-              *ngIf="
-                formIsSubmitted &&
-                createPlantForm.get('plantName').errors as errors
-              "
-            >
-              <span *ngIf="errors.required">
-                Requis
-              </span>
-            </div>
-            <div class="form-group row">
-              <label>Type de zone de plantation</label>
-              <div>
-                <mat-radio-group
-                  aria-labelledby="example-radio-group-label"
-                  name="radioTypeZDP"
-                  class="example-radio-group"
-                  formControlName="typeZDP"
-                  (change)="radioTypeChange($event)"
-                >
-                  <mat-radio-button
-                    class="example-radio-button"
-                    *ngFor="let type of types"
-                    [value]="type"
-                  >
-                    {{ type }}
-                  </mat-radio-button>
-                </mat-radio-group>
-              </div>
-              <div [ngClass]="{ 'd-none': !potSelected }">
-                <mat-radio-group
-                  aria-labelledby="example-radio-group-label"
-                  name="radioPot"
-                  class="example-radio-group"
-                  formControlName="potLocation"
-                  (change)="radioTypeChange($event)"
-                >
-                  <mat-radio-button
-                    class="example-radio-button"
-                    *ngFor="let location of locations"
-                    [value]="location"
-                  >
-                    {{ location }}
-                  </mat-radio-button>
-                </mat-radio-group>
-              </div>
-            </div>
-            <button class="btn add-button" type="submit">
-              Enregistrer
-            </button>
-          </form>
-        </div>
+        <div class="col-12 col-md-6"></div>
       </div>
     </div>
   </fieldset>
+
+  <div class="showPlants">
+    <form class="form-inline" [formGroup]="searchPlantFrom">
+      <div class="form-group">
+        <label for="plantName">Rechercher une plante</label>
+        <input
+          formControlName="plantName"
+          id="plantName"
+          type="text"
+          placeholder="Nom de la plante"
+          class="form-control"
+        />
+      </div>
+      <button
+        class="btn-api form-control"
+        type="submit"
+        (click)="searchPlant()"
+      >
+        Rechercher
+      </button>
+      <button
+        class="btn-detail form-control"
+        [routerLink]="'create'"
+        type="button"
+      >
+        Créer
+      </button>
+    </form>
+
+    <div class="library-list">
+      <div class="plant-wrapper" *ngFor="let plantUser of plantsUser">
+        <div class="plant">
+          <div class="encart">
+            <p>Fiche perso : {{ plantUser.commonName }}</p>
+          </div>
+          <div class="imgPlant">
+            <figure>
+              <img src="/assets/img/{{ plantUser.image }}" alt="" />
+            </figure>
+          </div>
+          <div class="plant-infos">
+            <div>
+              <p>
+                Nom <br />
+                scientifique
+              </p>
+              <p>Famille</p>
+              <p>Arrosage</p>
+              <p>Milieu</p>
+            </div>
+            <div class="border"></div>
+            <div>
+              <p class="on-two-lines">{{ plantUser.scientificName }}</p>
+              <p>Blabla</p>
+              <p>
+                <i class="fas fa-tint"></i>
+                <i class="fas fa-tint"></i>
+              </p>
+              <p>Blabla</p>
+            </div>
+          </div>
+
+          <a
+            class="btn-api btn-single-plant"
+            [routerLink]="['id', plantUser.id]"
+            >Fiche complète</a
+          >
+        </div>
+      </div>
+
+      <div class="plant-wrapper" *ngFor="let plant of plants$ | async">
+        <div class="plant">
+          <div class="encart">
+            <p>{{ plant.commonName }}</p>
+          </div>
+          <div class="imgPlant">
+            <figure><img src="/assets/img/{{ plant.image }}" alt="" /></figure>
+          </div>
+          <div class="plant-infos">
+            <div>
+              <p>
+                Nom <br />
+                scientifique
+              </p>
+              <p>Famille</p>
+              <p>Arrosage</p>
+              <p>Milieu</p>
+            </div>
+            <div class="border"></div>
+            <div>
+              <p class="on-two-lines">{{ plant.scientificName }}</p>
+              <p>Blabla</p>
+              <p>
+                <i class="fas fa-tint"></i>
+                <i class="fas fa-tint"></i>
+              </p>
+              <p>Blabla</p>
+            </div>
+          </div>
+
+          <a class="btn-api btn-single-plant" [routerLink]="['id', plant.id]"
+            >Fiche complète</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- </ng-container> -->
 </section>

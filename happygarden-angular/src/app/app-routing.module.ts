@@ -5,11 +5,6 @@ import { AuthenticateGuard } from './authenticate/guards/authenticate.guard';
 import { AdminGuard } from './administration/guards/admin.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'homePage',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
     redirectTo: 'homePage',

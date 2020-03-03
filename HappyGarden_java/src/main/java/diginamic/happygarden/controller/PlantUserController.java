@@ -15,8 +15,13 @@ import diginamic.happygarden.service.PlantUserService;
 @RequestMapping("/PlantUser")
 public class PlantUserController extends AbstractCRUDController<PlantUser, Long, PlantUserService> {
 	
-	@GetMapping("/searchPlantUser")
+	@GetMapping("/user")
 	public List<Plant> findByCreator(@RequestParam("name") String name) {
 		return service.findByCreator(name);
+	}
+	
+	@GetMapping("/searchPlantUser")
+	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(@RequestParam String name, @RequestParam String creator) {
+		return service.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(name, creator);
 	}
 }

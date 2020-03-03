@@ -8,7 +8,7 @@
         <div class="opac"></div>
         <div class="widget-infos">
           <p>Jardins</p>
-          <p *ngIf="nbFriends">{{ nbGardens }}</p>
+          <p *ngIf="nbGardens$ | async as nbGardens">{{ nbGardens }}</p>
         </div>
       </div>
     </a>
@@ -16,10 +16,8 @@
       <div class="widget conv">
         <div class="opac"></div>
         <div class="widget-infos">
-          <p>
-            Conversations
-          </p>
-          <p *ngIf="nbConvs">{{ nbConvs }}</p>
+          <p>Conversations</p>
+          <p *ngIf="nbConvs$ | async as nbConvs">{{ nbConvs }}</p>
         </div>
       </div>
     </a>
@@ -32,7 +30,7 @@
           <img src="/assets/icones/rating.png" alt="" />
         </figure> -->
           <p>Abonnements</p>
-          <p *ngIf="nbFriends">{{ nbFriends }}</p>
+          <p *ngIf="nbFriends$ | async as nbFriends">{{ nbFriends }}</p>
         </div>
       </div>
     </a>

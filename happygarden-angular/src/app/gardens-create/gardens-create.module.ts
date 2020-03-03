@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatePlantingAreaComponent } from './create-planting-area/create-planting-area.component';
 import { CreatePlantComponent } from './create-plant/create-plant.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { LibraryModule } from '../library/library.module';
+import { GardensModule } from '../gardens/gardens.module';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { MatRadioModule } from '@angular/material/radio';
   exports: [CreateGardenComponent],
   imports: [
     CreateGardenRoutingModule,
+    GardensModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    LibraryModule
   ]
 })
 export class GardensCreateModule {}
