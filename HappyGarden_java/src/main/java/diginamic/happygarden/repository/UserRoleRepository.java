@@ -13,4 +13,7 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 	
 	@Query("SELECT r from UserRole r LEFT JOIN FETCH r.userRights WHERE r.name = :name")
 	public Optional<UserRole> findByName(String name);
+
+	@Query("SELECT r from UserRole r WHERE r.name = 'Basic'")
+	public Optional<UserRole> getDefaultRole();
 }

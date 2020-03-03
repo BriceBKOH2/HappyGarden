@@ -29,14 +29,13 @@ public class Message implements HibernateEntity<Long> {
 	/** The content of the message shown in the conversation **/
 	@NotBlank
 	private String content;
-	
-	/** The user that sent the message**/
+
+	/** The user that sent the message **/
 	@NotNull
 	private String author;
 
-	
 	/* Constructors */
-	
+
 	public Message() {
 	}
 	
@@ -54,7 +53,7 @@ public class Message implements HibernateEntity<Long> {
 	}
 	
 	/* Getters Setters */
-	
+
 	public Long getId() {
 		return id;
 	}

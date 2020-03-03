@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
+import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.UserAccountRepository;
 
@@ -28,6 +29,10 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	public List<UserAccount> findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(String name) {
+		return repo.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name,name, name);
+	}
 	
 	public List<UserAccount> findAllByFirstnameIgnoreCase(String name) {
 		return repo.findAllByFirstnameIgnoreCase(name);
@@ -75,6 +80,10 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 	
 	public Long countNbFriendsByUserId(Long id) {
 		return repo.countFriendsByUserId(id);
+	}
+	
+	public List<UserAccount> findAllFriendsByUserId(Long id) {
+		return repo.findAllFriendsByUserId(id);
 	}
 
 }

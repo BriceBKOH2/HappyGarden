@@ -65,25 +65,6 @@ export class ConversationComponent implements OnInit {
     );
   }
 
-  // ngOnInit() {
-  //   this.activatedRoute.params
-  //     .pipe(
-  //       switchMap(params => {
-  //         this.convService
-  //           .getConversation(params.id)
-  //           .subscribe(response => (this.conversation = response));
-  //         return this.convService.getMessagesConversation(params.id);
-  //       })
-  //     )
-  //     .subscribe(response => {
-  //       console.log(response);
-  //       this.messages = response;
-  //       this.messages.forEach(msg => {
-  //         console.log(msg.conversation.id);
-  //       });
-  //     });
-  // }
-
   sendMessage() {
     this.authServ.user$.subscribe(
       user => (this.message.author = user.nickname)

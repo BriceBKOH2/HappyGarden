@@ -30,7 +30,7 @@ public class Garden implements HibernateEntity<Long> {
 	@OneToMany
 	private List<Comment> comments = new ArrayList<>();	
 	@JsonManagedReference("garden_areas")
-	@OneToMany(mappedBy = "garden", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "garden", cascade = { CascadeType.PERSIST, CascadeType.REMOVE  } )
 	private List<PlantingArea> plantingAreas = new ArrayList<>();
 
 	

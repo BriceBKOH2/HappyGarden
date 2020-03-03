@@ -20,7 +20,6 @@ export class LibraryListComponent implements OnInit {
 
   ngOnInit() {
     this.libraryService.findAllPlants().subscribe(response => {
-      console.log(response);
       this.plants = response;
     });
   }

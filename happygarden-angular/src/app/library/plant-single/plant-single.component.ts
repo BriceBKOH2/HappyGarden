@@ -3,6 +3,7 @@ import { LibraryService } from '../service/library.service';
 import { Plant } from 'src/app/classes/plant';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-plant-single',
@@ -15,18 +16,28 @@ export class PlantSingleComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  plant: Plant;
+  plant$: Observable<Plant>;
+
+  // plant: Plant;
+
   ngOnInit() {
+
     this.activatedRoute.params
-      .pipe(
-        switchMap(params => {
-          console.log(params);
-          return this.libraryService.findPlant(params.id);
-        })
+      .subscribe(
+        (r) => {
+          this.plant$ = this.libraryService.findPlant(r.id);
+        }
       )
-      .subscribe(response => {
-        console.log(response);
-        this.plant = response;
-      });
+
+
+    // this.activatedRoute.params
+    //   .pipe(
+    //     switchMap(params => {
+    //       return this.libraryService.findPlant(params.id);
+    //     })
+    //   )
+    //   .subscribe(response => {
+    //     this.plant = response;
+    //   });
   }
 }

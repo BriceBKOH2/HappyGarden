@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +20,7 @@ import diginamic.happygarden.model.GrowthRate;
 import diginamic.happygarden.model.Message;
 import diginamic.happygarden.model.Parcel;
 import diginamic.happygarden.model.Plant;
+import diginamic.happygarden.model.PlantUser;
 import diginamic.happygarden.model.PlantingArea;
 import diginamic.happygarden.model.Season;
 import diginamic.happygarden.model.Slot;
@@ -31,6 +31,7 @@ import diginamic.happygarden.service.ConversationService;
 import diginamic.happygarden.service.GardenService;
 import diginamic.happygarden.service.MessageService;
 import diginamic.happygarden.service.PlantService;
+import diginamic.happygarden.service.PlantUserService;
 import diginamic.happygarden.service.UserAccountService;
 import diginamic.happygarden.service.UserRightService;
 import diginamic.happygarden.service.UserRoleService;//@PreAuthorize("admnistration")
@@ -62,8 +63,11 @@ public class AdminController {
 	
 	@Autowired
 	private ConversationService conversationServ;
-
-
+	
+	@Autowired
+	private PlantUserService plantUserServ;
+	
+	
 	/**
 	 * Instantiate database with rights, roles, admin and basic user
 	 * 
@@ -93,7 +97,7 @@ public class AdminController {
 			List<UserRight> userRightsAdmin = new ArrayList<UserRight>();
 			UserRight userRightAdmin = new UserRight(UserRight.RIGHT_ADMINISTRATION);
 			userRightsAdmin.add(userRightAdmin);
-			userRightAdmin = new UserRight(UserRight.RIGHT_ACCOUNT_SUPPRESION);
+			userRightAdmin = new UserRight(UserRight.RIGHT_ACCOUNT_SUPPRESSION);
 			userRightsAdmin.add(userRightAdmin);
 			userRightAdmin = new UserRight(UserRight.RIGHT_PLANT_SUPPRESSION);
 			userRightsAdmin.add(userRightAdmin);
@@ -155,6 +159,15 @@ public class AdminController {
 		plantServ.save(tournesol);
 		
 		}
+		
+		// Adding PLant User
+		if (plantUserServ.findByCommonNameOrScientificName("Cactus").isEmpty()) {
+			ArrayList<Season> season = new ArrayList<>();
+			season.add(Season.FALL);
+		PlantUser rose = new PlantUser("Rosa", "Rose", "Rose", "None", 150.7F, "Long", "rose.jpg", "Mid Spring", GrowthRate.RAPID, season, "Estelle");
+		plantUserServ.save(rose);
+		}
+		
 		// Ajoût de jardins randomn pour la BDD
 		try {
 			userAccServ.findByNickname("Estelle");
@@ -165,7 +178,7 @@ public class AdminController {
 			ArrayList<Slot> slots = new ArrayList<>();
 			slots.add(slot);
 			
-			Parcel parcel = new Parcel("parcelle ta mère", 19L, 157486532156L, slots);
+			Parcel parcel = new Parcel("nouvelle parcelle", 19L, 157486532156L, slots);
 			ArrayList<PlantingArea> parcels = new ArrayList<>();
 			parcels.add(parcel);
 			slot.setPlantingArea(parcel);
@@ -177,6 +190,7 @@ public class AdminController {
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
 			jade.setProfileImg("profil_2.jpg");
+			jade.addFriends("Estelle");
 			userAccServ.save(jade);
 			
 			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
@@ -254,9 +268,9 @@ public class AdminController {
 //			
 //			
 //			
-//			jardinUn.setUser(estelle);
+			jardinUn.setUser(estelle);
 //			
-//			gardenServ.save(jardinUn);
+			gardenServ.save(jardinUn);
 //			conversationServ.save(conversationEstelleJade);
 //			conversationServ.save(conversationEstelleJordi);
 //			
@@ -270,7 +284,6 @@ public class AdminController {
 		return userAccServ.findAll();
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("users")
 	public List<UserAccount> getUsers() {
 		return userAccServ.findAll();

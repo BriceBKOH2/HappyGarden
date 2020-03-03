@@ -3,15 +3,15 @@
   <p *ngIf="authServ.user$ | async as user">Bienvenue {{ user.firstname }}</p>
 
   <div class="widgets">
-    <div class="widget jardins">
-      <div class="opac"></div>
-      <div class="widget-infos">
-        <p>
-          Jardins <span *ngIf="nbGardens">{{ nbGardens }}</span>
-        </p>
+    <a [routerLink]="['../gardens']">
+      <div class="widget jardins">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <p>Jardins</p>
+          <p *ngIf="nbFriends">{{ nbGardens }}</p>
+        </div>
       </div>
-    </div>
-
+    </a>
     <a [routerLink]="['/userAccount/conversations']">
       <div class="widget conv">
         <div class="opac"></div>
@@ -24,16 +24,18 @@
       </div>
     </a>
 
-    <div class="widget abo">
-      <div class="opac"></div>
-      <div class="widget-infos">
-        <!-- <figure>
+    <a [routerLink]="['/userAccount/friends']">
+      <div class="widget abo">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <!-- <figure>
           <img src="/assets/icones/rating.png" alt="" />
         </figure> -->
-        <p>Abonnements</p>
-        <p *ngIf="nbFriends">{{ nbFriends }}</p>
+          <p>Abonnements</p>
+          <p *ngIf="nbFriends">{{ nbFriends }}</p>
+        </div>
       </div>
-    </div>
+    </a>
 
     <div class="widget profil">
       <div class="opac"></div>

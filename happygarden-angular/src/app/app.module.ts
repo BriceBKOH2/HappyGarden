@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SidebarModule } from 'ng-sidebar';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { AuthenticateApiService } from './services/authenticateApi/authenticate-
 import { AuthInterceptorService } from './authenticate/services/auth-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { MatCheckboxModule } from '@angular/material';
     StorageModule.forRoot({ IDBNoWrap: true }),
     AuthenticateModule.forRoot(AuthenticateApiService),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatCheckboxModule
   ],
   exports: [MatCheckboxModule],

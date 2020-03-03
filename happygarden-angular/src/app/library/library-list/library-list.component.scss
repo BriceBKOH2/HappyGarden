@@ -69,47 +69,50 @@ form {
   margin: 3% 0;
 }
 
-.plant {
-  background: #f5f5f5;
-  position: relative;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
-  padding-bottom: 8%;
-  margin-bottom: 8%;
-  width: 300px;
-}
+// .plant {
+//   background: #f5f5f5;
+//   position: relative;
+//   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+//   padding-bottom: 8%;
+//   margin-bottom: 8%;
+//   width: 300px;
+// }
 
-.img {
-  // max-width: 150%;
-  height: 200px;
-  overflow: hidden;
-}
+// .imgPlant {
+//   // max-width: 150%;
+//   height: 200px;
+//   overflow: hidden;
+// }
 
-.img figure img {
-  max-width: 150%;
-}
+// .imgPlant figure img {
+//   max-width: 150%;
+// }
 
-.infos {
-  display: flex;
-  width: 80%;
-  padding-top: 8%;
-  margin: auto;
-  color: var(--police);
-  // justify-content: space-between;
-}
+// .plant-infos {
+//   display: flex;
+//   width: 80%;
+//   padding-top: 8%;
+//   margin: auto;
+//   color: var(--police);
+//   // justify-content: space-between;
+//   .on-two-lines {
+//     height: 48px;
+//   }
+// }
 
-.infos div:nth-child(3) p:first-child {
-  // font-size: 18px;
-  font-weight: bold;
-}
+// .plant-infos div:nth-child(3) p:first-child {
+//   // font-size: 18px;
+//   font-weight: bold;
+// }
 
-.infos div:first-child {
-  text-align: right;
-}
+// .plant-infos div:first-child {
+//   text-align: right;
+// }
 
-.border {
-  // border: 0.1pt solid var(--police) !important;
-  margin: 0 5%;
-}
+// .border {
+//   // border: 0.1pt solid var(--police) !important;
+//   margin: 0 5%;
+// }
 
 .btn-api {
   border: 2px solid var(--vert);
@@ -150,9 +153,9 @@ form {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
-.encart p {
-  margin: inherit;
-}
+// .encart p {
+//   margin: inherit;
+// }
 
 i {
   padding-right: 4px;

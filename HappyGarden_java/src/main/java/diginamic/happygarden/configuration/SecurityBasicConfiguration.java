@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,17 +35,18 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/Admin/**").hasRole("ADMIN")
-			.antMatchers("/Plant").permitAll()
+			.antMatchers("/Admin/**","UserRole").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/Plant", "/Plant/**","/UserRole/**").permitAll() // UserRole : to retrieve default user role when creating new user.
+			.antMatchers(HttpMethod.POST, "/UserAccount").permitAll() // can create a new user without being logged in. (for new users)
 			.anyRequest().authenticated()
-			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).and().logout().permitAll()
+			.and().formLogin().successHandler(successHandler()).failureHandler(failureHandler()).permitAll().and().logout().deleteCookies("JSESSIONID").permitAll()
 			.and().httpBasic()
 			.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and().cors()
+			.and().csrf().disable();
 //			.and().csrf()
 //			.csrfTokenRepository(CookieCsrfTokenRepository
-//				.withHttpOnlyFalse())
-			.and().csrf().disable();
+//			.withHttpOnlyFalse());
 	}
 
 	@Autowired
@@ -56,23 +58,14 @@ public class SecurityBasicConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(10);
 	}
-	
-//	@Bean
-//	public CorsConfigurationSource corsConfigurationSource() {
-//		CorsConfiguration configuration = new CorsConfiguration();
-//		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-//		configuration.setAllowedMethods(Arrays.asList( "GET","POST","PUT","DELETE"));
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		source.registerCorsConfiguration("/", configuration);
-//		return source;
-//	}
-	
+
 	@Bean
 	public WebMvcConfigurer configurer(){
 	  return new WebMvcConfigurer(){
 	    @Override
 	    public void addCorsMappings(CorsRegistry registry) {
 	      registry.addMapping("/**")
+	      	  .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS")
 	          .allowedOrigins("http://localhost:4200").allowCredentials(true);
 	    }
 	  };

@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/scss/bootstrap';
-
-@import '~bootstrap/scss/bootstrap';
-
+@import "~bootstrap/scss/bootstrap";
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +11,72 @@
   --blanc: #fff;
   --police: #354463;
   --police-inactive: #354463a0;
+
+  .plant-wrapper {
+    .plant-infos {
+      display: flex;
+      width: 80%;
+      padding-top: 8%;
+      margin: auto;
+      color: var(--police);
+
+      .on-two-lines {
+        height: 48px;
+      }
+      // justify-content: space-between;
+
+      .border {
+        // border: 0.1pt solid var(--police) !important;
+        margin: 0 5%;
+      }
+    }
+
+    .plant-infos div:nth-child(3) p:first-child {
+      // font-size: 18px;
+      font-weight: bold;
+    }
+
+    .plant-infos div:first-child {
+      text-align: right;
+    }
+
+    .plant {
+      background: #f5f5f5;
+      position: relative;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+      padding-bottom: 8%;
+      margin-bottom: 8%;
+      width: 300px;
+
+      .encart {
+        width: 100px;
+        font-size: 13px;
+        padding: 5px;
+        text-align: center;
+        background-color: var(--vert);
+        color: #fff;
+        position: absolute;
+        top: -10px;
+        left: 30%;
+        transform: translateX(-50%);
+
+        p {
+          // margin-bottom: 0px;
+          margin: inherit;
+        }
+      }
+    }
+
+    .imgPlant {
+      // max-width: 150%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .imgPlant figure img {
+      max-width: 150%;
+    }
+  }
 }
 
 // p {

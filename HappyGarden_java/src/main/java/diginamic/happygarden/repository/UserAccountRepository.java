@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.model.UserAccount;
 
 @Repository
@@ -18,6 +19,8 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
 	
 	public Optional<UserAccount> findByNickname(String name);
 	
+	public List<UserAccount> findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(String firstname, String lastname, String nickname);
+	
 	/**
 	 * 
 	 * @param id
@@ -28,4 +31,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
 	
 	@Query("select count(f) from UserAccount u join u.friends f where u.id = :userId")
 	public Long countFriendsByUserId(Long userId);
+	
+	@Query("select c from Conversation c join c.users u where u.id = :userId")
+	public List<UserAccount> findAllFriendsByUserId(Long userId);
 }

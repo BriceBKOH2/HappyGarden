@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,7 +44,7 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	protected List<Reminder> reminders = new ArrayList<>();
 
 	@JsonManagedReference("area_slots")
-	@OneToMany(mappedBy = "plantingArea", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "plantingArea", cascade = CascadeType.ALL)
 	protected List<Slot> slots = new ArrayList<>();
 	
 	@JsonBackReference("garden_areas")
@@ -51,6 +52,8 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 	@JoinColumn(name = "garden_id")
 	private Garden garden;
 
+	@Column
+	protected String image;
 	
 	/* Constructors */
 	
@@ -121,7 +124,17 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 		this.garden = garden;
 	}
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	/* Methods */
+
+
 
 	public void addReminders(List<Reminder> reminders) {
 		this.reminders.addAll(reminders);
@@ -143,5 +156,7 @@ public abstract class PlantingArea implements HibernateEntity<Long>, ReminderMan
 			this.slots.add(slot);
 		}
 	}
+	
+	
 	
 }

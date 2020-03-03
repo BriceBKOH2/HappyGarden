@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GardenListService } from './garden-list.service';
+import { FileService } from './file.service';
 
-describe('GardenListService', () => {
+describe('FileService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GardenListService = TestBed.get(GardenListService);
+    const service: FileService = TestBed.get(FileService);
     expect(service).toBeTruthy();
   });
 });

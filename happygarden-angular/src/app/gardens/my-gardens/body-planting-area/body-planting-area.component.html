@@ -1,0 +1,47 @@
+<div
+  class="plantingArea-plants"
+  [ngClass]="{
+    'd-none': myGardens.currentPlant.id && myGardens.currentPlantingArea.id
+  }"
+>
+  <div
+    class="plant-wrapper"
+    *ngFor="let slot of myGardens.currentPlantingArea.slots"
+  >
+    <div class="plant">
+      <div class="encart">
+        <p>{{ slot.plant.commonName }}</p>
+      </div>
+      <div class="imgPlant">
+        <figure>
+          <img src="/assets/img/{{ slot.plant.image }}" alt="" />
+        </figure>
+      </div>
+      <div class="plant-infos">
+        <div>
+          <p>
+            Nom <br />
+            scientifique
+          </p>
+          <p>Famille</p>
+          <p>Arrosage</p>
+          <p>Milieu</p>
+        </div>
+        <div class="border"></div>
+        <div>
+          <p class="on-two-lines">{{ slot.plant.scientificName }}</p>
+          <p>Blabla</p>
+          <p>
+            <i class="fas fa-tint"></i>
+            <i class="fas fa-tint"></i>
+          </p>
+          <p>Blabla</p>
+        </div>
+      </div>
+
+      <a class="selectPlant" (click)="myGardens.selectPlant($event, slot)"
+        >Fiche complète</a
+      >
+    </div>
+  </div>
+</div>
