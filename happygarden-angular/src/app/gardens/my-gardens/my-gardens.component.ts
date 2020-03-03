@@ -4,11 +4,12 @@ import { UserAccount } from 'src/app/classes/user-account';
 import { PlantingArea } from 'src/app/classes/planting-area';
 import { Plant } from 'src/app/classes/plant';
 import { Slot } from 'src/app/classes/slot';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { UserAccountRequestService } from 'src/app/services/userAccountRequest/user-account-request.service';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { map, switchMap } from 'rxjs/operators';
+import { GardenService } from '../services/garden.service';
 
 @Component({
   selector: 'app-my-gardens',
@@ -28,7 +29,8 @@ export class MyGardensComponent implements OnInit {
 
   constructor(
     private userAccServ: UserAccountRequestService,
-    private authServ: AuthenticateService
+    private authServ: AuthenticateService,
+    private gardenServ: GardenService
   ) {}
 
   ngOnInit() {
@@ -46,6 +48,43 @@ export class MyGardensComponent implements OnInit {
       map(response => response.id),
       switchMap(id => this.userAccServ.getGardens(id))
     );
+
+    // this.gardens$ = this.authServ.user$.pipe(
+    //   map(response => response.id),
+    //   switchMap(id => this.userAccServ.getGardens(id)),
+    //   switchMap(gardens => {
+    //     let gardensWithPlantingAreasWithNbSlots: Garden[] = [];
+    //     gardens.forEach(garden => {
+    //         const plantingAreaWithNbSlots: Observable<any>[] = [];
+    //         garden.plantingAreas.forEach(plantingArea => {
+    //           plantingAreaWithNbSlots.push(
+    //             this.gardenServ.countSlots(plantingArea.id).pipe(
+    //               map(nbSlots => {
+    //                 plantingArea.nbSlots = nbSlots;
+    //                 return plantingArea;
+    //               })
+    //             )
+    //           );
+    //         });
+    //         return forkJoin(plantingAreaWithNbSlots);
+    //     });
+    //     return gardens;
+    //   })
+    // );
+    // switchMap(plantingAreas => {
+    //   const plantingAreaWithNbSlots: Observable<any>[] = [];
+    //   plantingAreas.forEach(plantingArea => {
+    //     plantingAreaWithNbSlots.push(
+    //       this.gardenServ.countSlots(plantingArea.id).pipe(
+    //         map(nbSlots => {
+    //           plantingArea.nbSlots = nbSlots;
+    //           return plantingArea;
+    //         })
+    //       )
+    //     );
+    //   });
+    //   return forkJoin(plantingAreaWithNbSlots);
+    // }),
   }
 
   showGardens() {

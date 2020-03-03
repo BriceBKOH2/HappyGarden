@@ -13,4 +13,5 @@ export class PlantingArea {
   type: string;
   interior: boolean;
   garden: Garden;
+  nbSlots: Number;
 }

@@ -26,7 +26,7 @@ export class GardenService {
     return this.httpClient.get<Number>(`${this.endPointGarden}/${id}/count`);
   }
 
-  countPlants(id: Number): Observable<Number> {
+  countSlots(id: Number): Observable<Number> {
     console.log('getPlantingArea id: ' + id);
     return this.httpClient.get<Number>(
       `${this.endPointPlantingArea}/${id}/count`

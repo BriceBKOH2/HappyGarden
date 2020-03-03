@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyGardensComponent } from '../my-gardens.component';
+import { Garden } from 'src/app/classes/garden';
+import { Plant } from 'src/app/classes/plant';
 
 @Component({
   selector: 'app-body-planting-area',

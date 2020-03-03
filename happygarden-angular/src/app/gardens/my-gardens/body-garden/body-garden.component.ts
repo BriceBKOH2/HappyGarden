@@ -4,7 +4,10 @@ import { PlantingArea } from 'src/app/classes/planting-area';
 import { FileUpDownloadComponent } from 'src/app/file/file-up-download/file-up-download.component';
 import { GardenService } from '../../services/garden.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { RequestService } from 'src/app/services/request/request.service';
 
 @Component({
   selector: 'app-body-garden',
@@ -15,7 +18,8 @@ export class BodyGardenComponent implements OnInit {
   // private plantsNb: Number = 0;
   constructor(
     public myGardens: MyGardensComponent,
-    private gardenServ: GardenService
+    private gardenServ: GardenService,
+    private httpClient: HttpClient
   ) {}
 
   ngOnInit() {}
@@ -29,18 +33,25 @@ export class BodyGardenComponent implements OnInit {
     }
   }
 
-  countPlants(id: Number): Observable<Number> {
-    let plantsNb$: Observable<Number>;
-    // plantsNb$ = this.gardenServ.countPlants(id);
-    console.log(plantsNb$);
-    return plantsNb$;
-    // .pipe(untilDestroyed(this))
-    // .subscribe(response => {
-    //   this.plantsNb = response;
-    //   // console.log('plantsNb : ' + this.plantsNb + ' PA id :' + id);
-    // });
+  // TODO : Debugger pour comprendre pourquoi boucle infinie
+  // countPlants(id: Number): Number {
+  //   let plantsNb: Number;
+  //   this.gardenServ
+  //     .countSlots(id)
+  //     .pipe(untilDestroyed(this))
+  //     .subscribe(response => {
+  //       plantsNb = response;
+  //       console.log('plantsNb : ' + plantsNb + ' PA id :' + id);
+  //     });
+  //   return plantsNb;
+  // }
 
-    // console.log('plantsNb : ' + this.plantsNb + ' PA id :' + id);
+  // countPlants(id: Number): Observable<Number> {
+  //   return this.gardenServ.countSlots(id);
+  // }
+
+  countSlots(plantingArea: PlantingArea): Number {
+    return plantingArea.slots.length;
   }
 
   ngOnDestroy() {}

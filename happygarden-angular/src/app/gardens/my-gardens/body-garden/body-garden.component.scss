@@ -8,6 +8,8 @@
 }
 
 .plantingArea-wrapper {
+  display: flex;
+  flex-wrap: wrap;
   // background: #f5f5f5;
   position: relative;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
@@ -16,3 +18,33 @@
   width: 90%;
   height: 300px;
 }
+
+.divPot {
+  background-image: url('/assets/img/plantingAreas/Painted-Herb-Pots-e1461861397116.jpg');
+}
+
+.divParcel {
+  background-image: url('/assets/img/plantingAreas/home-garden.webp');
+}
+
+// .divPlantingArea {
+//   // width: 200px;
+//   // height: 200px;
+//   overflow: hidden;
+//   margin: 10px;
+//   position: relative;
+// }
+
+// .figure {
+//   position: absolute;
+//   margin: auto;
+//   min-height: 100%;
+//   min-width: 100%;
+
+//   /* For the following settings we set 100%, but it can be higher if needed
+//   See the answer's update */
+//   left: -100%;
+//   right: -100%;
+//   top: -100%;
+//   bottom: -100%;
+// }

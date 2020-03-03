@@ -8,17 +8,32 @@
     class="plantingArea-wrapper"
     *ngFor="let plantingArea of myGardens.currentGarden.plantingAreas"
   >
-    <div>
-      <figure>
-        <!-- <img src="/assets/img/plantingAreas/{{ plantingArea.image }}" alt="" /> -->
-      </figure>
-      <p>{{ plantingArea.name }}</p>
-      <p *ngIf="plantingArea.type == 'pot'">
+    <div class="divPot" *ngIf="plantingArea.type == 'pot'">
+      <!-- <figure>
+        <img
+          class="imagePlantingArea"
+          src="/assets/img/plantingAreas/Painted-Herb-Pots-e1461861397116.jpg"
+          alt="image pot"
+        />
+      </figure> -->
+      <p>Nom : {{ plantingArea.name }}</p>
+      <p>
         {{ plantingArea.type }} <span>{{ isInterior(plantingArea) }}</span>
       </p>
-      <p *ngIf="countPlants(plantingArea.id) | async as truc">
-        {{ truc }}
+      <p>Plantes : {{ countSlots(plantingArea) }}</p>
+    </div>
+    <div class="divParcel" *ngIf="plantingArea.type == 'parcel'">
+      <!-- <figure>
+        <img
+          src="/assets/img/plantingAreas/home-garden.webp"
+          alt="image parcelle"
+        />
+      </figure> -->
+      <p>Nom : {{ plantingArea.name }}</p>
+      <p>
+        {{ plantingArea.type }}
       </p>
+      <p>Plantes : {{ countSlots(plantingArea) }}</p>
     </div>
   </div>
 </div>
