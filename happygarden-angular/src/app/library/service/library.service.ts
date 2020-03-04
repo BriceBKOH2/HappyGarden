@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Plant } from 'src/app/classes/plant';
 import { PlantUser } from 'src/app/classes/plant-user.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { RequestService } from 'src/app/services/request/request.service';
-import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
-import { GrowthRate } from 'src/app/enums/growth-rate.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibraryService {
-  constructor(private httpClient: HttpClient,
-     private request: RequestService,
-    private authServ: AuthenticateService) {}
+  constructor(
+    private httpClient: HttpClient,
+    private request: RequestService
+  ) {}
 
   get endPointPlant() {
     return this.request.endPoint + '/Plant';
@@ -55,9 +54,11 @@ export class LibraryService {
     );
   }
 
-  createPlantUser(
-      newPlantUser: PlantUser): Observable<PlantUser> {
-        console.log(newPlantUser)
-      return this.httpClient.post<PlantUser>(this.endPointPlantUser, JSON.stringify(newPlantUser));
+  createPlantUser(newPlantUser: PlantUser): Observable<PlantUser> {
+    console.log(newPlantUser);
+    return this.httpClient.post<PlantUser>(
+      this.endPointPlantUser,
+      JSON.stringify(newPlantUser)
+    );
   }
 }

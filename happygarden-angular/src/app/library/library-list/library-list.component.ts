@@ -5,6 +5,7 @@ import { PlantUser } from 'src/app/classes/plant-user.model';
 import { UserAccount } from 'src/app/classes/user-account';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-library-list',
@@ -26,13 +27,17 @@ export class LibraryListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.libraryService.findAllPlants().subscribe(response => {
-      this.plants = response;
-    });
+    this.libraryService
+      .findAllPlants()
+      .pipe(untilDestroyed(this))
+      .subscribe(response => {
+        this.plants = response;
+      });
 
-    this.authServ.user$.subscribe(userAuth =>
+    this.authServ.user$.pipe(untilDestroyed(this)).subscribe(userAuth =>
       this.libraryService
         .findByCreator(userAuth.nickname)
+        .pipe(untilDestroyed(this))
         .subscribe(response => {
           console.log(response);
           this.plantsUsers = response;
@@ -47,6 +52,7 @@ export class LibraryListComponent implements OnInit {
   searchPlant() {
     this.libraryService
       .searchByCommonNameOrScientificName(this.searchPlantForm.value.plantName)
+      .pipe(untilDestroyed(this))
       .subscribe(response => (this.plants = response));
 
     this.authServ.user$.subscribe(userAuth =>
@@ -55,10 +61,13 @@ export class LibraryListComponent implements OnInit {
           this.searchPlantForm.value.plantName,
           userAuth.nickname
         )
+        .pipe(untilDestroyed(this))
         .subscribe(response => {
           console.log(userAuth.nickname);
           this.plantsUsers = response;
         })
     );
   }
+
+  ngOnDestroy() {}
 }
