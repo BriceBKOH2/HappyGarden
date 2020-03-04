@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LibraryService } from '../service/library.service';
 import { Plant } from 'src/app/classes/plant';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({

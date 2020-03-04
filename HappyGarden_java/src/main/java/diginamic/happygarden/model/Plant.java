@@ -5,15 +5,20 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Plant implements HibernateEntity<Long> {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected Long id;
 	
 	protected String scientificName;
@@ -32,12 +37,13 @@ public class Plant implements HibernateEntity<Long> {
 	
 	protected String bloomPeriod;
 	
+	@Enumerated(EnumType.STRING)
 	protected GrowthRate growthRate;
 	
+	@Enumerated(EnumType.STRING)
 	@ElementCollection
 	protected List<Season> seasons = new ArrayList<>();
 
-	
 	/* Constructors */
 	
 	public Plant() {

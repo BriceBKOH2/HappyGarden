@@ -12,7 +12,6 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
   loginForm: FormGroup;
   createAccForm: FormGroup;
   invalidLogin = false;
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     public activatedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   /**
    * Validator for password matching when creating new user account.
@@ -36,25 +35,29 @@ export class LoginComponent implements OnInit, OnDestroy {
     let password = group.get('password').value;
     let confirmPassword = group.get('passwordConfirm').value;
 
-    return password === confirmPassword ? null : { notSame: true }
+    return password === confirmPassword ? null : { notSame: true };
   }
 
   ngOnInit() {
-
     // Form building
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
     });
 
-    this.createAccForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      password: ['', Validators.required],
-      passwordConfirm: ['', [Validators.required]]
-    }, {validators: this.checkPwd}
-    )
+    this.createAccForm = this.formBuilder.group(
+      {
+        username: [
+          '',
+          Validators.compose([Validators.required, Validators.minLength(4)])
+        ],
+        firstname: ['', [Validators.required]],
+        lastname: ['', [Validators.required]],
+        password: ['', Validators.required],
+        passwordConfirm: ['', [Validators.required]]
+      },
+      { validators: this.checkPwd }
+    );
   }
 
   /**
@@ -67,15 +70,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     let username = this.loginForm.controls.username.value;
     let password = this.loginForm.controls.password.value;
 
-    this.authServ.login(username, password)
+    this.authServ
+      .login(username, password)
       .pipe(untilDestroyed(this))
       .subscribe(
         () => {
           this.router.navigate(['userAccount']);
         },
-        (error) => {
+        error => {
           this.invalidLogin = true;
-          console.log("login.component::onSubmit > error");
+          console.log('login.component::onSubmit > error');
           console.log(error);
           alert(error.status + ' : ' + error.statusText);
         }
@@ -95,15 +99,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     let firstname = this.createAccForm.controls.firstname.value;
     let lastname = this.createAccForm.controls.lastname.value;
 
-    this.userAccServ.createUserAccount(username, password, firstname, lastname)
+    this.userAccServ
+      .createUserAccount(username, password, firstname, lastname)
       .pipe(untilDestroyed(this))
       .subscribe(
         () => {
           // account created.
           this.resetForms();
-          this.router.navigate(['login', { status: 'createsuccess'}]);
+          this.router.navigate(['login', { status: 'createsuccess' }]);
         },
-        (e) => (console.log(e))
+        e => console.log(e)
       );
   }
 
@@ -116,17 +121,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    this.authServ.logout()
+    this.authServ
+      .logout()
       .pipe(untilDestroyed(this))
       .subscribe(
-      () => {
-        this.router.navigate(['login']);
-      },
-      error => {
-        console.log('Error login out' + error);
-        alert(error.status + ' : ' + error.statusText);
-      }
-    );
+        () => {
+          this.router.navigate(['login']);
+        },
+        error => {
+          console.log('Error login out' + error);
+          alert(error.status + ' : ' + error.statusText);
+        }
+      );
   }
 
   showLoginForm() {
@@ -137,6 +143,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.showLogin = false;
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 }

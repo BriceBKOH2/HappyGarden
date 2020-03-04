@@ -1,0 +1,23 @@
+a {
+  display: flex;
+  color: var(--police);
+  text-decoration: none;
+  padding: 0 !important;
+}
+
+a i {
+  font-size: 30px;
+}
+
+i {
+  color: var(--vert);
+  margin-right: 10px;
+}
+
+li {
+  list-style-type: none;
+}
+
+input[type=checkbox] {
+  zoom: 2;
+}
