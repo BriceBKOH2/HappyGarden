@@ -1,6 +1,6 @@
 <!-- <ng-container *ngFor="userAccount$ | async as userAccount"></ng-container> -->
 <section class="section-create">
-  <a [routerLink]="['/gardens']" style="padding-top: 100px !important;"
+  <a [routerLink]="['/gardens']"
     ><i class="far fa-arrow-alt-circle-left"></i>
     <p>Retour à mes jardins</p></a
   >
@@ -14,7 +14,7 @@
   </fieldset>
 
   <div class="showPlants">
-    <form class="form-inline" [formGroup]="searchPlantFrom">
+    <form class="form-inline" [formGroup]="searchPlantForm">
       <div class="form-group">
         <label for="plantName">Rechercher une plante</label>
         <input
@@ -39,11 +39,24 @@
       >
         Créer
       </button>
+      <button
+        class="btn-detail form-control"
+        (click)="addPlantsToPlantingArea()"
+        type="button"
+      >
+        Ajouter les plantes
+      </button>
     </form>
 
     <div class="library-list">
       <div class="plant-wrapper" *ngFor="let plantUser of plantsUser">
-        <div class="plant">
+        <div
+          class="plant"
+          (click)="selectPlantUser(plantUser)"
+          [className]="
+            plantUserIsPresent(plantUser) ? 'selectedPlant' : 'plant'
+          "
+        >
           <div class="encart">
             <p>Fiche perso : {{ plantUser.commonName }}</p>
           </div>
@@ -65,7 +78,7 @@
             <div class="border"></div>
             <div>
               <p class="on-two-lines">{{ plantUser.scientificName }}</p>
-              <p>Blabla</p>
+              <p>{{ plantUser.familyCommonName }}</p>
               <p>
                 <i class="fas fa-tint"></i>
                 <i class="fas fa-tint"></i>
@@ -73,17 +86,15 @@
               <p>Blabla</p>
             </div>
           </div>
-
-          <a
-            class="btn-api btn-single-plant"
-            [routerLink]="['id', plantUser.id]"
-            >Fiche complète</a
-          >
         </div>
       </div>
 
-      <div class="plant-wrapper" *ngFor="let plant of plants$ | async">
-        <div class="plant">
+      <div class="plant-wrapper" *ngFor="let plant of plants">
+        <div
+          class="plant"
+          (click)="selectPlant(plant)"
+          [className]="plantIsPresent(plant) ? 'selectedPlant' : 'plant'"
+        >
           <div class="encart">
             <p>{{ plant.commonName }}</p>
           </div>
@@ -103,7 +114,7 @@
             <div class="border"></div>
             <div>
               <p class="on-two-lines">{{ plant.scientificName }}</p>
-              <p>Blabla</p>
+              <p>{{ plant.familyCommonName }}</p>
               <p>
                 <i class="fas fa-tint"></i>
                 <i class="fas fa-tint"></i>
@@ -111,10 +122,6 @@
               <p>Blabla</p>
             </div>
           </div>
-
-          <a class="btn-api btn-single-plant" [routerLink]="['id', plant.id]"
-            >Fiche complète</a
-          >
         </div>
       </div>
     </div>

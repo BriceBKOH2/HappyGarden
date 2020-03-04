@@ -10,6 +10,8 @@ import { AuthenticateService } from 'src/app/authenticate/services/authenticate.
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { map, switchMap } from 'rxjs/operators';
 import { GardenService } from '../services/garden.service';
+import { RouterLink, Router } from '@angular/router';
+import { GardenSidebarComponent } from './gardens-sidebar/garden-sidebar.component';
 
 @Component({
   selector: 'app-my-gardens',
@@ -26,11 +28,13 @@ export class MyGardensComponent implements OnInit {
   plant: Plant;
   addButtonTitle: String;
   createRouter: String;
+  deleteTitle = '';
 
   constructor(
     private userAccServ: UserAccountRequestService,
     private authServ: AuthenticateService,
-    private gardenServ: GardenService
+    private gardenServ: GardenService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -122,6 +126,7 @@ export class MyGardensComponent implements OnInit {
     );
     this.addButtonTitle = 'Ajouter une zone de plantation';
     this.createRouter = '/create/' + this.currentGarden.id + '/plantingArea';
+    this.deleteTitle = 'jardin';
     console.log(this.createRouter);
   }
 
@@ -150,6 +155,7 @@ export class MyGardensComponent implements OnInit {
 
     this.addButtonTitle = 'Ajouter une plante';
     this.createRouter = '/create/' + this.currentPlantingArea.id + '/plant';
+    this.deleteTitle = 'parcelle';
     console.log(this.createRouter);
   }
 
@@ -171,6 +177,31 @@ export class MyGardensComponent implements OnInit {
         ' plantId :' +
         this.currentPlant.id
     );
+    this.deleteTitle = 'plante';
+  }
+
+  delete() {
+    console.log(this.deleteTitle);
+    if (this.deleteTitle == 'jardin') {
+      this.gardenServ
+        .deleteGarden(this.currentGarden.id)
+        .pipe(untilDestroyed(this))
+        .subscribe(response => (this.currentGarden = response));
+      this.showGardens();
+    } else if (this.deleteTitle == 'parcelle') {
+      this.gardenServ
+        .deletePlantingArea(this.currentPlantingArea.id)
+        .pipe(untilDestroyed(this))
+        .subscribe(response => (this.currentPlantingArea = response));
+      this.selectGarden(this.currentGarden);
+    } else if (this.deleteTitle == 'plante') {
+      this.gardenServ
+        .deletePlant(this.currentSlot.id)
+        .pipe(untilDestroyed(this))
+        .subscribe(response => (this.currentSlot = response));
+      this.selectGarden(this.currentGarden);
+    }
+    this.ngOnInit();
   }
 
   ngOnDestroy() {}

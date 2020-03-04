@@ -68,6 +68,12 @@ public class SlotController {
 //			return null;
 //		}
 	}
+	
+	@DeleteMapping(value = "/{id}")
+	public void deleteById(@PathVariable Long id) throws NotFoundException {
+		slotServ.deleteById(id);
+		
+	}
 
 	/**
 	 * Update a Slot in Database and return it. Prefer use of updateWithPlantingArea

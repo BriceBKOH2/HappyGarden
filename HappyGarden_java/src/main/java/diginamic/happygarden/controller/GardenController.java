@@ -1,6 +1,7 @@
 package diginamic.happygarden.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,12 @@ public class GardenController extends AbstractCRUDController<Garden, Long, Garde
 	@GetMapping(value = "/{id}/count")
 	public long countPlantingAreas(@PathVariable Long id) throws NotFoundException {
 		return plantingAreaServ.countPlantingAreas(id);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public void deleteById(@PathVariable Long id) throws NotFoundException {
+		service.deleteById(id);
+		
 	}
 	
 }

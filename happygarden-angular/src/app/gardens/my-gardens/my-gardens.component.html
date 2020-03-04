@@ -24,6 +24,14 @@
           >
         </div>
         <div class="add-button-div">
+          <button
+            class="btn-detail form-control"
+            (click)="delete()"
+            [ngClass]="{ 'd-none': !currentGarden.id }"
+            type="button"
+          >
+            Supprimer {{ deleteTitle }}
+          </button>
           <a class="add-button" [routerLink]="[createRouter]">
             {{ addButtonTitle }}</a
           >
