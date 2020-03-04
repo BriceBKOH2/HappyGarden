@@ -21,12 +21,20 @@ import diginamic.happygarden.service.PlantUserService;
 @RestController
 @RequestMapping("/PlantUser")
 public class PlantUserController extends AbstractCRUDController<PlantUser, Long, PlantUserService> {
-	
+
 	@GetMapping("/user")
 	public List<Plant> findByCreator(@RequestParam("name") String name) {
 		return service.findByCreator(name);
 	}
-	// We override the method to avoid @PreAuthorize(UserRight.RIGHT_ADMINISTRATION) from Abstract CRUDController
+
+	@GetMapping("/searchPlantUser")
+	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(@RequestParam String name,
+			@RequestParam String creator) {
+		return service.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(name, creator);
+	}
+
+	// We override the method to avoid @PreAuthorize(UserRight.RIGHT_ADMINISTRATION)
+	// from Abstract CRUDController
 	@Override
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

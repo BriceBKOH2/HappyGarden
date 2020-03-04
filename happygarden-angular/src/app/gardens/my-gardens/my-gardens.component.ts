@@ -199,7 +199,7 @@ export class MyGardensComponent implements OnInit {
         .deletePlant(this.currentSlot.id)
         .pipe(untilDestroyed(this))
         .subscribe(response => (this.currentSlot = response));
-      this.selectGarden(this.currentGarden);
+      this.ngOnInit();
     }
     this.ngOnInit();
   }
