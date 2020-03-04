@@ -1,4 +1,23 @@
 <app-sidebar-account></app-sidebar-account>
-<p></p>
 
-<div *ngIf="friend$ | async as friend">{{ friend.firstname }}</div>
+<section class="profile-section">
+  <div class="profile">
+    <div *ngIf="friend$ | async as friend">
+      <figure class="profile-img">
+        <img src="/assets/img/{{ friend.profileImg }}" alt="" />
+      </figure>
+      <p>
+        Prénom : <span>{{ friend.firstname }}</span>
+      </p>
+      <p>
+        Nom de famille : <span>{{ friend.lastname }}</span>
+      </p>
+      <p>
+        Pseudo : <span>{{ friend.nickname }}</span>
+      </p>
+      <p>
+        Rôle : <span>{{ friend.userRole.name }}</span>
+      </p>
+    </div>
+  </div>
+</section>

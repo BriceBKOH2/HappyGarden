@@ -1,0 +1,21 @@
+span {
+  font-weight: bold;
+}
+
+.profile {
+  background: #f5f5f5;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  padding: 5%;
+}
+
+.profile-img {
+  overflow: hidden;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  width: 130px;
+  height: 130px;
+  border: 5px solid var(--blanc);
+  // margin: auto;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}

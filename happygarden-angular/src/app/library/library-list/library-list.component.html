@@ -1,5 +1,9 @@
 <section class="globale">
-    <form class="form-inline" [formGroup]="searchPlantFrom" (ngSubmit)="searchPlant()">
+  <form
+    class="form-inline"
+    [formGroup]="searchPlantFrom"
+    (ngSubmit)="searchPlant()"
+  >
     <div class="form-group">
       <label for="plantName">Rechercher une plante</label>
       <input
@@ -16,7 +20,6 @@
   </form>
 
   <div class="library-list">
-
     <div class="plant-wrapper" *ngFor="let plant of plants">
       <div class="plant">
         <div class="encart">
