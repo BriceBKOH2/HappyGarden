@@ -29,7 +29,10 @@
           {{ countGardens(friend) }}
           Jardins
         </p>
-        <button class="btn-vert">
+        <button
+          [routerLink]="['/userAccount/friends/' + friend.id]"
+          class="btn-vert"
+        >
           Voir le profil
         </button>
       </div>

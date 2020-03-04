@@ -60,11 +60,6 @@ const routes: Routes = [
     path: 'create',
     loadChildren: './gardens-create/gardens-create.module#GardensCreateModule'
     // canActivate: [AuthenticateGuard]
-  },
-  {
-    path: 'userAccount/profile',
-    loadChildren: './profile/profile.module#ProfileModule',
-    canActivate: [AuthenticateGuard]
   }
 ];
 

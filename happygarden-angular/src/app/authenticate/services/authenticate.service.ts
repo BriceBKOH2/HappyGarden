@@ -88,23 +88,6 @@ export class AuthenticateService {
         this.userAuth$.next(value);
       })
     );
-    // return this.api.login(username, password).pipe(
-    //   tap(value => {
-    //     if (value == null) {
-    //     } else {
-    //       this.isAuth$.next(true);
-    //       this.userAuth$.next(value);
-    //     }
-    //   })
-    // );
-    return this.api.login(username, password).pipe(
-      tap(value => {
-        if(value == null) {
-        } else {
-          this.isAuth$.next(true);
-          this.userAuth$.next(value);
-        }
-    }));
   }
 
   logout(): Observable<void> {

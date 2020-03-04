@@ -26,6 +26,13 @@ public class PlantUserController extends AbstractCRUDController<PlantUser, Long,
 	public List<Plant> findByCreator(@RequestParam("name") String name) {
 		return service.findByCreator(name);
 	}
+	
+	@GetMapping("/searchPlantUser")
+	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(@RequestParam String name,
+			@RequestParam String creator) {
+		return service.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(name, creator);
+	}
+	
 	// We override the method to avoid @PreAuthorize(UserRight.RIGHT_ADMINISTRATION) from Abstract CRUDController
 	@Override
 	@PreAuthorize("isAuthenticated()")
