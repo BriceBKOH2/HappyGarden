@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
-import diginamic.happygarden.model.Conversation;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.UserAccountRepository;
 
@@ -76,6 +75,11 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 			return true;
 		}
 		return false;
+	}
+	
+	public UserAccount changePassword(UserAccount user, String password) {
+		user.setPassword(passwordEncoder.encode(password));
+		return repo.save(user);
 	}
 	
 	public Long countNbFriendsByUserId(Long id) {

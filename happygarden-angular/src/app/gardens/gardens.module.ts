@@ -10,6 +10,7 @@ import { BodyPlantComponent } from './my-gardens/body-plant/body-plant.component
 import { BodyGardenComponent } from './my-gardens/body-garden/body-garden.component';
 import { FileModule } from '../file/file.module';
 import { ReminderEditComponent } from '../reminders/reminder-edit/reminder-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,14 +19,15 @@ import { ReminderEditComponent } from '../reminders/reminder-edit/reminder-edit.
     BodyPlantingAreaComponent,
     BodyPlantComponent,
     BodyGardenComponent,
-    ReminderEditComponent
+    ReminderEditComponent,
   ],
   imports: [
     CommonModule,
     GardensRoutingModule,
     MatCheckboxModule,
     LibraryModule,
-    FileModule
+    FileModule,
+    FormsModule, ReactiveFormsModule
   ],
   exports: [GardenSidebarComponent]
 })

@@ -1,7 +1,10 @@
 package diginamic.happygarden.exception;
 
 public class FileStorageException extends RuntimeException {
-    public FileStorageException(String message) {
+
+	private static final long serialVersionUID = -24038770500043904L;
+
+	public FileStorageException(String message) {
         super(message);
     }
 

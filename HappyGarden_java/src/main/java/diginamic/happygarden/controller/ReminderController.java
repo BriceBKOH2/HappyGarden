@@ -38,7 +38,7 @@ public class ReminderController extends AbstractCRUDController<Reminder, Long, R
 	 * @param slotId
 	 * @return
 	 */
-	@GetMapping("/area/{slotId}")
+	@GetMapping("/slot/{slotId}")
 	public List<Reminder> getRemindersFromSlot(@PathVariable Long slotId) {
 		return slotService.getRemindersFromId(slotId);
 	}

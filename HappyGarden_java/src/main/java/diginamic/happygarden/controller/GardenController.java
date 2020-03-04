@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Garden;
-import diginamic.happygarden.model.PlantingArea;
 import diginamic.happygarden.service.GardenService;
 import diginamic.happygarden.service.PlantingAreaService;
 

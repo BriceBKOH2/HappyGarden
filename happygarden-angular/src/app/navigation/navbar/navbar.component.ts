@@ -18,11 +18,6 @@ export class NavbarComponent implements OnInit {
     {
       route: 'libraryList',
       label: 'Bibliothèque'
-    },
-    {
-      // Example of a restricted area. Guards require to be logged in, then to have admin role.
-      route: 'admin',
-      label: 'Example restricted area'
     }
   ];
 

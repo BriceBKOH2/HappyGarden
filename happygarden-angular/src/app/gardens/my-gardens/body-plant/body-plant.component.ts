@@ -19,14 +19,15 @@ export class BodyPlantComponent implements OnInit {
 
   reminders$: Observable<Reminder[]>;
 
-  reminderCreate = false;
+  // flag to check for displaying reminder form creation.
+  reminderCreate: Boolean;
 
   ngOnInit() {
+    this.reminderCreate = false
     this.reminders$ = this.reminderService.getRemindersFromArea(this.myGardens.currentSlot);
   }
 
-  test() {
+  toggleReminderForm() {
     this.reminderCreate = !this.reminderCreate;
-    console.log(this.reminderCreate);
   }
 }

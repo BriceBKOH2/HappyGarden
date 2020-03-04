@@ -3,6 +3,7 @@ import { LibraryService } from '../service/library.service';
 import { Plant } from 'src/app/classes/plant';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-plant-single',
@@ -20,14 +21,9 @@ export class PlantSingleComponent implements OnInit {
   // plant: Plant;
 
   ngOnInit() {
-
-    this.activatedRoute.params
-      .subscribe(
-        (r) => {
-          this.plant$ = this.libraryService.findPlant(r.id);
-        }
-      )
-
+    this.activatedRoute.params.pipe(untilDestroyed(this)).subscribe(r => {
+      this.plant$ = this.libraryService.findPlant(r.id);
+    });
 
     // this.activatedRoute.params
     //   .pipe(
@@ -39,4 +35,6 @@ export class PlantSingleComponent implements OnInit {
     //     this.plant = response;
     //   });
   }
+
+  ngOnDestroy() {}
 }

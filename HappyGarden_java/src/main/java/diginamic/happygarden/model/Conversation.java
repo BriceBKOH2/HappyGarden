@@ -8,9 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 
 /** A Conversation between Users that contains a list of messages **/
@@ -21,12 +19,6 @@ public class Conversation implements HibernateEntity<Long> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-//	@NotNull
-//	@OneToMany
-//	@JsonBackReference("conversation_messages")
-//	//@OneToMany(cascade = CascadeType.PERSIST)
-//	private List<Message> messages = new ArrayList<>() ;
 
 	@ManyToMany
 	private List<UserAccount> users = new ArrayList<>();
@@ -35,18 +27,6 @@ public class Conversation implements HibernateEntity<Long> {
 	public Conversation() { 
 		super();
 	}
-
-//	public Conversation(List<Message> messages) {
-//		super();
-//		this.messages = messages;
-//	}
-	
-//	public Conversation(Message... messages) {
-//		super();
-//		for (Message message : messages) {
-//			this.messages.add(message);
-//		}
-//	}
 	
 	/* Getters Setters */
 	
@@ -57,14 +37,6 @@ public class Conversation implements HibernateEntity<Long> {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//	public List<Message> getMessages() {
-//		return messages;
-//	}
-//
-//	public void setMessages(List<Message> messages) {
-//		this.messages = messages;
-//	}
 	
 	public List<UserAccount> getUsers() {
 		return users;
@@ -80,14 +52,4 @@ public class Conversation implements HibernateEntity<Long> {
 		this.users.add(user);
 	}
 
-//	public void addMessages(List<Message> messages) {
-//		this.messages.addAll(messages);
-//	}
-//	
-//	public void addMessages(Message... messages) {
-//		for (Message message : messages) {
-//			this.messages.add(message);
-//		}
-//	}
-	
 }

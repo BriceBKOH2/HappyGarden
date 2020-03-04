@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import diginamic.happygarden.model.Conversation;
-import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.repository.ConversationRepository;
 
 @Transactional

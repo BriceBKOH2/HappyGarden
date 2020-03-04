@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import diginamic.happygarden.model.Conversation;
-import diginamic.happygarden.model.UserAccount;
 
 @Repository
 public interface ConversationRepository extends JpaRepository<Conversation, Long>{

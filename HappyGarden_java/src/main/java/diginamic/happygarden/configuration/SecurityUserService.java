@@ -44,10 +44,10 @@ public class SecurityUserService implements UserDetailsService {
 		
 		if (userAccount.getUserRole() != null) {
 			UserRole role = userAccount.getUserRole();
-			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 			
 			if (role.getUserRights() != null) {
-				role.getUserRights().forEach(right -> authorities.add(new SimpleGrantedAuthority(right.getName().toUpperCase())));
+				role.getUserRights().forEach(right -> authorities.add(new SimpleGrantedAuthority(right.getName())));
 			}
 		}
 		

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,12 +37,13 @@ public class Plant implements HibernateEntity<Long> {
 	
 	protected String bloomPeriod;
 	
+	@Enumerated(EnumType.STRING)
 	protected GrowthRate growthRate;
 	
+	@Enumerated(EnumType.STRING)
 	@ElementCollection
 	protected List<Season> seasons = new ArrayList<>();
 
-	
 	/* Constructors */
 	
 	public Plant() {

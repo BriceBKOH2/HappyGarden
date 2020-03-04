@@ -48,7 +48,7 @@ export class AuthenticateService {
   isAdmin(): boolean {
     let isAdmin = false;
 
-    this.user$.subscribe(user => (isAdmin = user.userRole.name == 'Admin'));
+    this.user$.subscribe(user => (isAdmin = user.userRole.name == 'ADMIN'));
 
     return isAdmin;
   }
@@ -97,6 +97,14 @@ export class AuthenticateService {
     //     }
     //   })
     // );
+    return this.api.login(username, password).pipe(
+      tap(value => {
+        if(value == null) {
+        } else {
+          this.isAuth$.next(true);
+          this.userAuth$.next(value);
+        }
+    }));
   }
 
   logout(): Observable<void> {

@@ -40,8 +40,8 @@ import diginamic.happygarden.service.UserRoleService;//@PreAuthorize("admnistrat
 @RequestMapping("/Admin")
 public class AdminController {
 
-	public static final String BASIC = "Basic";
-	public static final String ADMIN = "Admin";
+	public static final String BASIC = "BASIC";
+	public static final String ADMIN = "ADMIN";
 
 	@Autowired
 	private UserRightService userRightServ;
@@ -197,21 +197,18 @@ public class AdminController {
 			estelle.setPassword("estelle");
 			estelle.setProfileImg("profil.jpg");
 			
-			
-			// Ajoût Amis
-			List<String> friends = new ArrayList<String>();
-			friends.add(jade.getNickname());
-			estelle.addFriends(friends);
-			
-			userAccServ.save(estelle);
-			
-
-			
 			UserAccount jordi = new UserAccount("Jordi", "Mage", "Jordi", userRoleServ.findByName(ADMIN));
 			jordi.setPassword("jordi");
 			jordi.setProfileImg("profil_3.jpg");
 			userAccServ.save(jordi);
 			
+			// Ajoût Amis
+			List<String> friends = new ArrayList<String>();
+			friends.add(jade.getNickname());
+			friends.add(jordi.getNickname());
+			estelle.addFriends(friends);
+			
+			userAccServ.save(estelle);
 			
 			//TEST
 			Conversation conv = new Conversation();
@@ -247,13 +244,21 @@ public class AdminController {
 //			usersConvEstelleJade.add(estelle);
 //			conversationEstelleJade.setUsers(usersConvEstelleJade);
 //			
-//			// Conversation Estelle Jordi
-//			ArrayList<Message> messagesEstelleJordi = new ArrayList<Message>();
-//			
-//			Message msgEstellej = new Message("Coucou Jade.", estelle);
-//			messageServ.save(msgEstellej);
-//			messagesEstelleJordi.add(msgEstellej);
-//			
+//			Conversation Estelle Jordi
+			//TEST
+			Conversation convEstelleJordi = new Conversation();
+			convEstelleJordi.addUser(estelle);
+			convEstelleJordi.addUser(jordi);
+			Message msgJordi = new Message("Coucou Estelle.", jordi, convEstelleJordi);
+			Message msgEstellej = new Message("Coucou Jordi.", estelle, convEstelleJordi);
+			Message msgJordi2 = new Message("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam.", jordi, convEstelleJordi);
+			Message msgEstellej2 = new Message("dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam, quis nostrud", estelle, convEstelleJordi);
+			
+			conversationServ.save(convEstelleJordi);
+			messageServ.save(msgJordi);
+			messageServ.save(msgEstellej);
+			messageServ.save(msgJordi2);
+			messageServ.save(msgEstellej2);
 //			Message msgJordi = new Message("Coucou Estelle.", jordi);
 //			messagesEstelleJordi.add(msgJordi);
 //			messageServ.save(msgJordi);

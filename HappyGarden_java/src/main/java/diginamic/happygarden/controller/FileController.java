@@ -35,7 +35,6 @@ public class FileController {
 
 	@PostMapping("/uploadFile")
 	public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-//    	, @RequestParam("type") String type
 		String fileName = fileStorageService.storeFile(file);
 
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
