@@ -4,8 +4,8 @@ import { MyGardensComponent } from './my-gardens/my-gardens.component';
 import { PlantSingleComponent } from '../library/plant-single/plant-single.component';
 
 const routes: Routes = [
-  { path: '', component: MyGardensComponent },
-  { path: ':id', component: PlantSingleComponent }
+  { path: '', component: MyGardensComponent }
+  // { path: ':id', component: PlantSingleComponent }
 ];
 
 @NgModule({

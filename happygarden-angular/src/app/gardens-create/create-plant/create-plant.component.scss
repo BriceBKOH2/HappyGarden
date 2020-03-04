@@ -1,0 +1,102 @@
+.showPlants {
+  padding: 0 5% 5% 5%;
+}
+
+.library-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  grid-gap: 2%;
+  margin-bottom: 4%;
+}
+
+form {
+  margin: 3% 0;
+}
+
+.btn-api {
+  border: 2px solid var(--vert);
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--vert);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.btn-single-plant {
+  display: block;
+  margin: auto;
+  margin-top: 13%;
+  width: 50%;
+  border-radius: 20px;
+}
+
+.btn-api:hover {
+  background: var(--vert);
+  color: var(--blanc);
+  transition: all 0.5s;
+}
+
+i {
+  padding-right: 4px;
+}
+
+label {
+  color: var(--police);
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+input {
+  margin-right: 5px;
+}
+.btn-detail {
+  border: 2px solid var(--vert);
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: var(--vert);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+  margin-right: 5px;
+}
+.btn-detail:hover {
+  background: var(--vert);
+  color: var(--blanc);
+  transition: all 0.5s;
+}
+
+@media screen and (max-width: 1280px) {
+  .library-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .library-list {
+    display: inherit;
+  }
+
+  .plant {
+    margin: auto;
+    margin-bottom: 6%;
+  }
+
+  form {
+    margin-top: 45px;
+  }
+
+  form div {
+    margin: auto;
+  }
+
+  form button {
+    // width: 70%;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+}

@@ -15,4 +15,11 @@ public interface PlantingAreaRepository extends JpaRepository<PlantingArea, Long
 	@Query("select p.reminders from PlantingArea p where p.id = :id")
 	public List<Reminder> getRemindersFromId(Long id);
 
+	
+	public long countGardenById(Long id);
+	
+
+
+	
+	
 }

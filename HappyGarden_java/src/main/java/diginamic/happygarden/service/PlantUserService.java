@@ -13,8 +13,8 @@ import diginamic.happygarden.repository.PlantUserRepository;
 @Transactional
 @Service
 public class PlantUserService extends AbstractService<PlantUser, Long, PlantUserRepository> {
-	public List<Plant> findByCommonNameOrScientificName(String name) {
-		return repo.findByCommonNameOrScientificName(name,name);
+	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(String name, String creator) {
+		return repo.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(name, name, creator);
 	}
 	
 	public List<Plant> findByCreator(String name) {

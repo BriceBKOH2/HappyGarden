@@ -15,4 +15,6 @@ public interface SlotRepository extends JpaRepository<Slot, Long>{
 	@Query("select s.reminders from Slot s where s.id = :id")
 	public List<Reminder> getRemindersFromId(Long id);
 
+	@Query("SELECT count(s) from Slot s join s.plantingArea p where p.id = :id")
+	public Long countByPlantingAreaId(Long id);
 }

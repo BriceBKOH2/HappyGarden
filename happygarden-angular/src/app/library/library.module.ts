@@ -8,13 +8,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlantUserComponent } from './plant-user/plant-user.component';
 
 @NgModule({
-  declarations: [LibraryListComponent, PlantSingleComponent, PlantUserComponent],
+  declarations: [
+    LibraryListComponent,
+    PlantSingleComponent,
+    PlantUserComponent
+  ],
   imports: [
     CommonModule,
     LibraryRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [PlantSingleComponent]
+  exports: [PlantSingleComponent, LibraryListComponent]
 })
 export class LibraryModule {}

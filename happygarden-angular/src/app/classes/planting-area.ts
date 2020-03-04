@@ -1,5 +1,6 @@
 import { Reminder } from './reminder';
 import { Slot } from './slot';
+import { Garden } from './garden';
 
 export class PlantingArea {
   id: number;
@@ -11,4 +12,6 @@ export class PlantingArea {
   image: string;
   type: string;
   interior: boolean;
+  garden: Garden;
+  nbSlots: Number;
 }

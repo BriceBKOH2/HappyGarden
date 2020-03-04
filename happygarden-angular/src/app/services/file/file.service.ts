@@ -15,7 +15,7 @@ import { RequestService } from '../request/request.service';
   providedIn: 'root'
 })
 export class FileService {
-  private plantImgUrl: string;
+  public plantImgUrl: string;
   private inconeUrl: string;
 
   constructor(

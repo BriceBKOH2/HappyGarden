@@ -22,7 +22,7 @@ import diginamic.happygarden.service.PlantUserService;
 @RequestMapping("/PlantUser")
 public class PlantUserController extends AbstractCRUDController<PlantUser, Long, PlantUserService> {
 	
-	@GetMapping("/searchPlantUser")
+	@GetMapping("/user")
 	public List<Plant> findByCreator(@RequestParam("name") String name) {
 		return service.findByCreator(name);
 	}

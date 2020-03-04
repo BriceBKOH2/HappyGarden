@@ -1,5 +1,5 @@
 <section class="globale">
-    <form class="form-inline" [formGroup]="searchPlantFrom">
+  <form class="form-inline" [formGroup]="searchPlantForm">
     <div class="form-group">
       <label for="plantName">Rechercher une plante</label>
       <input
@@ -13,11 +13,14 @@
     <button class="btn-api form-control" type="submit" (click)="searchPlant()">
       Rechercher
     </button>
-    <button class="btn-detail form-control" [routerLink]="'create'" type="button">
+    <button
+      class="btn-detail form-control"
+      [routerLink]="'create'"
+      type="button"
+    >
       Créer
     </button>
-    </form>
-
+  </form>
 
   <div class="library-list">
     <div class="plant-wrapper" *ngFor="let plantUser of plantsUsers">
@@ -26,7 +29,9 @@
           <p>Fiche perso : {{ plantUser.commonName }}</p>
         </div>
         <div class="imgPlant">
-          <figure><img src="/assets/img/{{ plantUser.image }}" alt="" /></figure>
+          <figure>
+            <img src="/assets/img/{{ plantUser.image }}" alt="" />
+          </figure>
         </div>
         <div class="plant-infos">
           <div>
@@ -50,7 +55,7 @@
           </div>
         </div>
 
-        <a class="btn-api btn-single-plant" [routerLink]="['id',plantUser.id]"
+        <a class="btn-api btn-single-plant" [routerLink]="['id', plantUser.id]"
           >Fiche complète</a
         >
       </div>
@@ -86,7 +91,7 @@
           </div>
         </div>
 
-        <a class="btn-api btn-single-plant" [routerLink]="['id',plant.id]"
+        <a class="btn-api btn-single-plant" [routerLink]="['id', plant.id]"
           >Fiche complète</a
         >
       </div>

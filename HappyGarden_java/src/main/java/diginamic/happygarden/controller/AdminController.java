@@ -161,7 +161,7 @@ public class AdminController {
 		}
 		
 		// Adding PLant User
-		if (plantUserServ.findByCommonNameOrScientificName("Cactus").isEmpty()) {
+		if (plantUserServ.findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains("Rose", "").isEmpty()) {
 			ArrayList<Season> season = new ArrayList<>();
 			season.add(Season.FALL);
 		PlantUser rose = new PlantUser("Rosa", "Rose", "Rose", "None", 150.7F, "Long", "rose.jpg", "Mid Spring", GrowthRate.RAPID, season, "Estelle");

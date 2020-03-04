@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Plant } from 'src/app/classes/plant';
-import { PlantUser } from 'src/app/classes/plant-user.model'
+import { PlantUser } from 'src/app/classes/plant-user.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { RequestService } from 'src/app/services/request/request.service';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
@@ -16,11 +16,11 @@ export class LibraryService {
     private authServ: AuthenticateService) {}
 
   get endPointPlant() {
-    return this.request.endPoint+'/Plant';
+    return this.request.endPoint + '/Plant';
   }
 
   get endPointPlantUser() {
-    return this.request.endPoint+'/PlantUser'
+    return this.request.endPoint + '/PlantUser';
   }
 
   findAllPlants(): Observable<Plant[]> {
@@ -38,9 +38,21 @@ export class LibraryService {
   }
 
   findByCreator(name: string): Observable<PlantUser[]> {
-    return this.httpClient.get<PlantUser[]>(`${this.endPointPlantUser}/searchPlantUser`, {
+    return this.httpClient.get<PlantUser[]>(`${this.endPointPlantUser}/user`, {
       params: new HttpParams().set('name', name)
     });
+  }
+
+  searchByCommonNameOrScientificNameAndCreator(
+    name: string,
+    creator: string
+  ): Observable<PlantUser[]> {
+    return this.httpClient.get<PlantUser[]>(
+      `${this.endPointPlantUser}/searchPlantUser`,
+      {
+        params: new HttpParams().set('name', name).set('creator', creator)
+      }
+    );
   }
 
   createPlantUser(
@@ -48,5 +60,4 @@ export class LibraryService {
         console.log(newPlantUser)
       return this.httpClient.post<PlantUser>(this.endPointPlantUser, JSON.stringify(newPlantUser));
   }
-
 }

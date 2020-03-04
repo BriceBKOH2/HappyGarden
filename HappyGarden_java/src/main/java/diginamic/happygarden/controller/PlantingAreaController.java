@@ -19,6 +19,7 @@ import diginamic.happygarden.exception.AlreadyExistException;
 import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.PlantingArea;
 import diginamic.happygarden.service.PlantingAreaService;
+import diginamic.happygarden.service.SlotService;
 
 @RestController
 @RequestMapping("/PlantingArea")
@@ -26,6 +27,9 @@ public class PlantingAreaController {
 
 	@Autowired
 	private PlantingAreaService plantAreaServ;
+	
+	@Autowired
+	private SlotService slotServ;
 
 	/**
 	 * Returns a list of all PlantingAreas.
@@ -46,6 +50,11 @@ public class PlantingAreaController {
 	@GetMapping(value = "/{id}")
 	public PlantingArea findById(@PathVariable Long id) throws NotFoundException {
 		return plantAreaServ.findById(id);
+	}
+	
+	@GetMapping(value = "/{id}/count")
+	public Long countPlants(@PathVariable Long id) throws NotFoundException {
+		return slotServ.countSlots(id);
 	}
 
 	/**
