@@ -39,6 +39,7 @@ public class Slot implements HibernateEntity<Long>, ReminderManager {
 	
 	public Slot() {
 		super();
+		
 	}
 
 	public Slot(Date date) {

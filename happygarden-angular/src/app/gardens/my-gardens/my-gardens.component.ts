@@ -109,12 +109,12 @@ export class MyGardensComponent implements OnInit {
       this.currentPlantingArea = new PlantingArea();
       this.currentSlot = new Slot();
       this.currentPlant = new Plant();
-      // console.log('garden first if ' + garden.id);
+      console.log('garden first if ' + garden.id);
     } else {
       this.currentPlantingArea = new PlantingArea();
       this.currentSlot = new Slot();
       this.currentPlant = new Plant();
-      // console.log('garden else');
+      console.log('garden else');
     }
     console.log(
       'SelectGarden - gardenId :' +
@@ -131,7 +131,7 @@ export class MyGardensComponent implements OnInit {
   }
 
   selectPlantingArea(event, plantingArea: PlantingArea) {
-    // console.log(event);
+    console.log(event);
     event.stopPropagation();
     if (
       !this.currentPlantingArea ||
@@ -160,7 +160,7 @@ export class MyGardensComponent implements OnInit {
   }
 
   selectPlant(event, slot: Slot) {
-    // console.log(event);
+    console.log(event);
     event.stopPropagation();
     if (!this.currentPlant.id || this.currentPlant.id !== slot.plant.id) {
       this.currentSlot = slot;
