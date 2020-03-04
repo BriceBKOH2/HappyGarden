@@ -17,7 +17,7 @@ export class BodyPlantComponent implements OnInit {
     public myGardens: MyGardensComponent,
     private fileService: FileService,
     private reminderService: ReminderServiceService,
-    public dialog: MatDialog
+    // public dialog: MatDialog
   ) {
   }
 
