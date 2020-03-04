@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Reminder } from 'src/app/classes/reminder';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReminderServiceService } from 'src/app/services/reminders/reminder-service.service';
 import { PlantingArea } from 'src/app/classes/planting-area';
 import { Slot } from 'src/app/classes/slot';
+import {MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-reminder-edit',
@@ -27,8 +28,14 @@ export class ReminderEditComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private reminderService: ReminderServiceService
+    private reminderService: ReminderServiceService,
+    // public dialogRef: MatDialogRef<ReminderEditComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: {animal: "test"}
   ) { }
+
+  // onNoClick(): void {
+  //   this.dialogRef.close();
+  // }
 
   ngOnInit() {
 

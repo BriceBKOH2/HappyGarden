@@ -4,7 +4,7 @@ import { RequestService } from '../request/request.service';
 import { PlantingArea } from 'src/app/classes/planting-area';
 import { Slot } from 'src/app/classes/slot';
 import { Reminder } from 'src/app/classes/reminder';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Injectable({
@@ -34,15 +34,30 @@ export class ReminderServiceService implements OnDestroy {
    * @param area the area (Planting area or Slot) concerned
    */
   getRemindersFromArea(area: PlantingArea | Slot): Observable<Reminder[]> {
-    if (area instanceof PlantingArea) {
-      console.log("PlantingArea")
-      return this.httpClient.get<Reminder[]>(`${this.endPoint}/area/${area.id}`, {});
-    }
-    if (area instanceof Slot) {
-      console.log("SLot")
-      return this.httpClient.get<Reminder[]>(`${this.endPoint}/slot/${area.id}`, {});
-    }
-    return null;
+
+    // Selon le type d'area on change l'url du get.
+    let type = (area instanceof PlantingArea) ? "area" : "slot"
+
+    console.log("BLALLSDLALDASLDLSADLs")
+    console.log(area)
+
+    return this.httpClient.get<Reminder[]>(`${this.endPoint}/${type}/${area.id}`, {})
+      // .subscribe(
+      //   (r) => {return of(r)},
+      //   )
+
+    // if (area instanceof PlantingArea) {
+    //   console.log("PlantingArea")
+    //   this.httpClient.get<Reminder[]>(`${this.endPoint}/area/${area.id}`, {})
+    //     .subscribe((r) => {return of(r)})
+    // }
+
+    // if (area instanceof Slot) {
+    //   console.log("SLot")
+    //   // return this.httpClient.get<Reminder[]>(`${this.endPoint}/slot/${area.id}`, {});
+    //   this.httpClient.get<Reminder[]>(`${this.endPoint}/slot/${area.id}`, {})
+    //     .subscribe((r) => {return of(r)})
+    // }
   }
 
   /**

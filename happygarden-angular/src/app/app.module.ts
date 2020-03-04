@@ -43,7 +43,13 @@ import { MatRadioModule } from '@angular/material/radio';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    // tentative pour boite de dialogue modale (création de reminders)
+    // {
+    //   provide: MatDialogRef,
+    //   useValue: {}
+    // },
+    // DialogService
   ],
   bootstrap: [AppComponent]
 })

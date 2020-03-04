@@ -48,13 +48,12 @@
     </div>
     <!-- <app-plant-single></app-plant-single> -->
   </div>
-  <div *ngIf="reminders$ | async as reminders">
-    <ng-container *ngFor="let reminder of reminders">
-      <h2>{{ reminder.name }}</h2>
-      <p>{{ reminder.content }}</p>
-      <p>{{ reminder.activationDate }}</p>
-    </ng-container>
+  <div *ngFor="let reminder of myGardens.currentSlot.reminders">
+    <h2>{{ reminder.name }}</h2>
+    <p>{{ reminder.content }}</p>
+    <p>{{ reminder.activationDate }}</p>
   </div>
+  <ng-template #noReminders><strong>Aucun rappel à afficher.</strong></ng-template>
   <div [ngClass]="{'d-none': !reminderCreate}">
     <h2>Créer un rappel</h2>
     <app-reminder-edit [selectedSlot]="this.myGardens.currentSlot" [selectedPlantingArea]="this.myGardens.currentPlantingArea"></app-reminder-edit>

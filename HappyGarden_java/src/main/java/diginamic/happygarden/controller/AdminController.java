@@ -2,6 +2,7 @@ package diginamic.happygarden.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import diginamic.happygarden.model.Parcel;
 import diginamic.happygarden.model.Plant;
 import diginamic.happygarden.model.PlantUser;
 import diginamic.happygarden.model.PlantingArea;
+import diginamic.happygarden.model.Reminder;
 import diginamic.happygarden.model.Season;
 import diginamic.happygarden.model.Slot;
 import diginamic.happygarden.model.UserAccount;
@@ -182,6 +184,10 @@ public class AdminController {
 			ArrayList<PlantingArea> parcels = new ArrayList<>();
 			parcels.add(parcel);
 			slot.setPlantingArea(parcel);
+			
+			// creation reminder sur ce slot
+			Reminder reminder = new Reminder("Rappel sur plante", "Se rappeler de s'en souvenir", Date.valueOf(LocalDate.now()), Period.ofMonths(1));
+			slot.addReminders(reminder);
 			
 			Garden jardinUn = new Garden("plantes aromatiques", parcels);
 			parcel.setGarden(jardinUn);
