@@ -114,7 +114,7 @@ export class CreatePlantingAreaComponent implements OnInit {
           this.formIsSubmitted = false;
         });
 
-      this.router.navigate(['/gardens']);
+      // this.router.navigate(['/gardens']);
       // this.createServ
       //   .postPlantingArea(this.newPlantingArea)
       //   .pipe(untilDestroyed(this))

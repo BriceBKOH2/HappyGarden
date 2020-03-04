@@ -57,6 +57,12 @@ public class PlantingAreaController {
 		return slotServ.countSlots(id);
 	}
 
+	@DeleteMapping(value = "/{id}")
+	public void deleteById(@PathVariable Long id) throws NotFoundException {
+		plantAreaServ.deleteById(id);
+		
+	}
+	
 	/**
 	 * Create a PlantingArea in Database and return the updated PlantingArea.
 	 * 
