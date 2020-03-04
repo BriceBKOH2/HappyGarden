@@ -37,8 +37,9 @@
         </li>
 
         <ng-container *ngIf="this.authServ.isAdmin()">
-          <li *ngFor="let linkAdmin of linksAdmin" routerLinkActive="active"
-          class="nav-item">
+          <li *ngFor="let linkAdmin of linksAdmin"
+              routerLinkActive="active"
+              class="nav-item">
             <a class="nav-link" [routerLink]="linkAdmin.route">{{ linkAdmin.label }}</a>
           </li>
         </ng-container>

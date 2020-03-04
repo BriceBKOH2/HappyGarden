@@ -1,4 +1,36 @@
-<div>
-  <p>SIDE BAR TA MERE</p>
-  <!-- <p>{{}}</p> -->
+<div class="sidebar-account">
+  <!-- <p *ngIf="authServ.user$ | async as user">
+    {{ user.lastname }}
+    {{ user.id }}
+    {{ user.firstname }}
+    {{ user.userRole.name }}
+  </p> -->
+
+  <div class="profile mt-5">
+    <figure>
+      <img src="/assets/img/profil.jpg" alt="" />
+    </figure>
+    <p *ngIf="authServ.user$ | async as user" class="ml-3">
+      {{ user.firstname }}
+      <br />
+      {{ user.lastname }}
+    </p>
+  </div>
+
+  <div class="nav-sidebar ml-4">
+    <div>
+      <h2 class="mt-5 mb-4">Profil</h2>
+      <nav>
+        <ul>
+          <li><a [routerLink]="['../gardens']">Jardins</a></li>
+          <li>
+            <a [routerLink]="['/userAccount/conversations']">Conversations</a>
+          </li>
+          <li><a [routerLink]="['/userAccount/friends']">Abonnements</a></li>
+          <li><a href="">Modifier Profil</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
+<div id="delimit"></div>

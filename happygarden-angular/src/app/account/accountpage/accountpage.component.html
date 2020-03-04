@@ -1,13 +1,47 @@
-
-<ng-container *ngIf="authServ.user$ | async as user">
-  <div style="color: rebeccapurple;">
-    <b>{{ user.firstname }} {{ user.lastname }}</b><br>
-    <em>Id :</em> {{ user.id }} <br>
-    <em>Role :</em> {{ user.userRole.name }} <br>
-    <em>User Rights :</em>
-    <ul *ngFor="let userRight of user.userRole.userRights">
-        <li>{{ userRight.name }}</li>
-    </ul>
-  </div>
-</ng-container>
 <app-sidebar-account></app-sidebar-account>
+<section class="profile-section">
+  <p *ngIf="authServ.user$ | async as user">Bienvenue {{ user.firstname }}</p>
+
+  <div class="widgets">
+    <a [routerLink]="['../gardens']">
+      <div class="widget jardins">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <p>Jardins</p>
+          <p class="nb" *ngIf="nbFriends">{{ nbGardens }}</p>
+        </div>
+      </div>
+    </a>
+    <a [routerLink]="['/userAccount/conversations']">
+      <div class="widget conv">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <p>
+            Conversations
+          </p>
+          <p class="nb" *ngIf="nbConvs">{{ nbConvs }}</p>
+        </div>
+      </div>
+    </a>
+
+    <a [routerLink]="['/userAccount/friends']">
+      <div class="widget abo">
+        <div class="opac"></div>
+        <div class="widget-infos">
+          <!-- <figure>
+          <img src="/assets/icones/rating.png" alt="" />
+        </figure> -->
+          <p>Abonnements</p>
+          <p class="nb" *ngIf="nbFriends">{{ nbFriends }}</p>
+        </div>
+      </div>
+    </a>
+
+    <div class="widget profil">
+      <div class="opac"></div>
+      <div class="widget-infos">
+        <p>Modifier profil</p>
+      </div>
+    </div>
+  </div>
+</section>

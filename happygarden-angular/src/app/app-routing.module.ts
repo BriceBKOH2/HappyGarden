@@ -46,17 +46,30 @@ const routes: Routes = [
     loadChildren: './administration/administration.module#AdministrationModule',
     canActivate: [AuthenticateGuard, AdminGuard]
   },
+  {
+    path: 'userAccount/conversations',
+    loadChildren: './conversations/conversations.module#ConversationsModule',
+    canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'userAccount/friends',
+    loadChildren: './friends/friends.module#FriendsModule',
+    canActivate: [AuthenticateGuard]
+  },
+  {
+    path: 'userAccount/profile',
+    loadChildren: './profile/profile.module#ProfileModule',
+    canActivate: [AuthenticateGuard]
+  }
 ];
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(
-      routes , {
+    RouterModule.forRoot(routes, {
       //  enableTracing: !environment.production, //Enable trace of routing and process in browser console
       // paramsInheritanceStrategy: 'always' // Keep all data en params from url in routing
-      }
-    ),
+    }),
     CommonModule
   ],
   exports: [RouterModule]

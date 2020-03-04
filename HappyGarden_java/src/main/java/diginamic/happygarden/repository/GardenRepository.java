@@ -17,4 +17,7 @@ public interface GardenRepository extends JpaRepository<Garden, Long>{
 
 	@Query("select g from Garden g join fetch g.user u where g.user.id = :userId")
 	public List<Garden> findByUserIdOrderByNameAsc(Long userId);
+	
+	@Query("select count(g) from Garden g join g.user u where u.id = :userId")
+	public Long countByUserId(Long userId);
 }

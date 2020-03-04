@@ -81,5 +81,13 @@ public class UserAccountService extends AbstractService<UserAccount, Long, UserA
 		user.setPassword(passwordEncoder.encode(password));
 		return repo.save(user);
 	}
+	
+	public Long countNbFriendsByUserId(Long id) {
+		return repo.countFriendsByUserId(id);
+	}
+	
+	public List<UserAccount> findAllFriendsByUserId(Long id) {
+		return repo.findAllFriendsByUserId(id);
+	}
 
 }

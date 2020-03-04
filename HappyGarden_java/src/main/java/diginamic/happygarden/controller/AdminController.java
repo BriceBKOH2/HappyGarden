@@ -178,7 +178,7 @@ public class AdminController {
 			ArrayList<Slot> slots = new ArrayList<>();
 			slots.add(slot);
 			
-			Parcel parcel = new Parcel("parcelle ta mère", 19L, 157486532156L, slots);
+			Parcel parcel = new Parcel("nouvelle parcelle", 19L, 157486532156L, slots);
 			ArrayList<PlantingArea> parcels = new ArrayList<>();
 			parcels.add(parcel);
 			slot.setPlantingArea(parcel);
@@ -186,32 +186,105 @@ public class AdminController {
 			Garden jardinUn = new Garden("plantes aromatiques", parcels);
 			parcel.setGarden(jardinUn);
 			
-			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
-			estelle.setPassword("estelle");
-			userAccServ.save(estelle);
 			
 			UserAccount jade = new UserAccount("Jade", "Acc", "Jade", userRoleServ.findByName(ADMIN));
 			jade.setPassword("jade");
+			jade.setProfileImg("profil_2.jpg");
 			jade.addFriends("Estelle");
 			userAccServ.save(jade);
 			
-			ArrayList<Message> messages = new ArrayList<Message>();
+			UserAccount estelle = new UserAccount("Estelle", "IDEE", "Estelle", userRoleServ.findByName(ADMIN));
+			estelle.setPassword("estelle");
+			estelle.setProfileImg("profil.jpg");
 			
-			Message msgEstelle = new Message("Coucou Jade.", estelle);
-			messageServ.save(msgEstelle);
-			messages.add(msgEstelle);
+			UserAccount jordi = new UserAccount("Jordi", "Mage", "Jordi", userRoleServ.findByName(ADMIN));
+			jordi.setPassword("jordi");
+			jordi.setProfileImg("profil_3.jpg");
+			userAccServ.save(jordi);
 			
-			Message msgJade = new Message("Coucou Estelle.", jade);
-			messages.add(msgJade);
+			// Ajoût Amis
+			List<String> friends = new ArrayList<String>();
+			friends.add(jade.getNickname());
+			friends.add(jordi.getNickname());
+			estelle.addFriends(friends);
+			
+			userAccServ.save(estelle);
+			
+			//TEST
+			Conversation conv = new Conversation();
+			conv.addUser(estelle);
+			conv.addUser(jade);
+			Message msgJade = new Message("Coucou Estelle.", jade, conv);
+			Message msgEstelle = new Message("Coucou Jade.", estelle, conv);
+			Message msgJade2 = new Message("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam.", jade, conv);
+			Message msgEstelle2 = new Message("dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam, quis nostrud", estelle, conv);
+			
+			conversationServ.save(conv);
 			messageServ.save(msgJade);
+			messageServ.save(msgEstelle);
+			messageServ.save(msgJade2);
+			messageServ.save(msgEstelle2);
 			
-			Conversation conversation = new Conversation(messages);
 			
+			// Conversation Estelle Jade
+//			ArrayList<Message> messagesEstelleJade = new ArrayList<Message>();
+//			
+//			Message msgEstelle = new Message("Coucou Jade.", estelle);
+//			messageServ.save(msgEstelle);
+//			messagesEstelleJade.add(msgEstelle);
+//			
+//			Message msgJade = new Message("Coucou Estelle.", jade);
+//			messagesEstelleJade.add(msgJade);
+//			messageServ.save(msgJade);
+//			
+//			Conversation conversationEstelleJade = new Conversation(messagesEstelleJade);
+//			
+//			List<UserAccount> usersConvEstelleJade = new ArrayList<UserAccount>();
+//			usersConvEstelleJade.add(jade);
+//			usersConvEstelleJade.add(estelle);
+//			conversationEstelleJade.setUsers(usersConvEstelleJade);
+//			
+//			Conversation Estelle Jordi
+			//TEST
+			Conversation convEstelleJordi = new Conversation();
+			convEstelleJordi.addUser(estelle);
+			convEstelleJordi.addUser(jordi);
+			Message msgJordi = new Message("Coucou Estelle.", jordi, convEstelleJordi);
+			Message msgEstellej = new Message("Coucou Jordi.", estelle, convEstelleJordi);
+			Message msgJordi2 = new Message("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam.", jordi, convEstelleJordi);
+			Message msgEstellej2 = new Message("dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 			aliqua. Ut enim ad minim veniam, quis nostrud", estelle, convEstelleJordi);
+			
+			conversationServ.save(convEstelleJordi);
+			messageServ.save(msgJordi);
+			messageServ.save(msgEstellej);
+			messageServ.save(msgJordi2);
+			messageServ.save(msgEstellej2);
+//			Message msgJordi = new Message("Coucou Estelle.", jordi);
+//			messagesEstelleJordi.add(msgJordi);
+//			messageServ.save(msgJordi);
+//			
+//			Conversation conversationEstelleJordi = new Conversation(messagesEstelleJordi);
+//			
+//			List<UserAccount> usersConvEstelleJordi = new ArrayList<UserAccount>();
+//			usersConvEstelleJordi.add(jordi);
+//			usersConvEstelleJordi.add(estelle);
+//			conversationEstelleJordi.setUsers(usersConvEstelleJordi);
+//			
+//			
+//			
+//			
 			jardinUn.setUser(estelle);
-			
+//			
 			gardenServ.save(jardinUn);
-			conversationServ.save(conversation);
-			// Ajoût de Conversations randomn pour la BDD
+//			conversationServ.save(conversationEstelleJade);
+//			conversationServ.save(conversationEstelleJordi);
+//			
+//			Message msgJordi2 = new Message("Ceci est un deuxième test.", jordi);
+//
+//			messageServ.save(msgJordi2);
+//			conversationEstelleJordi.addMessages(msgJordi2);
+//			conversationServ.update(conversationEstelleJordi);
+				
 		}
 		return userAccServ.findAll();
 	}

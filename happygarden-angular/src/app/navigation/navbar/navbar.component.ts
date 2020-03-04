@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
   isNavbarCollapsed = true;
 
   links = [
@@ -20,18 +19,19 @@ export class NavbarComponent implements OnInit {
       route: 'libraryList',
       label: 'Bibliothèque'
     },
-    { // Example of a restricted area. Guards require to be logged in, then to have admin role.
+    {
+      // Example of a restricted area. Guards require to be logged in, then to have admin role.
       route: 'admin',
-      label: 'Admin menu'
-    },
+      label: 'Example restricted area'
+    }
   ];
 
   // links that need the user to be logged in to view
   linksAuth = [
-    {
-      route: 'gardens',
-      label: 'Mes jardins'
-    },
+    // {
+    //   route: 'gardens',
+    //   label: 'Mes jardins'
+    // },
     {
       route: 'userAccount',
       label: 'Mon Compte'
@@ -41,14 +41,12 @@ export class NavbarComponent implements OnInit {
   // links that require the user to have admin role to see.
   linksAdmin = [
     {
-      route: '',
-      label: 'Admin only'
-    },
-  ]
+      route: 'admin',
+      label: 'Admin Menu'
+    }
+  ];
 
-  constructor(
-    public authServ: AuthenticateService,
-    private router: Router) {}
+  constructor(public authServ: AuthenticateService, private router: Router) {}
 
   ngOnInit() {}
 

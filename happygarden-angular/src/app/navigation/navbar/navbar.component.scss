@@ -3,9 +3,16 @@
 }
 
 nav {
-  background: linear-gradient(hsl(148, 32%, 96%), hsl(148, 40%, 86%) 45%);
+  // background: linear-gradient(hsl(148, 32%, 96%), hsl(148, 40%, 86%) 45%);
   background-color: #e0efe7;
   border-bottom: solid 1px var(--vert);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#f2f8f5),
+    color-stop(45%, #cdeada)
+  );
 }
 
 .navbar-nav {
@@ -19,12 +26,15 @@ nav {
   color: var(--police);
 }
 
-.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
   color: var(--police);
 }
 
 i {
-  background:linear-gradient(#354463 20%, #23deff 80%);
+  background: linear-gradient(#354463 20%, var(--vert) 80%);
   background-clip: text;
   color: transparent;
 }

@@ -1,0 +1,38 @@
+<app-sidebar-account></app-sidebar-account>
+
+<section class="profile-section">
+  <div class="conversation">
+    <div class="opac"></div>
+    <h2>ABONNEMENTS</h2>
+  </div>
+
+  <div *ngFor="let friend of friends$ | async">
+    <div class="conv container">
+      <div>
+        <p>{{ friend.nickname }}</p>
+        <figure class="profile-img">
+          <img src="/assets/img/{{ friend.profileImg }}" alt="" />
+        </figure>
+      </div>
+      <div class="delimit-conv"></div>
+      <div>
+        <div class="msg">
+          <h2 class="display-4">
+            {{ friend.firstname }} {{ friend.lastname }}
+          </h2>
+
+          <figure>
+            <img src="/assets/icones/resumee.png" alt="" />
+          </figure>
+        </div>
+        <p class="lead">
+          {{ countGardens(friend) }}
+          Jardins
+        </p>
+        <button class="btn-vert">
+          Voir le profil
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

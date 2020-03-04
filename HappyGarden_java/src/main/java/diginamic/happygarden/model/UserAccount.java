@@ -42,14 +42,14 @@ public class UserAccount implements HibernateEntity<Long> {
 	@NotBlank
 	private String password;
 	
+	private String profileImg;
+	
 	@NotNull
 	@ManyToOne
 	private UserRole userRole;
 
 	@JsonIgnore
-//	@JsonManagedReference("user_conversations")
-//	@JsonBackReference("user_msg")
-	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "users")
 	private List<Conversation> conversations = new ArrayList<>();
 	
 	@ElementCollection
@@ -223,4 +223,14 @@ public class UserAccount implements HibernateEntity<Long> {
 			this.gardens.add(garden);
 		}
 	}
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	
+	
 }

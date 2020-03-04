@@ -22,6 +22,7 @@ import diginamic.happygarden.exception.NotFoundException;
 import diginamic.happygarden.model.Garden;
 import diginamic.happygarden.model.UserAccount;
 import diginamic.happygarden.model.UserRight;
+import diginamic.happygarden.service.ConversationService;
 import diginamic.happygarden.service.GardenService;
 import diginamic.happygarden.service.UserAccountService;
 
@@ -38,6 +39,12 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 	@Autowired
 	private GardenService gardenService;
 	
+	@Autowired
+	private ConversationService convService;
+	
+	@Autowired
+	private UserAccountService userService;
+	
 	/**
 	 * Returns a user based on nickname.
 	 * @param String
@@ -51,24 +58,31 @@ public class UserAccountController extends AbstractCRUDController<UserAccount, L
 		return user;
 	}
 	
-	/**
-	 * Returns @param List<Garden> from a UserAccount object based on its @param id
-	 * @param id from UserAccount
-	 * @return List<Garden>
-	 * @throws NotFoundException
-	 */
+	@GetMapping("/friends/{id}")
+	public List<UserAccount> findAllFriendsByUserId(@PathVariable Long id) {
+		return service.findAllFriendsByUserId(id);
+	}
+	
 	@GetMapping(value = "/{id}/gardens")
 	public List<Garden> findGardensByUserId(@PathVariable Long id) throws NotFoundException {
 		return gardenService.findByUserId(id);
 	}
 	
-	/**
-	 * Returns a List<UserAccount> base on a query that contains the @param name 
-	 * in the firstname, lastname or nickname in the UserAccount table.
-	 * Each UserAccount has had its password attribute set to @null;
-	 * @param String
-	 * @return List<UserAccount>
-	 */
+	@GetMapping(value = "/{id}/gardens/count")
+	public Long countNbGardens(@PathVariable Long id) {
+		return gardenService.countNbGardensByUserId(id);
+	}
+	
+	@GetMapping(value = "/{id}/conversations/count")
+	public Long countNbConversations(@PathVariable Long id) {
+		return convService.countNbCOnversationsByUserId(id);
+	}
+	
+	@GetMapping(value = "/{id}/friends/count")
+	public Long countNbFriends(@PathVariable Long id) {
+		return userService.countNbFriendsByUserId(id);
+	}
+	
 	@GetMapping("/search")
 	public List<UserAccount> searchByName(@RequestParam("name") String name) {
 		List<UserAccount> users = service.findByFirstnameIgnoreCaseContainsOrLastnameIgnoreCaseContainsOrNicknameIgnoreCaseContains(name);

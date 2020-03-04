@@ -22,10 +22,11 @@ public class Conversation implements HibernateEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	@OneToMany
-	//@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Message> messages = new ArrayList<>() ;
+//	@NotNull
+//	@OneToMany
+//	@JsonBackReference("conversation_messages")
+//	//@OneToMany(cascade = CascadeType.PERSIST)
+//	private List<Message> messages = new ArrayList<>() ;
 
 	@ManyToMany
 	private List<UserAccount> users = new ArrayList<>();
@@ -35,17 +36,17 @@ public class Conversation implements HibernateEntity<Long> {
 		super();
 	}
 
-	public Conversation(List<Message> messages) {
-		super();
-		this.messages = messages;
-	}
+//	public Conversation(List<Message> messages) {
+//		super();
+//		this.messages = messages;
+//	}
 	
-	public Conversation(Message... messages) {
-		super();
-		for (Message message : messages) {
-			this.messages.add(message);
-		}
-	}
+//	public Conversation(Message... messages) {
+//		super();
+//		for (Message message : messages) {
+//			this.messages.add(message);
+//		}
+//	}
 	
 	/* Getters Setters */
 	
@@ -57,13 +58,13 @@ public class Conversation implements HibernateEntity<Long> {
 		this.id = id;
 	}
 
-	public List<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
-	}
+//	public List<Message> getMessages() {
+//		return messages;
+//	}
+//
+//	public void setMessages(List<Message> messages) {
+//		this.messages = messages;
+//	}
 	
 	public List<UserAccount> getUsers() {
 		return users;
@@ -79,14 +80,14 @@ public class Conversation implements HibernateEntity<Long> {
 		this.users.add(user);
 	}
 
-	public void addMessages(List<Message> messages) {
-		this.messages.addAll(messages);
-	}
-	
-	public void addMessages(Message... messages) {
-		for (Message message : messages) {
-			this.messages.add(message);
-		}
-	}
+//	public void addMessages(List<Message> messages) {
+//		this.messages.addAll(messages);
+//	}
+//	
+//	public void addMessages(Message... messages) {
+//		for (Message message : messages) {
+//			this.messages.add(message);
+//		}
+//	}
 	
 }

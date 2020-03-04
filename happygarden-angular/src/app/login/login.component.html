@@ -1,41 +1,53 @@
 <ng-container *ngIf="activatedRoute.paramMap | async as param">
   <div class="error-container col-md-10 container p-4">
-    <div [ngClass]="{'alert alert-danger': true,
-                'd-none': param.get('status') != 'needlogin'}">
+    <div
+      [ngClass]="{
+        'alert alert-danger': true,
+        'd-none': param.get('status') != 'needlogin'
+      }"
+    >
       Please log in to access this page.
     </div>
-    <div [ngClass]="{'alert alert-success': true,
-                'd-none': param.get('status') != 'createsuccess'}">
+    <div
+      [ngClass]="{
+        'alert alert-success': true,
+        'd-none': param.get('status') != 'createsuccess'
+      }"
+    >
       Account successfully created. Please log in with your new account !
     </div>
   </div>
 </ng-container>
 
-<div class="col-md-10 d-flex justify-content-around flex-column">
-  <ng-container *ngIf="!(this.authServ.isAuthentificated$ | async) ; else logout" class="">
+<div class="col-md-10 d-flex justify-content-around flex-column login">
+  <ng-container
+    *ngIf="!(this.authServ.isAuthentificated$ | async); else logout"
+    class=""
+  >
     <ul class="nav nav-pills">
       <li class="nav-item">
         <h4>
-          <a [ngClass]="{'nav-link': true,
-                        'active': showLogin}"
-             (click)="showLoginForm()">
+          <a
+            [ngClass]="{ 'nav-link': true, active: showLogin }"
+            (click)="showLoginForm()"
+          >
             Log in
           </a>
         </h4>
       </li>
       <li class="nav-item">
         <h4>
-          <a [ngClass]="{'nav-link': true,
-                         'active': !showLogin}"
-             (click)="showCreateAccForm()">
+          <a
+            [ngClass]="{ 'nav-link': true, active: !showLogin }"
+            (click)="showCreateAccForm()"
+          >
             Create Account
           </a>
         </h4>
       </li>
     </ul>
 
-    <div [ngClass]="{'col-md-4 login-container': true,
-                     'd-none': !showLogin}">
+    <div [ngClass]="{ 'col-md-4 login-container': true, 'd-none': !showLogin }">
       <h2>Login</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -51,7 +63,9 @@
             class="error"
             *ngIf="
               loginForm.controls['username'].hasError('required') &&
-              loginForm.controls['username'].touched">
+              loginForm.controls['username'].touched
+            "
+          >
             Username is required
           </div>
         </div>
@@ -82,11 +96,9 @@
         </div>
       </form>
     </div>
-    <div [ngClass]="{'col-md-4 login-container': true,
-                    'd-none': showLogin}">
+    <div [ngClass]="{ 'col-md-4 login-container': true, 'd-none': showLogin }">
       <h2>Create account</h2>
       <form [formGroup]="createAccForm" (ngSubmit)="onSubmitCreate()">
-
         <div class="form-group">
           <label for="createFormUsername">UserName:</label>
           <input
@@ -98,8 +110,8 @@
           />
           <div
             class="error"
-            *ngIf="
-              createAccForm.controls['username'].hasError('minlength')">
+            *ngIf="createAccForm.controls['username'].hasError('minlength')"
+          >
             Username must have minimum 4 characters.
           </div>
         </div>
@@ -117,7 +129,9 @@
             class="error"
             *ngIf="
               createAccForm.controls['firstname'].hasError('required') &&
-              createAccForm.controls['password'].touched">
+              createAccForm.controls['password'].touched
+            "
+          >
             Firstname is required.
           </div>
         </div>
@@ -135,7 +149,9 @@
             class="error"
             *ngIf="
               createAccForm.controls['lastname'].hasError('required') &&
-              createAccForm.controls['password'].touched">
+              createAccForm.controls['password'].touched
+            "
+          >
             Lastname is required.
           </div>
         </div>
@@ -151,8 +167,11 @@
           />
           <div
             class="alert error"
-            *ngIf="createAccForm.controls['password'].hasError('required') &&
-            createAccForm.controls['password'].touched">
+            *ngIf="
+              createAccForm.controls['password'].hasError('required') &&
+              createAccForm.controls['password'].touched
+            "
+          >
             Password is required.
           </div>
         </div>
@@ -170,10 +189,11 @@
             class="alert error"
             *ngIf="
               createAccForm.hasError('notSame') &&
-              createAccForm.controls['passwordConfirm'].touched">
+              createAccForm.controls['passwordConfirm'].touched
+            "
+          >
             Passwords must match.
           </div>
-
         </div>
         <button class="btn btn-danger" [disabled]="createAccForm.invalid">
           Create Account
