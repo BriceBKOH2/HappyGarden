@@ -15,6 +15,7 @@ import { AuthInterceptorService } from './authenticate/services/auth-interceptor
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+// import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthenticateModule.forRoot(AuthenticateApiService),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    // MatDialogModule
   ],
   exports: [MatCheckboxModule],
   providers: [
@@ -39,7 +41,13 @@ import { ReactiveFormsModule } from '@angular/forms';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    // tentative pour boite de dialogue modale (création de reminders)
+    // {
+    //   provide: MatDialogRef,
+    //   useValue: {}
+    // },
+    // DialogService
   ],
   bootstrap: [AppComponent]
 })
