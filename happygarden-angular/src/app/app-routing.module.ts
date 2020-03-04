@@ -55,11 +55,6 @@ const routes: Routes = [
     path: 'userAccount/friends',
     loadChildren: './friends/friends.module#FriendsModule',
     canActivate: [AuthenticateGuard]
-  },
-  {
-    path: 'userAccount/profile',
-    loadChildren: './profile/profile.module#ProfileModule',
-    canActivate: [AuthenticateGuard]
   }
 ];
 

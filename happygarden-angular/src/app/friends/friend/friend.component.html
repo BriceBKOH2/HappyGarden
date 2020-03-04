@@ -1,2 +1,4 @@
 <app-sidebar-account></app-sidebar-account>
 <p></p>
+
+<div *ngIf="friend$ | async as friend">{{ friend.firstname }}</div>
