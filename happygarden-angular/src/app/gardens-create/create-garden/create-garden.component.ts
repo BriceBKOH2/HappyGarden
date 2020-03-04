@@ -17,6 +17,7 @@ export class CreateGardenComponent implements OnInit {
   userAccount: UserAccount;
   newGarden: Garden;
   gardenName: string;
+  formIsSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,16 +40,19 @@ export class CreateGardenComponent implements OnInit {
   }
 
   onSubmit(formData: FormData): void {
+    this.formIsSubmitted = true;
     this.gardenName = this.f.gardenName.value;
     this.newGarden = new Garden(this.gardenName);
     this.newGarden.user = this.userAccount;
     console.log(this.userAccount.nickname);
-    this.createServ
-      .postGarden(this.newGarden)
-      .pipe(untilDestroyed(this))
-      .subscribe();
+    if (this.createGardenForm.valid) {
+      this.createServ
+        .postGarden(this.newGarden)
+        .pipe(untilDestroyed(this))
+        .subscribe();
 
-    this.router.navigate(['/gardens']);
+      this.router.navigate(['/gardens']);
+    }
   }
 
   ngOnDestroy() {}

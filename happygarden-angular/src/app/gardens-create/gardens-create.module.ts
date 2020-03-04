@@ -8,6 +8,7 @@ import { CreatePlantComponent } from './create-plant/create-plant.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { LibraryModule } from '../library/library.module';
 import { GardensModule } from '../gardens/gardens.module';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GardensModule } from '../gardens/gardens.module';
     FormsModule,
     ReactiveFormsModule,
     MatRadioModule,
-    LibraryModule
+    LibraryModule,
+    MatCheckboxModule
   ]
 })
 export class GardensCreateModule {}

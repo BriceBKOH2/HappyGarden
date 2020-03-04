@@ -22,6 +22,17 @@
                 placeholder="Nom"
               />
             </div>
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                formIsSubmitted &&
+                createGardenForm.get('gardenName').errors as errors
+              "
+            >
+              <span *ngIf="errors.required">
+                Requis
+              </span>
+            </div>
             <button class="btn add-button" type="submit">
               Enregistrer
             </button>

@@ -18,4 +18,6 @@ public interface PlantUserRepository extends JpaRepository<PlantUser, Long>{
 	public List<Plant> findByCommonNameIgnoreCaseContainsOrScientificNameIgnoreCaseContains(String commonName, String scientificName, String creator);
 	
 	public List<Plant> findByCreator(String creator);
+	
+	
 }

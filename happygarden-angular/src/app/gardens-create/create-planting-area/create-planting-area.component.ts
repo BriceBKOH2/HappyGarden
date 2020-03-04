@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserAccount } from 'src/app/classes/user-account';
 import { PlantingArea } from 'src/app/classes/planting-area';
 import { AuthenticateService } from 'src/app/authenticate/services/authenticate.service';
 import { CreateService } from '../services/create.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { MatRadioChange } from '@angular/material';
-import { Garden } from 'src/app/classes/garden';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -30,11 +24,9 @@ export class CreatePlantingAreaComponent implements OnInit {
   potLocation: string;
   locations: string[] = ['intérieur', 'extérieur'];
   potSelected: boolean;
-  currentGarden: Garden;
   formIsSubmitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,
     private authServ: AuthenticateService,
     private createServ: CreateService,
     private activatedRoute: ActivatedRoute,
@@ -71,7 +63,6 @@ export class CreatePlantingAreaComponent implements OnInit {
     this.authServ.user$.subscribe(response => (this.userAccount = response));
     this.potSelected = true;
     this.newPlantingArea = new PlantingArea();
-    this.currentGarden = new Garden('');
   }
 
   radioTypeChange($event: MatRadioChange) {
@@ -109,7 +100,6 @@ export class CreatePlantingAreaComponent implements OnInit {
       // this.newPlantingArea.type = this.f.plantingAreaName.value;
 
       console.log('garden id: ' + this.activatedRoute.snapshot.params['id']);
-      console.log('garden name : ' + this.currentGarden);
       this.createServ
         .getGarden(this.activatedRoute.snapshot.params['id'])
         .pipe(
@@ -124,6 +114,7 @@ export class CreatePlantingAreaComponent implements OnInit {
           this.formIsSubmitted = false;
         });
 
+      this.router.navigate(['/gardens']);
       // this.createServ
       //   .postPlantingArea(this.newPlantingArea)
       //   .pipe(untilDestroyed(this))
