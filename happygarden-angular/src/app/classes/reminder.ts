@@ -1,8 +1,7 @@
-import { Content } from '@angular/compiler/src/render3/r3_ast';
-
 export class Reminder {
-  id: number;
+  id?: number;
   name: string;
-  content: Content;
+  content?: string;
   activationDate: Date;
+  // todo rajouter period
 }
